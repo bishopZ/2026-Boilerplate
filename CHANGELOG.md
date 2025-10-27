@@ -8,7 +8,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+
++ Added proper SEO metadata for search and sharing.
+
 ### Changed
+
++ Make header and footer into reusable components.
+
 ### Deprecated
 ### Removed
 ### Fixed
