@@ -10,10 +10,10 @@ export const Header = () => {
         </Heading>
         <Flex gap={4}>
           <Button as={RouterLink} asChild variant="ghost">
-            <a href="/">Home</a>
+            <RouterLink to="/">Home</RouterLink>
           </Button>
           <Button as={RouterLink} asChild variant="ghost">
-            <a href="/about">About</a>
+            <RouterLink to="/about">About</RouterLink>
           </Button>
         </Flex>
       </Flex>
