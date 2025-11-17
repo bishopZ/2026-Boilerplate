@@ -24,18 +24,33 @@ export const initPlayer = createAsyncThunk(
       const response = await fetch('/key');
       if (!response.ok) {
         console.error('Failed to fetch player data: HTTP error', response.status);
-        return { encryptionKey: null };
+        return { ...defaultState, encryptionKey: null };
       }
       const { key } = await response.json() as { key: string; };
       const storedState = localStorage.getItem(LOCAL_STORAGE_ID) ?? null;
 
-      if (!storedState) return { encryptionKey: key };
+      if (!storedState) {
+        return { ...defaultState, encryptionKey: key };
+      }
 
       const decrypted = decrypt(storedState, key);
-      const result = JSON.parse(decrypted) as PlayerState;
-      return { ...result, encryptionKey: key };
+      if (!decrypted) {
+        // Decryption failed or produced empty result, return default state with key
+        return { ...defaultState, encryptionKey: key };
+      }
+
+      try {
+        const result = JSON.parse(decrypted) as PlayerState;
+        return { ...result, encryptionKey: key };
+      } catch (parseError) {
+        // JSON parse failed, return default state with key
+        console.error('Failed to parse decrypted player data', parseError);
+        return { ...defaultState, encryptionKey: key };
+      }
     } catch (error) {
       console.error('Failed to fetch player data: Network error', error);
+      // Return default state even on error, but without encryption key
+      return { ...defaultState, encryptionKey: null };
     }
   }
 );
