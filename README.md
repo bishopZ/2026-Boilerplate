@@ -8,9 +8,9 @@ Welcome to the 2026 Boilerplate! This repository represents a fresh start for th
 
 I release a boilerplate every few years. Boilerplates go a little bit further than the starter projects that each library gives you, yet they land short of being an actual project. They give you a good starting point, if you want this exact mix of technologies. It also suggests good organizational patterns for a scalable code base.
 
-When you create a starter application with create-next-app, vite, or the majority of similar command-line tools, the app you're given is wonderful in many ways, but fails to follow best practices outside of the narrow scope of its base framework. It may come with many best practices for React, but not for CSS, accessibility, SEO, file organization and a host of other concerns that any person wanting to publish a well-made website needs.
+When you create a starter application with create-next-app, vite, or the majority of similar command-line tools, the app you're given is wonderful in many ways, but fails to follow standard practices outside of the narrow scope of its base framework. It may come with many standard patterns for React, but not for CSS, accessibility, SEO, API, file organization and a host of other concerns that any person wanting to publish a well-made website needs.
 
-If those repos are trying to be the simplest form of a specific technology, this repository aims to be the simplest form of a family of technologies. This repository aims to be an enhanced starter library, providing concise examples of all the features and best practices.
+If those repos are trying to be the simplest form of a specific technology, this repository aims to be the simplest form of a family of technologies. This repository aims to be an enhanced starter library, providing concise examples of all the features.
 
 This boilerplate is right for you if:
 
@@ -140,7 +140,7 @@ To ensure data persistence across browser refreshes and sessions, I've integrate
 
 ### Passport.js
 
-By integrating Passport.js as an example login process, we can demonstrate best practices for authentication without compromising security or scalability. Future improvements will focus on implementing additional features like CSRF protection and login attempts limits, which may require a database solution.
+By integrating Passport.js as an example login process, we can demonstrate authentication without compromising security or scalability. Future improvements will focus on implementing additional features like CSRF protection and login attempts limits, which may require a database solution.
 
 ### React Router
 
