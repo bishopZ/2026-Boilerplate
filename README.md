@@ -6,7 +6,7 @@ Welcome to the 2026 Boilerplate! This repository represents a fresh start for th
 
 ## Motivation
 
-I release a boilerplate every few years. Boilerplates go a little bit further than the starter projects that each library gives you, yet they land short of being an actual project. They give you a good starting point, if you want this exact mix of technologies. It also suggests good organizational patterns for a scalable code base.
+We release a boilerplate every few years. Boilerplates go a little bit further than the starter projects that each library gives you, yet they land short of being an actual project. They give you a good starting point, if you want this exact mix of technologies. It also suggests good organizational patterns for a scalable code base.
 
 When you create a starter application with create-next-app, vite, or the majority of similar command-line tools, the app you're given is wonderful in many ways, but fails to follow standard practices outside of the narrow scope of its base framework. It may come with many standard patterns for React, but not for CSS, accessibility, SEO, API, file organization and a host of other concerns that any person wanting to publish a well-made website needs.
 
@@ -112,11 +112,11 @@ cypress/                   # E2E tests
 
 ### Vite
 
-I'm thrilled to have finally moved on from the complexities of Webpack. With Vite, I can focus on building modern web applications without worrying about tedious configuration and optimization. As Webpack's popularity waned, Rollup paved the way for Vite's arrival, making it easier than ever to switch to a more streamlined build tool.
+We're thrilled to have finally moved on from the complexities of Webpack. With Vite, we can focus on building modern web applications without worrying about tedious configuration and optimization. As Webpack's popularity waned, Rollup paved the way for Vite's arrival, making it easier than ever to switch to a more streamlined build tool.
 
 ### Typescript, React
 
-TypeScript (TSX) offers numerous benefits over JavaScript (JSX), including better code completion, reduced runtime errors, and improved maintainability. In my experience, writing TSX files is *better* and *faster* than writing JSX file.
+TypeScript (TSX) offers numerous benefits over JavaScript (JSX), including better code completion, reduced runtime errors, and improved maintainability. In our experience, writing TSX files is *better* and *faster* than writing JSX file.
 
 ### React Error Boundary
 
@@ -128,15 +128,15 @@ Vite's ability to run client and server-side components simultaneously is a game
 
 ### EJS & SEO
 
-For easy setting of SEO meta tag values, I chose to use EJS templates on Node.js. While this approach might be replaced with SSR implementation if needed, it provides a lightweight solution for basic SEO needs. The server is organized into a clear MVC pattern with separate folders for config, controllers, middleware, routes, services, and templates. This structure makes it easy to add server-rendered pages (like admin panels, login screens, or landing pages) alongside your React SPA. Use EJS templates when you need server-side rendering for SEO, authentication flows, or pages that don't require client-side interactivity.
+For easy setting of SEO meta tag values, we chose to use EJS templates on Node.js. While this approach might be replaced with SSR implementation if needed, it provides a lightweight solution for basic SEO needs. The server is organized into a clear MVC pattern with separate folders for config, controllers, middleware, routes, services, and templates. This structure makes it easy to add server-rendered pages (like admin panels, login screens, or landing pages) alongside your React SPA. Use EJS templates when you need server-side rendering for SEO, authentication flows, or pages that don't require client-side interactivity.
 
 ### Redux Toolkit
 
-After years of Reddit posts proclaiming the death of Redux, I remain a strong advocate for its benefits. By providing a cleaner syntax for state management, Redux simplifies code complexity and makes it easier to manage global state in complex applications.
+After years of Reddit posts proclaiming the death of Redux, we remain strong advocates for its benefits. By providing a cleaner syntax for state management, Redux simplifies code complexity and makes it easier to manage global state in complex applications.
 
 ### Crypto JS
 
-To ensure data persistence across browser refreshes and sessions, I've integrated CryptoJS for local storage encryption. This approach allows our application to securely store user data while maintaining seamless usability.
+To ensure data persistence across browser refreshes and sessions, we've integrated CryptoJS for local storage encryption. This approach allows our application to securely store user data while maintaining seamless usability.
 
 ### Passport.js
 
@@ -156,7 +156,7 @@ Cypress provides reliable end-to-end testing with an excellent developer experie
 
 ### ESlint
 
-I added a very through custom config file for ESLint. It's battle-tested and aims to speed development, ignore problems that aren't real, and maximize the rules that can be automatically fixed by ESLint.
+We added a very through custom config file for ESLint. It's battle-tested and aims to speed development, ignore problems that aren't real, and maximize the rules that can be automatically fixed by ESLint.
 
 
 # Available Scripts
@@ -327,7 +327,9 @@ Scripts use environment variables from `.env`:
 - Run `npm run lint:fix` to auto-fix many issues
 - Review ESLint config in `eslint.config.js`
 
+## Sponsors
 
+[Time 2 Magic](https://time2magic.com)
 
 ## License
 
