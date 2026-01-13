@@ -1,23 +1,17 @@
-import { useDispatch, useSelector } from 'react-redux';
-import { RootState, AppDispatch } from '../components/data/store';
-import { increment } from '../components/data/player';
 import { Box, Button, Container, Heading, Text, VStack } from '@chakra-ui/react';
-import { Link as RouterLink } from 'react-router-dom';
 import { Footer } from '../components/layout/footer';
-import { Header } from '../components/layout/header';
+import { PublicHeader } from '../components/layout/header';
+import { Link as RouterLink } from 'react-router-dom';
 
 const Home = () => {
-  const { score } = useSelector((state: RootState) => state.player);
-  const dispatch = useDispatch<AppDispatch>();
-
   return (
     <>
-      <Header />
+      <PublicHeader />
       <Container maxW="container.md" py={8}>
         <VStack gap={6} align="stretch">
           <Box>
             <Heading as="h1" size="2xl" mb={2}>
-              Welcome to the 2026 Boilerplate! ({score})
+              Welcome to the 2026 Boilerplate!
             </Heading>
             <Text fontSize="lg" color="gray.600">
               A modern, full-stack web application starter with TypeScript, React, and Node.js
@@ -26,22 +20,21 @@ const Home = () => {
 
           <Box>
             <Button
+              asChild
               colorScheme="blue"
               size="lg"
-              onClick={() => dispatch(increment())}
             >
-              Increment Counter
+              <a href="/login">Login</a>
             </Button>
           </Box>
 
           <Box>
             <Button
-              as={RouterLink}
               asChild
               variant="outline"
               colorScheme="blue"
             >
-              <a href="/about">About This Boilerplate</a>
+              <RouterLink to="/about">About This Boilerplate</RouterLink>
             </Button>
           </Box>
         </VStack>
