@@ -1,7 +1,11 @@
 import { Router } from 'express';
 import { ensureAuthenticated } from '../middleware/auth';
+import { getSitemap } from '../controllers/sitemap';
 
 const router = Router();
+
+// Sitemap route - must be before other routes
+router.get('/sitemap.xml', getSitemap);
 
 // Page routes - pass to Vite for rendering
 // Public home page
