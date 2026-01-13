@@ -2,12 +2,12 @@ import { Box, Button, Container, Heading, Text, VStack, List } from '@chakra-ui/
 import { Link as RouterLink } from 'react-router-dom';
 import { FiCheck } from 'react-icons/fi';
 import { Footer } from '../components/layout/footer';
-import { Header } from '../components/layout/header';
+import { PublicHeader } from '../components/layout/header';
 
 const About = () => {
   return (
     <>
-      <Header />
+      <PublicHeader />
       <Container maxW="container.md" py={8}>
         <VStack gap={6} align="stretch">
           <Box>

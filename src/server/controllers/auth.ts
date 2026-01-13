@@ -1,6 +1,6 @@
 import type { RequestHandler } from 'express';
 import passport from 'passport';
-import { LOGIN_PATH } from '../config/constants';
+import { LOGIN_PATH, HOME_PATH } from '../config/constants';
 import { getSEO } from '../services/seo';
 
 // Render the login page
@@ -26,7 +26,7 @@ export const postLogin: RequestHandler = (req, res, next) => {
         next(error);
         return undefined;
       }
-      res.redirect('/'); // redirect to the home page
+      res.redirect('/product'); // redirect to the product page
     });
   })(req, res, next);
 };
@@ -37,7 +37,7 @@ export const getLogout: RequestHandler = (req, res) => {
     if (error) {
       return res.status(500).send('Logout failed');
     }
-    res.redirect(LOGIN_PATH);
+    res.redirect(HOME_PATH);
   });
 };
 

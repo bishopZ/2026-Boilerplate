@@ -14,6 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 + Make header and footer into reusable components.
++ Update the user flow with a proper home page before login.
 
 ### Deprecated
 ### Removed

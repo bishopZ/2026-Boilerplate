@@ -19,60 +19,58 @@ export type PlayerState = typeof defaultState;
 // the encryption key from the server and decrypts the stored state.
 export const initPlayer = createAsyncThunk(
   'player/initPlayer', // namespace
-  /* eslint-disable-next-line max-statements */
   async () => {
+    let key: string | null = null;
+
+    // Try to get encryption key from server
     try {
       const response = await fetch('/api/key');
-      if (!response.ok) {
-        console.error('Failed to fetch player data: HTTP error', response.status);
-        return { ...defaultState, encryptionKey: null };
-      }
-
-      let key: string;
-      try {
-        const jsonData = await response.json() as { key: string; };
-        if (!jsonData.key) {
-          throw new Error('Invalid response format: missing key');
+      if (response.ok) {
+        const contentType = response.headers.get('content-type');
+        // Only try to parse JSON if the response is actually JSON
+        if (contentType?.includes('application/json')) {
+          try {
+            const { key: responseKey } = await response.json() as { key: string; };
+            if (responseKey) {
+              key = responseKey;
+            }
+          } catch (parseError) {
+            console.error('Failed to parse key response:', parseError);
+            // Continue without key - will use defaultState
+          }
         }
-        /* eslint-disable-next-line prefer-destructuring */
-        key = jsonData.key;
-      } catch (parseError) {
-        console.error('Failed to parse key response:', parseError);
-        return { ...defaultState, encryptionKey: null };
-      }
-
-      const storedState = localStorage.getItem(LOCAL_STORAGE_ID) ?? null;
-
-      if (!storedState) {
-        return { ...defaultState, encryptionKey: key };
-      }
-
-      const decrypted = decrypt(storedState, key);
-      if (!decrypted) {
-        // Decryption failed or produced empty result, clear corrupted localStorage and return default state with key
-        localStorage.removeItem(LOCAL_STORAGE_ID);
-        return { ...defaultState, encryptionKey: key };
-      }
-
-      try {
-        const result = JSON.parse(decrypted) as PlayerState;
-        return { ...result, encryptionKey: key };
-      } catch (parseError) {
-        // JSON parse failed, clear corrupted localStorage and return default state with key
-        console.error('Failed to parse decrypted player data', parseError);
-        localStorage.removeItem(LOCAL_STORAGE_ID);
-        return { ...defaultState, encryptionKey: key };
       }
     } catch (error) {
-      console.error('Failed to fetch player data: Network error', error);
-      // On network error, clear potentially corrupted localStorage and return default state
-      try {
-        localStorage.removeItem(LOCAL_STORAGE_ID);
-      } catch {
-        // Ignore errors when clearing localStorage
-      }
-      return { ...defaultState, encryptionKey: null };
+      console.error('Failed to fetch encryption key:', error);
+      // Continue without key - will use defaultState
     }
+
+    // Try to read from localStorage if we have a key
+    if (key) {
+      try {
+        const storedState = localStorage.getItem(LOCAL_STORAGE_ID);
+        if (storedState) {
+          const decrypted = decrypt(storedState, key);
+          if (decrypted) {
+            try {
+              const result = JSON.parse(decrypted) as PlayerState;
+              return { ...result, encryptionKey: key };
+            } catch (parseError) {
+              console.error('Failed to parse decrypted player data:', parseError);
+              // Clear corrupted localStorage and continue with defaultState
+              localStorage.removeItem(LOCAL_STORAGE_ID);
+            }
+          }
+        }
+      } catch (error) {
+        console.error('Failed to read from localStorage:', error);
+        // Continue with defaultState
+      }
+    }
+
+    // Return default state (with key if we got one, otherwise null)
+    // The middleware will save it to localStorage if we have a key
+    return { ...defaultState, encryptionKey: key };
   }
 );
 

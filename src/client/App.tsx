@@ -8,11 +8,12 @@ import { Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 
 // Lazy load pages for better performance
+const Product = lazy(() => import('./pages/Product'));
 const About = lazy(() => import('./pages/About'));
 const NotFound = lazy(() => import('./pages/NotFound'));
 
 const App = () => {
-  const { encryptionKey, loading, error } = useSelector((state: RootState) => state.player);
+  const { loading, error } = useSelector((state: RootState) => state.player);
   const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
@@ -23,18 +24,14 @@ const App = () => {
   if (error) return <ErrorPage message={error} />;
 
   return (
-    <>
-      {!encryptionKey && <LoadingSpinner />}
-      {encryptionKey && (
-        <Suspense fallback={<LoadingSpinner />}>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/about" element={<About />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </Suspense>
-      )}
-    </>
+    <Suspense fallback={<LoadingSpinner />}>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/product" element={<Product />} />
+        <Route path="/about" element={<About />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </Suspense>
   );
 };
 
