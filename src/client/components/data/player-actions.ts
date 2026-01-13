@@ -19,14 +19,27 @@ export type PlayerState = typeof defaultState;
 // the encryption key from the server and decrypts the stored state.
 export const initPlayer = createAsyncThunk(
   'player/initPlayer', // namespace
+  /* eslint-disable-next-line max-statements */
   async () => {
     try {
-      const response = await fetch('/key');
+      const response = await fetch('/api/key');
       if (!response.ok) {
         console.error('Failed to fetch player data: HTTP error', response.status);
         return { ...defaultState, encryptionKey: null };
       }
-      const { key } = await response.json() as { key: string; };
+
+      let key: string;
+      try {
+        const jsonData = await response.json() as { key: string; };
+        if (!jsonData?.key) {
+          throw new Error('Invalid response format: missing key');
+        }
+        key = jsonData.key;
+      } catch (parseError) {
+        console.error('Failed to parse key response:', parseError);
+        return { ...defaultState, encryptionKey: null };
+      }
+
       const storedState = localStorage.getItem(LOCAL_STORAGE_ID) ?? null;
 
       if (!storedState) {
@@ -35,7 +48,8 @@ export const initPlayer = createAsyncThunk(
 
       const decrypted = decrypt(storedState, key);
       if (!decrypted) {
-        // Decryption failed or produced empty result, return default state with key
+        // Decryption failed or produced empty result, clear corrupted localStorage and return default state with key
+        localStorage.removeItem(LOCAL_STORAGE_ID);
         return { ...defaultState, encryptionKey: key };
       }
 
@@ -43,17 +57,24 @@ export const initPlayer = createAsyncThunk(
         const result = JSON.parse(decrypted) as PlayerState;
         return { ...result, encryptionKey: key };
       } catch (parseError) {
-        // JSON parse failed, return default state with key
+        // JSON parse failed, clear corrupted localStorage and return default state with key
         console.error('Failed to parse decrypted player data', parseError);
+        localStorage.removeItem(LOCAL_STORAGE_ID);
         return { ...defaultState, encryptionKey: key };
       }
     } catch (error) {
       console.error('Failed to fetch player data: Network error', error);
-      // Return default state even on error, but without encryption key
+      // On network error, clear potentially corrupted localStorage and return default state
+      try {
+        localStorage.removeItem(LOCAL_STORAGE_ID);
+      } catch {
+        // Ignore errors when clearing localStorage
+      }
       return { ...defaultState, encryptionKey: null };
     }
   }
 );
+
 
 // Player actions that don't require async.
 export const playerActions = {
