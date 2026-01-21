@@ -1,3 +1,5 @@
+# 2026 Boilerplate for Typescript/React
+
 A local-first web app boilerplate for 2026
 
 ## Transition to 2026
