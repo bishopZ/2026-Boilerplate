@@ -94,9 +94,8 @@ src/
 │   ├── services/          # Business logic (auth, SEO)
 │   ├── shared/            # Server-side utilities and constants
 │   └── main.ts            # Server entry point
-│
-cypress/                   # E2E tests
-├── e2e/                   # Test files
+|
+├── cypress/e2e/           # E2E tests
 ```
 
 **Note on shared code:** The `client/shared` and `server/shared` folders are separate to avoid Vite bundling issues. Code that needs to be shared between client and server should be duplicated or refactored to work within the constraints of each environment.

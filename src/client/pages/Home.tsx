@@ -14,7 +14,7 @@ const Home = () => {
               Welcome to the 2026 Boilerplate!
             </Heading>
             <Text fontSize="lg" color="gray.600">
-              A modern, full-stack web application starter with TypeScript, React, and Node.js
+              A modern, full-stack web application starter kit with TypeScript, React, and Node.js
             </Text>
           </Box>
 
