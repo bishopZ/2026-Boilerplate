@@ -37,7 +37,6 @@ This boilerplate is right for you if:
 
 - Server Runtime: Node.js
 - Web Framework: Express
-- Template Engine: EJS
 - Authentication Library: Passport.js
 
 ### Security and Storage
@@ -94,7 +93,6 @@ src/
 │   ├── routes/            # Route definitions (auth, api, pages)
 │   ├── services/          # Business logic (auth, SEO)
 │   ├── shared/            # Server-side utilities and constants
-│   ├── templates/         # EJS templates for server-rendered pages
 │   └── main.ts            # Server entry point
 │
 cypress/                   # E2E tests
@@ -134,10 +132,6 @@ Error boundaries are essential in creating robust and fault-tolerant web applica
 ### vite-express, Node, express
 
 Vite's ability to run client and server-side components simultaneously is a game-changer for web development. With vite-express, we can enjoy the flexibility of choosing between Server-Side Rendering (SSR) or Client-Side Rendering (CSR), giving us more freedom in designing our API.
-
-### EJS & SEO
-
-For easy setting of SEO meta tag values, we chose to use EJS templates on Node.js. While this approach might be replaced with SSR implementation if needed, it provides a lightweight solution for basic SEO needs. The server is organized into a clear MVC pattern with separate folders for config, controllers, middleware, routes, services, and templates. This structure makes it easy to add server-rendered pages (like admin panels, login screens, or landing pages) alongside your React SPA. Use EJS templates when you need server-side rendering for SEO, authentication flows, or pages that don't require client-side interactivity.
 
 ### Redux Toolkit
 
