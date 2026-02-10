@@ -103,13 +103,6 @@ cypress/                   # E2E tests
 
 **Note on shared code:** The `client/shared` and `server/shared` folders are separate to avoid Vite bundling issues. Code that needs to be shared between client and server should be duplicated or refactored to work within the constraints of each environment.
 
-### Server Setup with Heroku
-
-1. Add the items from your `.env` file to the Config Vars section of your server's Settings page.
-2. `heroku login` to login.
-2. `heroku init` to create the project.
-3. `git push heroku main` to build.
-
 ## Collaboration
 
 We welcome contributions! Here's how to get started:
