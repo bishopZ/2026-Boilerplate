@@ -4,7 +4,7 @@ import { useEffect, lazy, Suspense } from 'react';
 import { initPlayer } from './components/data/player-actions';
 import { ErrorPage } from './components/ui/error-page';
 import { LoadingSpinner } from './components/ui/loading-spinner';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router';
 import Home from './pages/Home';
 
 // Lazy load pages for better performance

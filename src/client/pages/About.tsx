@@ -1,5 +1,5 @@
 import { Box, Button, Container, Heading, Text, VStack, List } from '@chakra-ui/react';
-import { Link as RouterLink } from 'react-router-dom';
+import { Link as RouterLink } from 'react-router';
 import { FiCheck } from 'react-icons/fi';
 import { Footer } from '../components/layout/footer';
 import { PublicHeader } from '../components/layout/header';
