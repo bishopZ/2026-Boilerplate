@@ -9,12 +9,16 @@ export const Footer = () => {
           &copy; {new Date().getFullYear()} [insert project name here]. All rights reserved.
         </Text>
         <Flex gap={4}>
-          <Link as={RouterLink} to="/privacy" fontSize="sm" color="gray.600" _hover={{ color: 'gray.800' }}>
-            Privacy Policy
-          </Link>
-          <Link as={RouterLink} to="/terms" fontSize="sm" color="gray.600" _hover={{ color: 'gray.800' }}>
-            Terms of Service
-          </Link>
+          <RouterLink to="/privacy">
+            <Link fontSize="sm" color="gray.600" _hover={{ color: 'gray.800' }}>
+              Privacy Policy
+            </Link>
+          </RouterLink>
+          <RouterLink to="/terms">
+            <Link fontSize="sm" color="gray.600" _hover={{ color: 'gray.800' }}>
+              Terms of Service
+            </Link>
+          </RouterLink>
         </Flex>
       </Flex>
     </Box>

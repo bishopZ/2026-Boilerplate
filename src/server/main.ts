@@ -4,7 +4,6 @@ import express from 'express';
 import ViteExpress from 'vite-express';
 import session from 'express-session';
 import passport from 'passport';
-import ejs from 'ejs';
 import { fileURLToPath } from 'url';
 import path from 'path';
 import { sessionConfig } from './config/session';
@@ -26,17 +25,6 @@ const __dirname = path.dirname(__filename);
 
 const setupMiddleware = (app: express.Application) => {
   app.set('trust proxy', 1); // trust first proxy
-  app.set('view engine', 'ejs');
-  app.engine('html', (path, data, cb) => {
-    ejs.renderFile(path, data, {}, (err, str) => {
-      if (err) {
-        cb(err);
-        return undefined;
-      }
-      cb(null, str);
-    });
-  });
-  app.set('views', `${__dirname}/templates`);
   app.use(express.static(`${__dirname}/public`));
   app.use(express.urlencoded({ extended: true }));
   app.use(express.json());

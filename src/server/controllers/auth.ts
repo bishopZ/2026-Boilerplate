@@ -1,13 +1,6 @@
 import type { RequestHandler } from 'express';
 import passport from 'passport';
 import { LOGIN_PATH, HOME_PATH } from '../config/constants';
-import { getSEO } from '../services/seo';
-
-// Render the login page
-export const getLogin: RequestHandler = (_, res) => {
-  const SEO = getSEO();
-  res.render('login', { SEO });
-};
 
 // Handle login POST request
 export const postLogin: RequestHandler = (req, res, next) => {

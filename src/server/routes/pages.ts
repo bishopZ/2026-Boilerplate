@@ -13,6 +13,11 @@ router.get('/', (_, __, next) => {
   next(); // pass to Vite
 });
 
+// Login page (SPA)
+router.get('/login', (_, __, next) => {
+  next(); // pass to Vite
+});
+
 // Protected product page
 router.get('/product', ensureAuthenticated, (_, __, next) => {
   next(); // pass to Vite
