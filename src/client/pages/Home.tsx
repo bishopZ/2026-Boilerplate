@@ -24,7 +24,7 @@ const Home = () => {
               colorScheme="blue"
               size="lg"
             >
-              <a href="/login">Login</a>
+              <RouterLink to="/login">Login</RouterLink>
             </Button>
           </Box>
 

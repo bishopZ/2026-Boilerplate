@@ -11,14 +11,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 + Added proper SEO metadata to the index page.
 + Added a sitemap.xml file for public pages.
++ Added Terms of service and Privacy policy.
 
 ### Changed
 
 + Make header and footer into reusable components.
 + Update the user flow with a proper home page before login.
++ Moved the Login page to a client route.
 
-### Deprecated
 ### Removed
+
++ EJS template system that is no longer used.
+
 ### Fixed
 
 + Fixed a bug that prevented it from loading without any saved data. Cold start now working as expected.

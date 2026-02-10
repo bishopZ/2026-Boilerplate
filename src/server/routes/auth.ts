@@ -1,9 +1,8 @@
 import { Router } from 'express';
 import passport from 'passport';
 import { Strategy as LocalStrategy } from 'passport-local';
-import { getLogin, postLogin, getLogout } from '../controllers/auth';
+import { postLogin, getLogout } from '../controllers/auth';
 import { verifyUser } from '../services/auth';
-import { LOGIN_PATH } from '../config/constants';
 
 const router = Router();
 
@@ -22,7 +21,6 @@ passport.serializeUser((user: Express.User, done) => { done(null, user) });
 passport.deserializeUser((user: Express.User, done) => { done(null, user) });
 
 // Define routes
-router.get(LOGIN_PATH, getLogin);
 router.post('/login/password', postLogin);
 router.get('/logout', getLogout);
 

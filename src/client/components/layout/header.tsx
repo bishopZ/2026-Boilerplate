@@ -16,7 +16,7 @@ export const PublicHeader = () => {
             <RouterLink to="/about">About</RouterLink>
           </Button>
           <Button asChild variant="ghost">
-            <a href="/login">Login</a>
+            <RouterLink to="/login">Login</RouterLink>
           </Button>
         </Flex>
       </Flex>

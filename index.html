@@ -51,6 +51,40 @@
 
     <!-- Canonical URL -->
     <link rel="canonical" href="https://github.com/bishopz/2026-boilerplate" />
+
+    <!-- Speculation Rules API for faster page navigation (Chrome 121+) -->
+    <script type="speculationrules">
+      {
+        "prefetch": [{ "where": { "href_matches": "/*" }, "eagerness": "moderate" }]
+      }
+    </script>
+
+    <!-- Fallback for Firefox and Safari -->
+    <script>
+      if (!HTMLScriptElement.supports || !HTMLScriptElement.supports('speculationrules')) {
+        const preloadedUrls = {};
+
+        const pointerenterHandler = function() {
+          if (!preloadedUrls[this.href]) {
+            preloadedUrls[this.href] = true;
+
+            const prefetcher = document.createElement('link');
+
+            prefetcher.as = prefetcher.relList.supports('prefetch') ? 'document' : 'fetch';
+            prefetcher.rel = prefetcher.relList.supports('prefetch') ? 'prefetch' : 'preload';
+            prefetcher.href = this.href;
+
+            document.head.appendChild(prefetcher);
+          }
+        };
+
+        document.addEventListener('DOMContentLoaded', () => {
+          document.querySelectorAll('a[href^="/"]').forEach(item => {
+            item.addEventListener('pointerenter', pointerenterHandler);
+          });
+        });
+      }
+    </script>
   </head>
   <body>
     <noscript>
