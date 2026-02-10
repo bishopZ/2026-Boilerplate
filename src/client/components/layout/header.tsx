@@ -1,5 +1,5 @@
 import { Box, Flex, Heading, Button } from '@chakra-ui/react';
-import { Link as RouterLink } from 'react-router-dom';
+import { Link as RouterLink } from 'react-router';
 
 export const PublicHeader = () => {
   return (

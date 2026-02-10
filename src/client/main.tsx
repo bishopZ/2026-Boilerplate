@@ -2,7 +2,7 @@ import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { Provider as DataProvider } from 'react-redux';
 import { ErrorBoundary, FallbackProps } from 'react-error-boundary';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter } from 'react-router';
 import { ChakraProvider, defaultSystem } from '@chakra-ui/react';
 import { ColorModeProvider } from './components/ui/color-mode';
 import App from './App';
