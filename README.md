@@ -81,7 +81,6 @@ src/
 │   ├── pages/             # Page components (Home, About, etc.)
 │   ├── shared/            # Client-side utilities and constants
 │   ├── styles/            # CSS files
-│   │   ├── reset.css      # CSS reset (Coyier CSS Starter)
 │   │   └── index.css      # Global styles
 │   ├── App.tsx            # Main app component with routing
 │   └── main.tsx           # App entry point with providers

@@ -22,6 +22,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 
 + EJS template system that is no longer used.
++ Removed the CSS reset. Now provided by Chakra UI.
 
 ### Fixed
 
