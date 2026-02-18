@@ -23,7 +23,7 @@ const About = () => {
             <Heading as="h2" size="lg" mb={3}>
               Features
             </Heading>
-            <List.Root gap={3}>
+            <List.Root gap={3} listStyleType="none">
               <List.Item>
                 <List.Indicator as={FiCheck} color="green.500" />
                 React 19 with TypeScript for type-safe development
