@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
++ **Node.js 24**: Updated engine requirement from Node 22 to Node 24.
 + Make header and footer into reusable components.
 + Update the user flow with a proper home page before login.
 + Moved the Login page to a client route.

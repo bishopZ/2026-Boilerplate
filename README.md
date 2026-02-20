@@ -286,8 +286,8 @@ npm start
 ## Development Server Requirements
 
 The dev server requires:
-- Node.js 22.20.0 or higher
-- npm 11.6.2 or higher
+- Node.js 24.13.1 or higher
+- npm 11.10.1 or higher
 - `.env` file with required environment variables
 
 ## Testing Requirements
