@@ -72,8 +72,8 @@
     "vite-tsconfig-paths": "5.1.4"
   },
   "engines": {
-    "node": "22.20.0",
-    "npm": "11.7.0"
+    "node": ">=24.13.1",
+    "npm": ">=11.10.1"
   },
   "browserslist": {
     "production": [
