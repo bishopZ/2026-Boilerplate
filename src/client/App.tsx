@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState, AppDispatch } from './components/data/store';
+import { type RootState, type AppDispatch } from './components/data/store';
 import { useEffect, lazy, Suspense } from 'react';
 import { initPlayer } from './components/data/player-actions';
 import { ErrorPage } from './components/ui/error-page';

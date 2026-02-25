@@ -1,4 +1,4 @@
-import session from 'express-session';
+import type session from 'express-session';
 
 export const sessionConfig: session.SessionOptions = {
   secret: process.env.SESSION_SECRET ?? 'default_secret',

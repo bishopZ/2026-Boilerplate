@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState, AppDispatch } from '../components/data/store';
+import { type RootState, type AppDispatch } from '../components/data/store';
 import { increment } from '../components/data/player';
 import { Box, Button, Container, Heading, Text, VStack } from '@chakra-ui/react';
 import { Footer } from '../components/layout/footer';

@@ -1,4 +1,4 @@
-import { createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
+import { createAsyncThunk, type PayloadAction } from '@reduxjs/toolkit';
 import { decrypt } from '@/client/shared/encryption';
 import { LOCAL_STORAGE_ID } from '@/client/shared/constants';
 
