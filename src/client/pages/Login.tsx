@@ -10,11 +10,7 @@ import {
 import { Field } from '@chakra-ui/react';
 import { Footer } from '../components/layout/footer';
 import { PublicHeader } from '../components/layout/header';
-
-const getCsrfToken = (): string => {
-  const match = /(?:^|;\s*)csrf-token=([^;]*)/.exec(document.cookie);
-  return match ? match[1] : '';
-};
+import { getCsrfToken } from '../shared/csrf';
 
 const Login = () => {
   return (
