@@ -1,10 +1,21 @@
 import { Box, Flex, Heading, Button } from '@chakra-ui/react';
 import { Link as RouterLink } from 'react-router';
+import { useTheme } from 'next-themes';
 import { ColorModeToggle } from '../ui/color-mode-toggle';
 
 export const PublicHeader = () => {
+  const { theme } = useTheme();
+  const isDark = theme === 'dark';
+
   return (
-    <Box as="header" bg="gray.100" py={4} px={8} boxShadow="sm">
+    <Box
+      as="header"
+      bg={isDark ? 'gray.800' : 'gray.100'}
+      color={isDark ? 'gray.100' : 'inherit'}
+      py={4}
+      px={8}
+      boxShadow="sm"
+    >
       <Flex justify="space-between" align="center">
         <Heading as="h1" size="lg">
           <RouterLink to="/">2026 Boilerplate</RouterLink>
@@ -27,8 +38,18 @@ export const PublicHeader = () => {
 };
 
 export const PrivateHeader = () => {
+  const { theme } = useTheme();
+  const isDark = theme === 'dark';
+
   return (
-    <Box as="header" bg="gray.100" py={4} px={8} boxShadow="sm">
+    <Box
+      as="header"
+      bg={isDark ? 'gray.800' : 'gray.100'}
+      color={isDark ? 'gray.100' : 'inherit'}
+      py={4}
+      px={8}
+      boxShadow="sm"
+    >
       <Flex justify="space-between" align="center">
         <Heading as="h1" size="lg">
           <RouterLink to="/product">2026 Boilerplate</RouterLink>
