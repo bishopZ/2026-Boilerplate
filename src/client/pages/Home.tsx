@@ -1,5 +1,5 @@
 import { Box, Button, Container, Heading, Text, VStack, Flex, SimpleGrid } from '@chakra-ui/react';
-import { FiShield, FiZap, FiCode } from 'react-icons/fi';
+import { LuShield, LuZap, LuCode } from 'react-icons/lu';
 import { Footer } from '../components/layout/footer';
 import { PublicHeader } from '../components/layout/header';
 import { Link as RouterLink } from 'react-router';
@@ -44,17 +44,17 @@ const Home = () => {
 
             <SimpleGrid columns={{ base: 1, md: 3 }} gap={6}>
               <FeatureCard
-                icon={FiZap}
+                icon={LuZap}
                 title="Fast Development"
                 description="Vite-powered HMR with TypeScript, React 19, and Express running together seamlessly."
               />
               <FeatureCard
-                icon={FiShield}
+                icon={LuShield}
                 title="Built-in Auth"
                 description="Passport.js authentication with encrypted localStorage for secure client-side data persistence."
               />
               <FeatureCard
-                icon={FiCode}
+                icon={LuCode}
                 title="Production Ready"
                 description="ESLint, Cypress E2E tests, and Redux Toolkit — battle-tested tools configured and ready to go."
               />
