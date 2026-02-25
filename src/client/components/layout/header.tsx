@@ -1,5 +1,6 @@
 import { Box, Flex, Heading, Button } from '@chakra-ui/react';
 import { Link as RouterLink } from 'react-router';
+import { ColorModeToggle } from '../ui/color-mode-toggle';
 
 export const PublicHeader = () => {
   return (
@@ -8,7 +9,7 @@ export const PublicHeader = () => {
         <Heading as="h1" size="lg">
           <RouterLink to="/">2026 Boilerplate</RouterLink>
         </Heading>
-        <Flex gap={4}>
+        <Flex gap={4} align="center">
           <Button as={RouterLink} asChild variant="ghost">
             <RouterLink to="/">Home</RouterLink>
           </Button>
@@ -18,6 +19,7 @@ export const PublicHeader = () => {
           <Button asChild variant="ghost">
             <RouterLink to="/login">Login</RouterLink>
           </Button>
+          <ColorModeToggle />
         </Flex>
       </Flex>
     </Box>
@@ -31,13 +33,14 @@ export const PrivateHeader = () => {
         <Heading as="h1" size="lg">
           <RouterLink to="/product">2026 Boilerplate</RouterLink>
         </Heading>
-        <Flex gap={4}>
+        <Flex gap={4} align="center">
           <Button as={RouterLink} asChild variant="ghost">
             <RouterLink to="/product">Product</RouterLink>
           </Button>
           <Button asChild variant="ghost">
             <a href="/logout">Logout</a>
           </Button>
+          <ColorModeToggle />
         </Flex>
       </Flex>
     </Box>
