@@ -11,6 +11,8 @@ const Product = () => {
 
   return (
     <>
+      <title>Product - 2026 Boilerplate</title>
+      <meta name="description" content="Product dashboard for the 2026 Boilerplate application" />
       <PrivateHeader />
       <Container maxW="container.md" py={8}>
         <VStack gap={6} align="stretch">

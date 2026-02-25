@@ -7,6 +7,8 @@ import { PublicHeader } from '../components/layout/header';
 const About = () => {
   return (
     <>
+      <title>About - 2026 Boilerplate</title>
+      <meta name="description" content="Learn about the 2026 Boilerplate — a full-stack starter kit with React, Express, Redux, and Chakra UI" />
       <PublicHeader />
       <Container maxW="container.md" py={8}>
         <VStack gap={6} align="stretch">

@@ -6,6 +6,8 @@ import { Link as RouterLink } from 'react-router';
 const Home = () => {
   return (
     <>
+      <title>2026 Boilerplate</title>
+      <meta name="description" content="A modern, full-stack web application starter kit with TypeScript, React, and Node.js" />
       <PublicHeader />
       <Container maxW="container.md" py={8}>
         <VStack gap={6} align="stretch">
