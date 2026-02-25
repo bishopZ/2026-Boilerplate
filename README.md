@@ -78,6 +78,7 @@ src/
 │   ├── components/
 │   │   ├── data/          # Redux store, reducers, and actions
 │   │   └── ui/            # Reusable UI components
+│   ├── hooks/             # Custom React hooks (see [hooks/README.md](src/client/hooks/README.md))
 │   ├── pages/             # Page components (Home, About, etc.)
 │   ├── shared/            # Client-side utilities and constants
 │   ├── styles/            # CSS files
