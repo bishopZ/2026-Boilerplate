@@ -2,21 +2,8 @@ import { Box, Button, Container, Heading, Text, VStack, Flex, SimpleGrid } from 
 import { LuShield, LuZap, LuCode } from 'react-icons/lu';
 import { Footer } from '../components/layout/footer';
 import { PublicHeader } from '../components/layout/header';
+import { FeatureCard } from '../components/ui/feature-card';
 import { Link as RouterLink } from 'react-router';
-
-const FeatureCard = ({ icon: Icon, title, description }: { icon: React.ElementType; title: string; description: string }) => (
-  <Box p={6} borderWidth="1px" borderRadius="lg" textAlign="center">
-    <Flex justify="center" mb={3}>
-      <Box as={Icon} boxSize={8} color="blue.500" />
-    </Flex>
-    <Heading as="h3" size="md" mb={2}>
-      {title}
-    </Heading>
-    <Text fontSize="sm" color="gray.500">
-      {description}
-    </Text>
-  </Box>
-);
 
 const Home = () => {
   return (
