@@ -6,6 +6,7 @@ import { PublicHeader } from '../components/layout/header';
 const NotFound = () => {
   return (
     <>
+      <title>Page Not Found - 2026 Boilerplate</title>
       <PublicHeader />
       <Container maxW="container.md" py={20}>
         <VStack gap={6} align="center" textAlign="center">

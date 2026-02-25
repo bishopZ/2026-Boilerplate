@@ -6,6 +6,8 @@ import { PublicHeader } from '../components/layout/header';
 const Privacy = () => {
   return (
     <>
+      <title>Privacy Policy - 2026 Boilerplate</title>
+      <meta name="description" content="Privacy policy for the 2026 Boilerplate application" />
       <PublicHeader />
       <Container maxW="container.md" py={8}>
         <VStack gap={6} align="stretch">
