@@ -11,7 +11,7 @@ import { ErrorPage } from './components/ui/error-page';
 import './styles/index.css';
 
 export const ErrorFallback = ({ error }: FallbackProps) => (
-  <ErrorPage message={error.message} />
+  <ErrorPage message={error instanceof Error ? error.message : String(error)} />
 );
 
 const renderApp = (container: HTMLElement) => {
