@@ -80,7 +80,7 @@ const STYLISTIC_RULES = {
   '@stylistic/quotes': [ERROR, 'single'],
 }
 
-const BEST_PRACTICES = {
+const CODE_GUIDELINES = {
   'no-var': ERROR,
   'eqeqeq': [ERROR, 'always'],
   'no-eval': ERROR,
@@ -133,7 +133,7 @@ export default tseslint.config(
       ...CODE_QUALITY_RULES,
       ...TYPESCRIPT_RULES,
       ...STYLISTIC_RULES,
-      ...BEST_PRACTICES,
+      ...CODE_GUIDELINES,
 
       // React specific rules
       'react-refresh/only-export-components': [WARN, { allowConstantExport: true }],
