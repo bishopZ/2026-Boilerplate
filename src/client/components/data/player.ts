@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
 import { defaultState, initPlayer, playerActions } from './player-actions';
 
 export const playerSlice = createSlice({

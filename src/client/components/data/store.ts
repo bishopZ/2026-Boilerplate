@@ -1,7 +1,7 @@
-import { configureStore, Middleware } from '@reduxjs/toolkit';
+import { configureStore, type Middleware } from '@reduxjs/toolkit';
 import playerReducer from './player';
 import { encrypt } from '@/client/shared/encryption';
-import { PlayerState } from './player-actions';
+import { type PlayerState } from './player-actions';
 import { LOCAL_STORAGE_ID } from '@/client/shared/constants';
 
 type GenericObject = Record<string, unknown>;
