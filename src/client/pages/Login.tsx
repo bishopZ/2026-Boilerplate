@@ -11,6 +11,11 @@ import { Field } from '@chakra-ui/react';
 import { Footer } from '../components/layout/footer';
 import { PublicHeader } from '../components/layout/header';
 
+const getCsrfToken = (): string => {
+  const match = /(?:^|;\s*)csrf-token=([^;]*)/.exec(document.cookie);
+  return match ? match[1] : '';
+};
+
 const Login = () => {
   return (
     <>
@@ -26,6 +31,7 @@ const Login = () => {
             </Box>
 
             <form action="/login/password" method="post">
+              <input type="hidden" name="_csrf" value={getCsrfToken()} />
               <VStack gap={4} align="stretch">
                 <Field.Root>
                   <Field.Label htmlFor="username">Email address</Field.Label>
