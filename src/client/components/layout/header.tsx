@@ -1,14 +1,26 @@
 import { Box, Flex, Heading, Button } from '@chakra-ui/react';
 import { Link as RouterLink } from 'react-router';
+import { useTheme } from 'next-themes';
+import { ColorModeToggle } from '../ui/color-mode-toggle';
 
 export const PublicHeader = () => {
+  const { theme } = useTheme();
+  const isDark = theme === 'dark';
+
   return (
-    <Box as="header" bg="gray.100" py={4} px={8} boxShadow="sm">
+    <Box
+      as="header"
+      bg={isDark ? 'gray.800' : 'gray.100'}
+      color={isDark ? 'gray.100' : 'inherit'}
+      py={4}
+      px={8}
+      boxShadow="sm"
+    >
       <Flex justify="space-between" align="center">
         <Heading as="h1" size="lg">
           <RouterLink to="/">2026 Boilerplate</RouterLink>
         </Heading>
-        <Flex gap={4}>
+        <Flex gap={4} align="center">
           <Button as={RouterLink} asChild variant="ghost">
             <RouterLink to="/">Home</RouterLink>
           </Button>
@@ -18,6 +30,7 @@ export const PublicHeader = () => {
           <Button asChild variant="ghost">
             <RouterLink to="/login">Login</RouterLink>
           </Button>
+          <ColorModeToggle />
         </Flex>
       </Flex>
     </Box>
@@ -25,19 +38,30 @@ export const PublicHeader = () => {
 };
 
 export const PrivateHeader = () => {
+  const { theme } = useTheme();
+  const isDark = theme === 'dark';
+
   return (
-    <Box as="header" bg="gray.100" py={4} px={8} boxShadow="sm">
+    <Box
+      as="header"
+      bg={isDark ? 'gray.800' : 'gray.100'}
+      color={isDark ? 'gray.100' : 'inherit'}
+      py={4}
+      px={8}
+      boxShadow="sm"
+    >
       <Flex justify="space-between" align="center">
         <Heading as="h1" size="lg">
           <RouterLink to="/product">2026 Boilerplate</RouterLink>
         </Heading>
-        <Flex gap={4}>
+        <Flex gap={4} align="center">
           <Button as={RouterLink} asChild variant="ghost">
             <RouterLink to="/product">Product</RouterLink>
           </Button>
           <Button asChild variant="ghost">
             <a href="/logout">Logout</a>
           </Button>
+          <ColorModeToggle />
         </Flex>
       </Flex>
     </Box>

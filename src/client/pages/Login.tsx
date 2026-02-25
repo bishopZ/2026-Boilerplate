@@ -15,6 +15,8 @@ import { getCsrfToken } from '../shared/csrf';
 const Login = () => {
   return (
     <>
+      <title>Login - 2026 Boilerplate</title>
+      <meta name="description" content="Sign in to the 2026 Boilerplate application" />
       <PublicHeader />
       <Container maxW="container.sm" py={8}>
         <Box as="main" role="main">

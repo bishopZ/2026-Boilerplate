@@ -1,0 +1,14 @@
+---
+description: Rules for Redux state management
+globs: src/client/components/data/**/*.ts
+---
+
+# State Management Rules
+
+- Use Redux Toolkit slices. Define actions, reducers, and initial state together.
+- Async operations use `createAsyncThunk`.
+- State that should persist across sessions must be added to the `sliceKeys` array in `store.ts`.
+- The persistence middleware in `persistence.ts` is reusable — add new slice keys, don't create new middleware.
+- Infer types from state objects (`typeof defaultState`) rather than writing interfaces manually.
+- Component-local state should use `useState` or `useReducer`, not Redux.
+- See `src/client/components/data/README.md` for the full decision guide.

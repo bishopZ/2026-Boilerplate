@@ -1,9 +1,10 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState, AppDispatch } from './components/data/store';
+import { type RootState, type AppDispatch } from './components/data/store';
 import { useEffect, lazy, Suspense } from 'react';
 import { initPlayer } from './components/data/player-actions';
 import { ErrorPage } from './components/ui/error-page';
 import { LoadingSpinner } from './components/ui/loading-spinner';
+import { ScrollToTop } from './components/ui/scroll-to-top';
 import { Routes, Route } from 'react-router';
 import Home from './pages/Home';
 
@@ -28,6 +29,7 @@ const App = () => {
 
   return (
     <Suspense fallback={<LoadingSpinner />}>
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/product" element={<Product />} />

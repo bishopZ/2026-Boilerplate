@@ -1,26 +1,36 @@
 # AGENTS.md
 
-## Cursor Cloud specific instructions
+## Project Overview
 
-### Overview
+2026 Boilerplate is a full-stack TypeScript/React web app with an Express backend. See [ARCHITECTURE.md](ARCHITECTURE.md) for the system diagram and directory structure.
 
-This is a single full-stack TypeScript/React boilerplate app (not a monorepo). Express backend + Vite-powered React frontend served together via `vite-express` on port 3000. No database or external services required.
+## Development Setup
 
-### Prerequisites
+1. Requires Node.js >= 24.13.1 and npm >= 11.10.1
+2. Copy `.envTemplate` to `.env` if `.env` doesn't exist
+3. Run `npm install`
+4. Run `npm run dev` to start the dev server on port 3000
 
-- **Node.js >= 24.13.1** and **npm >= 11.10.1** are required (see `engines` in `package.json`). The VM snapshot has Node 24 installed via nvm (`nvm use 24`).
-- A `.env` file must exist in the project root (copy from `.envTemplate` if missing: `cp .envTemplate .env`). The template defaults work for development.
+## Key Commands
 
-### Running the app
+- `npm run dev` — development server (Express + Vite HMR)
+- `npm run lint` / `npm run lint:fix` — ESLint
+- `npm run type-check` — TypeScript type verification
+- `npm run build` — production build
+- `npm run test:e2e` — Cypress E2E tests (dev server must be running)
 
-- `npm run dev` — starts the unified dev server (Express + Vite HMR) on port 3000. Uses `nodemon` for server auto-restart on file changes.
-- Login credentials for the hardcoded test user: username `test`, password `test`.
+## Code Guidelines
 
-### Available commands
+- Use arrow functions exclusively. Never use `class`.
+- Use Chakra UI for all UI components.
+- Follow the MVC pattern on the server (routes → controllers → services).
+- Redux for global state; `useState`/`useReducer` for component-local state.
+- See `src/client/components/data/README.md` for state management patterns.
+- See `src/client/hooks/README.md` for custom hook patterns.
+- Client and server `shared/` directories are separate — do not share code between them.
 
-See `README.md` for full documentation. Key commands: `npm run lint`, `npm run lint:fix`, `npm run type-check`, `npm run build`, `npm run dev`.
+## Testing
 
-### Known caveats
-
-- **Cypress E2E tests**: `npm run test:e2e` fails with an ESM compatibility error (`ReferenceError: exports is not defined in ES module scope`). This is caused by Cypress 14's internal ts-node loader conflicting with the project's `"type": "module"` setting. The dev server, lint, type-check, and build all work correctly.
-- The dev server must be running before Cypress tests can execute (they target `http://localhost:3000`).
+- Login credentials: username `test`, password `test`
+- E2E tests are in `cypress/e2e/` and require the dev server to be running
+- Before committing: `npm run lint:fix && npm run type-check`

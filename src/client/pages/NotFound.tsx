@@ -6,31 +6,31 @@ import { PublicHeader } from '../components/layout/header';
 const NotFound = () => {
   return (
     <>
+      <title>Page Not Found - 2026 Boilerplate</title>
       <PublicHeader />
-      <Container maxW="container.md" py={8}>
-        <VStack gap={6} align="center">
-          <Box textAlign="center">
-            <Heading as="h1" size="4xl" mb={4}>
-              404
-            </Heading>
-            <Heading as="h2" size="xl" mb={2}>
+      <Container maxW="container.md" py={20}>
+        <VStack gap={6} align="center" textAlign="center">
+          <Text fontSize="9xl" fontWeight="bold" lineHeight="1" color="gray.300">
+            404
+          </Text>
+
+          <Box>
+            <Heading as="h1" size="xl" mb={2}>
               Page Not Found
             </Heading>
-            <Text fontSize="lg" color="gray.600">
-              The page you&apos;re looking for doesn&apos;t exist.
+            <Text fontSize="lg" color="gray.500">
+              Sorry, the page you&apos;re looking for doesn&apos;t exist or has been moved.
             </Text>
           </Box>
 
-          <Box>
-            <Button
-              as={RouterLink}
-              asChild
-              colorScheme="blue"
-              size="lg"
-            >
-              <a href="/">Go Home</a>
+          <VStack gap={3} pt={4}>
+            <Button asChild colorScheme="blue" size="lg">
+              <RouterLink to="/">Go to Home Page</RouterLink>
             </Button>
-          </Box>
+            <Button asChild variant="outline" size="md">
+              <RouterLink to="/about">Learn About This Project</RouterLink>
+            </Button>
+          </VStack>
         </VStack>
       </Container>
       <Footer />

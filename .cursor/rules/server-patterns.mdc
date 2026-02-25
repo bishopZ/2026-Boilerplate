@@ -1,0 +1,14 @@
+---
+description: Rules for server-side Express code
+globs: src/server/**/*.ts
+---
+
+# Server Code Rules
+
+- Follow the MVC pattern: routes define endpoints, controllers handle logic, services contain business logic.
+- Use arrow functions. Never use the `class` keyword.
+- Middleware goes in `src/server/middleware/`.
+- Configuration goes in `src/server/config/`.
+- Server and client share no code directly. If duplication is needed, maintain separate copies in `server/shared/` and `client/shared/`.
+- Use environment variables for secrets and configuration. Access them via `process.env`.
+- Authentication uses Passport.js with LocalStrategy.

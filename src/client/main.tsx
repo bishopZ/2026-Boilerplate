@@ -1,7 +1,7 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { Provider as DataProvider } from 'react-redux';
-import { ErrorBoundary, FallbackProps } from 'react-error-boundary';
+import { ErrorBoundary, type FallbackProps } from 'react-error-boundary';
 import { BrowserRouter } from 'react-router';
 import { ChakraProvider, defaultSystem } from '@chakra-ui/react';
 import { ColorModeProvider } from './components/ui/color-mode';
@@ -11,7 +11,7 @@ import { ErrorPage } from './components/ui/error-page';
 import './styles/index.css';
 
 export const ErrorFallback = ({ error }: FallbackProps) => (
-  <ErrorPage message={error.message} />
+  <ErrorPage message={error instanceof Error ? error.message : String(error)} />
 );
 
 const renderApp = (container: HTMLElement) => {

@@ -1,0 +1,16 @@
+---
+description: Rules for writing React components in this project
+globs: src/client/**/*.tsx
+---
+
+# React Component Rules
+
+- Use arrow functions for all components. Never use the `class` keyword.
+- Use Chakra UI components (`Box`, `Flex`, `Container`, `Button`, etc.) for layout and styling.
+- Use React Router's `Link` or `RouterLink` for client-side navigation.
+- Pages must include `<title>` and `<meta name="description">` using React 19 document metadata.
+- Every page component must render a Header (PublicHeader or PrivateHeader) and Footer.
+- Use lazy loading (`React.lazy`) for page components in `App.tsx`.
+- Prefer `useSelector` and `useDispatch` from `react-redux` for Redux state access.
+- Avoid nested ternary operators. Use early returns or helper variables instead.
+- Don't duplicate code. Extract shared logic into hooks (`src/client/hooks/`) or UI components (`src/client/components/ui/`).
