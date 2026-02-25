@@ -1,6 +1,7 @@
 import { createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 import { decrypt } from '@/client/shared/encryption';
 import { LOCAL_STORAGE_ID } from '@/client/shared/constants';
+import { GameState, defaultGameState } from './game';
 
 const SCHEMA_VERSION = '1.0.0';
 
@@ -12,70 +13,80 @@ export const defaultState = {
   error: null as string | null,
 };
 
-// Infer Type from defaultState
 export type PlayerState = typeof defaultState;
 
-// After authentication, the `initPlayer` action requests
-// the encryption key from the server and decrypts the stored state.
+interface PersistedData {
+  player?: PlayerState;
+  game?: GameState;
+}
+
+export interface InitResult {
+  player: PlayerState;
+  game: GameState;
+}
+
+const fetchEncryptionKey = async (): Promise<string | null> => {
+  try {
+    const response = await fetch('/api/key');
+    if (!response.ok) return null;
+
+    const contentType = response.headers.get('content-type');
+    if (!contentType?.includes('application/json')) return null;
+
+    const { key } = await response.json() as { key: string; };
+    return key || null;
+  } catch (error) {
+    console.error('Failed to fetch encryption key:', error);
+    return null;
+  }
+};
+
+const restorePersistedState = (key: string): InitResult | null => {
+  try {
+    const storedState = localStorage.getItem(LOCAL_STORAGE_ID);
+    if (!storedState) return null;
+
+    const decrypted = decrypt(storedState, key);
+    if (!decrypted) return null;
+
+    const parsed = JSON.parse(decrypted) as PersistedData | PlayerState;
+
+    // Support both old format (flat PlayerState) and new format ({ player, game })
+    if ('player' in parsed && typeof parsed.player === 'object') {
+      return {
+        player: { ...parsed.player, encryptionKey: key },
+        game: parsed.game ?? defaultGameState,
+      };
+    }
+
+    return {
+      player: { ...(parsed as PlayerState), encryptionKey: key },
+      game: defaultGameState,
+    };
+  } catch (error) {
+    console.error('Failed to restore persisted state:', error);
+    localStorage.removeItem(LOCAL_STORAGE_ID);
+    return null;
+  }
+};
+
 export const initPlayer = createAsyncThunk(
-  'player/initPlayer', // namespace
-  async () => {
-    let key: string | null = null;
+  'player/initPlayer',
+  async (): Promise<InitResult> => {
+    const key = await fetchEncryptionKey();
 
-    // Try to get encryption key from server
-    try {
-      const response = await fetch('/api/key');
-      if (response.ok) {
-        const contentType = response.headers.get('content-type');
-        // Only try to parse JSON if the response is actually JSON
-        if (contentType?.includes('application/json')) {
-          try {
-            const { key: responseKey } = await response.json() as { key: string; };
-            if (responseKey) {
-              key = responseKey;
-            }
-          } catch (parseError) {
-            console.error('Failed to parse key response:', parseError);
-            // Continue without key - will use defaultState
-          }
-        }
-      }
-    } catch (error) {
-      console.error('Failed to fetch encryption key:', error);
-      // Continue without key - will use defaultState
-    }
-
-    // Try to read from localStorage if we have a key
     if (key) {
-      try {
-        const storedState = localStorage.getItem(LOCAL_STORAGE_ID);
-        if (storedState) {
-          const decrypted = decrypt(storedState, key);
-          if (decrypted) {
-            try {
-              const result = JSON.parse(decrypted) as PlayerState;
-              return { ...result, encryptionKey: key };
-            } catch (parseError) {
-              console.error('Failed to parse decrypted player data:', parseError);
-              // Clear corrupted localStorage and continue with defaultState
-              localStorage.removeItem(LOCAL_STORAGE_ID);
-            }
-          }
-        }
-      } catch (error) {
-        console.error('Failed to read from localStorage:', error);
-        // Continue with defaultState
-      }
+      const restored = restorePersistedState(key);
+      if (restored) return restored;
     }
 
-    // Return default state (with key if we got one, otherwise null)
-    // The middleware will save it to localStorage if we have a key
-    return { ...defaultState, encryptionKey: key };
+    return {
+      player: { ...defaultState, encryptionKey: key },
+      game: defaultGameState,
+    };
   }
 );
 
-
-// Player actions that don't require async.
 export const playerActions = {
   increment: (state: PlayerState) => {
     state.score += 1;

@@ -1,19 +1,24 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { defaultState, initPlayer, playerActions } from './player-actions';
+import { defaultState, initPlayer, playerActions, PlayerState } from './player-actions';
+import { GameState } from './game';
+
+interface InitResult {
+  player: PlayerState;
+  game: GameState;
+}
 
 export const playerSlice = createSlice({
   name: 'player',
   initialState: defaultState,
-  reducers: playerActions, // non-async actions
+  reducers: playerActions,
   extraReducers: builder => {
-    // Handle async actions
     builder
       .addCase(initPlayer.pending, state => {
         state.loading = true;
         state.error = null;
       })
-      .addCase(initPlayer.fulfilled, (state, action: PayloadAction<unknown>) => {
-        Object.assign(state, action.payload);
+      .addCase(initPlayer.fulfilled, (state, action: PayloadAction<InitResult>) => {
+        Object.assign(state, action.payload.player);
         state.loading = false;
       })
       .addCase(initPlayer.rejected, state => {

@@ -76,7 +76,7 @@ The reasoning for each item is included below.
 src/
 ├── client/                 # Frontend React application
 │   ├── components/
-│   │   ├── data/          # Redux store, reducers, and actions
+│   │   ├── data/          # Redux store, reducers, and actions (see [data/README.md](src/client/components/data/README.md))
 │   │   └── ui/            # Reusable UI components
 │   ├── pages/             # Page components (Home, About, etc.)
 │   ├── shared/            # Client-side utilities and constants
