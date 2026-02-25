@@ -12,6 +12,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 + Added proper SEO metadata to the index page.
 + Added a sitemap.xml file for public pages.
 + Added Terms of service and Privacy policy.
++ Added AI-friendly files such as AGENTS.md
++ Added the use of React 19's meta tags.
++ Added a light mode/dark mode toggle to the header.
++ Added ScrollToTop functionality on route change.
 
 ### Changed
 
@@ -19,6 +23,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 + Make header and footer into reusable components.
 + Update the user flow with a proper home page before login.
 + Moved the Login page to a client route.
++ Improved the design of the home page and 404 page.
++ Moved to JWT for session expiration.
++ Updated the ESLint configuration.
++ Updated dependency versions.
++ Changed the favicon.
++ Expanded the .gitignore file.
 
 ### Removed
 
