@@ -1,5 +1,5 @@
 import { Box, Button, Container, Heading, Text, VStack } from '@chakra-ui/react';
-import { Link as RouterLink } from 'react-router';
+import { Link } from '@tanstack/react-router';
 import { Footer } from '../components/layout/footer';
 import { PublicHeader } from '../components/layout/header';
 
@@ -85,11 +85,10 @@ const Privacy = () => {
 
           <Box>
             <Button
-              as={RouterLink}
               asChild
               colorScheme="blue"
             >
-              <a href="/">Back to Home</a>
+              <Link to="/">Back to Home</Link>
             </Button>
           </Box>
         </VStack>

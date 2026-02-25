@@ -1,5 +1,5 @@
 import { Box, Button, Container, Heading, Text, VStack } from '@chakra-ui/react';
-import { Link as RouterLink } from 'react-router';
+import { Link } from '@tanstack/react-router';
 import { Footer } from '../components/layout/footer';
 import { PublicHeader } from '../components/layout/header';
 
@@ -23,12 +23,11 @@ const NotFound = () => {
 
           <Box>
             <Button
-              as={RouterLink}
               asChild
               colorScheme="blue"
               size="lg"
             >
-              <a href="/">Go Home</a>
+              <Link to="/">Go Home</Link>
             </Button>
           </Box>
         </VStack>

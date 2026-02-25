@@ -1,5 +1,5 @@
-import { Box, Flex, Text, Link } from '@chakra-ui/react';
-import { Link as RouterLink } from 'react-router';
+import { Box, Flex, Text, Link as ChakraLink } from '@chakra-ui/react';
+import { Link } from '@tanstack/react-router';
 
 export const Footer = () => {
   return (
@@ -9,16 +9,16 @@ export const Footer = () => {
           &copy; {new Date().getFullYear()} [insert project name here]. All rights reserved.
         </Text>
         <Flex gap={4}>
-          <RouterLink to="/privacy">
-            <Link fontSize="sm" color="gray.600" _hover={{ color: 'gray.800' }}>
+          <Link to="/privacy">
+            <ChakraLink fontSize="sm" color="gray.600" _hover={{ color: 'gray.800' }}>
               Privacy Policy
-            </Link>
-          </RouterLink>
-          <RouterLink to="/terms">
-            <Link fontSize="sm" color="gray.600" _hover={{ color: 'gray.800' }}>
+            </ChakraLink>
+          </Link>
+          <Link to="/terms">
+            <ChakraLink fontSize="sm" color="gray.600" _hover={{ color: 'gray.800' }}>
               Terms of Service
-            </Link>
-          </RouterLink>
+            </ChakraLink>
+          </Link>
         </Flex>
       </Flex>
     </Box>

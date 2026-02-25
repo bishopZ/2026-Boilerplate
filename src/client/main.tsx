@@ -1,11 +1,11 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { Provider as DataProvider } from 'react-redux';
-import { ErrorBoundary, FallbackProps } from 'react-error-boundary';
-import { BrowserRouter } from 'react-router';
+import { ErrorBoundary, type FallbackProps } from 'react-error-boundary';
+import { RouterProvider } from '@tanstack/react-router';
 import { ChakraProvider, defaultSystem } from '@chakra-ui/react';
 import { ColorModeProvider } from './components/ui/color-mode';
-import App from './App';
+import { router } from './router';
 import { store } from './components/data/store';
 import { ErrorPage } from './components/ui/error-page';
 import './styles/index.css';
@@ -20,11 +20,9 @@ const renderApp = (container: HTMLElement) => {
       <ChakraProvider value={defaultSystem}>
         <ColorModeProvider>
           <DataProvider store={store}>
-            <BrowserRouter>
-              <ErrorBoundary fallbackRender={ErrorFallback}>
-                <App />
-              </ErrorBoundary>
-            </BrowserRouter>
+            <ErrorBoundary fallbackRender={ErrorFallback}>
+              <RouterProvider router={router} />
+            </ErrorBoundary>
           </DataProvider>
         </ColorModeProvider>
       </ChakraProvider>

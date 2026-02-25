@@ -1,7 +1,7 @@
 import { Box, Button, Container, Heading, Text, VStack } from '@chakra-ui/react';
 import { Footer } from '../components/layout/footer';
 import { PublicHeader } from '../components/layout/header';
-import { Link as RouterLink } from 'react-router';
+import { Link } from '@tanstack/react-router';
 
 const Home = () => {
   return (
@@ -24,7 +24,7 @@ const Home = () => {
               colorScheme="blue"
               size="lg"
             >
-              <RouterLink to="/login">Login</RouterLink>
+              <Link to="/login">Login</Link>
             </Button>
           </Box>
 
@@ -34,7 +34,7 @@ const Home = () => {
               variant="outline"
               colorScheme="blue"
             >
-              <RouterLink to="/about">About This Boilerplate</RouterLink>
+              <Link to="/about">About This Boilerplate</Link>
             </Button>
           </Box>
         </VStack>
