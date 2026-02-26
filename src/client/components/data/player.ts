@@ -27,6 +27,7 @@ export const {
   increment,
   decrement,
   incrementByAmount,
+  setLocale,
 } = playerSlice.actions;
 
 export default playerSlice.reducer;
