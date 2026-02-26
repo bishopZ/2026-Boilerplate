@@ -10,9 +10,11 @@ import { store } from './components/data/store';
 import { ErrorPage } from './components/ui/error-page';
 import './styles/index.css';
 
-export const ErrorFallback = ({ error }: FallbackProps) => (
-  <ErrorPage message={error instanceof Error ? error.message : String(error)} />
-);
+export const ErrorFallback = ({ error }: FallbackProps) => {
+  const message = error instanceof Error ? error.message : String(error);
+  console.error('[ErrorBoundary]', message);
+  return <ErrorPage message={message} />;
+};
 
 const renderApp = (container: HTMLElement) => {
   createRoot(container).render(
