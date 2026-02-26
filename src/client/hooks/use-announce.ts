@@ -10,7 +10,7 @@ const ANNOUNCER_ID = 'aria-live-announcer';
  *   announce('Item added to cart');
  */
 export const useAnnounce = () => {
-  const timeoutRef = useRef<ReturnType<typeof setTimeout>>();
+  const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
     if (!document.getElementById(ANNOUNCER_ID)) {
@@ -35,7 +35,9 @@ export const useAnnounce = () => {
     const el = document.getElementById(ANNOUNCER_ID);
     if (!el) return;
 
-    clearTimeout(timeoutRef.current);
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+    }
 
     el.textContent = '';
     timeoutRef.current = setTimeout(() => {
