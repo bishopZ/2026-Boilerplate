@@ -9,11 +9,11 @@ import { useAnnounce } from '../hooks/use-announce';
 const Product = () => {
   const { score } = useSelector((state: RootState) => state.player);
   const dispatch = useDispatch<AppDispatch>();
-  const [optimisticScore, addOptimistic] = useOptimistic(score, (current: number) => current + 1);
+  const [optimisticScore, setOptimistic] = useOptimistic(score, (_prev: number, next: number) => next);
   const announce = useAnnounce();
 
   const handleIncrement = () => {
-    addOptimistic(1);
+    setOptimistic(score + 1);
     dispatch(increment());
     announce(`Score updated to ${String(score + 1)}`);
   };
