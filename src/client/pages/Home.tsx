@@ -1,5 +1,6 @@
 import { Button, Heading, Text, VStack, Flex, SimpleGrid } from '@chakra-ui/react';
 import { LuShield, LuZap, LuCode } from 'react-icons/lu';
+import { FormattedMessage } from 'react-intl';
 import { PageLayout } from '../components/layout/page-layout';
 import { FeatureCard } from '../components/ui/feature-card';
 import { Link as RouterLink } from 'react-router';
@@ -12,17 +13,21 @@ const Home = () => {
       <VStack gap={16} align="stretch">
         <VStack gap={6} textAlign="center">
           <Heading as="h1" size="4xl" fontWeight="bold" lineHeight="1.2">
-            Build Modern Web Apps
+            <FormattedMessage id="home.title" />
           </Heading>
           <Text fontSize="xl" color="gray.500" maxW="600px" mx="auto">
-            A full-stack TypeScript starter kit with authentication, encrypted storage, and a modern developer experience.
+            <FormattedMessage id="home.subtitle" />
           </Text>
           <Flex gap={4} pt={2}>
             <Button asChild colorScheme="blue" size="lg">
-              <RouterLink to="/login">Get Started</RouterLink>
+              <RouterLink to="/login">
+                <FormattedMessage id="home.getStarted" />
+              </RouterLink>
             </Button>
             <Button asChild variant="outline" size="lg">
-              <RouterLink to="/about">Learn More</RouterLink>
+              <RouterLink to="/about">
+                <FormattedMessage id="home.learnMore" />
+              </RouterLink>
             </Button>
           </Flex>
         </VStack>
