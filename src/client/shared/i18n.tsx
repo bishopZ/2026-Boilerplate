@@ -15,7 +15,7 @@ const RTL_LOCALES: ReadonlySet<SupportedLocale> = new Set(['ar']);
 
 export const I18nProvider = ({ children }: { children: ReactNode }) => {
   const locale = useSelector((state: RootState) => state.player.locale);
-  const messages = MESSAGES[locale];
+  const messages = { ...MESSAGES[DEFAULT_LOCALE], ...MESSAGES[locale] };
   const dir = RTL_LOCALES.has(locale) ? 'rtl' : 'ltr';
 
   return (
