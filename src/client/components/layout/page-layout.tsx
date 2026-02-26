@@ -2,6 +2,7 @@ import type { ReactNode } from 'react';
 import { Container } from '@chakra-ui/react';
 import { PublicHeader, PrivateHeader } from './header';
 import { Footer } from './footer';
+import { SkipLink } from '../ui/skip-link';
 
 interface PageLayoutProps {
   variant?: 'public' | 'private';
@@ -20,8 +21,9 @@ export const PageLayout = ({
 
   return (
     <>
+      <SkipLink />
       <Header />
-      <Container as="main" maxW={maxW} py={py}>
+      <Container as="main" id="main-content" tabIndex={-1} maxW={maxW} py={py}>
         {children}
       </Container>
       <Footer />

@@ -4,7 +4,6 @@ import { Link as RouterLink } from 'react-router';
 import { useTheme } from 'next-themes';
 import { LuMenu, LuX } from 'react-icons/lu';
 import { ColorModeToggle } from '../ui/color-mode-toggle';
-import { SkipLink } from '../ui/skip-link';
 
 interface NavItem {
   label: string;
@@ -51,7 +50,6 @@ const Header = ({ variant }: { variant: 'public' | 'private' }) => {
 
   return (
     <>
-      <SkipLink />
       <Box
         as="header"
         bg={isDark ? 'gray.800' : 'gray.100'}
