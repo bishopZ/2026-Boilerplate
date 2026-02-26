@@ -12,10 +12,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 + Added proper SEO metadata to the index page.
 + Added a sitemap.xml file for public pages.
 + Added Terms of service and Privacy policy.
-+ Added AI-friendly files such as AGENTS.md
++ Added AI-friendly files such as AGENTS.md.
 + Added the use of React 19's meta tags.
 + Added a light mode/dark mode toggle to the header.
 + Added ScrollToTop functionality on route change.
++ Improved Accessibility: skip to content link, useId() for form fields, and useAnnounce hook for aria-live.
 
 ### Changed
 

@@ -1,12 +1,14 @@
 import { createAsyncThunk, type PayloadAction } from '@reduxjs/toolkit';
 import { decrypt } from '@/client/shared/encryption';
 import { LOCAL_STORAGE_ID } from '@/client/shared/constants';
+import { DEFAULT_LOCALE, type SupportedLocale } from '@/client/shared/locales';
 
 const SCHEMA_VERSION = '1.0.0';
 
 export const defaultState = {
   schemaVersion: SCHEMA_VERSION,
   score: 0,
+  locale: DEFAULT_LOCALE,
   encryptionKey: null as string | null,
   loading: false,
   error: null as string | null,
@@ -85,5 +87,8 @@ export const playerActions = {
   },
   incrementByAmount: (state: PlayerState, action: PayloadAction<number>) => {
     state.score += action.payload;
-  }
+  },
+  setLocale: (state: PlayerState, action: PayloadAction<SupportedLocale>) => {
+    state.locale = action.payload;
+  },
 };
