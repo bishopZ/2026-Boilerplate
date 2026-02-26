@@ -8,6 +8,7 @@ import { ColorModeProvider } from './components/ui/color-mode';
 import App from './App';
 import { store } from './components/data/store';
 import { ErrorPage } from './components/ui/error-page';
+import { I18nProvider } from './shared/i18n';
 import './styles/index.css';
 
 export const ErrorFallback = ({ error }: FallbackProps) => (
@@ -20,11 +21,13 @@ const renderApp = (container: HTMLElement) => {
       <ChakraProvider value={defaultSystem}>
         <ColorModeProvider>
           <DataProvider store={store}>
-            <BrowserRouter>
-              <ErrorBoundary fallbackRender={ErrorFallback}>
-                <App />
-              </ErrorBoundary>
-            </BrowserRouter>
+            <I18nProvider>
+              <BrowserRouter>
+                <ErrorBoundary fallbackRender={ErrorFallback}>
+                  <App />
+                </ErrorBoundary>
+              </BrowserRouter>
+            </I18nProvider>
           </DataProvider>
         </ColorModeProvider>
       </ChakraProvider>

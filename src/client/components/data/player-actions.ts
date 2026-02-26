@@ -7,6 +7,7 @@ const SCHEMA_VERSION = '1.0.0';
 export const defaultState = {
   schemaVersion: SCHEMA_VERSION,
   score: 0,
+  locale: 'en',
   encryptionKey: null as string | null,
   loading: false,
   error: null as string | null,
@@ -85,5 +86,8 @@ export const playerActions = {
   },
   incrementByAmount: (state: PlayerState, action: PayloadAction<number>) => {
     state.score += action.payload;
-  }
+  },
+  setLocale: (state: PlayerState, action: PayloadAction<string>) => {
+    state.locale = action.payload;
+  },
 };
