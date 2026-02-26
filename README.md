@@ -31,7 +31,6 @@ This boilerplate is right for you if:
 - State Management: Redux Toolkit
 - Routing: React Router
 - Design System: Chakra UI
-- React Error Boundary
 
 ### Backend
 
@@ -122,10 +121,6 @@ We're thrilled to have finally moved on from the complexities of Webpack. With V
 ### Typescript, React
 
 TypeScript (TSX) offers numerous benefits over JavaScript (JSX), including better code completion, reduced runtime errors, and improved maintainability. In our experience, writing TSX files is *better* and *faster* than writing JSX file.
-
-### React Error Boundary
-
-Error boundaries are essential in creating robust and fault-tolerant web applications. By including an example of a React error boundary in the boilerplate, developers can use it as a reference to add error boundries to other places as the application grows.
 
 ### vite-express, Node, express
 

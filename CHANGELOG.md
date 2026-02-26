@@ -9,8 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-+ Added proper SEO metadata to the index page.
-+ Added a sitemap.xml file for public pages.
++ Added proper SEO metadata and a sitemap.xml file to public pages.
 + Added Terms of service and Privacy policy.
 + Added AI-friendly files such as AGENTS.md.
 + Added the use of React 19's meta tags.
@@ -21,7 +20,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 + **Node.js 24**: Updated engine requirement from Node 22 to Node 24.
-+ Make header and footer into reusable components.
++ Make header and footer into reusable components, and add a second Suspense Boundary.
 + Update the user flow with a proper home page before login.
 + Moved the Login page to a client route.
 + Improved the design of the home page and 404 page.
@@ -30,6 +29,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 + Updated dependency versions.
 + Changed the favicon.
 + Expanded the .gitignore file.
++ Changed the counter to show an example of useOptimistic.
 
 ### Removed
 
@@ -73,7 +73,6 @@ Frontend
 + Static Typing: TypeScript
 + UI Framework: React
 + State Management: Redux Toolkit
-+ React Error Boundary
 
 Backend
 

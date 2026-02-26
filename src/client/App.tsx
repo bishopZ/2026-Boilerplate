@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { type RootState, type AppDispatch } from './components/data/store';
-import { useEffect, lazy } from 'react';
+import { useEffect, lazy, Suspense } from 'react';
 import { initPlayer } from './components/data/player-actions';
 import { ErrorPage } from './components/ui/error-page';
 import { LoadingSpinner } from './components/ui/loading-spinner';
@@ -27,7 +27,7 @@ const App = () => {
   if (error) return <ErrorPage message={error} />;
 
   return (
-    <>
+    <Suspense fallback={<LoadingSpinner />}>
       <ScrollToTop />
       <Routes>
         <Route path="/" element={<Home />} />
@@ -38,7 +38,7 @@ const App = () => {
         <Route path="/terms" element={<Terms />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
-    </>
+    </Suspense>
   );
 };
 
