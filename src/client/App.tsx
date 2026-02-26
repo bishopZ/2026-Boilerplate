@@ -32,7 +32,11 @@ const App = () => {
       <ScrollToTop />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/product" element={<Product />} />
+        <Route path="/product" element={
+          <Suspense fallback={<LoadingSpinner />}>
+            <Product />
+          </Suspense>
+        } />
         <Route path="/about" element={<About />} />
         <Route path="/login" element={<Login />} />
         <Route path="/privacy" element={<Privacy />} />
