@@ -1,18 +1,19 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { type RootState, type AppDispatch } from '../data/store';
 import { setLocale } from '../data/player';
+import { SUPPORTED_LOCALES, type SupportedLocale } from '@/client/shared/locales';
 
-const LANGUAGES = [
-  { code: 'en', label: 'EN' },
-  { code: 'ar', label: 'عربي' },
-];
+const LOCALE_LABELS: Record<SupportedLocale, string> = {
+  en: 'EN',
+  ar: 'عربي',
+};
 
 export const LanguageSwitcher = () => {
   const locale = useSelector((state: RootState) => state.player.locale);
   const dispatch = useDispatch<AppDispatch>();
 
   const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    dispatch(setLocale(event.target.value));
+    dispatch(setLocale(event.target.value as SupportedLocale));
   };
 
   return (
@@ -30,8 +31,8 @@ export const LanguageSwitcher = () => {
         color: 'inherit',
       }}
     >
-      {LANGUAGES.map(({ code, label }) => (
-        <option key={code} value={code}>{label}</option>
+      {SUPPORTED_LOCALES.map((code) => (
+        <option key={code} value={code}>{LOCALE_LABELS[code]}</option>
       ))}
     </select>
   );
