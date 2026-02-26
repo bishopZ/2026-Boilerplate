@@ -1,3 +1,4 @@
+import { useId } from 'react';
 import {
   Box,
   Button,
@@ -11,6 +12,10 @@ import { PageLayout } from '../components/layout/page-layout';
 import { getCsrfToken } from '../shared/csrf';
 
 const Login = () => {
+  const id = useId();
+  const usernameId = `${id}-username`;
+  const passwordId = `${id}-password`;
+
   return (
     <PageLayout maxW="container.sm">
       <title>Login - 2026 Boilerplate</title>
@@ -27,28 +32,26 @@ const Login = () => {
           <input type="hidden" name="_csrf" value={getCsrfToken()} />
           <VStack gap={4} align="stretch">
             <Field.Root>
-              <Field.Label htmlFor="username">Email address</Field.Label>
+              <Field.Label htmlFor={usernameId}>Email address</Field.Label>
               <Input
-                id="username"
+                id={usernameId}
                 name="username"
                 type="text"
                 autoComplete="username"
                 required
                 autoFocus
                 aria-required
-                aria-label="Email address"
               />
             </Field.Root>
             <Field.Root>
-              <Field.Label htmlFor="current-password">Password</Field.Label>
+              <Field.Label htmlFor={passwordId}>Password</Field.Label>
               <Input
-                id="current-password"
+                id={passwordId}
                 name="password"
                 type="password"
                 autoComplete="current-password"
                 required
                 aria-required
-                aria-label="Password"
               />
             </Field.Root>
             <Button type="submit" colorScheme="blue" aria-label="Sign in">

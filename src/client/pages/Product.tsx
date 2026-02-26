@@ -3,10 +3,17 @@ import { type RootState, type AppDispatch } from '../components/data/store';
 import { increment } from '../components/data/player';
 import { Box, Button, Heading, Text, VStack } from '@chakra-ui/react';
 import { PageLayout } from '../components/layout/page-layout';
+import { useAnnounce } from '../hooks/use-announce';
 
 const Product = () => {
   const { score } = useSelector((state: RootState) => state.player);
   const dispatch = useDispatch<AppDispatch>();
+  const announce = useAnnounce();
+
+  const handleIncrement = () => {
+    dispatch(increment());
+    announce(`Score updated to ${String(score + 1)}`);
+  };
 
   return (
     <PageLayout variant="private">
@@ -26,7 +33,7 @@ const Product = () => {
           <Button
             colorScheme="blue"
             size="lg"
-            onClick={() => dispatch(increment())}
+            onClick={handleIncrement}
           >
             Increment Counter
           </Button>
