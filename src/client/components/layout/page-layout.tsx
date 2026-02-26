@@ -23,7 +23,7 @@ export const PageLayout = ({
     <>
       <SkipLink />
       <Header />
-      <Container as="main" id="main-content" tabIndex={-1} maxW={maxW} py={py}>
+      <Container as="main" id="main-content" maxW={maxW} py={py}>
         {children}
       </Container>
       <Footer />

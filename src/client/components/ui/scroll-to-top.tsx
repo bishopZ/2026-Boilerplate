@@ -6,11 +6,6 @@ export const ScrollToTop = () => {
 
   useLayoutEffect(() => {
     window.scrollTo(0, 0);
-
-    const main = document.getElementById('main-content');
-    if (main) {
-      main.focus({ preventScroll: true });
-    }
   }, [pathname]);
 
   return null;
