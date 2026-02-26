@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { type RootState, type AppDispatch } from '../components/data/store';
 import { increment } from '../components/data/player';
 import { Box, Button, Heading, Text, VStack } from '@chakra-ui/react';
+import { motion } from 'framer-motion';
 import { PageLayout } from '../components/layout/page-layout';
 import { useAnnounce } from '../hooks/use-announce';
 
@@ -30,13 +31,19 @@ const Product = () => {
         </Box>
 
         <Box>
-          <Button
-            colorScheme="blue"
-            size="lg"
-            onClick={handleIncrement}
+          <motion.div
+            whileTap={{ scale: 0.95 }}
+            transition={{ duration: 0.15 }}
+            style={{ display: 'inline-block' }}
           >
-            Increment Counter
-          </Button>
+            <Button
+              colorScheme="blue"
+              size="lg"
+              onClick={handleIncrement}
+            >
+              Increment Counter
+            </Button>
+          </motion.div>
         </Box>
       </VStack>
     </PageLayout>
