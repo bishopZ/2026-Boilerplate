@@ -15,10 +15,15 @@ const Home = () => {
         <Container maxW="container.lg" py={16}>
           <VStack gap={16} align="stretch">
             <VStack gap={6} textAlign="center">
-              <Heading as="h1" size="4xl" fontWeight="bold" lineHeight="1.2">
+              <Heading
+                as="h1"
+                fontSize={{ base: '2xl', sm: '3xl', md: '4xl', lg: '5xl' }}
+                fontWeight="bold"
+                lineHeight="1.2"
+              >
                 Build Modern Web Apps
               </Heading>
-              <Text fontSize="xl" color="gray.500" maxW="600px" mx="auto">
+              <Text fontSize={{ base: 'md', md: 'xl' }} color="gray.500" maxW="600px" mx="auto">
                 A full-stack TypeScript starter kit with authentication, encrypted storage, and a modern developer experience.
               </Text>
               <Flex gap={4} pt={2}>

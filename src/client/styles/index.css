@@ -3,3 +3,14 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+/* WCAG 2.5.5: minimum 44x44px touch targets for interactive elements */
+@media (pointer: coarse) {
+  button,
+  a,
+  [role="button"],
+  input[type="submit"] {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
