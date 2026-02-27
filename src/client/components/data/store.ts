@@ -3,10 +3,13 @@ import playerReducer from './player';
 import { encrypt } from '@/client/shared/encryption';
 import { type PlayerState } from './player-actions';
 import { LOCAL_STORAGE_ID } from '@/client/shared/constants';
+import { reportError } from '@/client/shared/error-reporting';
 
 type GenericObject = Record<string, unknown>;
 interface LocalState { player: PlayerState}
 
+// Middleware that encrypts and persists the player state to localStorage
+// after every Redux action.
 const saveToLocalStorage: Middleware<GenericObject, LocalState> = storeAPI => next => action => {
   // debounce to ensure we get the latest state
   setTimeout(() => {
@@ -18,11 +21,11 @@ const saveToLocalStorage: Middleware<GenericObject, LocalState> = storeAPI => ne
         if (encryptedState) {
           localStorage.setItem(LOCAL_STORAGE_ID, encryptedState);
         } else {
-          console.error('Failed to encrypt state');
+          reportError('Failed to encrypt state', { context: 'saveToLocalStorage' });
         }
       }
     } catch (error) {
-      console.error('Failed to save state to localStorage:', error);
+      reportError(error, { context: 'saveToLocalStorage' });
     }
   }, 0);
   return next(action);

@@ -1,5 +1,6 @@
 import crypto from 'crypto';
 import type { RequestHandler } from 'express';
+import { API_ERRORS } from '../shared/api-error';
 
 const CSRF_COOKIE_NAME = 'csrf-token';
 const CSRF_FIELD_NAME = '_csrf';
@@ -21,23 +22,28 @@ const CSRF_FIELD_NAME = '_csrf';
 export const csrfProtection: RequestHandler = (req, res, next) => {
   const isUnsafeMethod = ['POST', 'PUT', 'PATCH', 'DELETE'].includes(req.method);
 
+  // Validate CSRF token on state-changing requests
   if (isUnsafeMethod) {
     const cookieToken = req.cookies?.[CSRF_COOKIE_NAME] as string | undefined;
     const formToken = (req.body as Record<string, unknown>)[CSRF_FIELD_NAME] as string | undefined;
 
     if (!cookieToken || !formToken || cookieToken !== formToken) {
-      res.status(403).send('CSRF token validation failed');
+      const error = API_ERRORS.forbidden('CSRF token validation failed');
+      res.status(error.status).json(error);
       return;
     }
   }
 
+  // Set a new CSRF token cookie if one doesn't already exist.
+  // Only on first visit — preserves existing tokens so forms
+  // in other tabs aren't invalidated.
   const existingToken = req.cookies?.[CSRF_COOKIE_NAME] as string | undefined;
   if (!existingToken) {
     const token = crypto.randomBytes(32).toString('hex');
     const isProduction = process.env.NODE_ENV === 'production';
 
     res.cookie(CSRF_COOKIE_NAME, token, {
-      httpOnly: false,
+      httpOnly: false, // must be readable by client JS
       secure: isProduction,
       sameSite: 'lax',
       path: '/',
