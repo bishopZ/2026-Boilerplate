@@ -1,3 +1,4 @@
+import { useOptimistic } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { type RootState, type AppDispatch } from '../components/data/store';
 import { increment } from '../components/data/player';
@@ -8,9 +9,11 @@ import { useAnnounce } from '../hooks/use-announce';
 const Product = () => {
   const { score } = useSelector((state: RootState) => state.player);
   const dispatch = useDispatch<AppDispatch>();
+  const [optimisticScore, setOptimistic] = useOptimistic(score, (_prev: number, next: number) => next);
   const announce = useAnnounce();
 
   const handleIncrement = () => {
+    setOptimistic(score + 1);
     dispatch(increment());
     announce(`Score updated to ${String(score + 1)}`);
   };
@@ -22,7 +25,7 @@ const Product = () => {
       <VStack gap={6} align="stretch">
         <Box>
           <Heading as="h1" size="2xl" mb={2}>
-            Welcome to the Product Page ({score})
+            Welcome to the Product Page ({optimisticScore})
           </Heading>
           <Text fontSize="lg" color="gray.600">
             You must login to see this page.

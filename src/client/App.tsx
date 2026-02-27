@@ -8,7 +8,6 @@ import { ScrollToTop } from './components/ui/scroll-to-top';
 import { Routes, Route } from 'react-router';
 import Home from './pages/Home';
 
-// Lazy load pages for better performance
 const Product = lazy(() => import('./pages/Product'));
 const About = lazy(() => import('./pages/About'));
 const Login = lazy(() => import('./pages/Login'));
