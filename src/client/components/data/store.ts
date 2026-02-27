@@ -9,8 +9,7 @@ type GenericObject = Record<string, unknown>;
 interface LocalState { player: PlayerState}
 
 // Middleware that encrypts and persists the player state to localStorage
-// after every Redux action. Uses setTimeout(0) to debounce and ensure
-// we get the latest state after the reducer has processed the action.
+// after every Redux action.
 const saveToLocalStorage: Middleware<GenericObject, LocalState> = storeAPI => next => action => {
   // debounce to ensure we get the latest state
   setTimeout(() => {

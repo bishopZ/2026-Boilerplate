@@ -11,16 +11,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 + Added proper SEO metadata and a sitemap.xml file to public pages.
 + Added Terms of service and Privacy policy.
-+ Added AI-friendly files such as AGENTS.md.
-+ Added the use of React 19's meta tags.
-+ Added a light mode/dark mode toggle to the header.
++ Added AI-friendly files such as AGENTS.md & ARCHITECTURE.md.
++ Added React 19 meta tags.
 + Added ScrollToTop functionality on route change.
-+ Improved Accessibility: skip to content link, useId() for form fields, and useAnnounce hook for aria-live.
++ Improved Accessibility: skip to content link, useId() to avoid form field id collisions, and useAnnounce hook for aria-live.
++ Better Error handling: Added second suspense boundary around the content, error-handler middleware for the server, and an centralized error handler for the client.
 
 ### Changed
 
 + **Node.js 24**: Updated engine requirement from Node 22 to Node 24.
-+ Make header and footer into reusable components, and add a second Suspense Boundary.
++ Make header and footer into reusable components, and a light mode/dark mode toggle.
 + Update the user flow with a proper home page before login.
 + Moved the Login page to a client route.
 + Improved the design of the home page and 404 page.

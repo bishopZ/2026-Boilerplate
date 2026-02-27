@@ -18,10 +18,9 @@ export const globalErrorHandler = (
   res: Response,
   _next: NextFunction, // eslint-disable-line @typescript-eslint/no-unused-vars
 ) => {
-  const status = err.status || 500;
-  const message = err.message || 'An unexpected error occurred';
+  const { status, message } = err;
 
-  console.error(`[${req.method}] ${req.path} — ${message}`);  
+  console.error(`[${req.method}] ${req.path} — ${message}`);
 
   // API routes get structured JSON responses that clients can parse
   if (req.path.startsWith('/api/')) {
