@@ -15,17 +15,22 @@ export const defaultState = {
   error: null as string | null,
 };
 
+// Infer Type from defaultState
 export type PlayerState = typeof defaultState;
 
+// After authentication, the `initPlayer` action requests
+// the encryption key from the server and decrypts the stored state.
 export const initPlayer = createAsyncThunk(
-  'player/initPlayer',
+  'player/initPlayer', // namespace
   async () => {
     let key: string | null = null;
 
+    // Try to get encryption key from server
     try {
       const response = await fetch('/api/key');
       if (response.ok) {
         const contentType = response.headers.get('content-type');
+        // Only try to parse JSON if the response is actually JSON
         if (contentType?.includes('application/json')) {
           try {
             const { key: responseKey } = await response.json() as { key: string; };
@@ -34,13 +39,16 @@ export const initPlayer = createAsyncThunk(
             }
           } catch (parseError) {
             reportError(parseError, { context: 'initPlayer', step: 'parseKeyResponse' });
+            // Continue without key - will use defaultState
           }
         }
       }
     } catch (error) {
       reportError(error, { context: 'initPlayer', step: 'fetchEncryptionKey' });
+      // Continue without key - will use defaultState
     }
 
+    // Try to read from localStorage if we have a key
     if (key) {
       try {
         const storedState = localStorage.getItem(LOCAL_STORAGE_ID);
@@ -52,19 +60,25 @@ export const initPlayer = createAsyncThunk(
               return { ...result, encryptionKey: key };
             } catch (parseError) {
               reportError(parseError, { context: 'initPlayer', step: 'parseDecryptedData' });
+              // Clear corrupted localStorage and continue with defaultState
               localStorage.removeItem(LOCAL_STORAGE_ID);
             }
           }
         }
       } catch (error) {
         reportError(error, { context: 'initPlayer', step: 'readLocalStorage' });
+        // Continue with defaultState
       }
     }
 
+    // Return default state (with key if we got one, otherwise null)
+    // The middleware will save it to localStorage if we have a key
     return { ...defaultState, encryptionKey: key };
   }
 );
 
+
+// Player actions that don't require async.
 export const playerActions = {
   increment: (state: PlayerState) => {
     state.score += 1;

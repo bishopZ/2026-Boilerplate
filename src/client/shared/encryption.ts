@@ -1,6 +1,8 @@
 import CryptoJS from 'crypto-js';
 import { reportError } from './error-reporting';
 
+// Encrypts text using AES with the provided key.
+// Used to persist Redux state to localStorage securely.
 export const encrypt = (text: string, key: string) => {
   try {
     const result = CryptoJS.AES.encrypt(text, key);
@@ -10,6 +12,8 @@ export const encrypt = (text: string, key: string) => {
   }
 };
 
+// Decrypts AES-encrypted text using the provided key.
+// Returns the decrypted string, or empty string on failure.
 export const decrypt = (text: string, key: string) => {
   try {
     const bytes = CryptoJS.AES.decrypt(text, key);
