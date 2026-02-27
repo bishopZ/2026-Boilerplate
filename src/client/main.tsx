@@ -9,11 +9,12 @@ import App from './App';
 import { store } from './components/data/store';
 import { ErrorPage } from './components/ui/error-page';
 import { I18nProvider } from './shared/i18n';
+import { reportError } from './shared/error-reporting';
 import './styles/index.css';
 
 export const ErrorFallback = ({ error }: FallbackProps) => {
   const message = error instanceof Error ? error.message : String(error);
-  console.error('[ErrorBoundary]', message);
+  reportError(error, { context: 'ErrorBoundary' });
   return <ErrorPage message={message} />;
 };
 
@@ -41,5 +42,5 @@ const root = document.getElementById('root');
 if (root) {
   renderApp(root);
 } else {
-  console.error('Root element not found');
+  reportError('Root element not found', { context: 'bootstrap' });
 }

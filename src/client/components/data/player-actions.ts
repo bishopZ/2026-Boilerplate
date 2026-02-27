@@ -2,6 +2,7 @@ import { createAsyncThunk, type PayloadAction } from '@reduxjs/toolkit';
 import { decrypt } from '@/client/shared/encryption';
 import { LOCAL_STORAGE_ID } from '@/client/shared/constants';
 import { DEFAULT_LOCALE, type SupportedLocale } from '@/client/shared/locales';
+import { reportError } from '@/client/shared/error-reporting';
 
 const SCHEMA_VERSION = '1.0.0';
 
@@ -14,22 +15,17 @@ export const defaultState = {
   error: null as string | null,
 };
 
-// Infer Type from defaultState
 export type PlayerState = typeof defaultState;
 
-// After authentication, the `initPlayer` action requests
-// the encryption key from the server and decrypts the stored state.
 export const initPlayer = createAsyncThunk(
-  'player/initPlayer', // namespace
+  'player/initPlayer',
   async () => {
     let key: string | null = null;
 
-    // Try to get encryption key from server
     try {
       const response = await fetch('/api/key');
       if (response.ok) {
         const contentType = response.headers.get('content-type');
-        // Only try to parse JSON if the response is actually JSON
         if (contentType?.includes('application/json')) {
           try {
             const { key: responseKey } = await response.json() as { key: string; };
@@ -37,17 +33,14 @@ export const initPlayer = createAsyncThunk(
               key = responseKey;
             }
           } catch (parseError) {
-            console.error('Failed to parse key response:', parseError);
-            // Continue without key - will use defaultState
+            reportError(parseError, { context: 'initPlayer', step: 'parseKeyResponse' });
           }
         }
       }
     } catch (error) {
-      console.error('Failed to fetch encryption key:', error);
-      // Continue without key - will use defaultState
+      reportError(error, { context: 'initPlayer', step: 'fetchEncryptionKey' });
     }
 
-    // Try to read from localStorage if we have a key
     if (key) {
       try {
         const storedState = localStorage.getItem(LOCAL_STORAGE_ID);
@@ -58,26 +51,20 @@ export const initPlayer = createAsyncThunk(
               const result = JSON.parse(decrypted) as PlayerState;
               return { ...result, encryptionKey: key };
             } catch (parseError) {
-              console.error('Failed to parse decrypted player data:', parseError);
-              // Clear corrupted localStorage and continue with defaultState
+              reportError(parseError, { context: 'initPlayer', step: 'parseDecryptedData' });
               localStorage.removeItem(LOCAL_STORAGE_ID);
             }
           }
         }
       } catch (error) {
-        console.error('Failed to read from localStorage:', error);
-        // Continue with defaultState
+        reportError(error, { context: 'initPlayer', step: 'readLocalStorage' });
       }
     }
 
-    // Return default state (with key if we got one, otherwise null)
-    // The middleware will save it to localStorage if we have a key
     return { ...defaultState, encryptionKey: key };
   }
 );
 
-
-// Player actions that don't require async.
 export const playerActions = {
   increment: (state: PlayerState) => {
     state.score += 1;

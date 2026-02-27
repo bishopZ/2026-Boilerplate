@@ -1,5 +1,6 @@
 import crypto from 'crypto';
 import type { RequestHandler } from 'express';
+import { API_ERRORS } from '../shared/api-error';
 
 const CSRF_COOKIE_NAME = 'csrf-token';
 const CSRF_FIELD_NAME = '_csrf';
@@ -26,7 +27,8 @@ export const csrfProtection: RequestHandler = (req, res, next) => {
     const formToken = (req.body as Record<string, unknown>)[CSRF_FIELD_NAME] as string | undefined;
 
     if (!cookieToken || !formToken || cookieToken !== formToken) {
-      res.status(403).send('CSRF token validation failed');
+      const error = API_ERRORS.forbidden('CSRF token validation failed');
+      res.status(error.status).json(error);
       return;
     }
   }
