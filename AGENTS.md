@@ -4,6 +4,12 @@
 
 2026 Boilerplate is a full-stack TypeScript/React web app with an Express backend. See [ARCHITECTURE.md](ARCHITECTURE.md) for the system diagram and directory structure.
 
+## Skills
+
+- Skills live in `skills/`.
+- If a request matches a skill, read and follow that skill before implementing changes.
+- `skills/rebrand.md` — Rebrand the boilerplate into a new project using a new site title and description.
+
 ## Development Setup
 
 1. Requires Node.js >= 24.13.1 and npm >= 11.10.1

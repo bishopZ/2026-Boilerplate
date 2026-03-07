@@ -51,7 +51,24 @@ This boilerplate is right for you if:
 The reasoning for each item is included below.
 
 
+## Skills
+
+- `skills/rebrand.md` - Rebrand the boilerplate into your own project identity using a new site title and description.
+
 ## Getting Started
+
+### Start a New Project from This Boilerplate
+
+Use this workflow when you want to turn this repository into your own product instead of contributing back to the boilerplate.
+
+1. Clone the repository and enter the folder:
+   - `git clone git@github.com:bishopZ/2026-Boilerplate.git`
+   - `cd 2026-Boilerplate`
+2. Remove the existing git history: `rm -rf .git`
+3. Initialize a fresh repository: `git init`
+4. Run the rebrand skill with your new project details:
+   - `Use the skill at skills/rebrand.md with site_title="<Your Project Title>" and site_description="<Your Project Description>".`
+5. Create your first commit in the new repository.
 
 ### Development Setup
 

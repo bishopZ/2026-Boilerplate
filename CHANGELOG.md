@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 + Added proper SEO metadata and a sitemap.xml file to public pages.
 + Added Terms of service and Privacy policy.
 + Added AI-friendly files such as AGENTS.md & ARCHITECTURE.md.
++ Added a new `skills/` folder and the `skills/rebrand.md` skill for rebranding title/description metadata across `index.html`, `package.json`, and `README.md`.
 + Added React 19 meta tags.
 + Added ScrollToTop functionality on route change.
 + Improved Accessibility: skip to content link, useId() to avoid form field id collisions, and useAnnounce hook for aria-live.
