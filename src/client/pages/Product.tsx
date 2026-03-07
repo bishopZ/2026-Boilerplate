@@ -2,9 +2,9 @@ import { useOptimistic } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { type RootState, type AppDispatch } from '../redux/store';
 import { increment } from '../redux/player';
-import { Box, Button, Heading, Text, VStack } from '@chakra-ui/react';
-import { motion } from 'framer-motion';
+import { Box, Heading, Text, VStack } from '@chakra-ui/react';
 import { PageLayout } from '../ui/layout/page-layout';
+import { AnimatedButton } from '../ui/components/animated-button';
 import { PageMeta } from '../ui/components/page-meta';
 import { useAnnounce } from '../hooks/use-announce';
 
@@ -37,19 +37,13 @@ const Product = () => {
         </Box>
 
         <Box>
-          <motion.div
-            whileTap={{ scale: 0.95 }}
-            transition={{ duration: 0.15 }}
-            style={{ display: 'inline-block' }}
+          <AnimatedButton
+            colorScheme="blue"
+            size="lg"
+            onClick={handleIncrement}
           >
-            <Button
-              colorScheme="blue"
-              size="lg"
-              onClick={handleIncrement}
-            >
-              Increment Counter
-            </Button>
-          </motion.div>
+            Increment Counter
+          </AnimatedButton>
         </Box>
       </VStack>
     </PageLayout>

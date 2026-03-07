@@ -1,6 +1,7 @@
-import { Box, Button, Heading, Text, VStack } from '@chakra-ui/react';
+import { Box, Heading, Text, VStack } from '@chakra-ui/react';
 import { Link as RouterLink } from 'react-router';
 import { ROUTES } from '../utilities/constants';
+import { AnimatedButton } from '../ui/components/animated-button';
 import { PageLayout } from '../ui/layout/page-layout';
 import { PageMeta } from '../ui/components/page-meta';
 
@@ -87,11 +88,11 @@ const Privacy = () => {
         </Box>
 
         <Box>
-          <Button
+          <AnimatedButton
             asChild
             colorScheme="blue">
             <RouterLink to={ROUTES.HOME}>Back to Home</RouterLink>
-          </Button>
+          </AnimatedButton>
         </Box>
       </VStack>
     </PageLayout>

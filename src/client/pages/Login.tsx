@@ -1,7 +1,6 @@
 import { useId } from 'react';
 import {
   Box,
-  Button,
   Heading,
   Input,
   Text,
@@ -9,6 +8,7 @@ import {
 } from '@chakra-ui/react';
 import { Field } from '@chakra-ui/react';
 import { PageLayout } from '../ui/layout/page-layout';
+import { AnimatedButton } from '../ui/components/animated-button';
 import { PageMeta } from '../ui/components/page-meta';
 import { API_PATHS } from '../utilities/constants';
 import { getCsrfToken } from '../utilities/csrf';
@@ -58,9 +58,9 @@ const Login = () => {
                 aria-required
               />
             </Field.Root>
-            <Button type="submit" colorScheme="blue" aria-label="Sign in">
+            <AnimatedButton type="submit" colorScheme="blue" aria-label="Sign in">
               Sign in
-            </Button>
+            </AnimatedButton>
           </VStack>
         </form>
       </VStack>

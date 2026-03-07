@@ -1,7 +1,8 @@
-import { Button, Heading, Text, VStack, Flex, SimpleGrid } from '@chakra-ui/react';
+import { Heading, Text, VStack, Flex, SimpleGrid } from '@chakra-ui/react';
 import { LuShield, LuZap, LuCode } from 'react-icons/lu';
 import { FormattedMessage } from 'react-intl';
 import { PageLayout } from '../ui/layout/page-layout';
+import { AnimatedButton } from '../ui/components/animated-button';
 import { FeatureCard } from '../ui/components/feature-card';
 import { PageMeta } from '../ui/components/page-meta';
 import { ROUTES } from '../utilities/constants';
@@ -23,16 +24,16 @@ const Home = () => {
             <FormattedMessage id="home.subtitle" />
           </Text>
           <Flex gap={4} pt={2}>
-            <Button asChild colorScheme="blue" size="lg">
+            <AnimatedButton asChild colorScheme="blue" size="lg">
               <RouterLink to={ROUTES.LOGIN}>
                 <FormattedMessage id="home.getStarted" />
               </RouterLink>
-            </Button>
-            <Button asChild variant="outline" size="lg">
+            </AnimatedButton>
+            <AnimatedButton asChild variant="outline" size="lg">
               <RouterLink to={ROUTES.ABOUT}>
                 <FormattedMessage id="home.learnMore" />
               </RouterLink>
-            </Button>
+            </AnimatedButton>
           </Flex>
         </VStack>
 

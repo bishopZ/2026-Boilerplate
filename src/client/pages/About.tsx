@@ -1,7 +1,8 @@
-import { Box, Button, Heading, Text, VStack, List } from '@chakra-ui/react';
+import { Box, Heading, Text, VStack, List } from '@chakra-ui/react';
 import { Link as RouterLink } from 'react-router';
 import { LuCheck } from 'react-icons/lu';
 import { ROUTES } from '../utilities/constants';
+import { AnimatedButton } from '../ui/components/animated-button';
 import { PageLayout } from '../ui/layout/page-layout';
 import { PageMeta } from '../ui/components/page-meta';
 
@@ -63,11 +64,11 @@ const About = () => {
         </Box>
 
         <Box>
-          <Button
+          <AnimatedButton
             asChild
             colorScheme="blue">
             <RouterLink to={ROUTES.HOME}>Back to Home</RouterLink>
-          </Button>
+          </AnimatedButton>
         </Box>
       </VStack>
     </PageLayout>

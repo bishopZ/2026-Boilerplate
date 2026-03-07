@@ -1,9 +1,10 @@
 import { useState } from 'react';
-import { Box, Flex, Heading, Button, IconButton, VStack } from '@chakra-ui/react';
+import { Box, Flex, Heading, IconButton, VStack } from '@chakra-ui/react';
 import { Link as RouterLink } from 'react-router';
 import { useTheme } from 'next-themes';
 import { LuMenu, LuX } from 'react-icons/lu';
 import { ROUTES } from '@/client/utilities/constants';
+import { AnimatedButton } from '../components/animated-button';
 import { ColorModeToggle } from '../components/color-mode-toggle';
 import { LanguageSwitcher } from '../components/language-switcher';
 
@@ -27,7 +28,7 @@ const PRIVATE_NAV: NavItem[] = [
 const NavLinks = ({ items, onClose }: { items: NavItem[]; onClose?: () => void }) => (
   <>
     {items.map(({ label, to, isExternal }) => (
-      <Button
+      <AnimatedButton
         key={to}
         asChild
         variant="ghost"
@@ -38,7 +39,7 @@ const NavLinks = ({ items, onClose }: { items: NavItem[]; onClose?: () => void }
           ? <a href={to}>{label}</a>
           : <RouterLink to={to}>{label}</RouterLink>
         }
-      </Button>
+      </AnimatedButton>
     ))}
   </>
 );
