@@ -1,9 +1,9 @@
 import { Box, Button, Heading, Text, VStack, List } from '@chakra-ui/react';
 import { Link as RouterLink } from 'react-router';
 import { LuCheck } from 'react-icons/lu';
-import { ROUTES } from '../shared/constants';
-import { PageLayout } from '../layout/page-layout';
-import { PageMeta } from '../ui/page-meta';
+import { ROUTES } from '../utilities/constants';
+import { PageLayout } from '../ui/layout/page-layout';
+import { PageMeta } from '../ui/components/page-meta';
 
 const About = () => {
   return (

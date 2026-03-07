@@ -2,8 +2,8 @@ import { type ReactNode, Suspense } from 'react';
 import { Container } from '@chakra-ui/react';
 import { PublicHeader, PrivateHeader } from './header';
 import { Footer } from './footer';
-import { SkipLink } from '../ui/skip-link';
-import { LoadingSpinner } from '../ui/loading-spinner';
+import { SkipLink } from '../components/skip-link';
+import { LoadingSpinner } from '../components/loading-spinner';
 
 interface PageLayoutProps {
   variant?: 'public' | 'private';

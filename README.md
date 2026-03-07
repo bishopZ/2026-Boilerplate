@@ -50,6 +50,9 @@ This boilerplate is right for you if:
 
 The reasoning for each item is included below.
 
+## Project structure
+
+The project structure is described in the [ARCHITECTURE.md](./ARCHITECTURE.md) file.
 
 ## Skills
 
@@ -87,34 +90,6 @@ Use this workflow when you want to turn this repository into your own product in
 
 - `npm run test:e2e` - Run Cypress tests in headless mode
 - `npm run test:e2e:open` - Open Cypress interactive test runner
-
-### Project Structure
-
-```
-src/
-├── client/                # Frontend React application
-│   ├── data/              # Redux store, reducers, and actions
-│   │── ui/                # Reusable UI components
-│   ├── pages/             # Page components (Home, About, etc.)
-│   ├── shared/            # Client-side utilities and constants
-│   ├── styles/            # CSS files
-│   │   └── index.css      # Global styles
-│   ├── App.tsx            # Main app component with routing
-│   └── main.tsx           # App entry point with providers
-│
-├── server/                # Backend Node.js application
-│   ├── config/            # Configuration files (session, constants)
-│   ├── controllers/       # Route handlers (auth, api)
-│   ├── middleware/        # Custom middleware (authentication, etc.)
-│   ├── routes/            # Route definitions (auth, api, pages)
-│   ├── services/          # Business logic (auth, SEO)
-│   ├── shared/            # Server-side utilities and constants
-│   └── main.ts            # Server entry point
-|
-├── cypress/e2e/           # E2E tests
-```
-
-**Note on shared code:** The `client/shared` and `server/shared` folders are separate to avoid Vite bundling issues. Code that needs to be shared between client and server should be duplicated or refactored to work within the constraints of each environment.
 
 ## Collaboration
 

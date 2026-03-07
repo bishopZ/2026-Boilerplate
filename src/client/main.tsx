@@ -3,13 +3,13 @@ import { createRoot } from 'react-dom/client';
 import { Provider as DataProvider } from 'react-redux';
 import { ErrorBoundary, type FallbackProps } from 'react-error-boundary';
 import { ChakraProvider, defaultSystem } from '@chakra-ui/react';
-import { ColorModeProvider } from './ui/color-mode';
+import { ColorModeProvider } from './ui/components/color-mode';
 import App from './App';
-import { store } from './data/store';
-import { ErrorPage } from './ui/error-page';
-import { I18nProvider } from './shared/i18n';
-import { reportError } from './shared/error-reporting';
-import './styles/index.css';
+import { store } from './redux/store';
+import { ErrorPage } from './ui/components/error-page';
+import { I18nProvider } from './utilities/i18n';
+import { reportError } from './utilities/error-reporting';
+import './ui/styles/index.css';
 
 export const ErrorFallback = ({ error }: FallbackProps) => {
   const message = error instanceof Error ? error.message : String(error);

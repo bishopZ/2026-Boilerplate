@@ -18,6 +18,7 @@
     "preview": "vite preview",
     "start": "NODE_ENV=production tsx src/server/main.ts",
     "type-check": "tsc --noEmit",
+    "test": "npm run lint && npm run type-check && npm run test:e2e",
     "test:e2e": "cypress run",
     "test:e2e:open": "cypress open"
   },

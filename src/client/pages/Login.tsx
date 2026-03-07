@@ -8,10 +8,10 @@ import {
   VStack,
 } from '@chakra-ui/react';
 import { Field } from '@chakra-ui/react';
-import { PageLayout } from '../layout/page-layout';
-import { PageMeta } from '../ui/page-meta';
-import { API_PATHS } from '../shared/constants';
-import { getCsrfToken } from '../shared/csrf';
+import { PageLayout } from '../ui/layout/page-layout';
+import { PageMeta } from '../ui/components/page-meta';
+import { API_PATHS } from '../utilities/constants';
+import { getCsrfToken } from '../utilities/csrf';
 
 const Login = () => {
   const id = useId();
