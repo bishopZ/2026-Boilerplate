@@ -4,22 +4,17 @@ Custom React hooks for reusable stateful logic.
 
 ## Available Hooks
 
-### `usePreferences`
+### `useAnnounce`
 
-A custom hook with `useReducer` and optional localStorage persistence.
-Persistence writes are throttled (minimum 100ms) via shared utilities.
+A custom accessibility hook that announces dynamic updates through an aria-live region.
 
 ```tsx
-import { usePreferences } from '@/client/hooks/use-preferences';
+import { useAnnounce } from '@/client/hooks/use-announce';
 
 const MyComponent = () => {
-  const { preferences, setFontSize, toggleSidebar } = usePreferences();
-  // With persistence disabled:
-  // const { preferences } = usePreferences({ persist: false });
-  // With custom throttle:
-  // const { preferences } = usePreferences({ persist: true, throttleMs: 250 });
+  const announce = useAnnounce();
 
-  return <div style={{ fontSize: preferences.fontSize }}>...</div>;
+  return <button onClick={() => { announce('Saved'); }}>Save</button>;
 };
 ```
 
@@ -29,7 +24,7 @@ const MyComponent = () => {
 |---|---|---|---|---|
 | `useState` | Low | Single component | No | Form inputs, toggles, local UI state |
 | `useReducer` | Medium | Single component | No | Complex state with multiple related transitions |
-| Custom hook | Medium | Shared across components | Optional | Reusable logic (e.g. preferences, form validation) |
+| Custom hook | Medium | Shared across components | Optional | Reusable logic (e.g. announcements, form validation) |
 | Context + hook | Medium | Component subtree | Optional | Theme, locale, wizard state shared by a subtree |
 | Redux | Higher | Global (whole app) | Yes (via middleware) | Auth state, persisted data, DevTools-visible state |
 
@@ -45,5 +40,5 @@ const MyComponent = () => {
 
 - **Reaching for Redux first**. Not every piece of state needs to be global. Start simple and escalate only when complexity demands it.
 - **Putting derived state in a reducer**. If a value can be computed from other state, compute it during render instead of storing it.
-- **Skipping custom hooks**. If you copy-paste the same `useState` + `useEffect` pattern in multiple components, extract it into a hook.
+- **Skipping custom hooks**. If you copy-paste the same state/effect pattern in multiple components, extract it into a hook.
 - **Over-using Context for frequent updates**. Context re-renders every consumer on change. For rapidly changing state (e.g. mouse position, animation), prefer other approaches.

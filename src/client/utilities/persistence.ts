@@ -1,3 +1,4 @@
+import { type Middleware } from '@reduxjs/toolkit';
 import { reportError } from './error-reporting';
 
 interface ThrottledStorageWriterOptions<State> {
@@ -5,6 +6,14 @@ interface ThrottledStorageWriterOptions<State> {
   context: string;
   throttleMs?: number;
   serialize: (state: State) => string | null;
+}
+
+interface PersistedSliceConfig<RootState, SliceState> {
+  selectSlice: (state: RootState) => SliceState;
+  storageKey: string;
+  context: string;
+  throttleMs?: number;
+  serialize: (sliceState: SliceState) => string | null;
 }
 
 const MIN_THROTTLE_MS = 100;
@@ -67,4 +76,37 @@ export const loadJsonFromStorage = (storageKey: string, context: string): unknow
     reportError(error, { context });
     return null;
   }
+};
+
+/**
+ * Creates Redux middleware from persistence registrations.
+ * Store code only declares what to persist; persistence mechanics stay here.
+ */
+export const createPersistenceMiddleware = <RootState>(
+  configs: PersistedSliceConfig<RootState, unknown>[]
+): Middleware<Record<string, unknown>, RootState> => {
+  if (typeof window === 'undefined') {
+    return () => next => action => next(action);
+  }
+
+  const writers = configs.map((config) => ({
+    selectSlice: config.selectSlice,
+    write: createThrottledStorageWriter<unknown>({
+      storageKey: config.storageKey,
+      context: config.context,
+      throttleMs: config.throttleMs,
+      serialize: config.serialize,
+    }),
+  }));
+
+  return storeAPI => next => action => {
+    const result = next(action);
+    const state = storeAPI.getState();
+
+    for (const { selectSlice, write } of writers) {
+      write(selectSlice(state));
+    }
+
+    return result;
+  };
 };

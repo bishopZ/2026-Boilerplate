@@ -1,5 +1,5 @@
 import { createAsyncThunk, type PayloadAction } from '@reduxjs/toolkit';
-import { decrypt } from '@/client/utilities/encryption';
+import { decrypt, encrypt } from '@/client/utilities/encryption';
 import { LOCAL_STORAGE_ID, API_PATHS } from '@/client/utilities/constants';
 import { DEFAULT_LOCALE, type SupportedLocale } from '@/client/utilities/i18n';
 import { reportError } from '@/client/utilities/error-reporting';
@@ -17,6 +17,21 @@ export const defaultState = {
 
 // Infer Type from defaultState
 export type PreferencesState = typeof defaultState;
+
+export const serializePreferencesForStorage = (preferences: PreferencesState): string | null => {
+  const { encryptionKey } = preferences;
+  if (!encryptionKey) {
+    return null;
+  }
+
+  const encryptedState = encrypt(JSON.stringify(preferences), encryptionKey);
+  if (!encryptedState) {
+    reportError('Failed to encrypt preferences state', { context: 'serializePreferencesForStorage' });
+    return null;
+  }
+
+  return encryptedState;
+};
 
 // After authentication, the `initPreferences` action requests
 // the encryption key from the server and decrypts the stored state.

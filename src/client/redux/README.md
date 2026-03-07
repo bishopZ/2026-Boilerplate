@@ -15,9 +15,10 @@ Redux in this boilerplate is intentionally small and practical.
 
 ## Persistence model
 
-- Persistence is opt-in per reducer in `store.ts`.
+- Persistence is opt-in by adding a slice registration in `store.ts`.
 - Writes are throttled with a minimum delay of 100ms.
-- Shared persistence utilities are in `src/client/utilities/persistence.ts`.
+- Persistence mechanics (throttle, scheduling, localStorage writes) are centralized in `src/client/utilities/persistence.ts`.
+- Reducers not registered for persistence (like `app`) remain non-persistent without extra store logic.
 
 ## Pitfalls to avoid
 
