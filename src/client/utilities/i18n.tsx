@@ -1,7 +1,7 @@
 import { type ReactNode } from 'react';
 import { IntlProvider } from 'react-intl';
 import { useSelector } from 'react-redux';
-import { type RootState } from '../data/store';
+import { type RootState } from '../redux/store';
 import enMessages from '../locales/en.json';
 import arMessages from '../locales/ar.json';
 

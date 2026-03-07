@@ -3,9 +3,9 @@ import { Box, Flex, Heading, Button, IconButton, VStack } from '@chakra-ui/react
 import { Link as RouterLink } from 'react-router';
 import { useTheme } from 'next-themes';
 import { LuMenu, LuX } from 'react-icons/lu';
-import { ROUTES } from '@/client/shared/constants';
-import { ColorModeToggle } from '../ui/color-mode-toggle';
-import { LanguageSwitcher } from '../ui/language-switcher';
+import { ROUTES } from '@/client/utilities/constants';
+import { ColorModeToggle } from '../components/color-mode-toggle';
+import { LanguageSwitcher } from '../components/language-switcher';
 
 interface NavItem {
   label: string;

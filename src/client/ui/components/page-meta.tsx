@@ -1,5 +1,5 @@
 import { useLocation } from 'react-router';
-import { META } from '../shared/constants';
+import { META } from '../../utilities/constants';
 
 interface PageMetaProps {
   title: string;

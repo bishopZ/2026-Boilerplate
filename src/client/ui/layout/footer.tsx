@@ -1,7 +1,7 @@
 import { Box, Flex, Text, Link } from '@chakra-ui/react';
 import { Link as RouterLink } from 'react-router';
 import { useTheme } from 'next-themes';
-import { ROUTES } from '@/client/shared/constants';
+import { ROUTES } from '@/client/utilities/constants';
 
 export const Footer = () => {
   const { theme } = useTheme();

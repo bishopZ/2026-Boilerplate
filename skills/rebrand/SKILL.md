@@ -29,7 +29,7 @@ Required replacements:
 - `<meta name="title">`
 - `<meta name="description">`
 
-### 2) `src/client/shared/constants.ts`
+### 2) `src/client/utilities/constants.ts`
 
 Update centralized metadata constants used by `PageMeta`:
 - Any boilerplate-specific values (author, preview image URL, social handle, keywords, fallback canonical host, locale, and mobile meta defaults) that should change for the new project.
@@ -69,18 +69,18 @@ Update the README so it no longer reads as a boilerplate identity.
 ### 7) Public and private header files
 
 Update the client header branding in:
-- `src/client/layout/header.tsx`
+- `src/client/ui/layout/header.tsx`
 
 Required replacement:
 - Visible app title text used by both `PublicHeader` and `PrivateHeader` (currently rendered from the shared `Header` component).
 
 ## Validation Checklist
 
-- Run `rg "2026 Boilerplate|2026-boilerplate" index.html package.json README.md src/client/layout/header.tsx src/client/shared/constants.ts src/client/ui/page-meta.tsx src/client/pages` and verify old branding is removed from these files unless intentionally preserved.
-- Run `rg "<new site title>|<new site description>" index.html package.json README.md src/client/layout/header.tsx src/client/shared/constants.ts src/client/ui/page-meta.tsx src/client/pages` to confirm the new branding is present.
+- Run `rg "2026 Boilerplate|2026-boilerplate" index.html package.json README.md src/client/ui/layout/header.tsx src/client/utilities/constants.ts src/client/ui/page-meta.tsx src/client/pages` and verify old branding is removed from these files unless intentionally preserved.
+- Run `rg "<new site title>|<new site description>" index.html package.json README.md src/client/ui/layout/header.tsx src/client/utilities/constants.ts src/client/ui/page-meta.tsx src/client/pages` to confirm the new branding is present.
 - Confirm JSON formatting in `package.json` remains valid.
 
 ## Done Criteria
 
-- `index.html`, `src/client/shared/constants.ts`, `src/client/ui/page-meta.tsx`, page-level `PageMeta` calls, `package.json`, `README.md`, and `src/client/layout/header.tsx` reflect the rebrand inputs where applicable.
+- `index.html`, `src/client/utilities/constants.ts`, `src/client/ui/page-meta.tsx`, page-level `PageMeta` calls, `package.json`, `README.md`, and `src/client/ui/layout/header.tsx` reflect the rebrand inputs where applicable.
 - Project metadata no longer presents itself as the generic boilerplate identity in those files.
