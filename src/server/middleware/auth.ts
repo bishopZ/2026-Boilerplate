@@ -1,5 +1,5 @@
 import type { RequestHandler, Request } from 'express';
-import { LOGIN_PATH } from '../config/constants';
+import { ROUTES } from '../config/constants';
 import { verifyToken, type JwtPayload } from '../services/jwt';
 
 export interface AuthenticatedRequest extends Request {
@@ -18,5 +18,5 @@ export const ensureAuthenticated: RequestHandler = (req, res, next) => {
     }
   }
 
-  res.redirect(LOGIN_PATH);
+  res.redirect(ROUTES.LOGIN);
 };

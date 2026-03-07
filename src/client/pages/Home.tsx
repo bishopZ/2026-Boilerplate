@@ -3,6 +3,7 @@ import { LuShield, LuZap, LuCode } from 'react-icons/lu';
 import { FormattedMessage } from 'react-intl';
 import { PageLayout } from '../components/layout/page-layout';
 import { FeatureCard } from '../components/ui/feature-card';
+import { ROUTES } from '../shared/constants';
 import { Link as RouterLink } from 'react-router';
 
 const Home = () => {
@@ -20,12 +21,12 @@ const Home = () => {
           </Text>
           <Flex gap={4} pt={2}>
             <Button asChild colorScheme="blue" size="lg">
-              <RouterLink to="/login">
+              <RouterLink to={ROUTES.LOGIN}>
                 <FormattedMessage id="home.getStarted" />
               </RouterLink>
             </Button>
             <Button asChild variant="outline" size="lg">
-              <RouterLink to="/about">
+              <RouterLink to={ROUTES.ABOUT}>
                 <FormattedMessage id="home.learnMore" />
               </RouterLink>
             </Button>

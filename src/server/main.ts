@@ -1,5 +1,4 @@
-import { BASE } from './shared/constants';
-import { DEFAULT_PORT } from './config/constants';
+import { DEFAULT_PORT, BASE } from './config/constants';
 import express from 'express';
 import ViteExpress from 'vite-express';
 import cookieParser from 'cookie-parser';

@@ -1,6 +1,7 @@
 import crypto from 'crypto';
 import type { RequestHandler } from 'express';
-import { API_ERRORS } from '../shared/api-error';
+import { ROUTES } from '../config/constants';
+import { API_ERRORS } from '../config/api-error';
 
 const CSRF_COOKIE_NAME = 'csrf-token';
 const CSRF_FIELD_NAME = '_csrf';
@@ -46,7 +47,7 @@ export const csrfProtection: RequestHandler = (req, res, next) => {
       httpOnly: false, // must be readable by client JS
       secure: isProduction,
       sameSite: 'lax',
-      path: '/',
+      path: ROUTES.HOME,
     });
   }
 

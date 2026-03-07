@@ -1,5 +1,6 @@
 import type { Request, Response, NextFunction } from 'express';
-import { type ApiErrorResponse, API_ERRORS } from '../shared/api-error';
+import { ROUTES, API_PREFIX } from '../config/constants';
+import { type ApiErrorResponse, API_ERRORS } from '../config/api-error';
 
 /**
  * Global error handler middleware.
@@ -23,7 +24,7 @@ export const globalErrorHandler = (
   console.error(`[${req.method}] ${req.path} — ${message}`);
 
   // API routes get structured JSON responses that clients can parse
-  if (req.path.startsWith('/api/')) {
+  if (req.path.startsWith(`${API_PREFIX}/`)) {
     const response = err.code
       ? { status, code: err.code, message }
       : API_ERRORS.internal(message);
@@ -33,5 +34,5 @@ export const globalErrorHandler = (
   }
 
   // Page routes redirect to home — the SPA will handle displaying errors
-  res.status(status).redirect('/');
+  res.status(status).redirect(ROUTES.HOME);
 };

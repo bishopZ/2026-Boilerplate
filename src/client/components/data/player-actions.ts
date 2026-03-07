@@ -1,6 +1,6 @@
 import { createAsyncThunk, type PayloadAction } from '@reduxjs/toolkit';
 import { decrypt } from '@/client/shared/encryption';
-import { LOCAL_STORAGE_ID } from '@/client/shared/constants';
+import { LOCAL_STORAGE_ID, API_PATHS } from '@/client/shared/constants';
 import { DEFAULT_LOCALE, type SupportedLocale } from '@/client/shared/locales';
 import { reportError } from '@/client/shared/error-reporting';
 
@@ -27,7 +27,7 @@ export const initPlayer = createAsyncThunk(
 
     // Try to get encryption key from server
     try {
-      const response = await fetch('/api/key');
+      const response = await fetch(API_PATHS.KEY);
       if (response.ok) {
         const contentType = response.headers.get('content-type');
         // Only try to parse JSON if the response is actually JSON

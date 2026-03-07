@@ -3,6 +3,7 @@ import { Box, Flex, Heading, Button, IconButton, VStack } from '@chakra-ui/react
 import { Link as RouterLink } from 'react-router';
 import { useTheme } from 'next-themes';
 import { LuMenu, LuX } from 'react-icons/lu';
+import { ROUTES } from '@/client/shared/constants';
 import { ColorModeToggle } from '../ui/color-mode-toggle';
 
 interface NavItem {
@@ -12,14 +13,14 @@ interface NavItem {
 }
 
 const PUBLIC_NAV: NavItem[] = [
-  { label: 'Home', to: '/' },
-  { label: 'About', to: '/about' },
-  { label: 'Login', to: '/login' },
+  { label: 'Home', to: ROUTES.HOME },
+  { label: 'About', to: ROUTES.ABOUT },
+  { label: 'Login', to: ROUTES.LOGIN },
 ];
 
 const PRIVATE_NAV: NavItem[] = [
-  { label: 'Product', to: '/product' },
-  { label: 'Logout', to: '/logout', isExternal: true },
+  { label: 'Product', to: ROUTES.PRODUCT },
+  { label: 'Logout', to: ROUTES.LOGOUT, isExternal: true },
 ];
 
 const NavLinks = ({ items, onClose }: { items: NavItem[]; onClose?: () => void }) => (
@@ -46,7 +47,7 @@ const Header = ({ variant }: { variant: 'public' | 'private' }) => {
   const isDark = theme === 'dark';
   const [mobileOpen, setMobileOpen] = useState(false);
   const navItems = variant === 'private' ? PRIVATE_NAV : PUBLIC_NAV;
-  const logoTo = variant === 'private' ? '/product' : '/';
+  const logoTo = variant === 'private' ? ROUTES.PRODUCT : ROUTES.HOME;
 
   return (
     <>
