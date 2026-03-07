@@ -29,26 +29,23 @@ Express Server (vite-express)
 
 ```
 src/
-├── client/                    # Frontend (React SPA)
+├── client/                   # Frontend (React SPA)
 │   ├── main.tsx              # Entry: providers (Chakra, Redux, Router, ErrorBoundary)
 │   ├── App.tsx               # Route definitions, player initialization
-│   ├── components/
-│   │   ├── data/             # Redux slices, store, persistence middleware
-│   │   ├── layout/           # Header, Footer
-│   │   └── ui/               # Reusable UI components
 │   ├── hooks/                # Custom React hooks
+│   ├── locales/              # Language translation files
 │   ├── pages/                # Route page components
-│   ├── shared/               # Client-only utilities (encryption, constants)
-│   └── styles/               # CSS
+│   ├── redux/                # Redux slices, store, persistence middleware
+│   │── ui/                   # Reusable UI components
+│   └── utilities/            # Client-only utilities (encryption, constants)
 │
 └── server/                   # Backend (Express)
     ├── main.ts               # Entry: Express app, middleware, routes, vite-express
     ├── config/               # Session config, constants
     ├── controllers/          # Request handlers
-    ├── middleware/            # Auth middleware
+    ├── middleware/           # Auth middleware
     ├── routes/               # Route definitions
-    ├── services/             # Business logic (auth verification)
-    └── shared/               # Server-only constants
+    └── services/             # Business logic (auth verification)
 ```
 
 ## Key Patterns
@@ -70,7 +67,7 @@ src/
 
 ### Client/Server Code Separation
 
-Client and server each have their own `shared/` directory. Code is intentionally duplicated rather than shared, because Vite's bundler and the Node.js runtime have different module resolution requirements.
+Client and server each have their own `utilities/` directory. Code is intentionally duplicated rather than shared, because Vite's bundler and the Node.js runtime have different module resolution requirements.
 
 ## Technology Choices
 

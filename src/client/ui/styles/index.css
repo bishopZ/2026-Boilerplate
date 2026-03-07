@@ -1,0 +1,31 @@
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* WCAG 2.5.5: minimum 44x44px touch targets for coarse pointers */
+@media (pointer: coarse) {
+  button,
+  a,
+  [role='button'],
+  input[type='submit'] {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}

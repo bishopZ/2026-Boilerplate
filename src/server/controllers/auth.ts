@@ -1,6 +1,6 @@
 import type { RequestHandler, CookieOptions } from 'express';
 import passport from 'passport';
-import { LOGIN_PATH, HOME_PATH } from '../config/constants';
+import { ROUTES } from '../config/constants';
 import { signToken } from '../services/jwt';
 
 interface AuthUser {
@@ -16,7 +16,7 @@ const getCookieOptions = (): CookieOptions => {
     httpOnly: true,
     secure: isProduction,
     sameSite: 'lax',
-    path: '/',
+    path: ROUTES.HOME,
   };
 };
 
@@ -27,7 +27,7 @@ export const postLogin: RequestHandler = (req, res, next) => {
       return undefined;
     }
     if (!user) {
-      res.redirect(LOGIN_PATH);
+      res.redirect(ROUTES.LOGIN);
       return undefined;
     }
 
@@ -38,11 +38,11 @@ export const postLogin: RequestHandler = (req, res, next) => {
       maxAge: 24 * 60 * 60 * 1000,
     });
 
-    res.redirect('/product');
+    res.redirect(ROUTES.PRODUCT);
   })(req, res, next);
 };
 
 export const getLogout: RequestHandler = (_req, res) => {
   res.clearCookie(TOKEN_COOKIE_NAME, getCookieOptions());
-  res.redirect(HOME_PATH);
+  res.redirect(ROUTES.HOME);
 };

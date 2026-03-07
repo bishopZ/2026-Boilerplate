@@ -1,4 +1,5 @@
 import js from '@eslint/js'
+import { defineConfig } from 'eslint/config'
 import globals from 'globals'
 import reactHooks from 'eslint-plugin-react-hooks'
 import reactRefresh from 'eslint-plugin-react-refresh'
@@ -96,8 +97,8 @@ const CODE_GUIDELINES = {
   'curly': [ERROR, 'multi-line'],
 }
 
-export default tseslint.config(
-  { ignores: ['dist', 'cypress', 'cypress.config.ts'] },
+export default defineConfig(
+  { ignores: ['dist', 'cypress', 'cypress.config.ts', 'node_modules'] },
   {
     extends: [
       js.configs.recommended,

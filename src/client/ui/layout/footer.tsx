@@ -1,6 +1,7 @@
 import { Box, Flex, Text, Link } from '@chakra-ui/react';
 import { Link as RouterLink } from 'react-router';
 import { useTheme } from 'next-themes';
+import { ROUTES } from '@/client/utilities/constants';
 
 export const Footer = () => {
   const { theme } = useTheme();
@@ -15,12 +16,12 @@ export const Footer = () => {
           &copy; {new Date().getFullYear()} [insert project name here]. All rights reserved.
         </Text>
         <Flex gap={4}>
-          <RouterLink to="/privacy">
+          <RouterLink to={ROUTES.PRIVACY}>
             <Link fontSize="sm" color={textColor} _hover={{ color: hoverColor }}>
               Privacy Policy
             </Link>
           </RouterLink>
-          <RouterLink to="/terms">
+          <RouterLink to={ROUTES.TERMS}>
             <Link fontSize="sm" color={textColor} _hover={{ color: hoverColor }}>
               Terms of Service
             </Link>
