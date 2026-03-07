@@ -1,8 +1,10 @@
-import type { ReactNode } from 'react';
+import { type ReactNode, Suspense } from 'react';
 import { Container } from '@chakra-ui/react';
 import { PublicHeader, PrivateHeader } from './header';
 import { Footer } from './footer';
-import { SkipLink } from '../ui/skip-link';
+import { SkipLink } from '../components/skip-link';
+import { LoadingSpinner } from '../components/loading-spinner';
+import { PageTransistion } from '../components/page-transistion';
 
 interface PageLayoutProps {
   variant?: 'public' | 'private';
@@ -24,7 +26,11 @@ export const PageLayout = ({
       <SkipLink />
       <Header />
       <Container as="main" id="main-content" maxW={maxW} py={py}>
-        {children}
+        <PageTransistion>
+          <Suspense fallback={<LoadingSpinner />}>
+            {children}
+          </Suspense>
+        </PageTransistion>
       </Container>
       <Footer />
     </>

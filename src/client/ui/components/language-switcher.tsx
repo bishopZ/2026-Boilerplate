@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { type RootState, type AppDispatch } from '../data/store';
-import { setLocale } from '../data/player';
-import { SUPPORTED_LOCALES, type SupportedLocale } from '@/client/shared/locales';
+import { type RootState, type AppDispatch } from '../../redux/store';
+import { setLocale } from '../../redux/player';
+import { SUPPORTED_LOCALES, type SupportedLocale } from '@/client/utilities/i18n';
 
 const LOCALE_LABELS: Record<SupportedLocale, string> = {
   en: 'EN',

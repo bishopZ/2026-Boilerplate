@@ -14,13 +14,20 @@ const reducedMotionVariants = {
   exit: { opacity: 1 },
 };
 
+const getPrefersReducedMotion = () => {
+  if (typeof window === 'undefined' || typeof window.matchMedia !== 'function') {
+    return true;
+  }
+
+  return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+};
+
 /**
- * Wraps page content with a fade + slide animation on route change.
- * Respects prefers-reduced-motion by disabling animations.
+ * Wraps page content with route-change transitions.
  */
-export const PageTransition = ({ children }: { children: ReactNode }) => {
+export const PageTransistion = ({ children }: { children: ReactNode }) => {
   const { pathname } = useLocation();
-  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const prefersReducedMotion = getPrefersReducedMotion();
 
   return (
     <motion.div
@@ -35,3 +42,5 @@ export const PageTransition = ({ children }: { children: ReactNode }) => {
     </motion.div>
   );
 };
+
+export const PageTransition = PageTransistion;

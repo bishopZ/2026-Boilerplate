@@ -13,4 +13,4 @@ globs: src/client/**/*.tsx
 - Use lazy loading (`React.lazy`) for page components in `App.tsx`.
 - Prefer `useSelector` and `useDispatch` from `react-redux` for Redux state access.
 - Avoid nested ternary operators. Use early returns or helper variables instead.
-- Don't duplicate code. Extract shared logic into hooks (`src/client/hooks/`) or UI components (`src/client/components/ui/`).
+- Don't duplicate code. Extract shared logic into hooks (`src/client/hooks/`) or UI components (`src/client/ui/`).

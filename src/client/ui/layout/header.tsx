@@ -3,7 +3,9 @@ import { Box, Flex, Heading, Button, IconButton, VStack } from '@chakra-ui/react
 import { Link as RouterLink } from 'react-router';
 import { useTheme } from 'next-themes';
 import { LuMenu, LuX } from 'react-icons/lu';
-import { ColorModeToggle } from '../ui/color-mode-toggle';
+import { ROUTES } from '@/client/utilities/constants';
+import { ColorModeToggle } from '../components/color-mode-toggle';
+import { LanguageSwitcher } from '../components/language-switcher';
 
 interface NavItem {
   label: string;
@@ -12,14 +14,14 @@ interface NavItem {
 }
 
 const PUBLIC_NAV: NavItem[] = [
-  { label: 'Home', to: '/' },
-  { label: 'About', to: '/about' },
-  { label: 'Login', to: '/login' },
+  { label: 'Home', to: ROUTES.HOME },
+  { label: 'About', to: ROUTES.ABOUT },
+  { label: 'Login', to: ROUTES.LOGIN },
 ];
 
 const PRIVATE_NAV: NavItem[] = [
-  { label: 'Product', to: '/product' },
-  { label: 'Logout', to: '/logout', isExternal: true },
+  { label: 'Product', to: ROUTES.PRODUCT },
+  { label: 'Logout', to: ROUTES.LOGOUT, isExternal: true },
 ];
 
 const NavLinks = ({ items, onClose }: { items: NavItem[]; onClose?: () => void }) => (
@@ -46,7 +48,7 @@ const Header = ({ variant }: { variant: 'public' | 'private' }) => {
   const isDark = theme === 'dark';
   const [mobileOpen, setMobileOpen] = useState(false);
   const navItems = variant === 'private' ? PRIVATE_NAV : PUBLIC_NAV;
-  const logoTo = variant === 'private' ? '/product' : '/';
+  const logoTo = variant === 'private' ? ROUTES.PRODUCT : ROUTES.HOME;
 
   return (
     <>
@@ -65,10 +67,12 @@ const Header = ({ variant }: { variant: 'public' | 'private' }) => {
 
           <Flex gap={4} align="center" display={{ base: 'none', md: 'flex' }}>
             <NavLinks items={navItems} />
+            <LanguageSwitcher />
             <ColorModeToggle />
           </Flex>
 
           <Flex align="center" display={{ base: 'flex', md: 'none' }}>
+            <LanguageSwitcher />
             <ColorModeToggle />
             <IconButton
               aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
@@ -91,6 +95,7 @@ const Header = ({ variant }: { variant: 'public' | 'private' }) => {
             display={{ base: 'flex', md: 'none' }}
           >
             <NavLinks items={navItems} onClose={() => { setMobileOpen(false); }} />
+            <LanguageSwitcher />
           </VStack>
         )}
       </Box>

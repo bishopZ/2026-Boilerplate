@@ -31,7 +31,6 @@ This boilerplate is right for you if:
 - State Management: Redux Toolkit
 - Routing: React Router
 - Design System: Chakra UI
-- React Error Boundary
 
 ### Backend
 
@@ -51,8 +50,30 @@ This boilerplate is right for you if:
 
 The reasoning for each item is included below.
 
+## Project structure
+
+The project structure is described in the [ARCHITECTURE.md](./ARCHITECTURE.md) file.
+
+## Skills
+
+- Skills follow this format: `skills/<skill-name>/SKILL.md` with YAML frontmatter (`name`, `description`) for skill discovery.
+- `skills/rebrand/SKILL.md` - Rebrand the boilerplate into your own project identity using a new site title and description.
+- `skills/docx/SKILL.md` - Create, read, edit, or manipulate Word documents (`.docx`), including reports, memos, and letters.
 
 ## Getting Started
+
+### Start a New Project from This Boilerplate
+
+Use this workflow when you want to turn this repository into your own product instead of contributing back to the boilerplate.
+
+1. Clone the repository and enter the folder:
+   - `git clone git@github.com:bishopZ/2026-Boilerplate.git`
+   - `cd 2026-Boilerplate`
+2. Remove the existing git history: `rm -rf .git`
+3. Initialize a fresh repository: `git init`
+4. Run the rebrand skill with your new project details:
+   - `Use the skill at skills/rebrand/SKILL.md with site_title="<Your Project Title>" and site_description="<Your Project Description>".`
+5. Create your first commit in the new repository.
 
 ### Development Setup
 
@@ -69,35 +90,6 @@ The reasoning for each item is included below.
 
 - `npm run test:e2e` - Run Cypress tests in headless mode
 - `npm run test:e2e:open` - Open Cypress interactive test runner
-
-### Project Structure
-
-```
-src/
-├── client/                 # Frontend React application
-│   ├── components/
-│   │   ├── data/          # Redux store, reducers, and actions
-│   │   └── ui/            # Reusable UI components
-│   ├── pages/             # Page components (Home, About, etc.)
-│   ├── shared/            # Client-side utilities and constants
-│   ├── styles/            # CSS files
-│   │   └── index.css      # Global styles
-│   ├── App.tsx            # Main app component with routing
-│   └── main.tsx           # App entry point with providers
-│
-├── server/                # Backend Node.js application
-│   ├── config/            # Configuration files (session, constants)
-│   ├── controllers/       # Route handlers (auth, api)
-│   ├── middleware/        # Custom middleware (authentication, etc.)
-│   ├── routes/            # Route definitions (auth, api, pages)
-│   ├── services/          # Business logic (auth, SEO)
-│   ├── shared/            # Server-side utilities and constants
-│   └── main.ts            # Server entry point
-|
-├── cypress/e2e/           # E2E tests
-```
-
-**Note on shared code:** The `client/shared` and `server/shared` folders are separate to avoid Vite bundling issues. Code that needs to be shared between client and server should be duplicated or refactored to work within the constraints of each environment.
 
 ## Collaboration
 
@@ -122,10 +114,6 @@ We're thrilled to have finally moved on from the complexities of Webpack. With V
 ### Typescript, React
 
 TypeScript (TSX) offers numerous benefits over JavaScript (JSX), including better code completion, reduced runtime errors, and improved maintainability. In our experience, writing TSX files is *better* and *faster* than writing JSX file.
-
-### React Error Boundary
-
-Error boundaries are essential in creating robust and fault-tolerant web applications. By including an example of a React error boundary in the boilerplate, developers can use it as a reference to add error boundries to other places as the application grows.
 
 ### vite-express, Node, express
 

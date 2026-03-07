@@ -4,6 +4,13 @@
 
 2026 Boilerplate is a full-stack TypeScript/React web app with an Express backend. See [ARCHITECTURE.md](ARCHITECTURE.md) for the system diagram and directory structure.
 
+## Skills
+
+- Skills live in `skills/<skill-name>/SKILL.md`.
+- If a request matches a skill, read and follow that skill before implementing changes.
+- `skills/rebrand/SKILL.md` — Rebrand the boilerplate into a new project using a new site title and description.
+- `skills/docx/SKILL.md` — Create, read, edit, and manipulate `.docx` files.
+
 ## Development Setup
 
 1. Requires Node.js >= 24.13.1 and npm >= 11.10.1
@@ -25,9 +32,8 @@
 - Use Chakra UI for all UI components.
 - Follow the MVC pattern on the server (routes → controllers → services).
 - Redux for global state; `useState`/`useReducer` for component-local state.
-- See `src/client/components/data/README.md` for state management patterns.
+- See `src/client/data/README.md` for state management patterns.
 - See `src/client/hooks/README.md` for custom hook patterns.
-- Client and server `shared/` directories are separate — do not share code between them.
 
 ## Testing
 

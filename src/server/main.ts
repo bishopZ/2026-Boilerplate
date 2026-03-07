@@ -1,11 +1,11 @@
-import { BASE } from './shared/constants';
-import { DEFAULT_PORT } from './config/constants';
+import { DEFAULT_PORT, BASE } from './config/constants';
 import express from 'express';
 import ViteExpress from 'vite-express';
 import cookieParser from 'cookie-parser';
 import { fileURLToPath } from 'url';
 import path from 'path';
 import { csrfProtection } from './middleware/csrf';
+import { globalErrorHandler } from './middleware/error-handler';
 import authRoutes from './routes/auth';
 import apiRoutes from './routes/api';
 import pageRoutes from './routes/pages';
@@ -26,6 +26,7 @@ const setupRoutes = (app: express.Application) => {
   app.use(authRoutes);
   app.use(apiRoutes);
   app.use(pageRoutes);
+  app.use(globalErrorHandler);
 };
 
 const startServer = () => {

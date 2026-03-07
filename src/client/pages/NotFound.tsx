@@ -1,11 +1,16 @@
 import { Box, Button, Heading, Text, VStack } from '@chakra-ui/react';
 import { Link as RouterLink } from 'react-router';
-import { PageLayout } from '../components/layout/page-layout';
+import { ROUTES } from '../utilities/constants';
+import { PageLayout } from '../ui/layout/page-layout';
+import { PageMeta } from '../ui/components/page-meta';
 
 const NotFound = () => {
   return (
     <PageLayout py={20}>
-      <title>Page Not Found - 2026 Boilerplate</title>
+      <PageMeta
+        title="Page Not Found - 2026 Boilerplate"
+        description="The requested page could not be found in the 2026 Boilerplate application."
+      />
       <VStack gap={6} align="center" textAlign="center">
         <Text fontSize="9xl" fontWeight="bold" lineHeight="1" color="gray.300">
           404
@@ -22,10 +27,10 @@ const NotFound = () => {
 
         <VStack gap={3} pt={4}>
           <Button asChild colorScheme="blue" size="lg">
-            <RouterLink to="/">Go to Home Page</RouterLink>
+            <RouterLink to={ROUTES.HOME}>Go to Home Page</RouterLink>
           </Button>
           <Button asChild variant="outline" size="md">
-            <RouterLink to="/about">Learn About This Project</RouterLink>
+            <RouterLink to={ROUTES.ABOUT}>Learn About This Project</RouterLink>
           </Button>
         </VStack>
       </VStack>

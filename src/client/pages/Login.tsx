@@ -8,8 +8,10 @@ import {
   VStack,
 } from '@chakra-ui/react';
 import { Field } from '@chakra-ui/react';
-import { PageLayout } from '../components/layout/page-layout';
-import { getCsrfToken } from '../shared/csrf';
+import { PageLayout } from '../ui/layout/page-layout';
+import { PageMeta } from '../ui/components/page-meta';
+import { API_PATHS } from '../utilities/constants';
+import { getCsrfToken } from '../utilities/csrf';
 
 const Login = () => {
   const id = useId();
@@ -18,8 +20,10 @@ const Login = () => {
 
   return (
     <PageLayout maxW="container.sm">
-      <title>Login - 2026 Boilerplate</title>
-      <meta name="description" content="Sign in to the 2026 Boilerplate application" />
+      <PageMeta
+        title="Login - 2026 Boilerplate"
+        description="Sign in to the 2026 Boilerplate application"
+      />
       <VStack gap={6} align="stretch">
         <Box>
           <Heading as="h1" size="2xl" mb={2}>
@@ -28,7 +32,7 @@ const Login = () => {
           <Text color="gray.600">Welcome to the login page.</Text>
         </Box>
 
-        <form action="/login/password" method="post">
+        <form action={API_PATHS.LOGIN} method="post">
           <input type="hidden" name="_csrf" value={getCsrfToken()} />
           <VStack gap={4} align="stretch">
             <Field.Root>

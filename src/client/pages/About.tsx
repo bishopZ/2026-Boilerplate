@@ -1,13 +1,17 @@
 import { Box, Button, Heading, Text, VStack, List } from '@chakra-ui/react';
 import { Link as RouterLink } from 'react-router';
 import { LuCheck } from 'react-icons/lu';
-import { PageLayout } from '../components/layout/page-layout';
+import { ROUTES } from '../utilities/constants';
+import { PageLayout } from '../ui/layout/page-layout';
+import { PageMeta } from '../ui/components/page-meta';
 
 const About = () => {
   return (
     <PageLayout>
-      <title>About - 2026 Boilerplate</title>
-      <meta name="description" content="Learn about the 2026 Boilerplate — a full-stack starter kit with React, Express, Redux, and Chakra UI" />
+      <PageMeta
+        title="About - 2026 Boilerplate"
+        description="Learn about the 2026 Boilerplate — a full-stack starter kit with React, Express, Redux, and Chakra UI"
+      />
       <VStack gap={6} align="stretch">
         <Box>
           <Heading as="h1" size="2xl" mb={4}>
@@ -60,11 +64,9 @@ const About = () => {
 
         <Box>
           <Button
-            as={RouterLink}
             asChild
-            colorScheme="blue"
-          >
-            <a href="/">Back to Home</a>
+            colorScheme="blue">
+            <RouterLink to={ROUTES.HOME}>Back to Home</RouterLink>
           </Button>
         </Box>
       </VStack>

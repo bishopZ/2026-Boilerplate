@@ -1,23 +1,21 @@
-describe('Basic E2E Test', () => {
-  it('should load the login page', () => {
-    cy.visit('/');
-    cy.url().should('include', '/login');
-    cy.contains('2026 Boilerplate').should('be.visible');
+describe('Login', () => {
+  beforeEach(() => {
+    cy.visit('/login');
   });
 
-  it('should allow user to login', () => {
-    cy.visit('/login');
-
-    // Fill in the login form
+  it('redirects to /product on successful login with test/test', () => {
     cy.get('input[name="username"]').type('test');
     cy.get('input[name="password"]').type('test');
+    cy.get('form').submit();
 
-    // Submit the form
-    cy.get('button[type="submit"]').click();
+    cy.url().should('include', '/product');
+  });
 
-    // Should redirect to home page after successful login
-    cy.url().should('not.include', '/login');
-    cy.contains('Welcome to the 2026 Boilerplate!').should('be.visible');
+  it('redirects back to /login on failed login', () => {
+    cy.get('input[name="username"]').type('wrong');
+    cy.get('input[name="password"]').type('wrong');
+    cy.get('form').submit();
+
+    cy.url().should('include', '/login');
   });
 });
-
