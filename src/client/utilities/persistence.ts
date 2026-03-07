@@ -1,7 +1,7 @@
 import { type Middleware } from '@reduxjs/toolkit';
 import { reportError } from './error-reporting';
 
-interface ThrottledStorageWriterOptions<State> {
+interface StorageWriterOpts<State> {
   storageKey: string;
   context: string;
   throttleMs?: number;
@@ -24,12 +24,12 @@ const getThrottleMs = (throttleMs?: number) => Math.max(MIN_THROTTLE_MS, throttl
  * Creates a throttled localStorage writer with minimum 100ms delay.
  * Shared by hooks and Redux persistence middleware.
  */
-export const createThrottledStorageWriter = <State>({
+export const createStorageWriter = <State>({
   storageKey,
   context,
   throttleMs,
   serialize,
-}: ThrottledStorageWriterOptions<State>) => {
+}: StorageWriterOpts<State>) => {
   let timeoutId: ReturnType<typeof setTimeout> | null = null;
   let latestState: State | null = null;
 
@@ -91,7 +91,7 @@ export const createPersistenceMiddleware = <RootState>(
 
   const writers = configs.map((config) => ({
     selectSlice: config.selectSlice,
-    write: createThrottledStorageWriter<unknown>({
+    write: createStorageWriter<unknown>({
       storageKey: config.storageKey,
       context: config.context,
       throttleMs: config.throttleMs,
