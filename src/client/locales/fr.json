@@ -1,0 +1,21 @@
+{
+  "app.name": "Modèle 2026",
+  "home.title": "Créez des applications web modernes",
+  "home.subtitle": "Un kit de démarrage TypeScript full-stack avec authentification, stockage chiffré et une expérience développeur moderne.",
+  "home.getStarted": "Commencer",
+  "home.learnMore": "En savoir plus",
+  "home.feature.fast.title": "Développement rapide",
+  "home.feature.fast.description": "HMR propulsé par Vite avec TypeScript, React 19 et Express qui fonctionnent ensemble de manière fluide.",
+  "home.feature.auth.title": "Authentification intégrée",
+  "home.feature.auth.description": "Authentification Passport.js avec localStorage chiffré pour une persistance des données côté client sécurisée.",
+  "home.feature.production.title": "Prêt pour la production",
+  "home.feature.production.description": "ESLint, tests E2E Cypress et Redux Toolkit — des outils éprouvés, configurés et prêts à l'emploi.",
+  "nav.home": "Accueil",
+  "nav.about": "À propos",
+  "nav.login": "Connexion",
+  "nav.logout": "Déconnexion",
+  "nav.product": "Produit",
+  "footer.copyright": "© {year} [insérez le nom du projet ici]. Tous droits réservés.",
+  "footer.privacy": "Politique de confidentialité",
+  "footer.terms": "Conditions d'utilisation"
+}

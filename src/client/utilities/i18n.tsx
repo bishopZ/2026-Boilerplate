@@ -4,14 +4,16 @@ import { useSelector } from 'react-redux';
 import { type RootState } from '../redux/store';
 import enMessages from '../locales/en.json';
 import arMessages from '../locales/ar.json';
+import frMessages from '../locales/fr.json';
 
-export const SUPPORTED_LOCALES = ['en', 'ar'] as const;
+export const SUPPORTED_LOCALES = ['en', 'ar', 'fr'] as const;
 export type SupportedLocale = typeof SUPPORTED_LOCALES[number];
 export const DEFAULT_LOCALE: SupportedLocale = 'en';
 
 const MESSAGES: Record<SupportedLocale, Record<string, string>> = {
   en: enMessages,
   ar: arMessages,
+  fr: frMessages,
 };
 
 const RTL_LOCALES: ReadonlySet<SupportedLocale> = new Set(['ar']);

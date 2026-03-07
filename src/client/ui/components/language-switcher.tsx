@@ -6,6 +6,7 @@ import { SUPPORTED_LOCALES, type SupportedLocale } from '@/client/utilities/i18n
 const LOCALE_LABELS: Record<SupportedLocale, string> = {
   en: 'EN',
   ar: 'عربي',
+  fr: 'FR',
 };
 
 export const LanguageSwitcher = () => {
