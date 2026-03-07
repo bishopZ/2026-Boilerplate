@@ -29,13 +29,16 @@ Required replacements:
 - `<meta name="title">`
 - `<meta name="description">`
 
-### 2) `src/client/components/ui/page-meta.tsx`
+### 2) `src/client/shared/constants.ts`
 
-Update centralized metadata defaults used by every page:
-- Any boilerplate-specific constants (author, preview image URL, social handle, keywords, fallback canonical host) that should change for the new project.
-- Ensure the component still receives `title` and `description` and maps them to the full metadata set (Open Graph, Twitter, mobile app tags, canonical URL, and standard meta tags).
+Update centralized metadata constants used by `PageMeta`:
+- Any boilerplate-specific values (author, preview image URL, social handle, keywords, fallback canonical host, locale, and mobile meta defaults) that should change for the new project.
 
-### 3) Page metadata calls
+### 3) `src/client/components/ui/page-meta.tsx`
+
+Confirm `PageMeta` still receives `title` and `description` and maps them to the full metadata set using React 19 metadata tags (`<title>`, `<meta>`, `<link rel="canonical">`).
+
+### 4) Page metadata calls
 
 Update page-level `PageMeta` calls in:
 - `src/client/pages/Home.tsx`
@@ -50,20 +53,20 @@ Required replacements:
 - Page title values passed to `title`.
 - Page description values passed to `description`.
 
-### 4) `package.json`
+### 5) `package.json`
 
 Update package metadata:
 - `name`: kebab-case package name that matches the new project title.
 - `description`: use `site_description`.
 
-### 5) `README.md`
+### 6) `README.md`
 
 Update the README so it no longer reads as a boilerplate identity.
 - Replace the H1 title with the new project title.
 - Replace the short description under the H1 with `site_description`.
 - Update opening paragraphs that still brand the repo as "2026 Boilerplate" so they describe the new project.
 
-### 6) Public and private header files
+### 7) Public and private header files
 
 Update the client header branding in:
 - `src/client/components/layout/header.tsx`
@@ -73,11 +76,11 @@ Required replacement:
 
 ## Validation Checklist
 
-- Run `rg "2026 Boilerplate|2026-boilerplate" index.html package.json README.md src/client/components/layout/header.tsx src/client/components/ui/page-meta.tsx src/client/pages` and verify old branding is removed from these files unless intentionally preserved.
-- Run `rg "<new site title>|<new site description>" index.html package.json README.md src/client/components/layout/header.tsx src/client/components/ui/page-meta.tsx src/client/pages` to confirm the new branding is present.
+- Run `rg "2026 Boilerplate|2026-boilerplate" index.html package.json README.md src/client/components/layout/header.tsx src/client/shared/constants.ts src/client/components/ui/page-meta.tsx src/client/pages` and verify old branding is removed from these files unless intentionally preserved.
+- Run `rg "<new site title>|<new site description>" index.html package.json README.md src/client/components/layout/header.tsx src/client/shared/constants.ts src/client/components/ui/page-meta.tsx src/client/pages` to confirm the new branding is present.
 - Confirm JSON formatting in `package.json` remains valid.
 
 ## Done Criteria
 
-- `index.html`, `src/client/components/ui/page-meta.tsx`, page-level `PageMeta` calls, `package.json`, `README.md`, and `src/client/components/layout/header.tsx` reflect the rebrand inputs where applicable.
+- `index.html`, `src/client/shared/constants.ts`, `src/client/components/ui/page-meta.tsx`, page-level `PageMeta` calls, `package.json`, `README.md`, and `src/client/components/layout/header.tsx` reflect the rebrand inputs where applicable.
 - Project metadata no longer presents itself as the generic boilerplate identity in those files.
