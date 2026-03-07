@@ -12,12 +12,11 @@ export const FeatureCard = ({ icon: Icon, title, description }: FeatureCardProps
     borderWidth="1px"
     borderRadius="lg"
     textAlign="center"
-    containerType="inline-size"
   >
     <Flex justify="center" mb={3}>
       <Box as={Icon} boxSize={8} color="blue.500" />
     </Flex>
-    <Heading as="h3" size="md" mb={2} css={{ '@container (max-width: 200px)': { fontSize: 'sm' } }}>
+    <Heading as="h3" mb={2} fontSize={{ base: 'lg', md: 'xl' }}>
       {title}
     </Heading>
     <Text fontSize="sm" color="gray.500">
