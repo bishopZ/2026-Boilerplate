@@ -40,3 +40,7 @@
 - Login credentials: username `test`, password `test`
 - E2E tests are in `cypress/e2e/` and require the dev server to be running
 - Before committing: `npm run lint:fix && npm run type-check`
+
+## Cursor Cloud specific instructions
+
+- Do not create screen recordings by default. Ask the user first and wait for explicit approval before using screen recording tools.
