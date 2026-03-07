@@ -91,6 +91,12 @@ Use this workflow when you want to turn this repository into your own product in
 - `npm run test:e2e` - Run Cypress tests in headless mode
 - `npm run test:e2e:open` - Open Cypress interactive test runner
 
+### Developer Documentation
+
+- [Architecture overview](./ARCHITECTURE.md)
+- [Hooks guide (`useState` vs custom hook vs Redux)](./src/client/hooks/README.md)
+- [Redux rationale, persistence, and pitfalls](./src/client/redux/README.md)
+
 ## Collaboration
 
 We welcome contributions! Here's how to get started:

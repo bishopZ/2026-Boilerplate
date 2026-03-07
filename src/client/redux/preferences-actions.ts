@@ -1,5 +1,5 @@
 import { createAsyncThunk, type PayloadAction } from '@reduxjs/toolkit';
-import { decrypt } from '@/client/utilities/encryption';
+import { decrypt, encrypt } from '@/client/utilities/encryption';
 import { LOCAL_STORAGE_ID, API_PATHS } from '@/client/utilities/constants';
 import { DEFAULT_LOCALE, type SupportedLocale } from '@/client/utilities/i18n';
 import { reportError } from '@/client/utilities/error-reporting';
@@ -16,12 +16,27 @@ export const defaultState = {
 };
 
 // Infer Type from defaultState
-export type PlayerState = typeof defaultState;
+export type PreferencesState = typeof defaultState;
 
-// After authentication, the `initPlayer` action requests
+export const serializePreferencesForStorage = (preferences: PreferencesState): string | null => {
+  const { encryptionKey } = preferences;
+  if (!encryptionKey) {
+    return null;
+  }
+
+  const encryptedState = encrypt(JSON.stringify(preferences), encryptionKey);
+  if (!encryptedState) {
+    reportError('Failed to encrypt preferences state', { context: 'serializePreferencesForStorage' });
+    return null;
+  }
+
+  return encryptedState;
+};
+
+// After authentication, the `initPreferences` action requests
 // the encryption key from the server and decrypts the stored state.
-export const initPlayer = createAsyncThunk(
-  'player/initPlayer', // namespace
+export const initPreferences = createAsyncThunk(
+  'preferences/initPreferences',
   async () => {
     let key: string | null = null;
 
@@ -38,13 +53,13 @@ export const initPlayer = createAsyncThunk(
               key = responseKey;
             }
           } catch (parseError) {
-            reportError(parseError, { context: 'initPlayer', step: 'parseKeyResponse' });
+            reportError(parseError, { context: 'initPreferences', step: 'parseKeyResponse' });
             // Continue without key - will use defaultState
           }
         }
       }
     } catch (error) {
-      reportError(error, { context: 'initPlayer', step: 'fetchEncryptionKey' });
+      reportError(error, { context: 'initPreferences', step: 'fetchEncryptionKey' });
       // Continue without key - will use defaultState
     }
 
@@ -56,17 +71,17 @@ export const initPlayer = createAsyncThunk(
           const decrypted = decrypt(storedState, key);
           if (decrypted) {
             try {
-              const result = JSON.parse(decrypted) as PlayerState;
+              const result = JSON.parse(decrypted) as PreferencesState;
               return { ...result, encryptionKey: key };
             } catch (parseError) {
-              reportError(parseError, { context: 'initPlayer', step: 'parseDecryptedData' });
+              reportError(parseError, { context: 'initPreferences', step: 'parseDecryptedData' });
               // Clear corrupted localStorage and continue with defaultState
               localStorage.removeItem(LOCAL_STORAGE_ID);
             }
           }
         }
       } catch (error) {
-        reportError(error, { context: 'initPlayer', step: 'readLocalStorage' });
+        reportError(error, { context: 'initPreferences', step: 'readLocalStorage' });
         // Continue with defaultState
       }
     }
@@ -78,18 +93,18 @@ export const initPlayer = createAsyncThunk(
 );
 
 
-// Player actions that don't require async.
-export const playerActions = {
-  increment: (state: PlayerState) => {
+// Preferences actions that don't require async.
+export const preferencesActions = {
+  increment: (state: PreferencesState) => {
     state.score += 1;
   },
-  decrement: (state: PlayerState) => {
+  decrement: (state: PreferencesState) => {
     state.score -= 1;
   },
-  incrementByAmount: (state: PlayerState, action: PayloadAction<number>) => {
+  incrementByAmount: (state: PreferencesState, action: PayloadAction<number>) => {
     state.score += action.payload;
   },
-  setLocale: (state: PlayerState, action: PayloadAction<SupportedLocale>) => {
+  setLocale: (state: PreferencesState, action: PayloadAction<SupportedLocale>) => {
     state.locale = action.payload;
   },
 };

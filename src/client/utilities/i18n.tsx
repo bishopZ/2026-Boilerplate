@@ -19,7 +19,7 @@ const MESSAGES: Record<SupportedLocale, Record<string, string>> = {
 const RTL_LOCALES: ReadonlySet<SupportedLocale> = new Set(['ar']);
 
 export const I18nProvider = ({ children }: { children: ReactNode }) => {
-  const locale = useSelector((state: RootState) => state.player.locale);
+  const locale = useSelector((state: RootState) => state.preferences.locale);
   const messages = { ...MESSAGES[DEFAULT_LOCALE], ...MESSAGES[locale] };
   const dir = RTL_LOCALES.has(locale) ? 'rtl' : 'ltr';
 

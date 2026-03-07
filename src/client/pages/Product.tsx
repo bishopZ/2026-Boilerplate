@@ -1,7 +1,7 @@
 import { useOptimistic } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { type RootState, type AppDispatch } from '../redux/store';
-import { increment } from '../redux/player';
+import { increment } from '../redux/preferences';
 import { Box, Heading, Text, VStack } from '@chakra-ui/react';
 import { PageLayout } from '../ui/layout/page-layout';
 import { AnimatedButton } from '../ui/components/animated-button';
@@ -9,7 +9,7 @@ import { PageMeta } from '../ui/components/page-meta';
 import { useAnnounce } from '../hooks/use-announce';
 
 const Product = () => {
-  const { score } = useSelector((state: RootState) => state.player);
+  const { score } = useSelector((state: RootState) => state.preferences);
   const dispatch = useDispatch<AppDispatch>();
   const [optimisticScore, setOptimistic] = useOptimistic(score, (_prev: number, next: number) => next);
   const announce = useAnnounce();
