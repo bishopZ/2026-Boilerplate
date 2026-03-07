@@ -1,5 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
-import appReducer, { type AppState } from './app';
+import appReducer from './app';
+import { type AppState } from './app-actions';
 import preferencesReducer from './preferences';
 import { type PreferencesState, serializePreferencesForStorage } from './preferences-actions';
 import { LOCAL_STORAGE_ID } from '@/client/utilities/constants';
