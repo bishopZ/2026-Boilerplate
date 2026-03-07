@@ -15,6 +15,7 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
+    "check:i18n": "node ./scripts/check-i18n-keys.mjs",
     "preview": "vite preview",
     "start": "NODE_ENV=production tsx src/server/main.ts",
     "type-check": "tsc --noEmit",
