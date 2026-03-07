@@ -17,6 +17,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 + Added a shared `PageMeta` component that maps page title/description to full metadata fields using React 19 metadata tags (Open Graph, Twitter, canonical, and mobile tags), with usage across every page and Cypress coverage.
 + Added React 19 meta tags.
 + Added ScrollToTop functionality on route change.
++ Added a shared `PageTransistion` component in `src/client/ui/components/page-transistion.tsx`, integrated through `PageLayout` so route transitions apply across all pages.
++ Added a shared `AnimatedButton` component in `src/client/ui/components/animated-button.tsx` to reuse Framer Motion tap animations across app buttons.
 + Improved Accessibility: skip to content link, useId() to avoid form field id collisions, and useAnnounce hook for aria-live.
 + Better Error handling: Added second suspense boundary around the content, error-handler middleware for the server, and an centralized error handler for the client.
 
