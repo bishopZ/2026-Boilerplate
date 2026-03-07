@@ -9,16 +9,32 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-+ Added proper SEO metadata to the index page.
-+ Added a sitemap.xml file for public pages.
++ Added proper SEO metadata and a sitemap.xml file to public pages.
 + Added Terms of service and Privacy policy.
++ Added AI-friendly files such as AGENTS.md & ARCHITECTURE.md.
++ Added a new `skills/` folder using `skills/<skill-name>/SKILL.md` format, including `skills/rebrand/SKILL.md` for rebranding title/description metadata across `index.html`, `package.json`, `README.md`, and header branding.
++ Added `skills/docx/SKILL.md` for creating, reading, editing, and manipulating Word (`.docx`) files.
++ Added a shared `PageMeta` component that maps page title/description to full metadata fields using React 19 metadata tags (Open Graph, Twitter, canonical, and mobile tags), with usage across every page and Cypress coverage.
++ Added React 19 meta tags.
++ Added ScrollToTop functionality on route change.
++ Added a shared `PageTransistion` component in `src/client/ui/components/page-transistion.tsx`, integrated through `PageLayout` so route transitions apply across all pages.
++ Added a shared `AnimatedButton` component in `src/client/ui/components/animated-button.tsx` to reuse Framer Motion tap animations across app buttons.
++ Improved Accessibility: skip to content link, useId() to avoid form field id collisions, and useAnnounce hook for aria-live.
++ Better Error handling: Added second suspense boundary around the content, error-handler middleware for the server, and an centralized error handler for the client.
 
 ### Changed
 
 + **Node.js 24**: Updated engine requirement from Node 22 to Node 24.
-+ Make header and footer into reusable components.
++ Make header and footer into reusable components, and a light mode/dark mode toggle.
 + Update the user flow with a proper home page before login.
 + Moved the Login page to a client route.
++ Improved the design of the home page and 404 page.
++ Moved to JWT for session expiration.
++ Updated the ESLint configuration.
++ Updated dependency versions.
++ Changed the favicon.
++ Expanded the .gitignore file.
++ Changed the counter to show an example of useOptimistic.
 
 ### Removed
 
@@ -62,7 +78,6 @@ Frontend
 + Static Typing: TypeScript
 + UI Framework: React
 + State Management: Redux Toolkit
-+ React Error Boundary
 
 Backend
 

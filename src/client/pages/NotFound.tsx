@@ -1,40 +1,41 @@
-import { Box, Button, Container, Heading, Text, VStack } from '@chakra-ui/react';
+import { Box, Heading, Text, VStack } from '@chakra-ui/react';
 import { Link as RouterLink } from 'react-router';
-import { Footer } from '../components/layout/footer';
-import { PublicHeader } from '../components/layout/header';
+import { ROUTES } from '../utilities/constants';
+import { AnimatedButton } from '../ui/components/animated-button';
+import { PageLayout } from '../ui/layout/page-layout';
+import { PageMeta } from '../ui/components/page-meta';
 
 const NotFound = () => {
   return (
-    <>
-      <PublicHeader />
-      <Container maxW="container.md" py={8}>
-        <VStack gap={6} align="center">
-          <Box textAlign="center">
-            <Heading as="h1" size="4xl" mb={4}>
-              404
-            </Heading>
-            <Heading as="h2" size="xl" mb={2}>
-              Page Not Found
-            </Heading>
-            <Text fontSize="lg" color="gray.600">
-              The page you&apos;re looking for doesn&apos;t exist.
-            </Text>
-          </Box>
+    <PageLayout py={20}>
+      <PageMeta
+        title="Page Not Found - 2026 Boilerplate"
+        description="The requested page could not be found in the 2026 Boilerplate application."
+      />
+      <VStack gap={6} align="center" textAlign="center">
+        <Text fontSize="9xl" fontWeight="bold" lineHeight="1" color="gray.300">
+          404
+        </Text>
 
-          <Box>
-            <Button
-              as={RouterLink}
-              asChild
-              colorScheme="blue"
-              size="lg"
-            >
-              <a href="/">Go Home</a>
-            </Button>
-          </Box>
+        <Box>
+          <Heading as="h1" size="xl" mb={2}>
+            Page Not Found
+          </Heading>
+          <Text fontSize="lg" color="gray.500">
+            Sorry, the page you&apos;re looking for doesn&apos;t exist or has been moved.
+          </Text>
+        </Box>
+
+        <VStack gap={3} pt={4}>
+          <AnimatedButton asChild colorScheme="blue" size="lg">
+            <RouterLink to={ROUTES.HOME}>Go to Home Page</RouterLink>
+          </AnimatedButton>
+          <AnimatedButton asChild variant="outline" size="md">
+            <RouterLink to={ROUTES.ABOUT}>Learn About This Project</RouterLink>
+          </AnimatedButton>
         </VStack>
-      </Container>
-      <Footer />
-    </>
+      </VStack>
+    </PageLayout>
   );
 };
 

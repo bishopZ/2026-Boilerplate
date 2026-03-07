@@ -6,9 +6,10 @@
 # Replace with a strong, random string
 LOCAL_STORAGE_KEY="your-secret-key-here"
 
-# Session Secret
-# Used to sign the session ID cookie
-# Replace with a strong, random string
+# JWT / Session Secret
+# Used to sign JWT authentication tokens
+# CRITICAL: Replace with a strong, random string (e.g. output of `openssl rand -base64 32`)
+# The server will refuse to start if this is left as the default value
 SESSION_SECRET="your-session-secret-here"
 
 # Node Environment

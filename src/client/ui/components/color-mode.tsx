@@ -1,4 +1,4 @@
-import { ThemeProvider, ThemeProviderProps } from 'next-themes';
+import { ThemeProvider, type ThemeProviderProps } from 'next-themes';
 
 export type ColorMode = 'light' | 'dark'
 

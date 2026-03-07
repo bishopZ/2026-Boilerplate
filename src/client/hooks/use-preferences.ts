@@ -1,4 +1,5 @@
-import { useReducer, useEffect, useCallback } from 'react';
+import { useReducer, useEffect, useCallback, useMemo } from 'react';
+import { createThrottledStorageWriter, loadJsonFromStorage } from '@/client/utilities/persistence';
 
 const STORAGE_KEY = '2026-preferences';
 
@@ -40,6 +41,7 @@ const preferencesReducer = (state: PreferencesState, action: PreferencesAction):
 
 interface UsePreferencesOptions {
   persist?: boolean;
+  throttleMs?: number;
 }
 
 /**
@@ -50,34 +52,35 @@ interface UsePreferencesOptions {
  *   const { preferences } = usePreferences({ persist: false }); // no persistence
  */
 export const usePreferences = (options: UsePreferencesOptions = {}) => {
-  const { persist = true } = options;
+  const { persist = true, throttleMs = 100 } = options;
   const [preferences, dispatch] = useReducer(preferencesReducer, defaultPreferences);
+  const persistPreferences = useMemo(() => createThrottledStorageWriter<PreferencesState>({
+    storageKey: STORAGE_KEY,
+    context: 'usePreferences.persistPreferences',
+    throttleMs,
+    serialize: currentPreferences => JSON.stringify(currentPreferences),
+  }), [throttleMs]);
 
   // Restore from localStorage on mount
   useEffect(() => {
-    if (!persist) return;
+    if (!persist) {
+      return;
+    }
 
-    try {
-      const stored = localStorage.getItem(STORAGE_KEY);
-      if (stored) {
-        const parsed = JSON.parse(stored) as PreferencesState;
-        dispatch({ type: 'RESTORE', payload: parsed });
-      }
-    } catch (error) {
-      console.error('Failed to restore preferences:', error);
+    const parsed = loadJsonFromStorage(STORAGE_KEY, 'usePreferences.restorePreferences') as PreferencesState | null;
+    if (parsed) {
+      dispatch({ type: 'RESTORE', payload: parsed });
     }
   }, [persist]);
 
   // Save to localStorage on change
   useEffect(() => {
-    if (!persist) return;
-
-    try {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(preferences));
-    } catch (error) {
-      console.error('Failed to save preferences:', error);
+    if (!persist) {
+      return;
     }
-  }, [preferences, persist]);
+
+    persistPreferences(preferences);
+  }, [persist, preferences, persistPreferences]);
 
   const setFontSize = useCallback((size: PreferencesState['fontSize']) => {
     dispatch({ type: 'SET_FONT_SIZE', payload: size });

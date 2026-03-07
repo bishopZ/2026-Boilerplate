@@ -1,0 +1,21 @@
+{
+  "app.name": "2026 Boilerplate",
+  "home.title": "Build Modern Web Apps",
+  "home.subtitle": "A full-stack TypeScript starter kit with authentication, encrypted storage, and a modern developer experience.",
+  "home.getStarted": "Get Started",
+  "home.learnMore": "Learn More",
+  "home.feature.fast.title": "Fast Development",
+  "home.feature.fast.description": "Vite-powered HMR with TypeScript, React 19, and Express running together seamlessly.",
+  "home.feature.auth.title": "Built-in Auth",
+  "home.feature.auth.description": "Passport.js authentication with encrypted localStorage for secure client-side data persistence.",
+  "home.feature.production.title": "Production Ready",
+  "home.feature.production.description": "ESLint, Cypress E2E tests, and Redux Toolkit — battle-tested tools configured and ready to go.",
+  "nav.home": "Home",
+  "nav.about": "About",
+  "nav.login": "Login",
+  "nav.logout": "Logout",
+  "nav.product": "Product",
+  "footer.copyright": "© {year} [insert project name here]. All rights reserved.",
+  "footer.privacy": "Privacy Policy",
+  "footer.terms": "Terms of Service"
+}

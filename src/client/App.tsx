@@ -1,13 +1,14 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState, AppDispatch } from './components/data/store';
+import { type RootState, type AppDispatch } from './redux/store';
 import { useEffect, lazy, Suspense } from 'react';
-import { initPlayer } from './components/data/player-actions';
-import { ErrorPage } from './components/ui/error-page';
-import { LoadingSpinner } from './components/ui/loading-spinner';
-import { Routes, Route } from 'react-router';
+import { initPreferences } from './redux/preferences-actions';
+import { ErrorPage } from './ui/components/error-page';
+import { LoadingSpinner } from './ui/components/loading-spinner';
+import { ScrollToTop } from './ui/components/scroll-to-top';
+import { ROUTES } from './utilities/constants';
+import { Routes, Route, BrowserRouter } from 'react-router';
 import Home from './pages/Home';
 
-// Lazy load pages for better performance
 const Product = lazy(() => import('./pages/Product'));
 const About = lazy(() => import('./pages/About'));
 const Login = lazy(() => import('./pages/Login'));
@@ -16,11 +17,11 @@ const Terms = lazy(() => import('./pages/Terms'));
 const NotFound = lazy(() => import('./pages/NotFound'));
 
 const App = () => {
-  const { loading, error } = useSelector((state: RootState) => state.player);
+  const { loading, error } = useSelector((state: RootState) => state.preferences);
   const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
-    dispatch(initPlayer());
+    dispatch(initPreferences());
   }, [dispatch]);
 
   if (loading) return <LoadingSpinner />;
@@ -28,15 +29,18 @@ const App = () => {
 
   return (
     <Suspense fallback={<LoadingSpinner />}>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/product" element={<Product />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/privacy" element={<Privacy />} />
-        <Route path="/terms" element={<Terms />} />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
+      <BrowserRouter>
+        <ScrollToTop />
+        <Routes>
+          <Route path={ROUTES.HOME} element={<Home />} />
+          <Route path={ROUTES.PRODUCT} element={<Product />} />
+          <Route path={ROUTES.ABOUT} element={<About />} />
+          <Route path={ROUTES.LOGIN} element={<Login />} />
+          <Route path={ROUTES.PRIVACY} element={<Privacy />} />
+          <Route path={ROUTES.TERMS} element={<Terms />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </BrowserRouter>
     </Suspense>
   );
 };

@@ -1,4 +1,5 @@
 import js from '@eslint/js'
+import { defineConfig } from 'eslint/config'
 import globals from 'globals'
 import reactHooks from 'eslint-plugin-react-hooks'
 import reactRefresh from 'eslint-plugin-react-refresh'
@@ -6,6 +7,25 @@ import tseslint from 'typescript-eslint'
 import reactX from 'eslint-plugin-react-x'
 import reactDom from 'eslint-plugin-react-dom'
 import stylistic from '@stylistic/eslint-plugin'
+
+/**
+ * ESLint Configuration for 2026 Boilerplate
+ *
+ * This config is battle-tested and intentionally does NOT include:
+ *
+ * - **eslint-config-airbnb**: Designed for JavaScript, not TypeScript flat
+ *   configs. Most useful rules are already covered by typescript-eslint/strict.
+ *   Adding it creates many conflicts that require overrides.
+ *
+ * - **prettier**: The project uses @stylistic/eslint-plugin for formatting.
+ *   Prettier would conflict with @stylistic rules and remove fine-grained
+ *   control over formatting decisions.
+ *
+ * - **eslint-plugin-unicorn**: Opinionated plugin with ~100 rules. While some
+ *   rules are useful, the full plugin adds too much noise. The best unicorn
+ *   rules (prefer-const, prefer-template, prefer-destructuring) are already
+ *   enabled individually below.
+ */
 
 // Rule severity levels
 const OFF = 'off'
@@ -51,6 +71,7 @@ const TYPESCRIPT_RULES = {
   '@typescript-eslint/no-empty-function': WARN,
   '@typescript-eslint/return-await': ERROR,
   '@typescript-eslint/require-await': ERROR,
+  '@typescript-eslint/consistent-type-imports': [ERROR, { prefer: 'type-imports', fixStyle: 'inline-type-imports' }],
 }
 
 const STYLISTIC_RULES = {
@@ -60,8 +81,24 @@ const STYLISTIC_RULES = {
   '@stylistic/quotes': [ERROR, 'single'],
 }
 
-export default tseslint.config(
-  { ignores: ['dist', 'cypress', 'cypress.config.ts'] },
+const CODE_GUIDELINES = {
+  'no-var': ERROR,
+  'eqeqeq': [ERROR, 'always'],
+  'no-eval': ERROR,
+  'no-implied-eval': ERROR,
+  'no-new-wrappers': ERROR,
+  'no-throw-literal': ERROR,
+  'no-self-compare': ERROR,
+  'no-template-curly-in-string': WARN,
+  'no-unneeded-ternary': ERROR,
+  'no-nested-ternary': ERROR,
+  'object-shorthand': [ERROR, 'always'],
+  'prefer-object-spread': ERROR,
+  'curly': [ERROR, 'multi-line'],
+}
+
+export default defineConfig(
+  { ignores: ['dist', 'cypress', 'cypress.config.ts', 'node_modules'] },
   {
     extends: [
       js.configs.recommended,
@@ -97,6 +134,7 @@ export default tseslint.config(
       ...CODE_QUALITY_RULES,
       ...TYPESCRIPT_RULES,
       ...STYLISTIC_RULES,
+      ...CODE_GUIDELINES,
 
       // React specific rules
       'react-refresh/only-export-components': [WARN, { allowConstantExport: true }],

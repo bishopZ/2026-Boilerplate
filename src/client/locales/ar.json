@@ -1,0 +1,21 @@
+{
+  "app.name": "نموذج 2026",
+  "home.title": "ابنِ تطبيقات ويب حديثة",
+  "home.subtitle": "مجموعة أدوات TypeScript الشاملة مع المصادقة والتخزين المشفر وتجربة تطوير حديثة.",
+  "home.getStarted": "ابدأ الآن",
+  "home.learnMore": "اعرف المزيد",
+  "home.feature.fast.title": "تطوير سريع",
+  "home.feature.fast.description": "إعادة تحميل سريعة مع Vite وTypeScript وReact 19 وExpress تعمل معاً بسلاسة.",
+  "home.feature.auth.title": "مصادقة مدمجة",
+  "home.feature.auth.description": "مصادقة Passport.js مع تخزين محلي مشفر لاستمرارية البيانات الآمنة.",
+  "home.feature.production.title": "جاهز للإنتاج",
+  "home.feature.production.description": "ESLint واختبارات Cypress وRedux Toolkit — أدوات مُجرّبة ومُعدّة للاستخدام.",
+  "nav.home": "الرئيسية",
+  "nav.about": "حول",
+  "nav.login": "تسجيل الدخول",
+  "nav.logout": "تسجيل الخروج",
+  "nav.product": "المنتج",
+  "footer.copyright": "© {year} [أدخل اسم المشروع هنا]. جميع الحقوق محفوظة.",
+  "footer.privacy": "سياسة الخصوصية",
+  "footer.terms": "شروط الخدمة"
+}

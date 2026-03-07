@@ -1,30 +1,33 @@
-import { createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
-import { decrypt } from '@/client/shared/encryption';
-import { LOCAL_STORAGE_ID } from '@/client/shared/constants';
+import { createAsyncThunk, type PayloadAction } from '@reduxjs/toolkit';
+import { decrypt } from '@/client/utilities/encryption';
+import { LOCAL_STORAGE_ID, API_PATHS } from '@/client/utilities/constants';
+import { DEFAULT_LOCALE, type SupportedLocale } from '@/client/utilities/i18n';
+import { reportError } from '@/client/utilities/error-reporting';
 
 const SCHEMA_VERSION = '1.0.0';
 
 export const defaultState = {
   schemaVersion: SCHEMA_VERSION,
   score: 0,
+  locale: DEFAULT_LOCALE,
   encryptionKey: null as string | null,
   loading: false,
   error: null as string | null,
 };
 
 // Infer Type from defaultState
-export type PlayerState = typeof defaultState;
+export type PreferencesState = typeof defaultState;
 
-// After authentication, the `initPlayer` action requests
+// After authentication, the `initPreferences` action requests
 // the encryption key from the server and decrypts the stored state.
-export const initPlayer = createAsyncThunk(
-  'player/initPlayer', // namespace
+export const initPreferences = createAsyncThunk(
+  'preferences/initPreferences',
   async () => {
     let key: string | null = null;
 
     // Try to get encryption key from server
     try {
-      const response = await fetch('/api/key');
+      const response = await fetch(API_PATHS.KEY);
       if (response.ok) {
         const contentType = response.headers.get('content-type');
         // Only try to parse JSON if the response is actually JSON
@@ -35,13 +38,13 @@ export const initPlayer = createAsyncThunk(
               key = responseKey;
             }
           } catch (parseError) {
-            console.error('Failed to parse key response:', parseError);
+            reportError(parseError, { context: 'initPreferences', step: 'parseKeyResponse' });
             // Continue without key - will use defaultState
           }
         }
       }
     } catch (error) {
-      console.error('Failed to fetch encryption key:', error);
+      reportError(error, { context: 'initPreferences', step: 'fetchEncryptionKey' });
       // Continue without key - will use defaultState
     }
 
@@ -53,17 +56,17 @@ export const initPlayer = createAsyncThunk(
           const decrypted = decrypt(storedState, key);
           if (decrypted) {
             try {
-              const result = JSON.parse(decrypted) as PlayerState;
+              const result = JSON.parse(decrypted) as PreferencesState;
               return { ...result, encryptionKey: key };
             } catch (parseError) {
-              console.error('Failed to parse decrypted player data:', parseError);
+              reportError(parseError, { context: 'initPreferences', step: 'parseDecryptedData' });
               // Clear corrupted localStorage and continue with defaultState
               localStorage.removeItem(LOCAL_STORAGE_ID);
             }
           }
         }
       } catch (error) {
-        console.error('Failed to read from localStorage:', error);
+        reportError(error, { context: 'initPreferences', step: 'readLocalStorage' });
         // Continue with defaultState
       }
     }
@@ -75,15 +78,18 @@ export const initPlayer = createAsyncThunk(
 );
 
 
-// Player actions that don't require async.
-export const playerActions = {
-  increment: (state: PlayerState) => {
+// Preferences actions that don't require async.
+export const preferencesActions = {
+  increment: (state: PreferencesState) => {
     state.score += 1;
   },
-  decrement: (state: PlayerState) => {
+  decrement: (state: PreferencesState) => {
     state.score -= 1;
   },
-  incrementByAmount: (state: PlayerState, action: PayloadAction<number>) => {
+  incrementByAmount: (state: PreferencesState, action: PayloadAction<number>) => {
     state.score += action.payload;
-  }
+  },
+  setLocale: (state: PreferencesState, action: PayloadAction<SupportedLocale>) => {
+    state.locale = action.payload;
+  },
 };

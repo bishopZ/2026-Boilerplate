@@ -7,6 +7,7 @@ Custom React hooks for reusable stateful logic.
 ### `usePreferences`
 
 A custom hook with `useReducer` and optional localStorage persistence.
+Persistence writes are throttled (minimum 100ms) via shared utilities.
 
 ```tsx
 import { usePreferences } from '@/client/hooks/use-preferences';
@@ -15,6 +16,8 @@ const MyComponent = () => {
   const { preferences, setFontSize, toggleSidebar } = usePreferences();
   // With persistence disabled:
   // const { preferences } = usePreferences({ persist: false });
+  // With custom throttle:
+  // const { preferences } = usePreferences({ persist: true, throttleMs: 250 });
 
   return <div style={{ fontSize: preferences.fontSize }}>...</div>;
 };
