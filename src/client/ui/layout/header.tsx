@@ -3,31 +3,32 @@ import { Box, Flex, Heading, IconButton, VStack } from '@chakra-ui/react';
 import { Link as RouterLink } from 'react-router';
 import { useTheme } from 'next-themes';
 import { LuMenu, LuX } from 'react-icons/lu';
+import { FormattedMessage } from 'react-intl';
 import { ROUTES } from '@/client/utilities/constants';
 import { AnimatedButton } from '../components/animated-button';
 import { ColorModeToggle } from '../components/color-mode-toggle';
 import { LanguageSwitcher } from '../components/language-switcher';
 
 interface NavItem {
-  label: string;
+  labelId: string;
   to: string;
   isExternal?: boolean;
 }
 
 const PUBLIC_NAV: NavItem[] = [
-  { label: 'Home', to: ROUTES.HOME },
-  { label: 'About', to: ROUTES.ABOUT },
-  { label: 'Login', to: ROUTES.LOGIN },
+  { labelId: 'nav.home', to: ROUTES.HOME },
+  { labelId: 'nav.about', to: ROUTES.ABOUT },
+  { labelId: 'nav.login', to: ROUTES.LOGIN },
 ];
 
 const PRIVATE_NAV: NavItem[] = [
-  { label: 'Product', to: ROUTES.PRODUCT },
-  { label: 'Logout', to: ROUTES.LOGOUT, isExternal: true },
+  { labelId: 'nav.product', to: ROUTES.PRODUCT },
+  { labelId: 'nav.logout', to: ROUTES.LOGOUT, isExternal: true },
 ];
 
 const NavLinks = ({ items, onClose }: { items: NavItem[]; onClose?: () => void }) => (
   <>
-    {items.map(({ label, to, isExternal }) => (
+    {items.map(({ labelId, to, isExternal }) => (
       <AnimatedButton
         key={to}
         asChild
@@ -36,8 +37,8 @@ const NavLinks = ({ items, onClose }: { items: NavItem[]; onClose?: () => void }
         onClick={onClose}
       >
         {isExternal
-          ? <a href={to}>{label}</a>
-          : <RouterLink to={to}>{label}</RouterLink>
+          ? <a href={to}><FormattedMessage id={labelId} /></a>
+          : <RouterLink to={to}><FormattedMessage id={labelId} /></RouterLink>
         }
       </AnimatedButton>
     ))}
@@ -63,7 +64,9 @@ const Header = ({ variant }: { variant: 'public' | 'private' }) => {
       >
         <Flex justify="space-between" align="center">
           <Heading as="h1" size="lg">
-            <RouterLink to={logoTo}>2026 Boilerplate</RouterLink>
+            <RouterLink to={logoTo}>
+              <FormattedMessage id="app.name" />
+            </RouterLink>
           </Heading>
 
           <Flex gap={4} align="center" display={{ base: 'none', md: 'flex' }}>

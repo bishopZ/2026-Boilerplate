@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { type RootState, type AppDispatch } from './redux/store';
 import { useEffect, lazy, Suspense } from 'react';
-import { initPlayer } from './redux/player-actions';
+import { initPreferences } from './redux/preferences-actions';
 import { ErrorPage } from './ui/components/error-page';
 import { LoadingSpinner } from './ui/components/loading-spinner';
 import { ScrollToTop } from './ui/components/scroll-to-top';
@@ -17,11 +17,11 @@ const Terms = lazy(() => import('./pages/Terms'));
 const NotFound = lazy(() => import('./pages/NotFound'));
 
 const App = () => {
-  const { loading, error } = useSelector((state: RootState) => state.player);
+  const { loading, error } = useSelector((state: RootState) => state.preferences);
   const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
-    dispatch(initPlayer());
+    dispatch(initPreferences());
   }, [dispatch]);
 
   if (loading) return <LoadingSpinner />;

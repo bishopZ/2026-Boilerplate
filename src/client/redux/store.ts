@@ -1,44 +1,33 @@
-import { configureStore, type Middleware } from '@reduxjs/toolkit';
-import playerReducer from './player';
-import { encrypt } from '@/client/utilities/encryption';
-import { type PlayerState } from './player-actions';
+import { configureStore } from '@reduxjs/toolkit';
+import appReducer from './app';
+import { type AppState } from './app-actions';
+import preferencesReducer from './preferences';
+import { type PreferencesState, serializePreferencesForStorage } from './preferences-actions';
 import { LOCAL_STORAGE_ID } from '@/client/utilities/constants';
-import { reportError } from '@/client/utilities/error-reporting';
+import { createPersistenceMiddleware } from '@/client/utilities/persistence';
 
-type GenericObject = Record<string, unknown>;
-interface LocalState { player: PlayerState}
+interface LocalState {
+  preferences: PreferencesState;
+  app: AppState;
+}
 
-// Middleware that encrypts and persists the player state to localStorage
-// after every Redux action.
-const saveToLocalStorage: Middleware<GenericObject, LocalState> = storeAPI => next => action => {
-  // debounce to ensure we get the latest state
-  setTimeout(() => {
-    try {
-      const { player } = storeAPI.getState();
-      const { encryptionKey } = player;
-      if (encryptionKey) {
-        const encryptedState = encrypt(JSON.stringify(player), encryptionKey);
-        if (encryptedState) {
-          localStorage.setItem(LOCAL_STORAGE_ID, encryptedState);
-        } else {
-          reportError('Failed to encrypt state', { context: 'saveToLocalStorage' });
-        }
-      }
-    } catch (error) {
-      reportError(error, { context: 'saveToLocalStorage' });
-    }
-  }, 0);
-  return next(action);
-};
+const persistenceMiddleware = createPersistenceMiddleware<LocalState>([
+  {
+    selectSlice: state => state.preferences,
+    storageKey: LOCAL_STORAGE_ID,
+    context: 'redux.preferences',
+    throttleMs: 100,
+    serialize: serializePreferencesForStorage,
+  },
+]);
 
 export const store = configureStore({
   reducer: {
-    // Add additional reducers here
-    player: playerReducer
+    preferences: preferencesReducer,
+    app: appReducer,
   },
   middleware: getDefaultMiddleware => getDefaultMiddleware()
-    // Add any additional middleware here
-    .concat(saveToLocalStorage),
+    .concat(persistenceMiddleware),
 });
 
 // Infer the `RootState` and `AppDispatch` types from the store itself

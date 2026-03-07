@@ -1,15 +1,16 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { type RootState, type AppDispatch } from '../../redux/store';
-import { setLocale } from '../../redux/player';
+import { setLocale } from '../../redux/preferences';
 import { SUPPORTED_LOCALES, type SupportedLocale } from '@/client/utilities/i18n';
 
 const LOCALE_LABELS: Record<SupportedLocale, string> = {
   en: 'EN',
   ar: 'عربي',
+  fr: 'FR',
 };
 
 export const LanguageSwitcher = () => {
-  const locale = useSelector((state: RootState) => state.player.locale);
+  const locale = useSelector((state: RootState) => state.preferences.locale);
   const dispatch = useDispatch<AppDispatch>();
 
   const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {

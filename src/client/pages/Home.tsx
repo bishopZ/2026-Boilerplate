@@ -1,6 +1,6 @@
 import { Heading, Text, VStack, Flex, SimpleGrid } from '@chakra-ui/react';
 import { LuShield, LuZap, LuCode } from 'react-icons/lu';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
 import { PageLayout } from '../ui/layout/page-layout';
 import { AnimatedButton } from '../ui/components/animated-button';
 import { FeatureCard } from '../ui/components/feature-card';
@@ -9,6 +9,8 @@ import { ROUTES } from '../utilities/constants';
 import { Link as RouterLink } from 'react-router';
 
 const Home = () => {
+  const intl = useIntl();
+
   return (
     <PageLayout maxW="container.lg" py={16}>
       <PageMeta
@@ -45,18 +47,18 @@ const Home = () => {
         <SimpleGrid columns={{ base: 1, md: 3 }} gap={6}>
           <FeatureCard
             icon={LuZap}
-            title="Fast Development"
-            description="Vite-powered HMR with TypeScript, React 19, and Express running together seamlessly."
+            title={intl.formatMessage({ id: 'home.feature.fast.title' })}
+            description={intl.formatMessage({ id: 'home.feature.fast.description' })}
           />
           <FeatureCard
             icon={LuShield}
-            title="Built-in Auth"
-            description="Passport.js authentication with encrypted localStorage for secure client-side data persistence."
+            title={intl.formatMessage({ id: 'home.feature.auth.title' })}
+            description={intl.formatMessage({ id: 'home.feature.auth.description' })}
           />
           <FeatureCard
             icon={LuCode}
-            title="Production Ready"
-            description="ESLint, Cypress E2E tests, and Redux Toolkit — battle-tested tools configured and ready to go."
+            title={intl.formatMessage({ id: 'home.feature.production.title' })}
+            description={intl.formatMessage({ id: 'home.feature.production.description' })}
           />
         </SimpleGrid>
       </VStack>
