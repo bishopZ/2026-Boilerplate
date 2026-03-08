@@ -41,7 +41,7 @@ src/
 │
 └── server/                   # Backend (Express)
     ├── main.ts               # Entry: Express app, middleware, routes, vite-express
-    ├── config/               # Session config, constants
+    ├── config/               # Constants and API error helpers
     ├── controllers/          # Request handlers
     ├── middleware/           # Auth middleware
     ├── routes/               # Route definitions
@@ -67,7 +67,7 @@ src/
 
 ### Client/Server Code Separation
 
-Client and server each have their own `utilities/` directory. Code is intentionally duplicated rather than shared, because Vite's bundler and the Node.js runtime have different module resolution requirements.
+The client uses `src/client/utilities/` for browser-specific helpers. Server helpers live in `src/server/services/` and `src/server/config/`. Keep client-only and server-only modules separated to avoid accidental cross-runtime imports.
 
 ## Technology Choices
 
