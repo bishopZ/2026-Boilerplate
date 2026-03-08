@@ -9,7 +9,6 @@
 - Skills live in `skills/<skill-name>/SKILL.md`.
 - If a request matches a skill, read and follow that skill before implementing changes.
 - `skills/rebrand/SKILL.md` — Rebrand the boilerplate into a new project using a new site title and description.
-- `skills/docx/SKILL.md` — Create, read, edit, and manipulate `.docx` files.
 - `skills/hidden-admin-auth/SKILL.md` — Configure the private section as a hidden admin utility and rotate hardcoded default credentials safely.
 
 ## Development Setup

@@ -22,7 +22,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 + Added Terms of service and Privacy policy.
 + Added AI-friendly files such as AGENTS.md & docs/ARCHITECTURE.md.
 + Added a new `skills/` folder using `skills/<skill-name>/SKILL.md` format, including `skills/rebrand/SKILL.md` for rebranding title/description metadata across `index.html`, `package.json`, `README.md`, and header branding.
-+ Added `skills/docx/SKILL.md` for creating, reading, editing, and manipulating Word (`.docx`) files.
 + Added a shared `PageMeta` component that maps page title/description to full metadata fields using React 19 metadata tags (Open Graph, Twitter, canonical, and mobile tags), with usage across every page and Cypress coverage.
 + Added React 19 meta tags.
 + Added ScrollToTop functionality on route change.

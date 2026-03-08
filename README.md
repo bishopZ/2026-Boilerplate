@@ -60,7 +60,7 @@ See [docs/SCRIPTS.md](docs/SCRIPTS.md) for the full script reference and [script
 
 - **[AGENTS.md](AGENTS.md)** — Project overview and code guidelines for AI assistants
 - **[.cursor/rules/](.cursor/rules/)** — Rule files for React components, Redux, and server patterns
-- **Skills:** [skills/rebrand/SKILL.md](skills/rebrand/SKILL.md) (rebrand title/description), [skills/docx/SKILL.md](skills/docx/SKILL.md) (Word documents), [skills/hidden-admin-auth/SKILL.md](skills/hidden-admin-auth/SKILL.md) (hidden admin auth setup + credential rotation)
+- **Skills:** [skills/rebrand/SKILL.md](skills/rebrand/SKILL.md) (rebrand title/description), [skills/hidden-admin-auth/SKILL.md](skills/hidden-admin-auth/SKILL.md) (hidden admin auth setup + credential rotation)
 
 ## Documentation
 
