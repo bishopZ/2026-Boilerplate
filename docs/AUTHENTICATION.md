@@ -49,7 +49,7 @@ If you want `/product` to act like a hidden admin utility for your own team:
 
 1. Keep route protection (`ensureAuthenticated`) as-is.
 2. Optionally remove obvious login links from public nav and access `/login` directly.
-3. Change the default credentials in `fakeUser`.
+3. Convert credentials to env-backed admin auth (no credential values in source).
 
 ### Use the skill for this setup
 
@@ -59,15 +59,16 @@ Use the dedicated skill:
 
 This keeps credential rotation, docs, and test updates consistent.
 
-### Changing username/password for the default user
+### Admin credential source of truth
 
-1. Pick a new username and password.
-2. Generate a new salt + PBKDF2 hash (same params as code), for example:
+For hidden-admin mode, credentials should come from env variables:
 
-`node -e "const crypto=require('crypto'); const password='YOUR_PASSWORD'; const salt=crypto.randomBytes(8).toString('hex'); const hash=crypto.pbkdf2Sync(password,salt,100000,64,'sha512').toString('hex'); console.log({salt,hash});"`
+- `ADMIN_USERNAME`
+- `ADMIN_PASSWORD_SALT`
+- `ADMIN_PASSWORD_HASH`
 
-3. Update `fakeUser.email`, `fakeUser.salt`, and `fakeUser.password` in `src/server/services/auth.ts`.
-4. Update any local docs/tests that assume `test` / `test`.
+Update `.envTemplate` and set real values in `.env` for each environment.
+Docs/tests should point to env-based credentials rather than hardcoded literals.
 
 ## Option B: Migrate to real auth (Supabase or Postgres)
 
