@@ -54,7 +54,7 @@ src/
 
 1. User submits credentials to `POST /login/password`
 2. Passport.js `LocalStrategy` verifies against the hardcoded user
-3. On success: session created, redirect to `/product`
+3. On success: JWT cookie (`token`) is set, redirect to `/product`
 4. On failure: redirect back to `/login`
 5. Protected routes use `ensureAuthenticated` middleware
 

@@ -18,8 +18,8 @@ Follows an MVC-style layout:
 
 ## Key Flows
 
-- **Auth:** POST to login, Passport LocalStrategy verifies against hardcoded user, session created.
+- **Auth:** POST to login, Passport LocalStrategy verifies against hardcoded user, JWT is set in an `httpOnly` cookie.
 - **API key:** Authenticated GET `/api/key` returns encryption key for client-side localStorage.
 - **Pages:** Most routes pass through to Vite; protected routes use `ensureAuthenticated` before passing.
 
-See [docs/ARCHITECTURE.md](../../docs/ARCHITECTURE.md) for the full system diagram and auth/persistence flows.
+See [docs/ARCHITECTURE.md](../../docs/ARCHITECTURE.md) for the full system diagram and [docs/AUTHENTICATION.md](../../docs/AUTHENTICATION.md) for auth details and migration options.

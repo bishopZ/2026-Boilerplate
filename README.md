@@ -65,6 +65,7 @@ See [docs/SCRIPTS.md](docs/SCRIPTS.md) for the full script reference and [script
 ## Documentation
 
 - [Architecture](docs/ARCHITECTURE.md) — System diagram, directory structure, key patterns
+- [Authentication](docs/AUTHENTICATION.md) — JWT flow, hardcoded user, and migration paths
 - [Client](src/client/README.md) — How the frontend is organized
 - [Hooks](src/client/hooks/README.md) — useState vs custom hook vs Redux
 - [Redux](src/client/redux/README.md) — Persistence, slices, pitfalls
