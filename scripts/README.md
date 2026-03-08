@@ -2,6 +2,9 @@
 
 Project scripts live in this folder and are invoked via npm scripts.
 
+This file documents script implementation details in `scripts/`.
+For the full npm command reference and usage workflows, see [`docs/SCRIPTS.md`](../docs/SCRIPTS.md).
+
 ## check-i18n-keys.mjs
 
 Invoked via `npm run check:i18n`.
