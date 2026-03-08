@@ -2,6 +2,8 @@
 
 The Express backend for 2026 Boilerplate. Served alongside the Vite-built client via vite-express.
 
+Cursor rule reference: [`.cursor/rules/server-patterns.mdc`](../../.cursor/rules/server-patterns.mdc)
+
 ## Entry
 
 **main.ts** — Creates the Express app, attaches middleware and routes, then starts the server with `ViteExpress.listen`. In development, Vite serves the client with HMR; in production, built assets are served from `dist/`.

@@ -2,6 +2,8 @@
 
 Redux in this boilerplate is intentionally small and practical.
 
+Cursor rule reference: [`.cursor/rules/state-management.mdc`](../../../.cursor/rules/state-management.mdc)
+
 ## Why Redux here?
 
 - Cross-page state belongs in one predictable store.

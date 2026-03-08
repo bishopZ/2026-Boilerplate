@@ -2,6 +2,8 @@
 
 The React frontend for 2026 Boilerplate.
 
+Cursor rule reference: [`.cursor/rules/react-components.mdc`](../../../.cursor/rules/react-components.mdc)
+
 ## Entry
 
 **main.tsx** — Bootstraps the app with providers (Chakra UI, ColorMode, Redux, I18nProvider) and an ErrorBoundary. Renders `App` inside the provider tree.
