@@ -3,11 +3,11 @@ describe('Page meta tags', () => {
     cy.visit('/about');
 
     cy.title().should('eq', 'About - 2026 Boilerplate');
-    cy.get('meta[name="description"]').should('have.attr', 'content', 'Learn about the 2026 Boilerplate — a full-stack starter kit with React, Express, Redux, and Chakra UI');
+    cy.get('meta[name="description"]').should('have.attr', 'content', 'Learn how the 2026 Boilerplate organizes architecture, documentation, testing, and release workflows.');
     cy.get('meta[property="og:title"]').should('have.attr', 'content', 'About - 2026 Boilerplate');
-    cy.get('meta[property="og:description"]').should('have.attr', 'content', 'Learn about the 2026 Boilerplate — a full-stack starter kit with React, Express, Redux, and Chakra UI');
+    cy.get('meta[property="og:description"]').should('have.attr', 'content', 'Learn how the 2026 Boilerplate organizes architecture, documentation, testing, and release workflows.');
     cy.get('meta[name="twitter:title"]').should('have.attr', 'content', 'About - 2026 Boilerplate');
-    cy.get('meta[name="twitter:description"]').should('have.attr', 'content', 'Learn about the 2026 Boilerplate — a full-stack starter kit with React, Express, Redux, and Chakra UI');
+    cy.get('meta[name="twitter:description"]').should('have.attr', 'content', 'Learn how the 2026 Boilerplate organizes architecture, documentation, testing, and release workflows.');
     cy.get('meta[name="apple-mobile-web-app-title"]').should('have.attr', 'content', 'About - 2026 Boilerplate');
     cy.get('link[rel="canonical"]').should('have.attr', 'href', 'http://localhost:3000/about');
 

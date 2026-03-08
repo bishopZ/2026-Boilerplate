@@ -11,7 +11,7 @@ const About = () => {
     <PageLayout>
       <PageMeta
         title="About - 2026 Boilerplate"
-        description="Learn about the 2026 Boilerplate — a full-stack starter kit with React, Express, Redux, and Chakra UI"
+        description="Learn how the 2026 Boilerplate organizes architecture, documentation, testing, and release workflows."
       />
       <VStack gap={6} align="stretch">
         <Box>
@@ -19,46 +19,42 @@ const About = () => {
             About 2026 Boilerplate
           </Heading>
           <Text fontSize="lg" color="gray.600" mb={4}>
-            A sophisticated starting point for building modern web applications.
+            A documentation-first starter focused on maintainable architecture and predictable delivery workflows.
           </Text>
         </Box>
 
         <Box>
           <Heading as="h2" size="lg" mb={3}>
-            Features
+            What this boilerplate optimizes for
           </Heading>
           <List.Root gap={3} listStyleType="none">
             <List.Item>
               <List.Indicator as={LuCheck} color="green.500" />
-              React 19 with TypeScript for type-safe development
+              Clear system documentation for architecture, technology choices, and script workflows
             </List.Item>
             <List.Item>
               <List.Indicator as={LuCheck} color="green.500" />
-              Redux Toolkit for state management
+              Consistent frontend organization with reusable layouts, UI components, and route-level metadata
             </List.Item>
             <List.Item>
               <List.Indicator as={LuCheck} color="green.500" />
-              React Router for client-side routing
+              Typed Redux patterns with persisted and non-persisted slices designed for scale
             </List.Item>
             <List.Item>
               <List.Indicator as={LuCheck} color="green.500" />
-              Chakra UI for accessible, beautiful components
+              Built-in i18n support (en/ar/fr), RTL handling, and translation key validation tooling
             </List.Item>
             <List.Item>
               <List.Indicator as={LuCheck} color="green.500" />
-              Express.js backend with Passport.js authentication
+              Accessibility and SEO defaults including skip links, aria-live announcements, and structured metadata
             </List.Item>
             <List.Item>
               <List.Indicator as={LuCheck} color="green.500" />
-              Encrypted local storage for data persistence
+              Tested release workflow with lint, type-check, and Cypress E2E coverage
             </List.Item>
             <List.Item>
               <List.Indicator as={LuCheck} color="green.500" />
-              Cypress for end-to-end testing
-            </List.Item>
-            <List.Item>
-              <List.Indicator as={LuCheck} color="green.500" />
-              ESLint with comprehensive rules
+              Contribution guidance that mirrors the structure and expectations of real production teams
             </List.Item>
           </List.Root>
         </Box>
