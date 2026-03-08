@@ -25,7 +25,7 @@ const getPrefersReducedMotion = () => {
 /**
  * Wraps page content with route-change transitions.
  */
-export const PageTransistion = ({ children }: { children: ReactNode }) => {
+export const PageTransition = ({ children }: { children: ReactNode }) => {
   const { pathname } = useLocation();
   const prefersReducedMotion = getPrefersReducedMotion();
 
@@ -43,4 +43,5 @@ export const PageTransistion = ({ children }: { children: ReactNode }) => {
   );
 };
 
-export const PageTransition = PageTransistion;
+// Backward-compatible alias for older imports.
+export const PageTransistion = PageTransition;

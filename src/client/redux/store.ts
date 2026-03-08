@@ -4,7 +4,7 @@ import { type AppState } from './app-actions';
 import preferencesReducer from './preferences';
 import { type PreferencesState, serializePreferencesForStorage } from './preferences-actions';
 import { LOCAL_STORAGE_ID } from '@/client/utilities/constants';
-import { createPersistenceMiddleware } from '@/client/utilities/persistence';
+import { createPersistenceMiddleware, persistSlice } from '@/client/utilities/persistence';
 
 interface LocalState {
   preferences: PreferencesState;
@@ -12,13 +12,13 @@ interface LocalState {
 }
 
 const persistenceMiddleware = createPersistenceMiddleware<LocalState>([
-  {
+  persistSlice<LocalState, PreferencesState>({
     selectSlice: state => state.preferences,
     storageKey: LOCAL_STORAGE_ID,
     context: 'redux.preferences',
     throttleMs: 100,
     serialize: serializePreferencesForStorage,
-  },
+  }),
 ]);
 
 export const store = configureStore({

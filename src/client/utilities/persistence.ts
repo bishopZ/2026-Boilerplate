@@ -79,32 +79,44 @@ export const loadJsonFromStorage = (storageKey: string, context: string): unknow
 };
 
 /**
- * Creates Redux middleware from persistence registrations.
- * Store code only declares what to persist; persistence mechanics stay here.
+ * Registers persistence behavior for one Redux slice.
+ * Keeps select + serialize type-safe as a pair.
+ */
+export const persistSlice = <RootState, SliceState>({
+  selectSlice,
+  storageKey,
+  context,
+  throttleMs,
+  serialize,
+}: PersistedSliceConfig<RootState, SliceState>) => {
+  const write = createStorageWriter<SliceState>({
+    storageKey,
+    context,
+    throttleMs,
+    serialize,
+  });
+
+  return (state: RootState) => {
+    write(selectSlice(state));
+  };
+};
+
+/**
+ * Creates Redux middleware from registered slice persistors.
  */
 export const createPersistenceMiddleware = <RootState>(
-  configs: PersistedSliceConfig<RootState, unknown>[]
+  slicePersistors: ((state: RootState) => void)[]
 ): Middleware<Record<string, unknown>, RootState> => {
   if (typeof window === 'undefined') {
     return () => next => action => next(action);
   }
 
-  const writers = configs.map((config) => ({
-    selectSlice: config.selectSlice,
-    write: createStorageWriter<unknown>({
-      storageKey: config.storageKey,
-      context: config.context,
-      throttleMs: config.throttleMs,
-      serialize: config.serialize,
-    }),
-  }));
-
   return storeAPI => next => action => {
     const result = next(action);
     const state = storeAPI.getState();
 
-    for (const { selectSlice, write } of writers) {
-      write(selectSlice(state));
+    for (const persist of slicePersistors) {
+      persist(state);
     }
 
     return result;

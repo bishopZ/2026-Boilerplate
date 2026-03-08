@@ -63,7 +63,7 @@ src/
 1. On app load, `initPreferences` async thunk fetches encryption key from `/api/key`
 2. If authenticated, the key is returned and used to decrypt `localStorage`
 3. On every Redux action, the persistence middleware encrypts and saves specified slices
-4. The persistence middleware in `store.ts` is reusable — add slice keys to persist, don't create new middleware
+4. The persistence middleware in `store.ts` is reusable — add persistence registrations for slices, don't create new middleware
 
 ### Client/Server Code Separation
 

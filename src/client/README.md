@@ -12,7 +12,7 @@ The React frontend for 2026 Boilerplate.
 
 ## Layout
 
-**ui/layout/** — `PageLayout` wraps each page with `SkipLink`, `Header` (public or private variant), main content area, and `Footer`. `PageTransistion` provides route transition animations. Pages use `PageLayout` and render their content as children.
+**ui/layout/** — `PageLayout` wraps each page with `SkipLink`, `Header` (public or private variant), main content area, and `Footer`. `PageTransition` provides route transition animations. Pages use `PageLayout` and render their content as children.
 
 ## State
 
