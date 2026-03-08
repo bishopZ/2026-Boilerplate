@@ -1,326 +1,89 @@
-# 2026 Boilerplate for Typescript/React
+# 2026 Boilerplate for TypeScript/React
 
-A local-first web app boilerplate for 2026
+Use this boilerplate to build production-ready web apps. Full-stack TypeScript, React 19, and Express with authentication, encrypted persistence, SEO, i18n, accessibility, and a modern developer experience—all configured and ready to extend.
 
-## Transition to 2026
+## Features
 
-Welcome to the 2026 Boilerplate! This repository represents a fresh start for the new year, building upon the solid foundation established in the 2025 version. As we move forward into 2026, we're excited to welcome collaborators and discussions that will help shape the future direction of this boilerplate. We look forward to new additions, improvements, and community contributions that will make this an even better starting point for modern web applications.
-
-## Motivation
-
-We release a boilerplate every few years. Boilerplates go a little bit further than the starter projects that each library gives you, yet they land short of being an actual project. They give you a good starting point, if you want this exact mix of technologies. It also suggests good organizational patterns for a scalable code base.
-
-When you create a starter application with create-next-app, vite, or the majority of similar command-line tools, the app you're given is wonderful in many ways, but fails to follow standard practices outside of the narrow scope of its base framework. It may come with many standard patterns for React, but not for CSS, accessibility, SEO, API, file organization and a host of other concerns that any person wanting to publish a well-made website needs.
-
-If those repos are trying to be the simplest form of a specific technology, this repository aims to be the simplest form of a family of technologies. This repository aims to be an enhanced starter library, providing concise examples of all the features.
-
-This boilerplate is right for you if:
-
-- You need a flexible Node backend.
-- You need user authentication.
-- You will have a lot of state data that should persist across the application.
-
-
-## 2026 stack
-
-### Frontend
-
-- Build Tool: Vite
-- Static Typing: TypeScript
-- UI Framework: React
-- State Management: Redux Toolkit
-- Routing: React Router
-- Design System: Chakra UI
-
-### Backend
-
-- Server Runtime: Node.js
-- Web Framework: Express
-- Authentication Library: Passport.js
-
-### Security and Storage
-
-- Local Storage
-- Crypto Library: Crypto JS
-
-### Developer Experience
-
-- E2E Testing: Cypress
-- Linter: ESLint
-
-The reasoning for each item is included below.
-
-## Project structure
-
-The project structure is described in the [ARCHITECTURE.md](./ARCHITECTURE.md) file.
-
-## Skills
-
-- Skills follow this format: `skills/<skill-name>/SKILL.md` with YAML frontmatter (`name`, `description`) for skill discovery.
-- `skills/rebrand/SKILL.md` - Rebrand the boilerplate into your own project identity using a new site title and description.
-- `skills/docx/SKILL.md` - Create, read, edit, or manipulate Word documents (`.docx`), including reports, memos, and letters.
+- **Core:** TypeScript, React 19, Vite, Express, Passport auth (test user), encrypted localStorage persistence, Redux Toolkit (persistent + non-persistent slices), React Router with lazy-loaded pages
+- **SEO & metadata:** Sitemap, `<PageMeta>` component, React 19 document metadata (title, description, Open Graph, Twitter, canonical), Terms and Privacy pages
+- **Accessibility:** Skip-to-content link, stable IDs (`useId`), aria-live announcements (`useAnnounce`), Chakra UI
+- **i18n:** react-intl, locales (en, ar, fr), RTL for Arabic, language switcher, English fallback—[use it or ignore it](docs/I18N.md); when you need translation, it's ready
+- **UX and polish:** Page transitions (`<PageTransition>`), animated buttons (Framer Motion), scroll-to-top on route change, light/dark mode
+- **Resilience:** Error boundaries, centralized client error handler, server error-handler middleware, Suspense boundaries
+- **Developer experience:** Cypress E2E, ESLint (custom config), type-check script, `npm run test` for full pre-commit/CI (lint + type-check + E2E)
 
 ## Getting Started
 
 ### Start a New Project from This Boilerplate
 
-Use this workflow when you want to turn this repository into your own product instead of contributing back to the boilerplate.
+Use this workflow when you want to turn this repository into your own product instead of contributing back.
 
-1. Clone the repository and enter the folder:
-   - `git clone git@github.com:bishopZ/2026-Boilerplate.git`
-   - `cd 2026-Boilerplate`
-2. Remove the existing git history: `rm -rf .git`
-3. Initialize a fresh repository: `git init`
-4. Run the rebrand skill with your new project details:
-   - `Use the skill at skills/rebrand/SKILL.md with site_title="<Your Project Title>" and site_description="<Your Project Description>".`
-5. Create your first commit in the new repository.
+1. Clone the repo: `git clone git@github.com:bishopZ/2026-Boilerplate.git` and `cd 2026-Boilerplate`
+2. Remove git history: `rm -rf .git` then `git init`
+3. Run the rebrand skill with your new project details: *Use the skill at `skills/rebrand/SKILL.md` with `site_title="<Your Project Title>"` and `site_description="<Your Project Description>"`*
+4. Create your first commit
 
 ### Development Setup
 
-1. Clone the repo, `git clone git@github.com:bishopZ/2026-Boilerplate.git`. `cd 2026-Boilerplate` into the repo directory.
-1. Create a file called `.env` in the root project folder by copying the template: `cp .envTemplate .env`
-1. Edit `.env` and update the values:
-   - `LOCAL_STORAGE_KEY="your-secret-key"` - Used to encrypt client-side data
-   - `SESSION_SECRET="your-session-secret"` - Used to sign session cookies
-2. Run `npm install` in the project root folder.
-3. Run `npm run dev` to start the development server.
-4. On the Login screen, use `test` for both the email and password.
+1. Copy `.envTemplate` to `.env` and set `LOCAL_STORAGE_KEY` and `SESSION_SECRET`
+2. Run `npm install`
+3. Run `npm run dev`
+4. Login with username `test` and password `test`
 
-### Running Tests
+## Using the Boilerplate
 
-- `npm run test:e2e` - Run Cypress tests in headless mode
-- `npm run test:e2e:open` - Open Cypress interactive test runner
+### Key Commands
 
-### Developer Documentation
+| Command | Description |
+|---------|-------------|
+| `npm run dev` | Start dev server (port 3000) |
+| `npm run build` | Production build |
+| `npm start` | Run production server |
+| `npm run lint` / `npm run lint:fix` | ESLint |
+| `npm run type-check` | TypeScript check |
+| `npm run test` | Full suite: lint + type-check + E2E |
+| `npm run test:e2e` | Cypress headless (dev server must run) |
+| `npm run test:e2e:open` | Cypress interactive runner |
+| `npm run check:i18n` | Validate locale keys |
 
-- [Architecture overview](./ARCHITECTURE.md)
-- [Hooks guide (`useState` vs custom hook vs Redux)](./src/client/hooks/README.md)
-- [Redux rationale, persistence, and pitfalls](./src/client/redux/README.md)
+See [docs/SCRIPTS.md](docs/SCRIPTS.md) for the full script reference and [scripts/README.md](scripts/README.md) for the i18n check script.
 
-## Collaboration
+### Common Workflows
 
-We welcome contributions! Here's how to get started:
+**Before committing:** `npm run test`
 
-1. **Select an issue**: Browse the [Github issues page](https://github.com/bishopZ/2026-Boilerplate/issues) and select an issue you'd like to work on.
-2. **Create a branch**: Create a new branch named after the issue number, such as `issue-17` (replace `17` with the actual issue number).
-3. **Make your changes**: Implement the changes needed to address the issue.
-4. **Create a pull request**: Submit a pull request with your changes, referencing the issue number in the description.
+**Preparing for deployment:** `npm run test` then `npm run build` then `npm run preview`
 
-Before submitting your pull request, make sure to:
-- Run `npm run lint:fix` to ensure code quality
-- Run `npm run type-check` to verify TypeScript types
-- Test your changes locally with `npm run dev`
+**Deploying:** `npm install` → `npm run build` → `npm start`
 
-## Reasoning
+### AI Agents and Cursor
 
-### Vite
+- **[AGENTS.md](AGENTS.md)** — Project overview and code guidelines for AI assistants
+- **[.cursor/rules/](.cursor/rules/)** — Rule files for React components, Redux, and server patterns
+- **Skills:** [skills/rebrand/SKILL.md](skills/rebrand/SKILL.md) (rebrand title/description), [skills/docx/SKILL.md](skills/docx/SKILL.md) (Word documents)
 
-We're thrilled to have finally moved on from the complexities of Webpack. With Vite, we can focus on building modern web applications without worrying about tedious configuration and optimization. As Webpack's popularity waned, Rollup paved the way for Vite's arrival, making it easier than ever to switch to a more streamlined build tool.
+## Documentation
 
-### Typescript, React
+- [Architecture](docs/ARCHITECTURE.md) — System diagram, directory structure, key patterns
+- [Client](src/client/README.md) — How the frontend is organized
+- [Hooks](src/client/hooks/README.md) — useState vs custom hook vs Redux
+- [Redux](src/client/redux/README.md) — Persistence, slices, pitfalls
+- [Server](src/server/README.md) — MVC structure, routes, middleware
+- [Cypress](cypress/README.md) — How to run E2E tests
+- [Technology choices](docs/TECHNOLOGY.md) — Why this stack
+- [Contributing](docs/CONTRIBUTING.md) — How to contribute
+- [Internationalization](docs/I18N.md) — i18n guide
 
-TypeScript (TSX) offers numerous benefits over JavaScript (JSX), including better code completion, reduced runtime errors, and improved maintainability. In our experience, writing TSX files is *better* and *faster* than writing JSX file.
+## Requirements
 
-### vite-express, Node, express
+- Node.js >= 24.13.1, npm >= 11.10.1
+- `.env` file (copy from `.envTemplate`)
 
-Vite's ability to run client and server-side components simultaneously is a game-changer for web development. With vite-express, we can enjoy the flexibility of choosing between Server-Side Rendering (SSR) or Client-Side Rendering (CSR), giving us more freedom in designing our API.
+E2E tests require the dev server running and a supported browser. See [cypress/README.md](cypress/README.md).
 
-### Redux Toolkit
+## Contributing
 
-After years of Reddit posts proclaiming the death of Redux, we remain strong advocates for its benefits. By providing a cleaner syntax for state management, Redux simplifies code complexity and makes it easier to manage global state in complex applications.
-
-### Crypto JS
-
-To ensure data persistence across browser refreshes and sessions, we've integrated CryptoJS for local storage encryption. This approach allows our application to securely store user data while maintaining seamless usability.
-
-### Passport.js
-
-By integrating Passport.js as an example login process, we can demonstrate authentication without compromising security or scalability. Future improvements will focus on implementing additional features like CSRF protection and login attempts limits, which may require a database solution.
-
-### React Router
-
-React Router enables seamless client-side navigation in single-page applications without full page reloads. By handling routing on the client side, the application feels faster and more responsive while maintaining clean, bookmarkable URLs. The boilerplate includes lazy loading of routes to optimize initial bundle size and improve performance.
-
-### Chakra UI
-
-Chakra UI provides a comprehensive design system with accessible, composable components that follow WAI-ARIA standards out of the box. Unlike heavier frameworks, Chakra offers excellent TypeScript support, a thoughtful API design, and powerful theming capabilities that make it easy to create consistent, professional interfaces without sacrificing flexibility. The component library strikes an ideal balance between providing enough structure to be productive while remaining customizable for unique design requirements.
-
-### Cypress
-
-Cypress provides reliable end-to-end testing with an excellent developer experience through its interactive test runner and automatic waiting. By including a basic Cypress setup with example tests, the boilerplate ensures developers can immediately verify critical user flows work as expected. E2E tests give confidence that authentication, navigation, and key features function correctly across the entire stack.
-
-### ESlint
-
-We added a very through custom config file for ESLint. It's battle-tested and aims to speed development, ignore problems that aren't real, and maximize the rules that can be automatically fixed by ESLint.
-
-
-# Available Scripts
-
-Quick reference guide for all available npm scripts in this boilerplate.
-
-## Development
-
-### `npm run dev`
-Starts the development server with hot module reloading.
-- Watches server files for changes
-- Automatically restarts server on changes
-- Runs on port 3000 by default (configurable via .env)
-- Uses nodemon for server watching
-- Uses Vite for client hot reloading
-
-**When to use:** Day-to-day development
-
-### `npm run type-check`
-Runs TypeScript compiler in check mode without emitting files.
-- Validates all TypeScript types
-- Checks for type errors across the entire codebase
-- Does not generate any output files
-
-**When to use:** Before committing, in CI/CD pipelines
-
-## Building
-
-### `npm run build`
-Creates a production-ready build.
-- Compiles TypeScript
-- Bundles client code with Vite
-- Optimizes and minifies assets
-- Outputs to `dist/` directory
-
-**When to use:** Before deploying to production
-
-### `npm run preview`
-Previews the production build locally.
-- Serves the built files from `dist/`
-- Useful for testing production builds before deploying
-
-**When to use:** After building, to verify production build works correctly
-
-## Running
-
-### `npm start`
-Starts the server in production mode.
-- Sets NODE_ENV=production
-- Serves built assets
-- No hot reloading or dev features
-
-**When to use:** In production environments (Heroku, AWS, etc.)
-
-## Code Quality
-
-### `npm run lint`
-Runs ESLint on the entire codebase.
-- Checks all TypeScript files
-- Reports style and code quality issues
-- Does not fix issues automatically
-
-**When to use:** To check for linting errors before committing
-
-### `npm run lint:fix`
-Runs ESLint and automatically fixes issues where possible.
-- Auto-fixes formatting issues
-- Auto-fixes some code quality issues
-- Reports unfixable issues
-
-**When to use:** Before committing, to clean up code automatically
-
-## Testing
-
-### `npm run test:e2e`
-Runs Cypress end-to-end tests in headless mode.
-- Runs all tests in `cypress/e2e/`
-- Generates screenshots on failure
-- Exits when complete
-
-**When to use:** In CI/CD pipelines, before deploying
-
-### `npm run test:e2e:open`
-Opens the Cypress interactive test runner.
-- Visual test runner with browser preview
-- Hot reloading of tests
-- Time travel debugging
-- Great for writing and debugging tests
-
-**When to use:** When writing or debugging E2E tests
-
-## Common Workflows
-
-### Starting a new feature
-```bash
-npm run dev
-# Edit code with hot reloading
-npm run lint:fix
-npm run type-check
-```
-
-### Before committing
-```bash
-npm run lint:fix
-npm run type-check
-npm run test:e2e  # Optional but recommended
-```
-
-### Preparing for deployment
-```bash
-npm run type-check
-npm run lint
-npm run test:e2e
-npm run build
-npm run preview  # Verify build works
-```
-
-### Deploying to production
-```bash
-# On your server or in CI/CD
-npm install
-npm run build
-npm start
-```
-
-## Development Server Requirements
-
-The dev server requires:
-- Node.js 24.13.1 or higher
-- npm 11.10.1 or higher
-- `.env` file with required environment variables
-
-## Testing Requirements
-
-E2E tests require:
-- Development server running (`npm run dev`)
-- Chrome, Firefox, or Edge browser installed
-- Tests expect server on http://localhost:3000
-
-
-## Environment Variables
-
-Scripts use environment variables from `.env`:
-- `PORT`: Server port (default: 3000)
-- `NODE_ENV`: Environment (development/production)
-- `LOCAL_STORAGE_KEY`: Encryption key for local storage
-- `SESSION_SECRET`: Session signing secret
-
-## Troubleshooting
-
-### `npm run dev` fails
-- Check that `.env` file exists
-- Verify environment variables are set
-- Ensure port 3000 is not already in use
-
-### `npm run build` fails
-- Run `npm run type-check` to find TypeScript errors
-- Run `npm run lint` to find linting issues
-- Check console for specific error messages
-
-### `npm run test:e2e` fails
-- Ensure dev server is running
-- Check that tests expect correct base URL
-- Verify Cypress is installed correctly
-
-### Type check passes but lint fails
-- ESLint checks more than just types
-- Run `npm run lint:fix` to auto-fix many issues
-- Review ESLint config in `eslint.config.js`
+We welcome contributions. See [docs/CONTRIBUTING.md](docs/CONTRIBUTING.md).
 
 ## Sponsors
 
@@ -329,4 +92,3 @@ Scripts use environment variables from `.env`:
 ## License
 
 MIT
-

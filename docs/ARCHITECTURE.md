@@ -11,7 +11,7 @@ Browser
   │
   ├── React SPA (Vite HMR in dev)
   │     ├── Pages (lazy-loaded via React Router)
-  │     ├── Redux Store (player, game slices)
+  │     ├── Redux Store (preferences, app slices)
   │     │     └── Persistence Middleware → Encrypted localStorage
   │     └── Chakra UI Components
   │
@@ -30,13 +30,13 @@ Express Server (vite-express)
 ```
 src/
 ├── client/                   # Frontend (React SPA)
-│   ├── main.tsx              # Entry: providers (Chakra, Redux, Router, ErrorBoundary)
-│   ├── App.tsx               # Route definitions, player initialization
+│   ├── main.tsx              # Entry: providers (Chakra, Redux, I18n, ErrorBoundary)
+│   ├── App.tsx               # Route definitions, preferences initialization
 │   ├── hooks/                # Custom React hooks
 │   ├── locales/              # Language translation files
 │   ├── pages/                # Route page components
 │   ├── redux/                # Redux slices, store, persistence middleware
-│   │── ui/                   # Reusable UI components
+│   ├── ui/                   # Reusable UI components
 │   └── utilities/            # Client-only utilities (encryption, constants)
 │
 └── server/                   # Backend (Express)
@@ -60,10 +60,10 @@ src/
 
 ### State Persistence Flow
 
-1. On app load, `initPlayer` async thunk fetches encryption key from `/api/key`
+1. On app load, `initPreferences` async thunk fetches encryption key from `/api/key`
 2. If authenticated, the key is returned and used to decrypt `localStorage`
 3. On every Redux action, the persistence middleware encrypts and saves specified slices
-4. The `createPersistMiddleware` factory in `persistence.ts` is reusable for any slice
+4. The persistence middleware in `store.ts` is reusable — add slice keys to persist, don't create new middleware
 
 ### Client/Server Code Separation
 

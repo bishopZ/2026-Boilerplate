@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+### Changed
+### Removed
+### Fixed
+### Security
+
+
 ## [1.2.0] - 2026-03-07
 
 ### Added
@@ -23,6 +30,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 + Added a shared `AnimatedButton` component in `src/client/ui/components/animated-button.tsx` to reuse Framer Motion tap animations across app buttons.
 + Improved Accessibility: skip to content link, useId() to avoid form field id collisions, and useAnnounce hook for aria-live.
 + Better Error handling: Added second suspense boundary around the content, error-handler middleware for the server, and an centralized error handler for the client.
++ Added a second non-persistent reducer for more transient data.
 
 ### Changed
 
@@ -47,7 +55,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 + Fixed a bug that prevented it from loading without any saved data. Cold start now working as expected.
 
-### Security
 
 ## [1.1.0] - 2025-08-14
 
