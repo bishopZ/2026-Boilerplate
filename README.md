@@ -2,6 +2,12 @@
 
 Use this boilerplate to build production-ready web apps. Full-stack TypeScript, React 19, and Express with authentication, encrypted persistence, SEO, i18n, accessibility, and a modern developer experience—all configured and ready to extend.
 
+## Who this README is for
+
+This file is the fast, practical entry point for vibe coders and junior developers who want to start building quickly.
+
+If you want deep implementation details (architecture, auth internals, reducer patterns, agent workflows), use the linked docs in the **Deep Technical Context** section.
+
 ## Features
 
 - **Core:** TypeScript, React 19, Vite, Express, Passport auth (test user), encrypted localStorage persistence, Redux Toolkit (persistent + non-persistent slices), React Router with lazy-loaded pages
@@ -30,39 +36,30 @@ Use this workflow when you want to turn this repository into your own product in
 3. Run `npm run dev`
 4. Login with username `test` and password `test`
 
-## Using the Boilerplate
+## Build Fast (Most Common Commands)
 
-### Key Commands
+| Goal | Command |
+|---|---|
+| Start coding | `npm run dev` |
+| Validate before commit | `npm run test` |
+| Build for production | `npm run build` |
+| Preview production build | `npm run preview` |
+| Run production server | `npm start` |
 
-| Command | Description |
-|---------|-------------|
-| `npm run dev` | Start dev server (port 3000) |
-| `npm run build` | Production build |
-| `npm start` | Run production server |
-| `npm run lint` / `npm run lint:fix` | ESLint |
-| `npm run type-check` | TypeScript check |
-| `npm run test` | Full suite: lint + type-check + E2E |
-| `npm run test:e2e` | Cypress headless (dev server must run) |
-| `npm run test:e2e:open` | Cypress interactive runner |
-| `npm run check:i18n` | Validate locale keys |
+For the full command reference and workflows, see [docs/SCRIPTS.md](docs/SCRIPTS.md).  
+For script implementation details (like i18n validation), see [scripts/README.md](scripts/README.md).
 
-See [docs/SCRIPTS.md](docs/SCRIPTS.md) for the full script reference and [scripts/README.md](scripts/README.md) for the i18n check script.
+## Deep Technical Context (AI Agents + Advanced Developers)
 
-### Common Workflows
+### AI/Agent Guidance
 
-**Before committing:** `npm run test`
+- [AGENTS.md](AGENTS.md) — Project operating instructions and coding expectations
+- [.cursor/rules/](.cursor/rules/) — Enforced rule files for React, Redux, and server patterns
+- Skills:
+  - [skills/rebrand/SKILL.md](skills/rebrand/SKILL.md)
+  - [skills/hidden-admin-auth/SKILL.md](skills/hidden-admin-auth/SKILL.md)
 
-**Preparing for deployment:** `npm run test` then `npm run build` then `npm run preview`
-
-**Deploying:** `npm install` → `npm run build` → `npm start`
-
-### AI Agents and Cursor
-
-- **[AGENTS.md](AGENTS.md)** — Project overview and code guidelines for AI assistants
-- **[.cursor/rules/](.cursor/rules/)** — Rule files for React components, Redux, and server patterns
-- **Skills:** [skills/rebrand/SKILL.md](skills/rebrand/SKILL.md) (rebrand title/description), [skills/hidden-admin-auth/SKILL.md](skills/hidden-admin-auth/SKILL.md) (hidden admin auth setup + credential rotation)
-
-## Documentation
+### Architecture and Implementation Docs
 
 - [Architecture](docs/ARCHITECTURE.md) — System diagram, directory structure, key patterns
 - [Authentication](docs/AUTHENTICATION.md) — JWT flow, hardcoded user, and migration paths
