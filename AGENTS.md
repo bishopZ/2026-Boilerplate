@@ -36,6 +36,30 @@
 - Redux for global state; `useState`/`useReducer` for component-local state.
 - See `src/client/redux/README.md` for state management patterns.
 - See `src/client/hooks/README.md` for custom hook patterns.
+- See Cursor rules in `.cursor/rules/`:
+  - `.cursor/rules/react-components.mdc`
+  - `.cursor/rules/state-management.mdc`
+  - `.cursor/rules/server-patterns.mdc`
+
+## Documentation Guides
+
+- The `docs/` folder contains project-wide guides and expectations:
+  - `docs/ARCHITECTURE.md`
+  - `docs/AUTHENTICATION.md`
+  - `docs/CONTRIBUTING.md`
+  - `docs/I18N.md`
+  - `docs/SCRIPTS.md`
+  - `docs/TECHNOLOGY.md`
+
+## Feature Change Checklist
+
+When adding or changing a feature, check all affected surfaces before opening a PR:
+
+- Update `CHANGELOG.md` (`Unreleased` section).
+- Update or add automated tests (unit/integration/E2E as appropriate).
+- Update locale strings in `src/client/locales/*.json` for any UI text changes.
+- Update docs in `docs/` and/or component/service READMEs when behavior or workflow changes.
+- Update `.cursor/rules/` and `skills/` when agent guidance or SOPs are affected.
 
 ## Testing
 
