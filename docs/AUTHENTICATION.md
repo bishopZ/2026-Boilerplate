@@ -51,6 +51,14 @@ If you want `/product` to act like a hidden admin utility for your own team:
 2. Optionally remove obvious login links from public nav and access `/login` directly.
 3. Change the default credentials in `fakeUser`.
 
+### Use the skill for this setup
+
+Use the dedicated skill:
+
+`Use the skill at skills/hidden-admin-auth/SKILL.md with admin_username="<new_username>" and admin_password="<new_password>".`
+
+This keeps credential rotation, docs, and test updates consistent.
+
 ### Changing username/password for the default user
 
 1. Pick a new username and password.
