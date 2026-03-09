@@ -28,10 +28,11 @@ Use this workflow when you want to turn this repository into your own product in
 2. Remove git history: `rm -rf .git` then `git init`
 3. Run the rebrand skill with your new project details: *Use the skill at `skills/rebrand/SKILL.md` with `site_title="<Your Project Title>"` and `site_description="<Your Project Description>"`*
 4. Create your first commit
+5. Run the [Development Setup](#development-setup) below
 
 ### Development Setup
 
-1. Copy `.envTemplate` to `.env` and set `LOCAL_STORAGE_KEY` and `SESSION_SECRET`
+1. Copy the env template: `cp .envTemplate .env` — then set `LOCAL_STORAGE_KEY` and `SESSION_SECRET`. Generate a session secret with: `openssl rand -base64 32`
 2. Run `npm install`
 3. Run `npm run dev`
 4. Login with username `test` and password `test`

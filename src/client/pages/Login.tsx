@@ -58,7 +58,7 @@ const Login = () => {
                 aria-required
               />
             </Field.Root>
-            <AnimatedButton type="submit" colorScheme="blue" aria-label="Sign in">
+            <AnimatedButton type="submit" asChild colorScheme="blue" aria-label="Sign in">
               Sign in
             </AnimatedButton>
           </VStack>

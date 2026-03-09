@@ -42,6 +42,3 @@ export const PageTransition = ({ children }: { children: ReactNode }) => {
     </motion.div>
   );
 };
-
-// Backward-compatible alias for older imports.
-export const PageTransistion = PageTransition;
