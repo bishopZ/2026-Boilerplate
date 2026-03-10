@@ -10,6 +10,7 @@
 - If a request matches a skill, read and follow that skill before implementing changes.
 - `skills/rebrand/SKILL.md` — Rebrand the boilerplate into a new project using a new site title and description.
 - `skills/hidden-admin-auth/SKILL.md` — Configure the private section as a hidden admin utility and rotate hardcoded default credentials safely.
+- `skills/playwright-migration/SKILL.md` — Migrate the E2E stack from Cypress to Playwright in a controlled, test-first rollout.
 
 ## Development Setup
 
