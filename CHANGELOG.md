@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 ### Changed
 + Updated security documentation wording to reflect currently implemented controls (CSRF middleware, JWT cookie handling, and startup secret validation) in present tense.
++ Added an explicit E2E budget guardrail in contributor/agent docs (4-spec contract baseline, soft cap of 6 E2E specs) to balance quality with test-framework portability.
 ### Removed
 ### Fixed
 ### Security
