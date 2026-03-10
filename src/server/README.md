@@ -17,6 +17,7 @@ Follows an MVC-style layout:
 - **services/** — Business logic (auth verification, JWT, etc.).
 - **middleware/** — Auth (`ensureAuthenticated`), CSRF, global error handler.
 - **config/** — Constants, API paths, session config.
+- **../shared/routes.ts** — Shared route/API contract imported by server config and client constants.
 
 ## Key Flows
 

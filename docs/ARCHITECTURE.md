@@ -39,6 +39,9 @@ src/
 │   ├── ui/                   # Reusable UI components
 │   └── utilities/            # Client-only utilities (encryption, constants)
 │
+├── shared/                   # Shared contracts for client + server
+│   └── routes.ts             # Route/API path constants used by both runtimes
+│
 └── server/                   # Backend (Express)
     ├── main.ts               # Entry: Express app, middleware, routes, vite-express
     ├── config/               # Constants and API error helpers
@@ -67,7 +70,7 @@ src/
 
 ### Client/Server Code Separation
 
-The client uses `src/client/utilities/` for browser-specific helpers. Server helpers live in `src/server/services/` and `src/server/config/`. Keep client-only and server-only modules separated to avoid accidental cross-runtime imports.
+The client uses `src/client/utilities/` for browser-specific helpers. Server helpers live in `src/server/services/` and `src/server/config/`. Shared runtime-safe contracts live in `src/shared/` (for example, route constants). Keep client-only and server-only modules separated to avoid accidental cross-runtime imports.
 
 ## Technology Choices
 

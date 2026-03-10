@@ -34,4 +34,6 @@ Cursor rule reference: [`.cursor/rules/react-components.mdc`](../../../.cursor/r
 
 ## Utilities
 
-**utilities/** — Client-only helpers: encryption, constants, i18n provider, error reporting, formatting, CSRF, type helpers.
+**utilities/** — Client-only helpers: encryption, metadata constants, i18n provider, error reporting, formatting, CSRF, type helpers.
+
+**../shared/routes.ts** — Shared route and API path contract used by both client and server to prevent path drift.

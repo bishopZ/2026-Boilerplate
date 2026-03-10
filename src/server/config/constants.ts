@@ -1,21 +1,6 @@
 export const DEFAULT_PORT = '3000';
 
-export const ROUTES = {
-  HOME: '/',
-  LOGIN: '/login',
-  PRODUCT: '/product',
-  ABOUT: '/about',
-  PRIVACY: '/privacy',
-  TERMS: '/terms',
-  LOGOUT: '/logout',
-  SITEMAP: '/sitemap.xml',
-} as const;
-
-export const API_PATHS = {
-  LOGIN: '/login/password',
-  LOGOUT: '/logout',
-  KEY: '/api/key',
-} as const;
+export { ROUTES, API_PATHS } from '../../shared/routes';
 
 /** Path prefix for API routes (e.g. for error handling). */
 export const API_PREFIX = '/api';

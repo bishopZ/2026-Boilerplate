@@ -8,7 +8,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
++ Added `src/shared/routes.ts` as a shared client/server route and API path contract.
 ### Changed
++ Updated client and server constants to re-export routes from the shared contract to prevent route drift.
 ### Removed
 ### Fixed
 ### Security
