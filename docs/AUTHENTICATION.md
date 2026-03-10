@@ -34,6 +34,12 @@ This project uses a simple, production-leaning auth flow built around:
 - Secret source: `SESSION_SECRET`
 - Startup safety: server throws if `SESSION_SECRET` is weak or still template-like
 
+## Security controls currently enabled
+
+- Double-submit cookie CSRF protection via `src/server/middleware/csrf.ts`
+- `httpOnly` auth cookie (`token`) with `sameSite=lax`
+- JWT secret validation at startup to prevent weak/default secrets
+
 ## Default hardcoded user
 
 The default user lives in `src/server/services/auth.ts`:

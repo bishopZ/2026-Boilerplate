@@ -24,7 +24,7 @@ To ensure data persistence across browser refreshes and sessions, we've integrat
 
 ## Passport.js
 
-By integrating Passport.js as an example login process, we can demonstrate authentication without compromising security or scalability. Future improvements will focus on implementing additional features like CSRF protection and login attempts limits, which may require a database solution.
+Passport.js provides a clear, strategy-based example login flow that works well for a boilerplate while staying extensible. The current stack already includes CSRF protection middleware, `httpOnly` JWT cookies, and startup-time validation for `SESSION_SECRET`. For production evolution, teams can add rate limiting, audit logging, and stronger identity providers on top of this baseline.
 
 ## React Router
 
