@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 ### Removed
 ### Fixed
++ Split i18n configuration into `src/client/utilities/i18n-config.ts` so `i18n.tsx` only exports the provider component and no longer triggers Fast Refresh lint warnings.
 ### Security
 
 
