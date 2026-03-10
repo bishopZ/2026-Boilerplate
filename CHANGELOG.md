@@ -8,7 +8,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- Added a combined policy-writing guide page at `/policies` plus a maintenance SOP in `skills/policy-guide/SKILL.md`.
 ### Changed
+- Replaced separate Terms/Privacy footer links with a single policy guide link and routed legacy `/privacy` and `/terms` paths to `/policies`.
 ### Removed
 ### Fixed
 ### Security

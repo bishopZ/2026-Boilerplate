@@ -16,32 +16,18 @@ export const Footer = () => {
         <Text fontSize="sm" color={textColor}>
           <FormattedMessage id="footer.copyright" values={{ year: new Date().getFullYear() }} />
         </Text>
-        <Flex gap={4}>
-          <RouterLink to={ROUTES.PRIVACY}>
-            <Text
-              as="span"
-              fontSize="sm"
-              color={textColor}
-              _hover={{ color: hoverColor }}
-              cursor="pointer"
-              textDecoration="underline"
-            >
-              <FormattedMessage id="footer.privacy" />
-            </Text>
-          </RouterLink>
-          <RouterLink to={ROUTES.TERMS}>
-            <Text
-              as="span"
-              fontSize="sm"
-              color={textColor}
-              _hover={{ color: hoverColor }}
-              cursor="pointer"
-              textDecoration="underline"
-            >
-              <FormattedMessage id="footer.terms" />
-            </Text>
-          </RouterLink>
-        </Flex>
+        <RouterLink to={ROUTES.POLICIES}>
+          <Text
+            as="span"
+            fontSize="sm"
+            color={textColor}
+            _hover={{ color: hoverColor }}
+            cursor="pointer"
+            textDecoration="underline"
+          >
+            <FormattedMessage id="footer.policies" />
+          </Text>
+        </RouterLink>
       </Flex>
     </Box>
   );
