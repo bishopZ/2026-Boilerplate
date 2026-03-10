@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 + Added a lightweight Vitest unit test layer (`npm run test:unit`, `npm run test:unit:watch`) with starter auth service tests.
 ### Changed
 + Updated `npm run test` to run lint + type-check + unit tests + E2E tests.
++ Added an explicit E2E budget guardrail in contributor/agent docs (4-spec contract baseline, soft cap of 6 E2E specs) to balance quality with test-framework portability.
 ### Removed
 ### Fixed
 ### Security

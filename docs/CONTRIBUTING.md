@@ -13,3 +13,13 @@ Before submitting your pull request, make sure to:
 - Run `npm run test:unit` during development for fast logic-level feedback before full E2E validation.
 - Run `npm run check:i18n` when your change adds/updates message ids and you are keeping locale files fully in sync.
 - Test your changes locally with `npm run dev`
+
+## Testing policy for portability
+
+- Add tests for every feature change, but choose the right layer:
+  - unit/integration tests for feature-local logic
+  - E2E tests for user-critical cross-page journeys
+- Keep the starter E2E suite intentionally small:
+  - target baseline: 4 contract specs
+  - soft cap: 6 total E2E spec files
+- If you need to exceed the E2E soft cap, include a short rationale in the PR description.
