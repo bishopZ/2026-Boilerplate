@@ -59,6 +59,7 @@ For script implementation details (like i18n validation), see [scripts/README.md
 - Skills:
   - [skills/rebrand/SKILL.md](skills/rebrand/SKILL.md)
   - [skills/hidden-admin-auth/SKILL.md](skills/hidden-admin-auth/SKILL.md)
+  - [skills/add-redirect/SKILL.md](skills/add-redirect/SKILL.md)
 
 ### Architecture and Implementation Docs
 
@@ -72,6 +73,7 @@ For script implementation details (like i18n validation), see [scripts/README.md
 - [Technology choices](docs/TECHNOLOGY.md) — Why this stack
 - [Contributing](docs/CONTRIBUTING.md) — How to contribute
 - [Internationalization](docs/I18N.md) — i18n guide
+- [Redirects](docs/REDIRECTS.md) — Where URL redirects live and how to add them safely
 
 ## Requirements
 
