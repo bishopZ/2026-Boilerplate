@@ -71,10 +71,25 @@ Runs ESLint and automatically fixes issues where possible.
 ## Testing
 
 ### `npm run test`
-Runs the full validation suite: lint, type-check, and E2E tests.
-- Equivalent to: `npm run lint && npm run type-check && npm run test:e2e`
+Runs the full validation suite: lint, type-check, unit tests, and E2E tests.
+- Equivalent to: `npm run lint && npm run type-check && npm run test:unit && npm run test:e2e`
 
 **When to use:** Before committing, in CI/CD, when preparing for deployment
+
+### `npm run test:unit`
+Runs fast unit/integration-style tests with Vitest.
+- Executes `*.test.ts` files under `src/`
+- Runs in Node environment by default
+- Intended for logic-level feature coverage without browser E2E overhead
+
+**When to use:** During feature development, before running E2E tests
+
+### `npm run test:unit:watch`
+Starts Vitest in watch mode for local TDD workflow.
+- Re-runs tests on file changes
+- Best for rapid iteration on utilities/services/reducers
+
+**When to use:** While actively developing and refactoring local logic
 
 ### `npm run test:e2e`
 Runs Cypress end-to-end tests in headless mode.

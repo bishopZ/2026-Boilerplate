@@ -10,5 +10,6 @@ We welcome contributions! Here's how to get started:
 Before submitting your pull request, make sure to:
 
 - Run `npm run test` to ensure code quality, verify TypeScript types, and run the E2E tests.
+- Run `npm run test:unit` during development for fast logic-level feedback before full E2E validation.
 - Run `npm run check:i18n` when your change adds/updates message ids and you are keeping locale files fully in sync.
 - Test your changes locally with `npm run dev`

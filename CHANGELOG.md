@@ -8,7 +8,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
++ Added a lightweight Vitest unit test layer (`npm run test:unit`, `npm run test:unit:watch`) with starter auth service tests.
 ### Changed
++ Updated `npm run test` to run lint + type-check + unit tests + E2E tests.
 ### Removed
 ### Fixed
 ### Security

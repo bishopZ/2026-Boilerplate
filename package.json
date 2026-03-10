@@ -19,7 +19,9 @@
     "preview": "vite preview",
     "start": "NODE_ENV=production tsx src/server/main.ts",
     "type-check": "tsc --noEmit",
-    "test": "npm run lint && npm run type-check && npm run test:e2e",
+    "test": "npm run lint && npm run type-check && npm run test:unit && npm run test:e2e",
+    "test:unit": "vitest run",
+    "test:unit:watch": "vitest",
     "test:e2e": "cypress run",
     "test:e2e:open": "cypress open"
   },
@@ -72,7 +74,8 @@
     "nodemon": "3.1.14",
     "typescript-eslint": "8.56.1",
     "vite": "7.3.1",
-    "vite-tsconfig-paths": "6.1.1"
+    "vite-tsconfig-paths": "6.1.1",
+    "vitest": "^4.0.18"
   },
   "engines": {
     "node": ">=24.13.1",
