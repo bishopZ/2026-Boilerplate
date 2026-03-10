@@ -8,7 +8,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- Added `cypress/e2e/layout/footer-position.cy.ts` to verify the footer remains pinned to the viewport bottom on short pages.
 ### Changed
+- Updated `PageLayout` to use a full-height flex column so the footer consistently sits at the bottom of the viewport.
 ### Removed
 ### Fixed
 ### Security

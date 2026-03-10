@@ -11,7 +11,7 @@ export const Footer = () => {
   const hoverColor = isDark ? 'gray.200' : 'gray.800';
 
   return (
-    <Box as="footer" bg={isDark ? 'gray.800' : 'gray.100'} py={4} px={8} mt="auto">
+    <Box as="footer" bg={isDark ? 'gray.800' : 'gray.100'} py={4} px={8}>
       <Flex justify="center" align="center" gap={4} direction={{ base: 'column', sm: 'row' }}>
         <Text fontSize="sm" color={textColor}>
           <FormattedMessage id="footer.copyright" values={{ year: new Date().getFullYear() }} />
