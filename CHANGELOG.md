@@ -14,6 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 + Added an explicit E2E budget guardrail in contributor/agent docs (4-spec contract baseline, soft cap of 6 E2E specs) to balance quality with test-framework portability.
 ### Removed
 ### Fixed
++ Split i18n configuration into `src/client/utilities/i18n-config.ts` so `i18n.tsx` only exports the provider component and no longer triggers Fast Refresh lint warnings.
 ### Security
 
 
