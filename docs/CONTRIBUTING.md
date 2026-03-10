@@ -12,3 +12,11 @@ Before submitting your pull request, make sure to:
 - Run `npm run test` to ensure code quality, verify TypeScript types, and run the E2E tests.
 - Run `npm run check:i18n` when your change adds/updates message ids and you are keeping locale files fully in sync.
 - Test your changes locally with `npm run dev`
+
+## Testing guidance for contributors and agents
+
+- Add at least one automated test for each feature change at the right level:
+  - unit/integration for local logic
+  - E2E for cross-page, user-critical journeys
+- Keep the baseline Cypress suite small and representative so it stays easy to migrate to other frameworks.
+- Prefer updating existing E2E contract specs (`auth`, `accessibility`, `i18n`, `seo`) before adding many new E2E files.
