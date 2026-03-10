@@ -13,7 +13,7 @@ If you want deep implementation details (architecture, auth internals, reducer p
 - **Core:** TypeScript, React 19, Vite, Express, Passport auth (test user), encrypted localStorage persistence, Redux Toolkit (persistent + non-persistent slices), React Router with lazy-loaded pages
 - **SEO & metadata:** Sitemap, `<PageMeta>` component, React 19 document metadata (title, description, Open Graph, Twitter, canonical), Terms and Privacy pages
 - **Accessibility:** Skip-to-content link, stable IDs (`useId`), aria-live announcements (`useAnnounce`), Chakra UI
-- **i18n:** react-intl, locales (en, ar, fr), RTL for Arabic, language switcher, English fallback—[use it or ignore it](docs/I18N.md); when you need translation, it's ready
+- **i18n:** react-intl, locales (en, ar, fr, zh), RTL for Arabic, language switcher, English fallback—[use it or ignore it](docs/I18N.md); when you need translation, it's ready
 - **UX and polish:** Page transitions (`<PageTransition>`), animated buttons (Framer Motion), scroll-to-top on route change, light/dark mode
 - **Resilience:** Error boundaries, centralized client error handler, server error-handler middleware, Suspense boundaries
 - **Developer experience:** Cypress E2E, ESLint (custom config), type-check script, `npm run test` for full pre-commit/CI (lint + type-check + E2E)

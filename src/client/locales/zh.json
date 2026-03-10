@@ -1,0 +1,21 @@
+{
+  "app.name": "2026 模板",
+  "home.title": "构建现代 Web 应用",
+  "home.subtitle": "一个文档优先的全栈 TypeScript 模板，提供架构指南、经过验证的工作流和可直接用于生产的默认配置。",
+  "home.getStarted": "开始使用",
+  "home.learnMore": "了解更多",
+  "home.feature.fast.title": "文档优先",
+  "home.feature.fast.description": "清晰的架构、脚本以及前后端指南，帮助团队快速上手并保持一致。",
+  "home.feature.auth.title": "默认面向全球",
+  "home.feature.auth.description": "内置 i18n、无障碍模式和可复用 UI 组件，支持包容性的产品开发。",
+  "home.feature.production.title": "自信发布",
+  "home.feature.production.description": "标准化脚本、Cypress 覆盖和类型化 Redux 模式让发布流程更可预测。",
+  "nav.home": "首页",
+  "nav.about": "关于",
+  "nav.login": "登录",
+  "nav.logout": "退出",
+  "nav.product": "产品",
+  "footer.copyright": "© {year} [请在此填写项目名称]。保留所有权利。",
+  "footer.privacy": "隐私政策",
+  "footer.terms": "服务条款"
+}
