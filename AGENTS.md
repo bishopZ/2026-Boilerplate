@@ -64,6 +64,8 @@ When adding or changing a feature, check all affected surfaces before opening a 
 
 - Login credentials: username `test`, password `test`
 - E2E tests are in `cypress/e2e/` and require the dev server to be running
+- E2E budget guardrail: keep a 4-spec contract baseline and a soft cap of 6 E2E spec files to preserve framework portability.
+- Add tests for every feature at the right layer; prefer unit/integration for local logic and use E2E for cross-cutting user journeys.
 - Before committing: `npm run test`
 
 ## Cursor Cloud specific instructions

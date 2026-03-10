@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 + Added `src/shared/routes.ts` as a shared client/server route and API path contract.
 ### Changed
 + Updated client and server constants to re-export routes from the shared contract to prevent route drift.
++ Added an explicit E2E budget guardrail in contributor/agent docs (4-spec contract baseline, soft cap of 6 E2E specs) to balance quality with test-framework portability.
 ### Removed
 ### Fixed
 ### Security
