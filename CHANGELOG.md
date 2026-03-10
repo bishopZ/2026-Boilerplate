@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 + Updated client and server constants to re-export routes from the shared contract to prevent route drift.
 + Added an explicit E2E budget guardrail in contributor/agent docs (4-spec contract baseline, soft cap of 6 E2E specs) to balance quality with test-framework portability.
++ Updated security documentation wording to reflect currently implemented controls (CSRF middleware, JWT cookie handling, and startup secret validation) in present tense.
 ### Removed
 ### Fixed
 + Split i18n configuration into `src/client/utilities/i18n-config.ts` so `i18n.tsx` only exports the provider component and no longer triggers Fast Refresh lint warnings.
