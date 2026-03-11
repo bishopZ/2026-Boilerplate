@@ -52,6 +52,7 @@
 - The `docs/` folder contains project-wide guides and expectations:
   - `docs/ARCHITECTURE.md`
   - `docs/AUTHENTICATION.md`
+  - `docs/AUTH_PROFILES.md`
   - `docs/API.md`
   - `docs/CONTRIBUTING.md`
   - `docs/I18N.md`
