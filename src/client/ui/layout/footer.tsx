@@ -1,8 +1,8 @@
 import { Box, Flex, Text } from '@chakra-ui/react';
-import { Link as RouterLink } from 'react-router';
 import { useTheme } from 'next-themes';
 import { FormattedMessage } from 'react-intl';
 import { ROUTES } from '@/client/utilities/constants';
+import { Link } from '../components/link';
 
 export const Footer = () => {
   const { theme } = useTheme();
@@ -16,18 +16,15 @@ export const Footer = () => {
         <Text fontSize="sm" color={textColor}>
           <FormattedMessage id="footer.copyright" values={{ year: new Date().getFullYear() }} />
         </Text>
-        <RouterLink to={ROUTES.POLICIES}>
-          <Text
-            as="span"
-            fontSize="sm"
-            color={textColor}
-            _hover={{ color: hoverColor }}
-            cursor="pointer"
-            textDecoration="underline"
-          >
-            <FormattedMessage id="footer.policies" />
-          </Text>
-        </RouterLink>
+        <Link
+          to={ROUTES.POLICIES}
+          fontSize="sm"
+          color={textColor}
+          _hover={{ color: hoverColor }}
+          textDecoration="underline"
+        >
+          <FormattedMessage id="footer.policies" />
+        </Link>
       </Flex>
       {/* Replace this message if you add analytics/tracking or begin storing personal user data. */}
       <Text fontSize="xs" color={textColor} textAlign="center" mt={3}>

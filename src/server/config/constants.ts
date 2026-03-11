@@ -13,6 +13,7 @@ export const ROUTES = {
 export const API_PATHS = {
   LOGIN: '/login/password',
   LOGOUT: '/logout',
+  SESSION: '/api/session',
   KEY: '/api/key',
 } as const;
 

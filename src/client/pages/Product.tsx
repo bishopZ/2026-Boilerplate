@@ -1,23 +1,44 @@
-import { useOptimistic } from 'react';
+import { Activity, Suspense, lazy, useCallback, useEffect, useOptimistic, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { type RootState, type AppDispatch } from '../redux/store';
 import { increment } from '../redux/preferences';
 import { Box, Heading, Text, VStack } from '@chakra-ui/react';
 import { PageLayout } from '../ui/layout/page-layout';
-import { AnimatedButton } from '../ui/components/animated-button';
+import { FeatureErrorBoundary } from '../ui/components/feature-error-boundary';
+import { LoadingSpinner } from '../ui/components/loading-spinner';
 import { PageMeta } from '../ui/components/page-meta';
 import { useAnnounce } from '../hooks/use-announce';
+import { registerIncrementCounterTool } from '../utilities/webmcp';
+
+const ProductCounterSection = lazy(() => import('../ui/components/product-counter-section'));
 
 const Product = () => {
   const { score } = useSelector((state: RootState) => state.preferences);
   const dispatch = useDispatch<AppDispatch>();
   const [optimisticScore, setOptimistic] = useOptimistic(score, (_prev: number, next: number) => next);
   const announce = useAnnounce();
+  const scoreRef = useRef(score);
+
+  useEffect(() => {
+    scoreRef.current = score;
+  }, [score]);
+
+  const incrementCounter = useCallback(() => {
+    const nextScore = scoreRef.current + 1;
+    scoreRef.current = nextScore;
+    setOptimistic(nextScore);
+    dispatch(increment());
+    announce(`Score updated to ${String(nextScore)}`);
+
+    return nextScore;
+  }, [announce, dispatch, setOptimistic]);
+
+  useEffect(() => {
+    return registerIncrementCounterTool({ onIncrementCounter: incrementCounter });
+  }, [incrementCounter]);
 
   const handleIncrement = () => {
-    setOptimistic(score + 1);
-    dispatch(increment());
-    announce(`Score updated to ${String(score + 1)}`);
+    incrementCounter();
   };
 
   return (
@@ -37,13 +58,16 @@ const Product = () => {
         </Box>
 
         <Box>
-          <AnimatedButton
-            colorScheme="blue"
-            size="lg"
-            onClick={handleIncrement}
-          >
-            Increment Counter
-          </AnimatedButton>
+          <FeatureErrorBoundary title="Counter Actions">
+            <Suspense fallback={(
+              <Activity mode="visible">
+                <LoadingSpinner />
+              </Activity>
+            )}
+            >
+              <ProductCounterSection onIncrement={handleIncrement} />
+            </Suspense>
+          </FeatureErrorBoundary>
         </Box>
       </VStack>
     </PageLayout>

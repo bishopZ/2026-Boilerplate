@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { type RootState, type AppDispatch } from './redux/store';
-import { useEffect, lazy, Suspense } from 'react';
+import { Activity, useEffect, lazy, Suspense } from 'react';
 import { initPreferences } from './redux/preferences-actions';
 import { ErrorPage } from './ui/components/error-page';
 import { LoadingSpinner } from './ui/components/loading-spinner';
@@ -27,7 +27,12 @@ const App = () => {
   if (error) return <ErrorPage message={error} />;
 
   return (
-    <Suspense fallback={<LoadingSpinner />}>
+    <Suspense fallback={(
+      <Activity mode="visible">
+        <LoadingSpinner />
+      </Activity>
+    )}
+    >
       <BrowserRouter>
         <ScrollToTop />
         <Routes>
