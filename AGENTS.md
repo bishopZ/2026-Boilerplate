@@ -59,7 +59,7 @@
 When adding or changing a feature, check all affected surfaces before opening a PR:
 
 - Update `CHANGELOG.md` (`Unreleased` section).
-- Update or add automated tests (unit/integration/E2E as appropriate).
+- Update or add automated tests at the right layer (unit/integration/E2E as appropriate); avoid expanding E2E scope unless the change affects a cross-cutting user journey.
 - Update locale strings in `src/client/locales/*.json` for any UI text changes.
 - Update docs in `docs/` and/or component/service READMEs when behavior or workflow changes.
 - Update `.cursor/rules/` and `skills/` when agent guidance or SOPs are affected.
@@ -68,6 +68,7 @@ When adding or changing a feature, check all affected surfaces before opening a 
 
 - Login credentials: username `test`, password `test`
 - E2E tests are in `cypress/e2e/` and require the dev server to be running
+- The Cypress suite is intentionally compact and contract-focused for easier migration to other test frameworks.
 - Before committing: `npm run test`
 
 ## Cursor Cloud specific instructions

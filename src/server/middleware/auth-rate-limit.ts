@@ -34,7 +34,7 @@ export const loginRateLimiter = rateLimit({
   limit: loginMaxAttempts,
   standardHeaders: 'draft-8',
   legacyHeaders: false,
-  // Reduces accidental lockouts across different usernames from same IP.
+  // Include attempted username in the key to reduce lockout blast-radius.
   keyGenerator: (req) => `${req.ip ?? 'unknown-ip'}:${getUsernameRateLimitKey((req.body as { username?: unknown; }).username)}`,
   skipSuccessfulRequests: true,
   requestWasSuccessful: (_req, res) => {
