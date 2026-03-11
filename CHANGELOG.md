@@ -8,16 +8,26 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+
 - Added `skills/migrate-design-system-to-shadcn/SKILL.md` to guide full Chakra-to-shadcn migration with explicit removal criteria.
+- Added `skills/add-form-manager/SKILL.md` to standardize React Hook Form + Zod adoption, starting with login-form migration guidance.
+- Added REST-style auth session endpoints (`POST /api/session`, `DELETE /api/session`) while keeping legacy browser auth routes for compatibility.
+- Added `docs/API.md` to document API contract conventions and migration-readiness guidelines.
+- Added two migration SOP skills: `skills/migrate-api-to-tanstack-query/SKILL.md` and `skills/migrate-api-to-graphql-client/SKILL.md`.
 - Added a localized footer GDPR notice clarifying that only essential cookies are used by default.
 - Added `skills/playwright-migration/SKILL.md` to standardize migration from Cypress to Playwright with clear file updates, validation steps, and done criteria.
 - Added `cypress/e2e/layout/footer-position.cy.ts` to verify the footer remains pinned to the viewport bottom on short pages.
+- Added WebMCP `increment-counter` tool registration on the private Product page, plus Cypress coverage in `cypress/e2e/auth/webmcp-increment.cy.ts`.
 - Added Simplified Chinese (`zh`) locale support across the client i18n provider, language switcher, locale dictionaries, and i18n key validation.
 - Added a combined policy-writing guide page at `/policies` plus a maintenance SOP in `skills/policy-guide/SKILL.md`.
 - Added a config-driven redirect system in `src/server/config/redirects.ts` with middleware integration and E2E coverage (`cypress/e2e/routing/redirects.cy.ts`).
 - Added redirect documentation in `docs/REDIRECTS.md` and a reusable agent SOP at `skills/add-redirect/SKILL.md`.
+- Added a shared client `Link` component that unifies Chakra UI link styling with React Router navigation and standardized external-link handling.
 
 ### Changed
+- Refined React boundary placement: route-level `Suspense` now handles lazy page loading, `PageLayout` no longer wraps all page content in a blanket `Suspense`, and product counter actions use feature-level `ErrorBoundary` + local `Suspense`.
+- Added React 19 `Activity` around loading fallbacks for route and feature loading states.
+- Refactored WebMCP registration logic into `src/client/utilities/webmcp.ts` so the Product page stays focused on view behavior.
 - Updated `PageLayout` to use a full-height flex column so the footer consistently sits at the bottom of the viewport.
 - Replaced separate Terms/Privacy footer links with a single policy guide link and routed legacy `/privacy` and `/terms` paths to `/policies`.
 - Refined testing guidance across `AGENTS.md`, `docs/CONTRIBUTING.md`, and `cypress/README.md` to keep E2E contract coverage lean and migration-friendly while still requiring feature-level automated tests at the right layer.

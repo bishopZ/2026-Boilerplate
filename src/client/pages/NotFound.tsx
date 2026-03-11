@@ -1,7 +1,7 @@
 import { Box, Heading, Text, VStack } from '@chakra-ui/react';
-import { Link as RouterLink } from 'react-router';
 import { ROUTES } from '../utilities/constants';
 import { AnimatedButton } from '../ui/components/animated-button';
+import { Link } from '../ui/components/link';
 import { PageLayout } from '../ui/layout/page-layout';
 import { PageMeta } from '../ui/components/page-meta';
 
@@ -28,10 +28,10 @@ const NotFound = () => {
 
         <VStack gap={3} pt={4}>
           <AnimatedButton asChild colorScheme="blue" size="lg">
-            <RouterLink to={ROUTES.HOME}>Go to Home Page</RouterLink>
+            <Link to={ROUTES.HOME}>Go to Home Page</Link>
           </AnimatedButton>
           <AnimatedButton asChild variant="outline" size="md">
-            <RouterLink to={ROUTES.ABOUT}>Learn About This Project</RouterLink>
+            <Link to={ROUTES.ABOUT}>Learn About This Project</Link>
           </AnimatedButton>
         </VStack>
       </VStack>

@@ -19,7 +19,7 @@ Browser
         │
         ▼
 Express Server (vite-express)
-  ├── Auth Routes (/login/password, /logout) → Passport.js LocalStrategy
+  ├── Auth Routes (/api/session + legacy /login/password, /logout) → Passport.js LocalStrategy
   ├── API Routes (/api/key) → Returns encryption key
   ├── Redirect Rules (legacy paths) → Config-driven HTTP redirects
   ├── Page Routes (/, /login, /product, etc.) → Served by Vite
@@ -65,6 +65,14 @@ src/
 2. If authenticated, the key is returned and used to decrypt `localStorage`
 3. On every Redux action, the persistence middleware encrypts and saves specified slices
 4. The persistence middleware in `store.ts` is reusable — add persistence registrations for slices, don't create new middleware
+
+### UI failure/latency boundaries
+
+- App-level catastrophic failure handling is managed by `ErrorBoundary` in `src/client/main.tsx`.
+- Route-level latency is managed by `Suspense` around lazy routes in `src/client/App.tsx`.
+- Feature-level failures should use local boundaries when one section can fail independently (example: product counter actions).
+- Feature-level latency should use local `Suspense` only for independently-loading sections, not whole-page wrappers.
+- Use React 19 `Activity` around loading fallback UI when representing active pending work.
 
 ### Client/Server Code Separation
 
