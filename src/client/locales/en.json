@@ -16,6 +16,5 @@
   "nav.logout": "Logout",
   "nav.product": "Product",
   "footer.copyright": "© {year} [insert project name here]. All rights reserved.",
-  "footer.privacy": "Privacy Policy",
-  "footer.terms": "Terms of Service"
+  "footer.policies": "Policy Guide"
 }
