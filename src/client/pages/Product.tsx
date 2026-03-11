@@ -8,33 +8,7 @@ import { FeatureErrorBoundary } from '../ui/components/feature-error-boundary';
 import { LoadingSpinner } from '../ui/components/loading-spinner';
 import { PageMeta } from '../ui/components/page-meta';
 import { useAnnounce } from '../hooks/use-announce';
-
-const WEB_MCP_INCREMENT_TOOL = 'increment-counter';
-
-interface ModelContextToolResult {
-  content: {
-    type: 'text';
-    text: string;
-  }[];
-}
-
-interface ModelContextTool {
-  name: string;
-  description: string;
-  inputSchema: {
-    type: 'object';
-    properties: Record<string, never>;
-    required: string[];
-  };
-  execute: () => ModelContextToolResult;
-}
-
-interface BrowserModelContext {
-  registerTool: (tool: ModelContextTool) => void;
-  unregisterTool: (toolName: string) => void;
-}
-
-type NavigatorWithModelContext = Navigator & { modelContext?: BrowserModelContext };
+import { registerIncrementCounterTool } from '../utilities/webmcp';
 
 const ProductCounterSection = lazy(() => import('../ui/components/product-counter-section'));
 
@@ -60,38 +34,7 @@ const Product = () => {
   }, [announce, dispatch, setOptimistic]);
 
   useEffect(() => {
-    // WebMCP API proposal reference: https://github.com/webmachinelearning/webmcp/blob/main/docs/proposal.md
-    const { modelContext } = navigator as NavigatorWithModelContext;
-
-    if (modelContext === undefined) {
-      return;
-    }
-
-    modelContext.registerTool({
-      name: WEB_MCP_INCREMENT_TOOL,
-      description: 'Increment the product page counter by one.',
-      inputSchema: {
-        type: 'object',
-        properties: {},
-        required: [],
-      },
-      execute: () => {
-        const nextScore = incrementCounter();
-
-        return {
-          content: [
-            {
-              type: 'text',
-              text: `Counter incremented to ${String(nextScore)}.`,
-            },
-          ],
-        };
-      },
-    });
-
-    return () => {
-      modelContext.unregisterTool(WEB_MCP_INCREMENT_TOOL);
-    };
+    return registerIncrementCounterTool({ onIncrementCounter: incrementCounter });
   }, [incrementCounter]);
 
   const handleIncrement = () => {
