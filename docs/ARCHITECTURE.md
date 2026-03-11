@@ -81,6 +81,6 @@ The client uses `src/client/utilities/` for browser-specific helpers. Server hel
 | UI | Chakra UI | Accessible, composable, good TypeScript support |
 | Backend | Express 5 | Flexible, mature, large ecosystem |
 | Auth | Passport.js | Strategy-based, extensible |
-| Encryption | CryptoJS | AES encryption for localStorage |
+| Encryption | Native Web Crypto API | AES-GCM encryption for localStorage |
 | Testing | Cypress | E2E testing with interactive runner |
 | Linting | ESLint | Custom config with TypeScript + React rules |

@@ -18,9 +18,9 @@ Vite's ability to run client and server-side components simultaneously is a game
 
 After years of Reddit posts proclaiming the death of Redux, we remain strong advocates for its benefits. By providing a cleaner syntax for state management, Redux simplifies code complexity and makes it easier to manage global state in complex applications.
 
-## Crypto JS
+## Native Web Crypto API
 
-To ensure data persistence across browser refreshes and sessions, we've integrated CryptoJS for local storage encryption. This approach allows our application to securely store user data while maintaining seamless usability.
+To ensure data persistence across browser refreshes and sessions, we use the native Web Crypto API for local storage encryption. This avoids dependency risk from discontinued wrappers while keeping strong built-in browser cryptography.
 
 ## Passport.js
 

@@ -20,7 +20,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Replaced separate Terms/Privacy footer links with a single policy guide link and routed legacy `/privacy` and `/terms` paths to `/policies`.
 - Refined testing guidance across `AGENTS.md`, `docs/CONTRIBUTING.md`, and `cypress/README.md` to keep E2E contract coverage lean and migration-friendly while still requiring feature-level automated tests at the right layer.
 - Simplified `cypress/e2e/seo/page-meta.cy.ts` to assert core metadata contracts without over-coupling to every page-specific metadata field.
+- Replaced client-side CryptoJS encryption/decryption with native Web Crypto API (AES-GCM + PBKDF2) in persistence flow.
 ### Removed
+- Removed `crypto-js` and `@types/crypto-js` dependencies.
 ### Fixed
 ### Security
 - Added IP-based rate limiting for `POST /login/password` with configurable env overrides (`LOGIN_RATE_LIMIT_MAX_ATTEMPTS`, `LOGIN_RATE_LIMIT_WINDOW_MS`).
