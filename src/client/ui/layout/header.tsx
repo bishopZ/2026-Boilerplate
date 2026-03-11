@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import { Box, Flex, Heading, IconButton, VStack } from '@chakra-ui/react';
-import { Link as RouterLink } from 'react-router';
 import { useTheme } from 'next-themes';
 import { LuMenu, LuX } from 'react-icons/lu';
 import { FormattedMessage } from 'react-intl';
 import { ROUTES } from '@/client/utilities/constants';
 import { AnimatedButton } from '../components/animated-button';
+import { Link } from '../components/link';
 import { ColorModeToggle } from '../components/color-mode-toggle';
 import { LanguageSwitcher } from '../components/language-switcher';
 
@@ -23,7 +23,7 @@ const PUBLIC_NAV: NavItem[] = [
 
 const PRIVATE_NAV: NavItem[] = [
   { labelId: 'nav.product', to: ROUTES.PRODUCT },
-  { labelId: 'nav.logout', to: ROUTES.LOGOUT, isExternal: true },
+  { labelId: 'nav.logout', to: ROUTES.LOGOUT },
 ];
 
 const NavLinks = ({ items, onClose }: { items: NavItem[]; onClose?: () => void }) => (
@@ -36,10 +36,9 @@ const NavLinks = ({ items, onClose }: { items: NavItem[]; onClose?: () => void }
         minH="44px"
         onClick={onClose}
       >
-        {isExternal
-          ? <a href={to}><FormattedMessage id={labelId} /></a>
-          : <RouterLink to={to}><FormattedMessage id={labelId} /></RouterLink>
-        }
+        <Link to={to} isExternal={isExternal} reloadDocument={to === ROUTES.LOGOUT}>
+          <FormattedMessage id={labelId} />
+        </Link>
       </AnimatedButton>
     ))}
   </>
@@ -64,9 +63,9 @@ const Header = ({ variant }: { variant: 'public' | 'private' }) => {
       >
         <Flex justify="space-between" align="center">
           <Heading as="h1" size="lg">
-            <RouterLink to={logoTo}>
+            <Link to={logoTo}>
               <FormattedMessage id="app.name" />
-            </RouterLink>
+            </Link>
           </Heading>
 
           <Flex gap={4} align="center" display={{ base: 'none', md: 'flex' }}>
