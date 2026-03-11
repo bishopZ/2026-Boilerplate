@@ -45,6 +45,7 @@ Keep this starter suite lean:
 
 - Use stable selectors and user-observable behavior.
 - Avoid asserting every implementation detail or every metadata tag.
+- Prefer checking behavior changes (path, selected locale, direction, visibility) over exact copy strings when copy is likely to evolve.
 - Avoid hardcoding environment-specific values when dynamic assertions are possible.
 - Keep helpers and assertions simple so a new test framework can re-implement quickly.
 

@@ -6,7 +6,6 @@ describe('Skip link accessibility', () => {
     cy.press(Cypress.Keyboard.Keys.TAB);
     cy.focused()
       .should('have.attr', 'href', '#main-content')
-      .and('contain.text', 'Skip to main content')
       .and('be.visible');
   });
 });
