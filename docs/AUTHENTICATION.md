@@ -12,12 +12,12 @@ This project uses a simple, production-leaning auth flow built around:
 
 ## Server-side flow
 
-1. `POST /login/password` first passes through `loginRateLimiter` in `src/server/middleware/auth-rate-limit.ts`.
+1. `POST /api/session` (REST) and `POST /login/password` (legacy form flow) first pass through `loginRateLimiter` in `src/server/middleware/auth-rate-limit.ts`.
 2. `passport-local` then calls `verifyUser()` in `src/server/services/auth.ts` to check credentials against `fakeUser`.
 3. On success, `postLogin()` signs a JWT (`HS256`, `24h`) and sets it in an `httpOnly` cookie named `token`.
 4. Protected routes use `ensureAuthenticated()` in `src/server/middleware/auth.ts`.
 5. `ensureAuthenticated()` verifies the cookie token and attaches decoded user data to the request.
-6. On logout, `/logout` clears the `token` cookie.
+6. Session teardown supports both `DELETE /api/session` (REST) and `/logout` (legacy redirect flow).
 
 ## Login rate limiting
 
@@ -25,7 +25,7 @@ The login endpoint includes IP-based throttling by default:
 
 - Default max failed attempts: `5`
 - Default window: `15 minutes`
-- Endpoint: `POST /login/password`
+- Endpoints: `POST /api/session` and `POST /login/password`
 
 Optional env overrides in `.env`:
 
@@ -34,7 +34,7 @@ Optional env overrides in `.env`:
 
 ## Client-side flow
 
-1. User submits the form in `src/client/pages/Login.tsx` to `/login/password`.
+1. User submits the form in `src/client/pages/Login.tsx` to `/login/password` (legacy browser-friendly flow).
 2. Browser receives the `token` cookie after successful login.
 3. Client routes like `/product` are protected server-side (redirect to `/login` if unauthenticated).
 4. On app startup, `initPreferences` calls `/api/key`; this endpoint also requires auth.
@@ -83,6 +83,15 @@ For hidden-admin mode, credentials should come from env variables:
 
 Update `.envTemplate` and set real values in `.env` for each environment.
 Docs/tests should point to env-based credentials rather than hardcoded literals.
+
+## API-first guidance
+
+For new client integrations, prefer REST-style session endpoints over legacy redirect endpoints:
+
+- `POST /api/session`
+- `DELETE /api/session`
+
+See `docs/API.md` for endpoint conventions and migration notes for TanStack Query / GraphQL paths.
 
 ## Option B: Migrate to real auth (Supabase or Postgres)
 

@@ -8,6 +8,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- Added REST-style auth session endpoints (`POST /api/session`, `DELETE /api/session`) while keeping legacy browser auth routes for compatibility.
+- Added `docs/API.md` to document API contract conventions and migration-readiness guidelines.
+- Added two migration SOP skills: `skills/migrate-api-to-tanstack-query/SKILL.md` and `skills/migrate-api-to-graphql-client/SKILL.md`.
 - Added `skills/playwright-migration/SKILL.md` to standardize migration from Cypress to Playwright with clear file updates, validation steps, and done criteria.
 - Added `cypress/e2e/layout/footer-position.cy.ts` to verify the footer remains pinned to the viewport bottom on short pages.
 - Added Simplified Chinese (`zh`) locale support across the client i18n provider, language switcher, locale dictionaries, and i18n key validation.

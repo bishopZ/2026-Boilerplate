@@ -13,6 +13,8 @@
 - `skills/playwright-migration/SKILL.md` — Migrate the E2E stack from Cypress to Playwright in a controlled, test-first rollout.
 - `skills/policy-guide/SKILL.md` — Maintain the combined policy-writing guide page and keep routes/tests/docs aligned.
 - `skills/add-redirect/SKILL.md` — Add or update URL redirects with status-code guidance and E2E coverage.
+- `skills/migrate-api-to-tanstack-query/SKILL.md` — Migrate REST client usage to TanStack Query with caching and staged rollout.
+- `skills/migrate-api-to-graphql-client/SKILL.md` — Migrate REST client usage to a GraphQL client path with incremental parity checks.
 
 ## Development Setup
 
@@ -48,6 +50,7 @@
 - The `docs/` folder contains project-wide guides and expectations:
   - `docs/ARCHITECTURE.md`
   - `docs/AUTHENTICATION.md`
+  - `docs/API.md`
   - `docs/CONTRIBUTING.md`
   - `docs/I18N.md`
   - `docs/REDIRECTS.md`
