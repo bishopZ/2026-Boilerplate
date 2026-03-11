@@ -23,10 +23,10 @@ Before submitting your pull request, make sure to:
 
 ## React 19 boundary guidance (loading + failures)
 
-Place boundaries by latency domain (`Suspense`) and failure domain (`ErrorBoundary`):
+Use boundary placement by latency domain (`Suspense`) and failure domain (`ErrorBoundary`):
 
-- Route-level `Suspense` for lazy page routes.
-- Local `Suspense` only around slower, independently-loading sections.
-- App-level `ErrorBoundary` for catastrophic failures.
-- Feature-level `ErrorBoundary` where one section can fail without taking down the route.
-- Use React 19 `Activity` around loading fallback UI to signal active pending work.
+- Route-level loading boundaries
+- Feature-level loading/failure boundaries where sections are independent
+- App-level catastrophic error boundary
+
+Canonical guidance lives in `docs/ARCHITECTURE.md` (UI failure/latency boundaries section).

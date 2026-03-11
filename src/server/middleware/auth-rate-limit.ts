@@ -3,6 +3,8 @@ import { ROUTES } from '../config/constants';
 
 const DEFAULT_LOGIN_WINDOW_MS = 15 * 60 * 1000;
 const DEFAULT_LOGIN_MAX_ATTEMPTS = 5;
+const UNKNOWN_USER = 'unknown-user';
+const TOO_MANY_ATTEMPTS_MSG = 'Too many login attempts. Please try again later.';
 
 const parsePositiveInt = (rawValue: string | undefined, fallback: number): number => {
   const parsed = Number.parseInt(rawValue ?? '', 10);
@@ -23,10 +25,10 @@ const loginMaxAttempts = parsePositiveInt(
 
 const getUsernameRateLimitKey = (username: unknown): string => {
   if (typeof username !== 'string') {
-    return 'unknown-user';
+    return UNKNOWN_USER;
   }
   const normalized = username.trim().toLowerCase();
-  return normalized.length > 0 ? normalized : 'unknown-user';
+  return normalized.length > 0 ? normalized : UNKNOWN_USER;
 };
 
 export const loginRateLimiter = rateLimit({
@@ -43,8 +45,8 @@ export const loginRateLimiter = rateLimit({
   handler: (_req, res, _next, options) => {
     const message = typeof options.message === 'string'
       ? options.message
-      : 'Too many login attempts. Please try again later.';
+      : TOO_MANY_ATTEMPTS_MSG;
     res.status(options.statusCode).send(message);
   },
-  message: 'Too many login attempts. Please try again later.',
+  message: TOO_MANY_ATTEMPTS_MSG,
 });

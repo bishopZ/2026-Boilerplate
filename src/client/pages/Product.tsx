@@ -1,14 +1,14 @@
-import { Activity, Suspense, lazy, useCallback, useEffect, useOptimistic, useRef } from 'react';
+import { Suspense, lazy, useCallback, useEffect, useOptimistic, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { type RootState, type AppDispatch } from '../redux/store';
 import { increment } from '../redux/preferences';
 import { Box, Heading, Text, VStack } from '@chakra-ui/react';
 import { PageLayout } from '../ui/layout/page-layout';
 import { FeatureErrorBoundary } from '../ui/components/feature-error-boundary';
-import { LoadingSpinner } from '../ui/components/loading-spinner';
+import { LoadingFallback } from '../ui/components/loading-fallback';
 import { PageMeta } from '../ui/components/page-meta';
 import { useAnnounce } from '../hooks/use-announce';
-import { registerIncrementCounterTool } from '../utilities/webmcp';
+import { registerCounterTool } from '../utilities/webmcp';
 
 const ProductCounterSection = lazy(() => import('../ui/components/product-counter-section'));
 
@@ -34,7 +34,7 @@ const Product = () => {
   }, [announce, dispatch, setOptimistic]);
 
   useEffect(() => {
-    return registerIncrementCounterTool({ onIncrementCounter: incrementCounter });
+    return registerCounterTool({ onIncrement: incrementCounter });
   }, [incrementCounter]);
 
   const handleIncrement = () => {
@@ -59,12 +59,7 @@ const Product = () => {
 
         <Box>
           <FeatureErrorBoundary title="Counter Actions">
-            <Suspense fallback={(
-              <Activity mode="visible">
-                <LoadingSpinner />
-              </Activity>
-            )}
-            >
+            <Suspense fallback={<LoadingFallback />}>
               <ProductCounterSection onIncrement={handleIncrement} />
             </Suspense>
           </FeatureErrorBoundary>

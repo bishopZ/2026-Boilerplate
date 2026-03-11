@@ -18,9 +18,11 @@ Cursor rule reference: [`.cursor/rules/react-components.mdc`](../../../.cursor/r
 
 ## Error/Latency Boundaries
 
-- App-level `ErrorBoundary` lives in `main.tsx` (catastrophic failures).
-- Route-level `Suspense` lives in `App.tsx` (lazy route loading).
-- Feature-level boundaries should be colocated with independently-failing or independently-loading sections.
+- App-level boundary: `main.tsx`
+- Route-level loading boundary: `App.tsx`
+- Feature-level boundaries: colocate with independently-failing/loading sections
+
+See `docs/ARCHITECTURE.md` for the canonical boundary strategy.
 
 ## State
 

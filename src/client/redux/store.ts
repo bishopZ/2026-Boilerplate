@@ -16,7 +16,6 @@ const persistenceMiddleware = createPersistenceMiddleware<LocalState>([
     selectSlice: state => state.preferences,
     storageKey: LOCAL_STORAGE_ID,
     context: 'redux.preferences',
-    throttleMs: 100,
     serialize: serializePreferencesForStorage,
   }),
 ]);

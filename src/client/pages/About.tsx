@@ -1,8 +1,6 @@
 import { Box, Heading, Text, VStack, List } from '@chakra-ui/react';
 import { LuCheck } from 'react-icons/lu';
-import { ROUTES } from '../utilities/constants';
-import { AnimatedButton } from '../ui/components/animated-button';
-import { Link } from '../ui/components/link';
+import { BackHomeCta } from '../ui/components/back-home-cta';
 import { PageLayout } from '../ui/layout/page-layout';
 import { PageMeta } from '../ui/components/page-meta';
 
@@ -60,11 +58,7 @@ const About = () => {
         </Box>
 
         <Box>
-          <AnimatedButton
-            asChild
-            colorScheme="blue">
-            <Link to={ROUTES.HOME}>Back to Home</Link>
-          </AnimatedButton>
+          <BackHomeCta />
         </Box>
       </VStack>
     </PageLayout>
