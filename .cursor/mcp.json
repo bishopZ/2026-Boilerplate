@@ -3,6 +3,14 @@
     "chakra-ui": {
       "command": "npx",
       "args": ["-y", "@chakra-ui/react-mcp"]
+    },
+    "mcp-echarts": {
+      "command": "npx",
+      "args": ["-y", "mcp-echarts"]
+    },
+    "mcp-mermaid": {
+      "command": "npx",
+      "args": ["-y", "mcp-mermaid"]
     }
   }
 }
