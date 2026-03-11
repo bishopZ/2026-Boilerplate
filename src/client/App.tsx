@@ -6,7 +6,7 @@ import { ErrorPage } from './ui/components/error-page';
 import { LoadingSpinner } from './ui/components/loading-spinner';
 import { ScrollToTop } from './ui/components/scroll-to-top';
 import { ROUTES } from './utilities/constants';
-import { Routes, Route, BrowserRouter, Navigate } from 'react-router';
+import { Routes, Route, BrowserRouter } from 'react-router';
 import Home from './pages/Home';
 
 const Product = lazy(() => import('./pages/Product'));
@@ -36,8 +36,6 @@ const App = () => {
           <Route path={ROUTES.ABOUT} element={<About />} />
           <Route path={ROUTES.LOGIN} element={<Login />} />
           <Route path={ROUTES.POLICIES} element={<Policies />} />
-          <Route path={ROUTES.PRIVACY} element={<Navigate to={ROUTES.POLICIES} replace />} />
-          <Route path={ROUTES.TERMS} element={<Navigate to={ROUTES.POLICIES} replace />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

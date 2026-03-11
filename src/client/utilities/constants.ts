@@ -24,8 +24,6 @@ export const ROUTES = {
   PRODUCT: '/product',
   ABOUT: '/about',
   POLICIES: '/policies',
-  PRIVACY: '/privacy',
-  TERMS: '/terms',
   LOGOUT: '/logout',
 } as const;
 

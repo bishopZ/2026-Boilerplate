@@ -6,8 +6,6 @@ export const ROUTES = {
   PRODUCT: '/product',
   ABOUT: '/about',
   POLICIES: '/policies',
-  PRIVACY: '/privacy',
-  TERMS: '/terms',
   LOGOUT: '/logout',
   SITEMAP: '/sitemap.xml',
 } as const;
