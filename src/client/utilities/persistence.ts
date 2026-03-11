@@ -5,7 +5,7 @@ interface StorageWriterOpts<State> {
   storageKey: string;
   context: string;
   throttleMs?: number;
-  serialize: (state: State) => string | null;
+  serialize: (state: State) => string | null | Promise<string | null>;
 }
 
 interface PersistedSliceConfig<RootState, SliceState> {
@@ -13,7 +13,7 @@ interface PersistedSliceConfig<RootState, SliceState> {
   storageKey: string;
   context: string;
   throttleMs?: number;
-  serialize: (sliceState: SliceState) => string | null;
+  serialize: (sliceState: SliceState) => string | null | Promise<string | null>;
 }
 
 const MIN_THROTTLE_MS = 100;
@@ -33,13 +33,13 @@ export const createStorageWriter = <State>({
   let timeoutId: ReturnType<typeof setTimeout> | null = null;
   let latestState: State | null = null;
 
-  const flush = () => {
+  const flush = async () => {
     if (latestState === null) {
       return;
     }
 
     try {
-      const serialized = serialize(latestState);
+      const serialized = await serialize(latestState);
       if (serialized === null) {
         return;
       }
@@ -59,7 +59,7 @@ export const createStorageWriter = <State>({
 
     timeoutId = setTimeout(() => {
       timeoutId = null;
-      flush();
+      void flush();
     }, getThrottleMs(throttleMs));
   };
 };

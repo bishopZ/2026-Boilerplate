@@ -18,13 +18,13 @@ export const defaultState = {
 // Infer Type from defaultState
 export type PreferencesState = typeof defaultState;
 
-export const serializePreferencesForStorage = (preferences: PreferencesState): string | null => {
+export const serializePreferencesForStorage = async (preferences: PreferencesState): Promise<string | null> => {
   const { encryptionKey } = preferences;
   if (!encryptionKey) {
     return null;
   }
 
-  const encryptedState = encrypt(JSON.stringify(preferences), encryptionKey);
+  const encryptedState = await encrypt(JSON.stringify(preferences), encryptionKey);
   if (!encryptedState) {
     reportError('Failed to encrypt preferences state', { context: 'serializePreferencesForStorage' });
     return null;
@@ -68,7 +68,7 @@ export const initPreferences = createAsyncThunk(
       try {
         const storedState = localStorage.getItem(LOCAL_STORAGE_ID);
         if (storedState) {
-          const decrypted = decrypt(storedState, key);
+          const decrypted = await decrypt(storedState, key);
           if (decrypted) {
             try {
               const result = JSON.parse(decrypted) as PreferencesState;
