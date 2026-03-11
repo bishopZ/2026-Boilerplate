@@ -21,7 +21,7 @@ Browser
 Express Server (vite-express)
   ├── Auth Routes (/api/session + legacy /login/password, /logout) → Passport.js LocalStrategy
   ├── API Routes (/api/key) → Returns encryption key
-  ├── OpenAPI Contract (openapi/openapi.yaml) → Generates shared TS types
+  ├── OpenAPI Contract (docs/openapi.yaml) → Generates shared TS types
   ├── Redirect Rules (legacy paths) → Config-driven HTTP redirects
   ├── Page Routes (/, /login, /product, etc.) → Served by Vite
   └── Static Routes (/sitemap.xml)
@@ -32,7 +32,7 @@ Express Server (vite-express)
 ```
 src/
 ├── shared/                   # Generated OpenAPI types + shared API type aliases
-│   ├── openapi.generated.ts  # Auto-generated from openapi/openapi.yaml
+│   ├── openapi.generated.ts  # Auto-generated from docs/openapi.yaml
 │   └── api-types.ts          # Shared client/server API type aliases
 │
 ├── client/                   # Frontend (React SPA)

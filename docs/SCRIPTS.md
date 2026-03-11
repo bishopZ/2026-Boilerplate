@@ -104,7 +104,7 @@ Validates i18n locale files (optional; only when fully translating all locales).
 
 ### `npm run gen:api-types`
 Generates TypeScript API types from the OpenAPI contract.
-- Source contract: `openapi/openapi.yaml`
+- Source contract: `docs/openapi.yaml`
 - Output file: `src/shared/openapi.generated.ts`
 - Used by shared aliases in `src/shared/api-types.ts`
 

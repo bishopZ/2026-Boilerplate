@@ -8,7 +8,7 @@ This project exposes a compact HTTP API designed for:
 
 ## OpenAPI source of truth
 
-- Contract file: `openapi/openapi.yaml`
+- Contract file: `docs/openapi.yaml`
 - Generated types: `src/shared/openapi.generated.ts`
 - Shared type aliases: `src/shared/api-types.ts`
 

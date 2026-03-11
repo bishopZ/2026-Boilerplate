@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- Added contract-first API documentation in `openapi/openapi.yaml` plus generated shared API types (`src/shared/openapi.generated.ts`, `src/shared/api-types.ts`).
+- Added contract-first API documentation in `docs/openapi.yaml` plus generated shared API types (`src/shared/openapi.generated.ts`, `src/shared/api-types.ts`).
 - Added shared `LoadingFallback` and `BackHomeCta` UI components to reduce repeated loading/CTA markup.
 - Added `skills/migrate-design-system-to-shadcn/SKILL.md` to guide full Chakra-to-shadcn migration with explicit removal criteria.
 - Added `skills/add-form-manager/SKILL.md` to standardize React Hook Form + Zod adoption, starting with login-form migration guidance.
