@@ -1,6 +1,7 @@
 import type { Request, Response, NextFunction } from 'express';
 import { ROUTES, API_PREFIX } from '../config/constants';
 import { type ApiErrorResponse, API_ERRORS } from '../config/api-error';
+import { getRequestId, logError } from '../utilities/logger';
 
 /**
  * Global error handler middleware.
@@ -20,8 +21,16 @@ export const globalErrorHandler = (
   _next: NextFunction, // eslint-disable-line @typescript-eslint/no-unused-vars
 ) => {
   const { status, message } = err;
+  const requestId = getRequestId(req, res);
 
-  console.error(`[${req.method}] ${req.path} — ${message}`);
+  logError('http.request.error', {
+    code: err.code,
+    message,
+    method: req.method,
+    path: req.path,
+    requestId,
+    status,
+  });
 
   // API routes get structured JSON responses that clients can parse
   if (req.path.startsWith(`${API_PREFIX}/`)) {

@@ -1,5 +1,6 @@
 import rateLimit from 'express-rate-limit';
 import { ROUTES } from '../config/constants';
+import { getRequestId, logWarn } from '../utilities/logger';
 
 const DEFAULT_LOGIN_WINDOW_MS = 15 * 60 * 1000;
 const DEFAULT_LOGIN_MAX_ATTEMPTS = 5;
@@ -42,10 +43,16 @@ export const loginRateLimiter = rateLimit({
   requestWasSuccessful: (_req, res) => {
     return res.statusCode === 302 && res.getHeader('location') === ROUTES.PRODUCT;
   },
-  handler: (_req, res, _next, options) => {
+  handler: (req, res, _next, options) => {
     const message = typeof options.message === 'string'
       ? options.message
       : TOO_MANY_ATTEMPTS_MSG;
+    logWarn('auth.rate_limit.triggered', {
+      method: req.method,
+      path: req.path,
+      requestId: getRequestId(req, res),
+      statusCode: options.statusCode,
+    });
     res.status(options.statusCode).send(message);
   },
   message: TOO_MANY_ATTEMPTS_MSG,
