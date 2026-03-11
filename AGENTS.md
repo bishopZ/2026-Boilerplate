@@ -30,6 +30,7 @@
 - `npm run dev` — development server (Express + Vite HMR)
 - `npm run lint` / `npm run lint:fix` — ESLint
 - `npm run type-check` — TypeScript type verification
+- `npm run check:docs` — docs drift/consistency validation
 - `npm run build` — production build
 - `npm run test` — Full suite: lint + type-check + E2E
 - `npm run test:e2e` — Cypress E2E tests (dev server must be running)
