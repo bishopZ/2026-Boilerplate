@@ -16,5 +16,6 @@
   "nav.logout": "Déconnexion",
   "nav.product": "Produit",
   "footer.copyright": "© {year} [insérez le nom du projet ici]. Tous droits réservés.",
-  "footer.policies": "Guide des politiques"
+  "footer.policies": "Guide des politiques",
+  "footer.cookiesEssential": "Ce site utilise uniquement des cookies essentiels."
 }

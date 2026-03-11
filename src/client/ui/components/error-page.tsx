@@ -1,4 +1,5 @@
-import { Box, Container, Heading, Text, Link } from '@chakra-ui/react';
+import { Box, Container, Heading, Text } from '@chakra-ui/react';
+import { Link } from './link';
 
 const DEFAULT_CONTACT = 'support@domain.com';
 const DEFAULT_TITLE = 'Something went wrong';
@@ -12,7 +13,7 @@ export const ErrorPage = ({ message }: { message: string }) => {
         </Heading>
         <Text fontSize="lg" mb={4}>
           Please contact the site administrator at{' '}
-          <Link href={`mailto:${DEFAULT_CONTACT}`} color="blue.500">
+          <Link to={`mailto:${DEFAULT_CONTACT}`} color="blue.500" isExternal>
             {DEFAULT_CONTACT}
           </Link>
           .

@@ -66,6 +66,14 @@ src/
 3. On every Redux action, the persistence middleware encrypts and saves specified slices
 4. The persistence middleware in `store.ts` is reusable — add persistence registrations for slices, don't create new middleware
 
+### UI failure/latency boundaries
+
+- App-level catastrophic failure handling is managed by `ErrorBoundary` in `src/client/main.tsx`.
+- Route-level latency is managed by `Suspense` around lazy routes in `src/client/App.tsx`.
+- Feature-level failures should use local boundaries when one section can fail independently (example: product counter actions).
+- Feature-level latency should use local `Suspense` only for independently-loading sections, not whole-page wrappers.
+- Use React 19 `Activity` around loading fallback UI when representing active pending work.
+
 ### Client/Server Code Separation
 
 The client uses `src/client/utilities/` for browser-specific helpers. Server helpers live in `src/server/services/` and `src/server/config/`. Keep client-only and server-only modules separated to avoid accidental cross-runtime imports.

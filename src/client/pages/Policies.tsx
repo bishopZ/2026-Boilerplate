@@ -1,7 +1,7 @@
 import { Box, Heading, List, Text, VStack } from '@chakra-ui/react';
-import { Link as RouterLink } from 'react-router';
 import { ROUTES } from '../utilities/constants';
 import { AnimatedButton } from '../ui/components/animated-button';
+import { Link } from '../ui/components/link';
 import { PageLayout } from '../ui/layout/page-layout';
 import { PageMeta } from '../ui/components/page-meta';
 
@@ -69,7 +69,7 @@ const Policies = () => {
           <AnimatedButton
             asChild
             colorScheme="blue">
-            <RouterLink to={ROUTES.HOME}>Back to Home</RouterLink>
+            <Link to={ROUTES.HOME}>Back to Home</Link>
           </AnimatedButton>
         </Box>
       </VStack>
