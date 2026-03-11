@@ -67,6 +67,7 @@ For script implementation details (like i18n validation), see [scripts/README.md
 
 - [Architecture](docs/ARCHITECTURE.md) — System diagram, directory structure, key patterns
 - [Authentication](docs/AUTHENTICATION.md) — JWT flow, hardcoded user, and migration paths
+- [Feature flags](docs/FEATURE_FLAGS.md) — Env + runtime starter pattern for safe rollout
 - [Client](src/client/README.md) — How the frontend is organized
 - [Hooks](src/client/hooks/README.md) — useState vs custom hook vs Redux
 - [Redux](src/client/redux/README.md) — Persistence, slices, pitfalls

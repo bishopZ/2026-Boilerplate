@@ -25,3 +25,8 @@ NODE_ENV=development
 # Login rate-limit window in milliseconds (15 min default)
 # LOGIN_RATE_LIMIT_WINDOW_MS=900000
 
+# Client feature flags (optional)
+# Comma-separated key=value list consumed by the runtime feature-flag hook.
+# Example: VITE_FEATURE_FLAGS="newNav=true,newCheckout=false"
+# VITE_FEATURE_FLAGS=
+
