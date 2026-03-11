@@ -5,7 +5,7 @@ This project uses a simple, production-leaning auth flow built around:
 - `passport-local` for username/password verification
 - signed JWTs for stateless auth
 - an `httpOnly` cookie (`token`) for browser session continuity
-- login rate limiting on `POST /login/password` to reduce brute-force attempts
+- login rate limiting on `POST /api/session` and `POST /login/password` to reduce brute-force attempts
 - one hardcoded default user for local use
 
 ## How it works (server + client)

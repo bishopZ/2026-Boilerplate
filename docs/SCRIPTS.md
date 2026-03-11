@@ -71,8 +71,8 @@ Runs ESLint and automatically fixes issues where possible.
 ## Testing
 
 ### `npm run test`
-Runs the full validation suite: lint, type-check, and E2E tests.
-- Equivalent to: `npm run lint && npm run type-check && npm run test:e2e`
+Runs the full validation suite: lint, type-check, docs consistency check, and E2E tests.
+- Equivalent to: `npm run lint && npm run type-check && npm run check:docs && npm run test:e2e`
 
 **When to use:** Before committing, in CI/CD, when preparing for deployment
 
@@ -101,6 +101,13 @@ Validates i18n locale files (optional; only when fully translating all locales).
 - Exits with code 1 on mismatch
 
 **When to use:** Before committing when changing UI strings, if using option 3. See [scripts/README.md](../scripts/README.md) and [docs/I18N.md](I18N.md) for details.
+
+### `npm run check:docs`
+Validates critical documentation consistency rules.
+- Guards against known drift patterns between core docs
+- Exits with code 1 when a rule is violated
+
+**When to use:** Before committing docs changes and in CI via `npm run test`.
 
 ## Common Workflows
 

@@ -24,7 +24,7 @@ To ensure data persistence across browser refreshes and sessions, we use the nat
 
 ## Passport.js
 
-By integrating Passport.js as an example login process, we can demonstrate authentication without compromising security or scalability. Future improvements will focus on implementing additional features like CSRF protection and login attempts limits, which may require a database solution.
+By integrating Passport.js as an example login process, we can demonstrate authentication without compromising security or scalability. CSRF protection and login rate limiting are already enabled in this boilerplate. Future evolution focuses on swapping the local starter account for a real auth backing profile (Supabase or Postgres).
 
 ## React Router
 
