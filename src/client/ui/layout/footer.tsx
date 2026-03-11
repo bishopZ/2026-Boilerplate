@@ -29,6 +29,10 @@ export const Footer = () => {
           </Text>
         </RouterLink>
       </Flex>
+      {/* Replace this message if you add analytics/tracking or begin storing personal user data. */}
+      <Text fontSize="xs" color={textColor} textAlign="center" mt={3}>
+        <FormattedMessage id="footer.cookiesEssential" />
+      </Text>
     </Box>
   );
 };

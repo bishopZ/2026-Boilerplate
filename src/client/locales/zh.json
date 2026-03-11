@@ -16,5 +16,6 @@
   "nav.logout": "退出",
   "nav.product": "产品",
   "footer.copyright": "© {year} [请在此填写项目名称]。保留所有权利。",
-  "footer.policies": "政策指南"
+  "footer.policies": "政策指南",
+  "footer.cookiesEssential": "本网站仅使用必要的 Cookie。"
 }

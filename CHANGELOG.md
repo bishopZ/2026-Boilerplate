@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- Added a localized footer GDPR notice clarifying that only essential cookies are used by default.
 - Added `skills/playwright-migration/SKILL.md` to standardize migration from Cypress to Playwright with clear file updates, validation steps, and done criteria.
 - Added `cypress/e2e/layout/footer-position.cy.ts` to verify the footer remains pinned to the viewport bottom on short pages.
 - Added Simplified Chinese (`zh`) locale support across the client i18n provider, language switcher, locale dictionaries, and i18n key validation.
