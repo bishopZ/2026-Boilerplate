@@ -102,6 +102,15 @@ Validates i18n locale files (optional; only when fully translating all locales).
 
 **When to use:** Before committing when changing UI strings, if using option 3. See [scripts/README.md](../scripts/README.md) and [docs/I18N.md](I18N.md) for details.
 
+### `npm run check:skills`
+Validates required skill files and generates a skills validation report.
+- Verifies required skills exist and include core sections
+- Verifies frontmatter metadata is present
+- Checks referenced files for obvious path drift
+- Writes `docs/SKILLS_VALIDATION.md`
+
+**When to use:** Before committing skill changes and when auditing skill health.
+
 ## Common Workflows
 
 ### Starting a new feature
