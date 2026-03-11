@@ -6,9 +6,12 @@ import { fileURLToPath } from 'url';
 import path from 'path';
 import { csrfProtection } from './middleware/csrf';
 import { globalErrorHandler } from './middleware/error-handler';
+import { attachRequestId } from './middleware/request-id';
+import { requestLogger } from './middleware/request-logger';
 import authRoutes from './routes/auth';
 import apiRoutes from './routes/api';
 import pageRoutes from './routes/pages';
+import { logInfo } from './utilities/logger';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -19,6 +22,8 @@ const setupMiddleware = (app: express.Application) => {
   app.use(express.urlencoded({ extended: true }));
   app.use(express.json());
   app.use(cookieParser());
+  app.use(attachRequestId);
+  app.use(requestLogger);
 };
 
 const setupRoutes = (app: express.Application) => {
@@ -41,10 +46,10 @@ const startServer = () => {
   }).format(port);
 
   ViteExpress.listen(app, port, () => {
-    // eslint-disable-next-line no-console
-    console.log(
-      `${process.env.NODE_ENV ?? ''} Server is listening on ${displayPort}.`
-    );
+    logInfo('server.started', {
+      environment: process.env.NODE_ENV ?? 'development',
+      port: displayPort,
+    });
   });
 };
 

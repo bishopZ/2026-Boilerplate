@@ -9,6 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Added structured server observability primitives: request IDs (`x-request-id`), request lifecycle logging middleware, and auth audit log hooks.
+- Added `docs/OBSERVABILITY.md` to document default logging/audit patterns.
 - Added shared `LoadingFallback` and `BackHomeCta` UI components to reduce repeated loading/CTA markup.
 - Added `skills/migrate-design-system-to-shadcn/SKILL.md` to guide full Chakra-to-shadcn migration with explicit removal criteria.
 - Added `skills/add-form-manager/SKILL.md` to standardize React Hook Form + Zod adoption, starting with login-form migration guidance.

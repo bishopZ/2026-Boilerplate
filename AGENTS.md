@@ -55,6 +55,7 @@
   - `docs/API.md`
   - `docs/CONTRIBUTING.md`
   - `docs/I18N.md`
+  - `docs/OBSERVABILITY.md`
   - `docs/REDIRECTS.md`
   - `docs/SCRIPTS.md`
   - `docs/TECHNOLOGY.md`
