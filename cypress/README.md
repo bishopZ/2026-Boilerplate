@@ -29,6 +29,8 @@ Tests live in `cypress/e2e/`:
 - **accessibility/** — Keyboard skip-link contract
 - **i18n/** — Locale switch + RTL/LTR behavior contract
 - **seo/** — Core metadata contract (title, description, canonical)
+- **routing/** — Legacy URL redirects
+- **layout/** — Footer layout behavior
 
 ## Portable Contract Philosophy
 
@@ -45,3 +47,8 @@ Keep this starter suite lean:
 - Avoid asserting every implementation detail or every metadata tag.
 - Avoid hardcoding environment-specific values when dynamic assertions are possible.
 - Keep helpers and assertions simple so a new test framework can re-implement quickly.
+
+### Baseline vs Extended Specs
+
+- **Baseline contract specs (migrate first):** `auth/login.cy.ts`, `accessibility/skip-link.cy.ts`, `i18n/language-switcher.cy.ts`, `seo/page-meta.cy.ts`
+- **Extended example specs (migrate second):** `auth/login-rate-limit.cy.ts`, `routing/redirects.cy.ts`, `layout/footer-position.cy.ts`

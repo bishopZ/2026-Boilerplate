@@ -8,7 +8,7 @@ const workspaceRoot = path.resolve(__dirname, '..');
 const clientRoot = path.join(workspaceRoot, 'src', 'client');
 const localesRoot = path.join(clientRoot, 'locales');
 
-const localeFiles = ['en.json', 'ar.json', 'fr.json'];
+const localeFiles = ['en.json', 'ar.json', 'fr.json', 'zh.json'];
 
 const readJson = (filePath) => JSON.parse(fs.readFileSync(filePath, 'utf8'));
 

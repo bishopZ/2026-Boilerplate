@@ -20,9 +20,17 @@ describe('Page meta tags', () => {
     expectCanonicalPath('/about');
 
     cy.visit('/privacy');
+    cy.location('pathname').should('eq', '/policies');
 
-    cy.title().should('eq', 'Privacy Policy - 2026 Boilerplate');
+    cy.title().should('eq', 'Policy Writing Guide - 2026 Boilerplate');
     expectDescriptionToExist();
-    expectCanonicalPath('/privacy');
+
+    cy.visit('/terms');
+    cy.location('pathname').should('eq', '/policies');
+    cy.title().should('eq', 'Policy Writing Guide - 2026 Boilerplate');
+    expectDescriptionToExist();
+
+    cy.visit('/policies');
+    expectCanonicalPath('/policies');
   });
 });

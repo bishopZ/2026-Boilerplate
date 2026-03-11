@@ -30,7 +30,7 @@ Cursor rule reference: [`.cursor/rules/react-components.mdc`](../../../.cursor/r
 
 ## Locales
 
-**locales/** — JSON files (en.json, ar.json, fr.json) for react-intl. The `I18nProvider` reads locale from Redux preferences and provides messages to the app. See [docs/I18N.md](../../docs/I18N.md).
+**locales/** — JSON files (en.json, ar.json, fr.json, zh.json) for react-intl. The `I18nProvider` reads locale from Redux preferences and provides messages to the app. See [docs/I18N.md](../../docs/I18N.md).
 
 ## Utilities
 

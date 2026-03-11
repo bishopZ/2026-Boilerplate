@@ -1,5 +1,5 @@
 import { type ReactNode, Suspense } from 'react';
-import { Container } from '@chakra-ui/react';
+import { Box, Container } from '@chakra-ui/react';
 import { PublicHeader, PrivateHeader } from './header';
 import { Footer } from './footer';
 import { SkipLink } from '../components/skip-link';
@@ -22,10 +22,10 @@ export const PageLayout = ({
   const Header = variant === 'private' ? PrivateHeader : PublicHeader;
 
   return (
-    <>
+    <Box minH="100vh" display="flex" flexDirection="column">
       <SkipLink />
       <Header />
-      <Container as="main" id="main-content" maxW={maxW} py={py}>
+      <Container as="main" id="main-content" maxW={maxW} py={py} flex="1" w="full">
         <PageTransition>
           <Suspense fallback={<LoadingSpinner />}>
             {children}
@@ -33,6 +33,6 @@ export const PageLayout = ({
         </PageTransition>
       </Container>
       <Footer />
-    </>
+    </Box>
   );
 };

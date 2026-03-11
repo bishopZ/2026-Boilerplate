@@ -23,8 +23,7 @@ export const ROUTES = {
   LOGIN: '/login',
   PRODUCT: '/product',
   ABOUT: '/about',
-  PRIVACY: '/privacy',
-  TERMS: '/terms',
+  POLICIES: '/policies',
   LOGOUT: '/logout',
 } as const;
 
