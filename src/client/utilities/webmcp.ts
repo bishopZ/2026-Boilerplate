@@ -25,13 +25,13 @@ interface BrowserModelContext {
 
 type NavigatorWithModelContext = Navigator & { modelContext?: BrowserModelContext };
 
-interface RegisterIncrementCounterToolOptions {
-  onIncrementCounter: () => number;
+interface RegisterCounterToolOptions {
+  onIncrement: () => number;
 }
 
-export const registerIncrementCounterTool = ({
-  onIncrementCounter,
-}: RegisterIncrementCounterToolOptions) => {
+export const registerCounterTool = ({
+  onIncrement,
+}: RegisterCounterToolOptions) => {
   if (typeof navigator === 'undefined') {
     return undefined;
   }
@@ -52,7 +52,7 @@ export const registerIncrementCounterTool = ({
       required: [],
     },
     execute: () => {
-      const nextScore = onIncrementCounter();
+      const nextScore = onIncrement();
 
       return {
         content: [

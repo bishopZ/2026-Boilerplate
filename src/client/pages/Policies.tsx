@@ -1,7 +1,5 @@
 import { Box, Heading, List, Text, VStack } from '@chakra-ui/react';
-import { ROUTES } from '../utilities/constants';
-import { AnimatedButton } from '../ui/components/animated-button';
-import { Link } from '../ui/components/link';
+import { BackHomeCta } from '../ui/components/back-home-cta';
 import { PageLayout } from '../ui/layout/page-layout';
 import { PageMeta } from '../ui/components/page-meta';
 
@@ -66,11 +64,7 @@ const Policies = () => {
         </Box>
 
         <Box>
-          <AnimatedButton
-            asChild
-            colorScheme="blue">
-            <Link to={ROUTES.HOME}>Back to Home</Link>
-          </AnimatedButton>
+          <BackHomeCta />
         </Box>
       </VStack>
     </PageLayout>

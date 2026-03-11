@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Added shared `LoadingFallback` and `BackHomeCta` UI components to reduce repeated loading/CTA markup.
 - Added `skills/migrate-design-system-to-shadcn/SKILL.md` to guide full Chakra-to-shadcn migration with explicit removal criteria.
 - Added `skills/add-form-manager/SKILL.md` to standardize React Hook Form + Zod adoption, starting with login-form migration guidance.
 - Added REST-style auth session endpoints (`POST /api/session`, `DELETE /api/session`) while keeping legacy browser auth routes for compatibility.
@@ -25,6 +26,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Added a shared client `Link` component that unifies Chakra UI link styling with React Router navigation and standardized external-link handling.
 
 ### Changed
+- Reduced duplication across route loading fallbacks, back-home page CTAs, and Express pass-through handlers.
+- Centralized repeated rate-limit message/user literals and removed redundant store throttle literal in favor of utility defaults.
+- Compacted boundary guidance docs by keeping details in architecture docs and linking from client/contributing docs.
 - Refined React boundary placement: route-level `Suspense` now handles lazy page loading, `PageLayout` no longer wraps all page content in a blanket `Suspense`, and product counter actions use feature-level `ErrorBoundary` + local `Suspense`.
 - Added React 19 `Activity` around loading fallbacks for route and feature loading states.
 - Refactored WebMCP registration logic into `src/client/utilities/webmcp.ts` so the Product page stays focused on view behavior.
