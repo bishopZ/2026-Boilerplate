@@ -26,13 +26,7 @@ export const getSitemap = (req: Request, res: Response): void => {
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>${baseUrl}${ROUTES.PRIVACY}</loc>
-    <lastmod>${currentDate}</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>${baseUrl}${ROUTES.TERMS}</loc>
+    <loc>${baseUrl}${ROUTES.POLICIES}</loc>
     <lastmod>${currentDate}</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>

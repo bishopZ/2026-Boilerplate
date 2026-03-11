@@ -25,5 +25,7 @@ Tests live in `cypress/e2e/`:
 
 - **auth/** — Login flow
 - **accessibility/** — Skip link, etc.
+- **layout/** — Positioning and structure
 - **seo/** — Page metadata
 - **i18n/** — Language switcher
+- **routing/** — Legacy URL redirects

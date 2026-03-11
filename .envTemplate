@@ -19,3 +19,9 @@ NODE_ENV=development
 # Server Port (optional, defaults to 3000)
 # PORT=3000
 
+# Login Rate Limiting (optional)
+# Max failed login attempts per window for each IP
+# LOGIN_RATE_LIMIT_MAX_ATTEMPTS=5
+# Login rate-limit window in milliseconds (15 min default)
+# LOGIN_RATE_LIMIT_WINDOW_MS=900000
+
