@@ -5,18 +5,32 @@ This project uses a simple, production-leaning auth flow built around:
 - `passport-local` for username/password verification
 - signed JWTs for stateless auth
 - an `httpOnly` cookie (`token`) for browser session continuity
+- login rate limiting on `POST /login/password` to reduce brute-force attempts
 - one hardcoded default user for local use
 
 ## How it works (server + client)
 
 ## Server-side flow
 
-1. `POST /login/password` hits `routes/auth.ts` and uses `passport-local`.
-2. `verifyUser()` in `src/server/services/auth.ts` checks credentials against `fakeUser`.
+1. `POST /login/password` first passes through `loginRateLimiter` in `src/server/middleware/auth-rate-limit.ts`.
+2. `passport-local` then calls `verifyUser()` in `src/server/services/auth.ts` to check credentials against `fakeUser`.
 3. On success, `postLogin()` signs a JWT (`HS256`, `24h`) and sets it in an `httpOnly` cookie named `token`.
 4. Protected routes use `ensureAuthenticated()` in `src/server/middleware/auth.ts`.
 5. `ensureAuthenticated()` verifies the cookie token and attaches decoded user data to the request.
 6. On logout, `/logout` clears the `token` cookie.
+
+## Login rate limiting
+
+The login endpoint includes IP-based throttling by default:
+
+- Default max failed attempts: `5`
+- Default window: `15 minutes`
+- Endpoint: `POST /login/password`
+
+Optional env overrides in `.env`:
+
+- `LOGIN_RATE_LIMIT_MAX_ATTEMPTS`
+- `LOGIN_RATE_LIMIT_WINDOW_MS`
 
 ## Client-side flow
 
@@ -86,7 +100,7 @@ For production user management, move away from hardcoded credentials.
 1. Add `users` table (id, email, password_hash, role, timestamps).
 2. Update `verifyUser()` to query DB and compare hashes (`argon2` or `bcrypt` recommended).
 3. Keep current JWT issuance middleware, but issue tokens from DB-backed identity.
-4. Add password reset, lockout/rate-limit, and optional MFA over time.
+4. Add password reset, tune existing login rate limits, and optional MFA over time.
 
 ### Shared migration checklist
 

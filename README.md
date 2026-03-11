@@ -11,9 +11,9 @@ If you want deep implementation details (architecture, auth internals, reducer p
 ## Features
 
 - **Core:** TypeScript, React 19, Vite, Express, Passport auth (test user), encrypted localStorage persistence, Redux Toolkit (persistent + non-persistent slices), React Router with lazy-loaded pages
-- **SEO & metadata:** Sitemap, `<PageMeta>` component, React 19 document metadata (title, description, Open Graph, Twitter, canonical), Terms and Privacy pages
+- **SEO & metadata:** Sitemap, `<PageMeta>` component, React 19 document metadata (title, description, Open Graph, Twitter, canonical), policy-writing guide page
 - **Accessibility:** Skip-to-content link, stable IDs (`useId`), aria-live announcements (`useAnnounce`), Chakra UI
-- **i18n:** react-intl, locales (en, ar, fr), RTL for Arabic, language switcher, English fallback—[use it or ignore it](docs/I18N.md); when you need translation, it's ready
+- **i18n:** react-intl, locales (en, ar, fr, zh), RTL for Arabic, language switcher, English fallback—[use it or ignore it](docs/I18N.md); when you need translation, it's ready
 - **UX and polish:** Page transitions (`<PageTransition>`), animated buttons (Framer Motion), scroll-to-top on route change, light/dark mode
 - **Resilience:** Error boundaries, centralized client error handler, server error-handler middleware, Suspense boundaries
 - **Developer experience:** Cypress E2E, ESLint (custom config), type-check script, `npm run test` for full pre-commit/CI (lint + type-check + E2E)
@@ -59,6 +59,9 @@ For script implementation details (like i18n validation), see [scripts/README.md
 - Skills:
   - [skills/rebrand/SKILL.md](skills/rebrand/SKILL.md)
   - [skills/hidden-admin-auth/SKILL.md](skills/hidden-admin-auth/SKILL.md)
+  - [skills/playwright-migration/SKILL.md](skills/playwright-migration/SKILL.md)
+  - [skills/policy-guide/SKILL.md](skills/policy-guide/SKILL.md)
+  - [skills/add-redirect/SKILL.md](skills/add-redirect/SKILL.md)
 
 ### Architecture and Implementation Docs
 
@@ -72,6 +75,7 @@ For script implementation details (like i18n validation), see [scripts/README.md
 - [Technology choices](docs/TECHNOLOGY.md) — Why this stack
 - [Contributing](docs/CONTRIBUTING.md) — How to contribute
 - [Internationalization](docs/I18N.md) — i18n guide
+- [Redirects](docs/REDIRECTS.md) — Where URL redirects live and how to add them safely
 
 ## Requirements
 

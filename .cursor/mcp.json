@@ -4,27 +4,13 @@
       "command": "npx",
       "args": ["-y", "@chakra-ui/react-mcp"]
     },
-    "cloudflare": {
-			"command": "npx",
-			"args": ["mcp-remote", "https://docs.mcp.cloudflare.com/mcp"]
-		},
-    "youtube-transcript": {
-      "command": "npx",
-      "args": ["-y", "@kimtaeyoon83/mcp-server-youtube-transcript"]
-    },
     "mcp-echarts": {
       "command": "npx",
-      "args": [
-        "-y",
-        "mcp-echarts"
-      ]
+      "args": ["-y", "mcp-echarts"]
     },
     "mcp-mermaid": {
       "command": "npx",
-      "args": [
-        "-y",
-        "mcp-mermaid"
-      ]
+      "args": ["-y", "mcp-mermaid"]
     }
   }
 }

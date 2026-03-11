@@ -11,37 +11,23 @@ export const Footer = () => {
   const hoverColor = isDark ? 'gray.200' : 'gray.800';
 
   return (
-    <Box as="footer" bg={isDark ? 'gray.800' : 'gray.100'} py={4} px={8} mt="auto">
+    <Box as="footer" bg={isDark ? 'gray.800' : 'gray.100'} py={4} px={8}>
       <Flex justify="center" align="center" gap={4} direction={{ base: 'column', sm: 'row' }}>
         <Text fontSize="sm" color={textColor}>
           <FormattedMessage id="footer.copyright" values={{ year: new Date().getFullYear() }} />
         </Text>
-        <Flex gap={4}>
-          <RouterLink to={ROUTES.PRIVACY}>
-            <Text
-              as="span"
-              fontSize="sm"
-              color={textColor}
-              _hover={{ color: hoverColor }}
-              cursor="pointer"
-              textDecoration="underline"
-            >
-              <FormattedMessage id="footer.privacy" />
-            </Text>
-          </RouterLink>
-          <RouterLink to={ROUTES.TERMS}>
-            <Text
-              as="span"
-              fontSize="sm"
-              color={textColor}
-              _hover={{ color: hoverColor }}
-              cursor="pointer"
-              textDecoration="underline"
-            >
-              <FormattedMessage id="footer.terms" />
-            </Text>
-          </RouterLink>
-        </Flex>
+        <RouterLink to={ROUTES.POLICIES}>
+          <Text
+            as="span"
+            fontSize="sm"
+            color={textColor}
+            _hover={{ color: hoverColor }}
+            cursor="pointer"
+            textDecoration="underline"
+          >
+            <FormattedMessage id="footer.policies" />
+          </Text>
+        </RouterLink>
       </Flex>
     </Box>
   );
