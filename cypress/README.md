@@ -28,3 +28,4 @@ Tests live in `cypress/e2e/`:
 - **layout/** — Header/footer positioning and structure
 - **seo/** — Page metadata
 - **i18n/** — Language switcher
+- **routing/** — Legacy URL redirects
