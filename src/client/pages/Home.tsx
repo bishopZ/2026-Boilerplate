@@ -4,9 +4,9 @@ import { FormattedMessage, useIntl } from 'react-intl';
 import { PageLayout } from '../ui/layout/page-layout';
 import { AnimatedButton } from '../ui/components/animated-button';
 import { FeatureCard } from '../ui/components/feature-card';
+import { Link } from '../ui/components/link';
 import { PageMeta } from '../ui/components/page-meta';
 import { ROUTES } from '../utilities/constants';
-import { Link as RouterLink } from 'react-router';
 
 const Home = () => {
   const intl = useIntl();
@@ -32,14 +32,14 @@ const Home = () => {
           </Text>
           <Flex gap={4} pt={2}>
             <AnimatedButton asChild colorScheme="blue" size="lg">
-              <RouterLink to={ROUTES.LOGIN}>
+              <Link to={ROUTES.LOGIN}>
                 <FormattedMessage id="home.getStarted" />
-              </RouterLink>
+              </Link>
             </AnimatedButton>
             <AnimatedButton asChild variant="outline" size="lg">
-              <RouterLink to={ROUTES.ABOUT}>
+              <Link to={ROUTES.ABOUT}>
                 <FormattedMessage id="home.learnMore" />
-              </RouterLink>
+              </Link>
             </AnimatedButton>
           </Flex>
         </VStack>

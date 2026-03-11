@@ -20,3 +20,13 @@ Before submitting your pull request, make sure to:
   - E2E for cross-page, user-critical journeys
 - Keep the baseline Cypress suite small and representative so it stays easy to migrate to other frameworks.
 - Prefer updating existing E2E contract specs (`auth`, `accessibility`, `i18n`, `seo`) before adding many new E2E files.
+
+## React 19 boundary guidance (loading + failures)
+
+Place boundaries by latency domain (`Suspense`) and failure domain (`ErrorBoundary`):
+
+- Route-level `Suspense` for lazy page routes.
+- Local `Suspense` only around slower, independently-loading sections.
+- App-level `ErrorBoundary` for catastrophic failures.
+- Feature-level `ErrorBoundary` where one section can fail without taking down the route.
+- Use React 19 `Activity` around loading fallback UI to signal active pending work.

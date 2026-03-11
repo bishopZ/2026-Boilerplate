@@ -16,5 +16,6 @@
   "nav.logout": "تسجيل الخروج",
   "nav.product": "المنتج",
   "footer.copyright": "© {year} [أدخل اسم المشروع هنا]. جميع الحقوق محفوظة.",
-  "footer.policies": "دليل السياسات"
+  "footer.policies": "دليل السياسات",
+  "footer.cookiesEssential": "يستخدم هذا الموقع ملفات تعريف الارتباط الأساسية فقط."
 }
