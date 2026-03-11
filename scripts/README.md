@@ -21,3 +21,20 @@ Part of the [i18n system](../docs/I18N.md). Validates that i18n locale files sta
 On success, prints a confirmation. On failure, prints which keys are missing or extra and exits with code 1.
 
 **When to run:** Only if using option 3 (full translation). Before committing when you add or change UI strings.
+
+## validate-skills.mjs
+
+Invoked via `npm run check:skills`.
+
+Validates required skill quality and writes a report to:
+
+- `docs/SKILLS_VALIDATION.md`
+
+Checks include:
+
+1. Required skill files exist.
+2. Frontmatter has `name` and `description`.
+3. Core headings exist (`Goal`, `Files To Update`, `Validation Checklist`, `Done Criteria`).
+4. Referenced file paths are valid (with support for planned-to-create files).
+
+**When to run:** Before committing skill updates and during periodic skill audits.

@@ -11,6 +11,7 @@ Before submitting your pull request, make sure to:
 
 - Run `npm run test` to ensure code quality, verify TypeScript types, and run the E2E tests.
 - Run `npm run check:i18n` when your change adds/updates message ids and you are keeping locale files fully in sync.
+- Run `npm run check:skills` when changing skill files to regenerate and verify `docs/SKILLS_VALIDATION.md`.
 - Test your changes locally with `npm run dev`
 
 ## Testing guidance for contributors and agents

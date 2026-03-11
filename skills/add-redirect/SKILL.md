@@ -7,6 +7,10 @@ description: Add or update URL redirects in the server redirect registry, with s
 
 Use this skill when an old route should forward users to a new route after page renames, URL cleanup, or IA changes.
 
+## Goal
+
+Add or update a redirect rule with correct status semantics, aligned tests, and changelog documentation.
+
 ## Required Inputs
 
 - `from_path`: Legacy URL path (example: `/old-page`)

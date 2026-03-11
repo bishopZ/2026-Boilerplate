@@ -11,6 +11,7 @@
 - `skills/rebrand/SKILL.md` — Rebrand the boilerplate into a new project using a new site title and description.
 - `skills/hidden-admin-auth/SKILL.md` — Configure the private section as a hidden admin utility and rotate hardcoded default credentials safely.
 - `skills/migrate-design-system-to-shadcn/SKILL.md` — Migrate UI from Chakra to shadcn/ui and fully remove Chakra dependencies.
+- `skills/react-hooks/SKILL.md` — Add/refactor client logic using the local-state/custom-hook/Redux decision model.
 - `skills/add-form-manager/SKILL.md` — Introduce React Hook Form + Zod with typed, reusable form validation patterns.
 - `skills/playwright-migration/SKILL.md` — Migrate the E2E stack from Cypress to Playwright in a controlled, test-first rollout.
 - `skills/policy-guide/SKILL.md` — Maintain the combined policy-writing guide page and keep routes/tests/docs aligned.
@@ -30,6 +31,7 @@
 - `npm run dev` — development server (Express + Vite HMR)
 - `npm run lint` / `npm run lint:fix` — ESLint
 - `npm run type-check` — TypeScript type verification
+- `npm run check:skills` — validate required skills and regenerate `docs/SKILLS_VALIDATION.md`
 - `npm run build` — production build
 - `npm run test` — Full suite: lint + type-check + E2E
 - `npm run test:e2e` — Cypress E2E tests (dev server must be running)

@@ -59,6 +59,7 @@ For script implementation details (like i18n validation), see [scripts/README.md
 - Skills:
   - [skills/rebrand/SKILL.md](skills/rebrand/SKILL.md)
   - [skills/hidden-admin-auth/SKILL.md](skills/hidden-admin-auth/SKILL.md)
+  - [skills/react-hooks/SKILL.md](skills/react-hooks/SKILL.md)
   - [skills/playwright-migration/SKILL.md](skills/playwright-migration/SKILL.md)
   - [skills/policy-guide/SKILL.md](skills/policy-guide/SKILL.md)
   - [skills/add-redirect/SKILL.md](skills/add-redirect/SKILL.md)
