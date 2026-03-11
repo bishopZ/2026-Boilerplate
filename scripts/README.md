@@ -21,3 +21,19 @@ Part of the [i18n system](../docs/I18N.md). Validates that i18n locale files sta
 On success, prints a confirmation. On failure, prints which keys are missing or extra and exits with code 1.
 
 **When to run:** Only if using option 3 (full translation). Before committing when you add or change UI strings.
+
+## generate-skills-index.mjs
+
+Invoked via `npm run gen:skills-index`.
+
+Synchronizes skill references in:
+
+- `AGENTS.md`
+- `README.md`
+
+It reads all `skills/*/SKILL.md` files, extracts each frontmatter `description`, and rewrites the sections between:
+
+- `<!-- SKILLS_INDEX_START -->`
+- `<!-- SKILLS_INDEX_END -->`
+
+**When to run:** After adding/removing/updating skills or editing a skill description.

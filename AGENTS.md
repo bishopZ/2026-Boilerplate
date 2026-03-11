@@ -8,15 +8,17 @@
 
 - Skills live in `skills/<skill-name>/SKILL.md`.
 - If a request matches a skill, read and follow that skill before implementing changes.
-- `skills/rebrand/SKILL.md` — Rebrand the boilerplate into a new project using a new site title and description.
-- `skills/hidden-admin-auth/SKILL.md` — Configure the private section as a hidden admin utility and rotate hardcoded default credentials safely.
-- `skills/migrate-design-system-to-shadcn/SKILL.md` — Migrate UI from Chakra to shadcn/ui and fully remove Chakra dependencies.
-- `skills/add-form-manager/SKILL.md` — Introduce React Hook Form + Zod with typed, reusable form validation patterns.
-- `skills/playwright-migration/SKILL.md` — Migrate the E2E stack from Cypress to Playwright in a controlled, test-first rollout.
-- `skills/policy-guide/SKILL.md` — Maintain the combined policy-writing guide page and keep routes/tests/docs aligned.
-- `skills/add-redirect/SKILL.md` — Add or update URL redirects with status-code guidance and E2E coverage.
-- `skills/migrate-api-to-tanstack-query/SKILL.md` — Migrate REST client usage to TanStack Query with caching and staged rollout.
-- `skills/migrate-api-to-graphql-client/SKILL.md` — Migrate REST client usage to a GraphQL client path with incremental parity checks.
+<!-- SKILLS_INDEX_START -->
+- `skills/add-form-manager/SKILL.md` — Introduce React Hook Form + Zod for form state, validation, and typed submission flows.
+- `skills/add-redirect/SKILL.md` — Add or update URL redirects in the server redirect registry, with status-code rationale and E2E coverage.
+- `skills/hidden-admin-auth/SKILL.md` — Configure the private route as a hidden admin utility. Moves credentials to env vars; operator updates .env using .envTemplate instructions. No credentials passed to the skill.
+- `skills/migrate-api-to-graphql-client/SKILL.md` — Migrate the REST client path to a GraphQL client architecture with typed operations and incremental rollout.
+- `skills/migrate-api-to-tanstack-query/SKILL.md` — Migrate the current REST API usage to TanStack Query with server-state caching, invalidation, and progressive rollout.
+- `skills/migrate-design-system-to-shadcn/SKILL.md` — Migrate the client UI layer from Chakra UI to shadcn/ui and fully remove Chakra dependencies.
+- `skills/playwright-migration/SKILL.md` — Migrate this repository from Cypress E2E testing to Playwright with minimal disruption and clear validation evidence.
+- `skills/policy-guide/SKILL.md` — Update the combined policy-writing guide page and keep linked routes, metadata, tests, and docs in sync.
+- `skills/rebrand/SKILL.md` — Use this immediately after cloning the boilerplate to convert it into a new project identity. Trigger whenever a developer provides a new site title/description and wants boilerplate branding removed from centralized metadata (`PageMeta`), docs, and shared public/private header branding.
+<!-- SKILLS_INDEX_END -->
 
 ## Development Setup
 
@@ -30,6 +32,7 @@
 - `npm run dev` — development server (Express + Vite HMR)
 - `npm run lint` / `npm run lint:fix` — ESLint
 - `npm run type-check` — TypeScript type verification
+- `npm run gen:skills-index` — regenerate synchronized skill references in README/AGENTS
 - `npm run build` — production build
 - `npm run test` — Full suite: lint + type-check + E2E
 - `npm run test:e2e` — Cypress E2E tests (dev server must be running)
