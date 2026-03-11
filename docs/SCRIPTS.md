@@ -102,6 +102,13 @@ Validates i18n locale files (optional; only when fully translating all locales).
 
 **When to use:** Before committing when changing UI strings, if using option 3. See [scripts/README.md](../scripts/README.md) and [docs/I18N.md](I18N.md) for details.
 
+### `npm run gen:skills-index`
+Regenerates the skills index blocks in `AGENTS.md` and `README.md`.
+- Reads each `skills/*/SKILL.md` frontmatter description
+- Rebuilds the marked skills sections in both files
+
+**When to use:** After adding/removing/updating skills so references stay synchronized.
+
 ## Common Workflows
 
 ### Starting a new feature

@@ -57,11 +57,17 @@ For script implementation details (like i18n validation), see [scripts/README.md
 - [AGENTS.md](AGENTS.md) — Project operating instructions and coding expectations
 - [.cursor/rules/](.cursor/rules/) — Enforced rule files for React, Redux, and server patterns
 - Skills:
-  - [skills/rebrand/SKILL.md](skills/rebrand/SKILL.md)
-  - [skills/hidden-admin-auth/SKILL.md](skills/hidden-admin-auth/SKILL.md)
-  - [skills/playwright-migration/SKILL.md](skills/playwright-migration/SKILL.md)
-  - [skills/policy-guide/SKILL.md](skills/policy-guide/SKILL.md)
-  - [skills/add-redirect/SKILL.md](skills/add-redirect/SKILL.md)
+<!-- SKILLS_INDEX_START -->
+  - [skills/add-form-manager/SKILL.md](skills/add-form-manager/SKILL.md) — Introduce React Hook Form + Zod for form state, validation, and typed submission flows.
+  - [skills/add-redirect/SKILL.md](skills/add-redirect/SKILL.md) — Add or update URL redirects in the server redirect registry, with status-code rationale and E2E coverage.
+  - [skills/hidden-admin-auth/SKILL.md](skills/hidden-admin-auth/SKILL.md) — Configure the private route as a hidden admin utility. Moves credentials to env vars; operator updates .env using .envTemplate instructions. No credentials passed to the skill.
+  - [skills/migrate-api-to-graphql-client/SKILL.md](skills/migrate-api-to-graphql-client/SKILL.md) — Migrate the REST client path to a GraphQL client architecture with typed operations and incremental rollout.
+  - [skills/migrate-api-to-tanstack-query/SKILL.md](skills/migrate-api-to-tanstack-query/SKILL.md) — Migrate the current REST API usage to TanStack Query with server-state caching, invalidation, and progressive rollout.
+  - [skills/migrate-design-system-to-shadcn/SKILL.md](skills/migrate-design-system-to-shadcn/SKILL.md) — Migrate the client UI layer from Chakra UI to shadcn/ui and fully remove Chakra dependencies.
+  - [skills/playwright-migration/SKILL.md](skills/playwright-migration/SKILL.md) — Migrate this repository from Cypress E2E testing to Playwright with minimal disruption and clear validation evidence.
+  - [skills/policy-guide/SKILL.md](skills/policy-guide/SKILL.md) — Update the combined policy-writing guide page and keep linked routes, metadata, tests, and docs in sync.
+  - [skills/rebrand/SKILL.md](skills/rebrand/SKILL.md) — Use this immediately after cloning the boilerplate to convert it into a new project identity. Trigger whenever a developer provides a new site title/description and wants boilerplate branding removed from centralized metadata (`PageMeta`), docs, and shared public/private header branding.
+<!-- SKILLS_INDEX_END -->
 
 ### Architecture and Implementation Docs
 
