@@ -13,6 +13,7 @@ Browser
   │     ├── Pages (lazy-loaded via React Router)
   │     ├── Redux Store (preferences, app slices)
   │     │     └── Persistence Middleware → Encrypted localStorage
+  │     ├── Feature Flags (env defaults + runtime overrides via hook)
   │     └── Chakra UI Components
   │
   └── HTTP requests
@@ -65,6 +66,12 @@ src/
 2. If authenticated, the key is returned and used to decrypt `localStorage`
 3. On every Redux action, the persistence middleware encrypts and saves specified slices
 4. The persistence middleware in `store.ts` is reusable — add persistence registrations for slices, don't create new middleware
+
+### Feature Flag Flow
+
+1. Env defaults are parsed from `VITE_FEATURE_FLAGS`
+2. Runtime overrides are stored in `app.featureFlagOverrides`
+3. `useFeatureFlag(flagName)` resolves runtime override first, env default second
 
 ### UI failure/latency boundaries
 
