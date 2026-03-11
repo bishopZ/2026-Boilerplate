@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - Added `skills/playwright-migration/SKILL.md` to standardize migration from Cypress to Playwright with clear file updates, validation steps, and done criteria.
 - Added `cypress/e2e/layout/footer-position.cy.ts` to verify the footer remains pinned to the viewport bottom on short pages.
+- Added WebMCP `increment-counter` tool registration on the private Product page, plus Cypress coverage in `cypress/e2e/auth/webmcp-increment.cy.ts`.
 - Added Simplified Chinese (`zh`) locale support across the client i18n provider, language switcher, locale dictionaries, and i18n key validation.
 - Added a combined policy-writing guide page at `/policies` plus a maintenance SOP in `skills/policy-guide/SKILL.md`.
 - Added a config-driven redirect system in `src/server/config/redirects.ts` with middleware integration and E2E coverage (`cypress/e2e/routing/redirects.cy.ts`).
