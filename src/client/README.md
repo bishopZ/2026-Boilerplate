@@ -10,11 +10,17 @@ Cursor rule reference: [`.cursor/rules/react-components.mdc`](../../../.cursor/r
 
 ## Routing
 
-**App.tsx** — Defines routes via React Router. Most page components are lazy-loaded (`React.lazy`) for smaller initial bundle. Includes `ScrollToTop` on route change and a `Suspense` boundary around routes. Dispatches `initPreferences` on mount to load persisted state from encrypted localStorage.
+**App.tsx** — Defines routes via React Router. Most page components are lazy-loaded (`React.lazy`) for smaller initial bundle. Includes `ScrollToTop`, route-level `Suspense` + React 19 `Activity` fallback handling, and preferences initialization on mount.
 
 ## Layout
 
-**ui/layout/** — `PageLayout` wraps each page with `SkipLink`, `Header` (public or private variant), main content area, and `Footer`. `PageTransition` provides route transition animations. Pages use `PageLayout` and render their content as children.
+**ui/layout/** — `PageLayout` wraps each page with `SkipLink`, `Header` (public or private variant), main content area, and `Footer`. `PageTransition` provides route transition animations.
+
+## Error/Latency Boundaries
+
+- App-level `ErrorBoundary` lives in `main.tsx` (catastrophic failures).
+- Route-level `Suspense` lives in `App.tsx` (lazy route loading).
+- Feature-level boundaries should be colocated with independently-failing or independently-loading sections.
 
 ## State
 

@@ -1,12 +1,15 @@
-import { useOptimistic } from 'react';
+import { Activity, Suspense, lazy, useOptimistic } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { type RootState, type AppDispatch } from '../redux/store';
 import { increment } from '../redux/preferences';
 import { Box, Heading, Text, VStack } from '@chakra-ui/react';
 import { PageLayout } from '../ui/layout/page-layout';
-import { AnimatedButton } from '../ui/components/animated-button';
+import { FeatureErrorBoundary } from '../ui/components/feature-error-boundary';
+import { LoadingSpinner } from '../ui/components/loading-spinner';
 import { PageMeta } from '../ui/components/page-meta';
 import { useAnnounce } from '../hooks/use-announce';
+
+const ProductCounterSection = lazy(() => import('../ui/components/product-counter-section'));
 
 const Product = () => {
   const { score } = useSelector((state: RootState) => state.preferences);
@@ -37,13 +40,16 @@ const Product = () => {
         </Box>
 
         <Box>
-          <AnimatedButton
-            colorScheme="blue"
-            size="lg"
-            onClick={handleIncrement}
-          >
-            Increment Counter
-          </AnimatedButton>
+          <FeatureErrorBoundary title="Counter Actions">
+            <Suspense fallback={(
+              <Activity mode="visible">
+                <LoadingSpinner />
+              </Activity>
+            )}
+            >
+              <ProductCounterSection onIncrement={handleIncrement} />
+            </Suspense>
+          </FeatureErrorBoundary>
         </Box>
       </VStack>
     </PageLayout>
