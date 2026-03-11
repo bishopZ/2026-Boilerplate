@@ -7,6 +7,7 @@ const LOCALE_LABELS: Record<SupportedLocale, string> = {
   en: 'EN',
   ar: 'عربي',
   fr: 'FR',
+  zh: '中文',
 };
 
 export const LanguageSwitcher = () => {

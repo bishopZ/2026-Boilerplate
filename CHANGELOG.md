@@ -8,15 +8,32 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
-+ Added a lightweight Vitest unit test layer (`npm run test:unit`, `npm run test:unit:watch`) with starter auth service tests.
+- Added `skills/playwright-migration/SKILL.md` to standardize migration from Cypress to Playwright with clear file updates, validation steps, and done criteria.
+- Added `cypress/e2e/layout/footer-position.cy.ts` to verify the footer remains pinned to the viewport bottom on short pages.
+- Added Simplified Chinese (`zh`) locale support across the client i18n provider, language switcher, locale dictionaries, and i18n key validation.
+- Added a combined policy-writing guide page at `/policies` plus a maintenance SOP in `skills/policy-guide/SKILL.md`.
+- Added a config-driven redirect system in `src/server/config/redirects.ts` with middleware integration and E2E coverage (`cypress/e2e/routing/redirects.cy.ts`).
+- Added redirect documentation in `docs/REDIRECTS.md` and a reusable agent SOP at `skills/add-redirect/SKILL.md`.
+- Updated `PageLayout` to use a full-height flex column so the footer consistently sits at the bottom of the viewport.
+- Replaced separate Terms/Privacy footer links with a single policy guide link and routed legacy `/privacy` and `/terms` paths to `/policies`.
+- Refined testing guidance across `AGENTS.md`, `docs/CONTRIBUTING.md`, and `cypress/README.md` to keep E2E contract coverage lean and migration-friendly while still requiring feature-level automated tests at the right layer.
+- Simplified `cypress/e2e/seo/page-meta.cy.ts` to assert core metadata contracts without over-coupling to every page-specific metadata field.
+- Added a lightweight Vitest unit test layer (`npm run test:unit`, `npm run test:unit:watch`) with starter auth service tests.
+
 ### Changed
-+ Updated `npm run test` to run lint + type-check + unit tests + E2E tests.
-+ Added an explicit E2E budget guardrail in contributor/agent docs (4-spec contract baseline, soft cap of 6 E2E specs) to balance quality with test-framework portability.
-+ Updated security documentation wording to reflect currently implemented controls (CSRF middleware, JWT cookie handling, and startup secret validation) in present tense.
+- Updated `npm run test` to run lint + type-check + unit tests + E2E tests.
+- Added an explicit E2E budget guardrail in contributor/agent docs (4-spec contract baseline, soft cap of 6 E2E specs) to balance quality with test-framework portability.
+- Updated security documentation wording to reflect currently implemented controls (CSRF middleware, JWT cookie handling, and startup secret validation) in present tense.
+- Updated `PageLayout` to use a full-height flex column so the footer consistently sits at the bottom of the viewport.
+- Replaced separate Terms/Privacy footer links with a single policy guide link and routed legacy `/privacy` and `/terms` paths to `/policies`.
+- Refined testing guidance across `AGENTS.md`, `docs/CONTRIBUTING.md`, and `cypress/README.md` to keep E2E contract coverage lean and migration-friendly while still requiring feature-level automated tests at the right layer.
+- Simplified `cypress/e2e/seo/page-meta.cy.ts` to assert core metadata contracts without over-coupling to every page-specific metadata field.
+
 ### Removed
 ### Fixed
 + Split i18n configuration into `src/client/utilities/i18n-config.ts` so `i18n.tsx` only exports the provider component and no longer triggers Fast Refresh lint warnings.
 ### Security
+- Added IP-based rate limiting for `POST /login/password` with configurable env overrides (`LOGIN_RATE_LIMIT_MAX_ATTEMPTS`, `LOGIN_RATE_LIMIT_WINDOW_MS`).
 
 
 ## [1.2.0] - 2026-03-07

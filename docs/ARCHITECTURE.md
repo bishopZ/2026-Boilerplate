@@ -21,7 +21,8 @@ Browser
 Express Server (vite-express)
   ├── Auth Routes (/login/password, /logout) → Passport.js LocalStrategy
   ├── API Routes (/api/key) → Returns encryption key
-  ├── Page Routes (/, /login, /product) → Served by Vite
+  ├── Redirect Rules (legacy paths) → Config-driven HTTP redirects
+  ├── Page Routes (/, /login, /product, etc.) → Served by Vite
   └── Static Routes (/sitemap.xml)
 ```
 
