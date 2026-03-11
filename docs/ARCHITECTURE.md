@@ -21,6 +21,7 @@ Browser
 Express Server (vite-express)
   ├── Auth Routes (/api/session + legacy /login/password, /logout) → Passport.js LocalStrategy
   ├── API Routes (/api/key) → Returns encryption key
+  ├── OpenAPI Contract (openapi/openapi.yaml) → Generates shared TS types
   ├── Redirect Rules (legacy paths) → Config-driven HTTP redirects
   ├── Page Routes (/, /login, /product, etc.) → Served by Vite
   └── Static Routes (/sitemap.xml)
@@ -30,6 +31,10 @@ Express Server (vite-express)
 
 ```
 src/
+├── shared/                   # Generated OpenAPI types + shared API type aliases
+│   ├── openapi.generated.ts  # Auto-generated from openapi/openapi.yaml
+│   └── api-types.ts          # Shared client/server API type aliases
+│
 ├── client/                   # Frontend (React SPA)
 │   ├── main.tsx              # Entry: providers (Chakra, Redux, I18n, ErrorBoundary)
 │   ├── App.tsx               # Route definitions, preferences initialization
@@ -53,11 +58,11 @@ src/
 
 ### Authentication Flow
 
-1. User submits credentials to `POST /login/password`
+1. API clients submit credentials to `POST /api/session` (preferred REST path); browser forms can still use `POST /login/password`
 2. Passport.js `LocalStrategy` verifies against the hardcoded user
-3. On success: JWT cookie (`token`) is set, redirect to `/product`
-4. On failure: redirect back to `/login`
-5. Protected routes use `ensureAuthenticated` middleware
+3. On success: JWT cookie (`token`) is set (`201` for REST endpoint, redirect for legacy form endpoint)
+4. On failure: REST endpoint returns `401`; legacy form endpoint redirects to `/login`
+5. Protected routes use `ensureAuthenticated` middleware (`401` for `/api/*`, redirect for page routes)
 
 ### State Persistence Flow
 
