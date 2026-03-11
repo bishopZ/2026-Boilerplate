@@ -98,7 +98,7 @@ const CODE_GUIDELINES = {
 }
 
 export default defineConfig(
-  { ignores: ['dist', 'cypress', 'cypress.config.ts', 'node_modules'] },
+  { ignores: ['dist', 'cypress', 'cypress.config.ts', 'node_modules', 'src/shared/openapi.generated.ts'] },
   {
     extends: [
       js.configs.recommended,

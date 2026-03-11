@@ -1,7 +1,9 @@
 import type { RequestHandler } from 'express';
+import type { EncryptionKeyResponse } from '@/shared/api-types';
 
 // API endpoint to get the encryption key
 export const getKey: RequestHandler = (_, res) => {
-  res.send({ key: process.env.LOCAL_STORAGE_KEY });
+  const payload: EncryptionKeyResponse = { key: process.env.LOCAL_STORAGE_KEY ?? null };
+  res.send(payload);
 };
 

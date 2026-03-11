@@ -15,6 +15,7 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
+    "gen:api-types": "openapi-typescript ./docs/openapi.yaml -o ./src/shared/openapi.generated.ts",
     "check:i18n": "node ./scripts/check-i18n-keys.mjs",
     "preview": "vite preview",
     "start": "NODE_ENV=production tsx src/server/main.ts",
@@ -69,6 +70,7 @@
     "eslint-plugin-react-x": "2.13.0",
     "globals": "17.3.0",
     "nodemon": "3.1.14",
+    "openapi-typescript": "^7.13.0",
     "typescript-eslint": "8.56.1",
     "vite": "7.3.1",
     "vite-tsconfig-paths": "6.1.1"

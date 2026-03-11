@@ -102,6 +102,14 @@ Validates i18n locale files (optional; only when fully translating all locales).
 
 **When to use:** Before committing when changing UI strings, if using option 3. See [scripts/README.md](../scripts/README.md) and [docs/I18N.md](I18N.md) for details.
 
+### `npm run gen:api-types`
+Generates TypeScript API types from the OpenAPI contract.
+- Source contract: `docs/openapi.yaml`
+- Output file: `src/shared/openapi.generated.ts`
+- Used by shared aliases in `src/shared/api-types.ts`
+
+**When to use:** After changing API routes/contracts so client and server stay aligned.
+
 ## Common Workflows
 
 ### Starting a new feature
