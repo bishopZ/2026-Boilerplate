@@ -27,3 +27,4 @@ Tests live in `cypress/e2e/`:
 - **accessibility/** — Skip link, etc.
 - **seo/** — Page metadata
 - **i18n/** — Language switcher
+- **routing/** — Legacy URL redirects
