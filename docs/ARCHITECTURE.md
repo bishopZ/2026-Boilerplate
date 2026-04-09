@@ -2,7 +2,7 @@
 
 ## Overview
 
-2026 Boilerplate is a full-stack TypeScript web application with a React frontend and Express backend served together via `vite-express`. There is no database — authentication uses a hardcoded test user and state persists to encrypted `localStorage`.
+2026 Boilerplate is a full-stack TypeScript web application with a React frontend and Express backend served together via `vite-express`. There is no database by default — authentication uses a local starter account (`AUTH_PROFILE=local`) and state persists to encrypted `localStorage`.
 
 ## System Diagram
 
@@ -54,11 +54,19 @@ src/
 
 ### Authentication Flow
 
-1. User submits credentials to `POST /login/password`
-2. Passport.js `LocalStrategy` verifies against the hardcoded user
-3. On success: JWT cookie (`token`) is set, redirect to `/product`
-4. On failure: redirect back to `/login`
+1. API clients submit credentials to `POST /api/session` (preferred REST path); browser forms can still use `POST /login/password`
+2. Passport.js `LocalStrategy` verifies credentials using the selected `AUTH_PROFILE`
+3. On success: JWT cookie (`token`) is set (`201` for REST, redirect for legacy browser form flow)
+4. On failure: REST endpoint returns `401`; legacy form endpoint redirects to `/login`
 5. Protected routes use `ensureAuthenticated` middleware
+
+### Auth backing profiles
+
+`AUTH_PROFILE` supports starter modes for:
+
+- `local` (default)
+- `supabase` (starter integration path)
+- `postgres` (starter integration path)
 
 ### State Persistence Flow
 

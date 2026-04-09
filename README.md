@@ -47,7 +47,7 @@ Use this workflow when you want to turn this repository into your own product in
 | Preview production build | `npm run preview` |
 | Run production server | `npm start` |
 
-For the full command reference and workflows, see [docs/SCRIPTS.md](docs/SCRIPTS.md).  
+For the full command reference and workflows, see [docs/SCRIPTS.md](docs/SCRIPTS.md).
 For script implementation details (like i18n validation), see [scripts/README.md](scripts/README.md).
 
 ## Deep Technical Context (AI Agents + Advanced Developers)
@@ -68,6 +68,8 @@ For script implementation details (like i18n validation), see [scripts/README.md
 - [Architecture](docs/ARCHITECTURE.md) — System diagram, directory structure, key patterns
 - [Authentication](docs/AUTHENTICATION.md) — JWT flow, hardcoded user, and migration paths
 - [Feature flags](docs/FEATURE_FLAGS.md) — Env + runtime starter pattern for safe rollout
+- [Auth profiles](docs/AUTH_PROFILES.md) — Starter `local` / `supabase` / `postgres` backing modes
+- [API](docs/API.md) — API contracts and OpenAPI type-generation workflow
 - [Client](src/client/README.md) — How the frontend is organized
 - [Hooks](src/client/hooks/README.md) — useState vs custom hook vs Redux
 - [Redux](src/client/redux/README.md) — Persistence, slices, pitfalls

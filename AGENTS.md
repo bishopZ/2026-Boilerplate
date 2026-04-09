@@ -53,6 +53,7 @@
   - `docs/ARCHITECTURE.md`
   - `docs/AUTHENTICATION.md`
   - `docs/FEATURE_FLAGS.md`
+  - `docs/AUTH_PROFILES.md`
   - `docs/API.md`
   - `docs/CONTRIBUTING.md`
   - `docs/I18N.md`
