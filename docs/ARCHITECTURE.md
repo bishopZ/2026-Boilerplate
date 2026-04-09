@@ -2,7 +2,7 @@
 
 ## Overview
 
-2026 Boilerplate is a full-stack TypeScript web application with a React frontend and Express backend served together via `vite-express`. There is no database — authentication uses a hardcoded test user and state persists to encrypted `localStorage`.
+2026 Boilerplate is a full-stack TypeScript web application with a React frontend and Express backend served together via `vite-express`. There is no database by default — authentication uses a local starter account (`AUTH_PROFILE=local`) and state persists to encrypted `localStorage`.
 
 ## System Diagram
 
@@ -13,6 +13,7 @@ Browser
   │     ├── Pages (lazy-loaded via React Router)
   │     ├── Redux Store (preferences, app slices)
   │     │     └── Persistence Middleware → Encrypted localStorage
+  │     ├── Feature Flags (env defaults + runtime overrides via hook)
   │     └── Chakra UI Components
   │
   └── HTTP requests
@@ -31,9 +32,10 @@ Express Server (vite-express)
 
 ```
 src/
-├── shared/                   # Generated OpenAPI types + shared API type aliases
-│   ├── openapi.generated.ts  # Auto-generated from docs/openapi.yaml
-│   └── api-types.ts          # Shared client/server API type aliases
+├── generated/                # Machine-generated artifacts (do not hand-edit)
+│   └── api/                  # OpenAPI → TypeScript (`npm run gen:api-types`; see skills/api-first/SKILL.md)
+│       ├── openapi.generated.ts
+│       └── api-types.ts      # Shared client/server API type aliases
 │
 ├── client/                   # Frontend (React SPA)
 │   ├── main.tsx              # Entry: providers (Chakra, Redux, I18n, ErrorBoundary)
@@ -59,10 +61,18 @@ src/
 ### Authentication Flow
 
 1. API clients submit credentials to `POST /api/session` (preferred REST path); browser forms can still use `POST /login/password`
-2. Passport.js `LocalStrategy` verifies against the hardcoded user
-3. On success: JWT cookie (`token`) is set (`201` for REST endpoint, redirect for legacy form endpoint)
+2. Passport.js `LocalStrategy` verifies credentials using the selected `AUTH_PROFILE`
+3. On success: JWT cookie (`token`) is set (`201` for REST, redirect for legacy browser form flow)
 4. On failure: REST endpoint returns `401`; legacy form endpoint redirects to `/login`
 5. Protected routes use `ensureAuthenticated` middleware (`401` for `/api/*`, redirect for page routes)
+
+### Auth backing profiles
+
+`AUTH_PROFILE` supports starter modes for:
+
+- `local` (default)
+- `supabase` (starter integration path)
+- `postgres` (starter integration path)
 
 ### State Persistence Flow
 
@@ -70,6 +80,12 @@ src/
 2. If authenticated, the key is returned and used to decrypt `localStorage`
 3. On every Redux action, the persistence middleware encrypts and saves specified slices
 4. The persistence middleware in `store.ts` is reusable — add persistence registrations for slices, don't create new middleware
+
+### Feature Flag Flow
+
+1. Env defaults are parsed from `VITE_FEATURE_FLAGS`
+2. Runtime overrides are stored in `app.featureFlagOverrides`
+3. `useFeatureFlag(flagName)` resolves runtime override first, env default second
 
 ### UI failure/latency boundaries
 

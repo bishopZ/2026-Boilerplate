@@ -13,7 +13,7 @@ This project uses a simple, production-leaning auth flow built around:
 ## Server-side flow
 
 1. `POST /api/session` (REST) and `POST /login/password` (legacy form flow) first pass through `loginRateLimiter` in `src/server/middleware/auth-rate-limit.ts`.
-2. `passport-local` then calls `verifyUser()` in `src/server/services/auth.ts` to check credentials against `fakeUser`.
+2. `passport-local` then calls `verifyUser()` in `src/server/services/auth.ts` using the selected `AUTH_PROFILE`.
 3. On success, `postLogin()` signs a JWT (`HS256`, `24h`) and sets it in an `httpOnly` cookie named `token`.
 4. Protected routes use `ensureAuthenticated()` in `src/server/middleware/auth.ts`.
 5. `ensureAuthenticated()` verifies the cookie token and attaches decoded user data to the request.
@@ -48,14 +48,24 @@ Optional env overrides in `.env`:
 - Secret source: `SESSION_SECRET`
 - Startup safety: server throws if `SESSION_SECRET` is weak or still template-like
 
-## Default hardcoded user
+## Local auth profile (default)
 
-The default user lives in `src/server/services/auth.ts`:
+The default local starter account lives in `src/server/services/auth.ts`:
 
 - username/email: `test`
 - password: `test` (stored as PBKDF2 hash + salt in code)
 
 This is intentionally simple for boilerplate onboarding.
+
+## Auth backing profile starter mode
+
+Set `AUTH_PROFILE` in `.env`:
+
+- `local` (default) — uses `localUser` in `src/server/services/auth.ts`
+- `supabase` — starter profile placeholder for Supabase auth wiring
+- `postgres` — starter profile placeholder for Postgres-backed user verification
+
+When `AUTH_PROFILE` is set to `supabase` or `postgres` without provider wiring, login is intentionally blocked and the server logs a starter-mode warning.
 
 ## Option A: Use private routes as a hidden admin utility
 
@@ -102,7 +112,7 @@ For production user management, move away from hardcoded credentials.
 1. Replace local login form POST flow with Supabase sign-in APIs.
 2. Verify Supabase JWTs in backend middleware (using Supabase/JWKS verification).
 3. Keep route guards, but read identity/claims from verified Supabase token.
-4. Remove `passport-local` and `fakeUser` once migration is complete.
+4. Remove `passport-local` and `localUser` once migration is complete.
 
 ### Path 2 — Postgres user table
 

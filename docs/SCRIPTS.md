@@ -105,8 +105,10 @@ Validates i18n locale files (optional; only when fully translating all locales).
 ### `npm run gen:api-types`
 Generates TypeScript API types from the OpenAPI contract.
 - Source contract: `docs/openapi.yaml`
-- Output file: `src/shared/openapi.generated.ts`
-- Used by shared aliases in `src/shared/api-types.ts`
+- Output file: `src/generated/api/openapi.generated.ts`
+- Shared aliases (hand-maintained): `src/generated/api/api-types.ts`
+
+See `skills/api-first/SKILL.md` for the API-first workflow and optional CI drift checks.
 
 **When to use:** After changing API routes/contracts so client and server stay aligned.
 

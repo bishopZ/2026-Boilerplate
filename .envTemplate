@@ -25,3 +25,19 @@ NODE_ENV=development
 # Login rate-limit window in milliseconds (15 min default)
 # LOGIN_RATE_LIMIT_WINDOW_MS=900000
 
+# Client feature flags (optional)
+# Comma-separated key=value list consumed by the runtime feature-flag hook.
+# Example: VITE_FEATURE_FLAGS="newNav=true,newCheckout=false"
+# VITE_FEATURE_FLAGS=
+
+# Auth backing profile (optional starter mode)
+# local     -> uses local starter account in code (default)
+# supabase  -> starter profile for Supabase integration
+# postgres  -> starter profile for Postgres user-table integration
+# AUTH_PROFILE=local
+
+# Optional placeholders for future real-auth profile wiring:
+# SUPABASE_URL=
+# SUPABASE_ANON_KEY=
+# DATABASE_URL=
+

@@ -47,7 +47,7 @@ Use this workflow when you want to turn this repository into your own product in
 | Preview production build | `npm run preview` |
 | Run production server | `npm start` |
 
-For the full command reference and workflows, see [docs/SCRIPTS.md](docs/SCRIPTS.md).  
+For the full command reference and workflows, see [docs/SCRIPTS.md](docs/SCRIPTS.md).
 For script implementation details (like i18n validation), see [scripts/README.md](scripts/README.md).
 
 ## Deep Technical Context (AI Agents + Advanced Developers)
@@ -67,6 +67,9 @@ For script implementation details (like i18n validation), see [scripts/README.md
 
 - [Architecture](docs/ARCHITECTURE.md) — System diagram, directory structure, key patterns
 - [Authentication](docs/AUTHENTICATION.md) — JWT flow, hardcoded user, and migration paths
+- [Feature flags](docs/FEATURE_FLAGS.md) — Env + runtime starter pattern for safe rollout
+- [Auth profiles](docs/AUTH_PROFILES.md) — Starter `local` / `supabase` / `postgres` backing modes
+- [API](docs/API.md) — API contracts and OpenAPI type-generation workflow
 - [Client](src/client/README.md) — How the frontend is organized
 - [Hooks](src/client/hooks/README.md) — useState vs custom hook vs Redux
 - [Redux](src/client/redux/README.md) — Persistence, slices, pitfalls
@@ -83,6 +86,18 @@ For script implementation details (like i18n validation), see [scripts/README.md
 - `.env` file (copy from `.envTemplate`)
 
 E2E tests require the dev server running and a supported browser. See [cypress/README.md](cypress/README.md).
+
+## GitHub Actions CI
+
+Pull requests and pushes to `main` run **CI** (`.github/workflows/ci.yml`): ESLint, TypeScript `tsc --noEmit`, and Cypress E2E against a dev server started in the job. The workflow uses committed [`.github/ci.env`](.github/ci.env) (non-production placeholders) so no repository secrets are required for the default pipeline.
+
+### Configuration on github.com
+
+1. **Enable Actions** (usually on by default): Repository **Settings → Actions → General** → under “Actions permissions”, allow **Actions** (e.g. “Allow all actions and reusable workflows” or your org’s stricter policy). Forks from outside contributors may need **Settings → Actions → General → Fork pull request workflows** set to how you want fork PRs to run.
+2. **Optional — required checks**: **Settings → Rules** (branch rules) or **Settings → Branches** (classic protection) for `main` → add a rule → enable **Require status checks to pass** → select **`CI OK`** (and/or the individual jobs **Lint**, **Typecheck**, **E2E (Cypress)** if you prefer granular gates).
+3. **Optional — merge queue**: If you use a merge queue, the workflow already listens for `merge_group`; ensure the queue is enabled in the branch rule and that **`CI OK`** is among the required checks.
+
+No `CODECOV_TOKEN` or other secrets are needed unless you extend the workflow.
 
 ## Contributing
 

@@ -3,7 +3,7 @@ import { decrypt, encrypt } from '@/client/utilities/encryption';
 import { LOCAL_STORAGE_ID, API_PATHS } from '@/client/utilities/constants';
 import { DEFAULT_LOCALE, type SupportedLocale } from '@/client/utilities/i18n';
 import { reportError } from '@/client/utilities/error-reporting';
-import type { EncryptionKeyResponse } from '@/shared/api-types';
+import type { EncryptionKeyResponse } from '@/generated/api/api-types';
 
 const SCHEMA_VERSION = '1.0.0';
 

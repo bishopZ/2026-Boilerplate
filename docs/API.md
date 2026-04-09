@@ -9,12 +9,14 @@ This project exposes a compact HTTP API designed for:
 ## OpenAPI source of truth
 
 - Contract file: `docs/openapi.yaml`
-- Generated types: `src/shared/openapi.generated.ts`
-- Shared type aliases: `src/shared/api-types.ts`
+- Generated types: `src/generated/api/openapi.generated.ts` (do not edit by hand)
+- Shared type aliases: `src/generated/api/api-types.ts`
 
 Generate types after changing the contract:
 
 - `npm run gen:api-types`
+
+For the full generation layout and CI ideas, see `skills/api-first/SKILL.md`.
 
 ## Endpoint Inventory
 

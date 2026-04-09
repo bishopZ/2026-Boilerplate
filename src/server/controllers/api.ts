@@ -1,5 +1,5 @@
 import type { RequestHandler } from 'express';
-import type { EncryptionKeyResponse } from '@/shared/api-types';
+import type { EncryptionKeyResponse } from '@/generated/api/api-types';
 
 // API endpoint to get the encryption key
 export const getKey: RequestHandler = (_, res) => {
