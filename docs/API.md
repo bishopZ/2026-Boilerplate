@@ -6,6 +6,18 @@ This project exposes a compact HTTP API designed for:
 - compatibility with browser form workflows
 - easy migration to TanStack Query or GraphQL clients
 
+## OpenAPI source of truth
+
+- Contract file: `docs/openapi.yaml`
+- Generated types: `src/generated/api/openapi.generated.ts` (do not edit by hand)
+- Shared type aliases: `src/generated/api/api-types.ts`
+
+Generate types after changing the contract:
+
+- `npm run gen:api-types`
+
+For the full generation layout and CI ideas, see `skills/api-first/SKILL.md`.
+
 ## Endpoint Inventory
 
 ### Session/Auth
@@ -41,7 +53,8 @@ When adding or changing endpoints:
 3. Use standard status codes (`200`, `201`, `204`, `400`, `401`, `403`, `429`, `500`).
 4. Keep legacy endpoints only as temporary compatibility shims.
 5. Update `src/server/config/constants.ts` and `src/client/utilities/constants.ts` together.
-6. Add or update tests at the right layer (E2E for route contracts, unit/integration where practical).
+6. Regenerate shared API types with `npm run gen:api-types`.
+7. Add or update tests at the right layer (E2E for route contracts, unit/integration where practical).
 
 ## Why this helps TanStack Query and GraphQL migrations
 

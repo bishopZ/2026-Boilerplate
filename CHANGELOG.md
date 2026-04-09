@@ -14,6 +14,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Added feature-flag starter support with env defaults (`VITE_FEATURE_FLAGS`) and runtime hook-based overrides (`useFeatureFlag`).
 - Added `docs/FEATURE_FLAGS.md` to document feature-flag setup and usage.
 - Added auth backing starter profiles (`AUTH_PROFILE=local|supabase|postgres`) with setup guidance in `docs/AUTH_PROFILES.md`.
+- Added contract-first API documentation in `docs/openapi.yaml` plus generated shared API types under `src/generated/api/` (`openapi.generated.ts`, `api-types.ts`).
+- Added `skills/api-first/SKILL.md` documenting the OpenAPI contract location, generation command, and generated output layout.
 - Added shared `LoadingFallback` and `BackHomeCta` UI components to reduce repeated loading/CTA markup.
 - Added `skills/migrate-design-system-to-shadcn/SKILL.md` to guide full Chakra-to-shadcn migration with explicit removal criteria.
 - Added `skills/add-form-manager/SKILL.md` to standardize React Hook Form + Zod adoption, starting with login-form migration guidance.
@@ -31,7 +33,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Added a shared client `Link` component that unifies Chakra UI link styling with React Router navigation and standardized external-link handling.
 
 ### Changed
+- Moved OpenAPI-generated TypeScript and shared API aliases from `src/shared/` to `src/generated/api/`; imports use `@/generated/api/api-types`.
 - Updated auth verification to route through profile-aware starter mode logic (`local` works by default; `supabase`/`postgres` require provider wiring).
+- Updated API auth behavior to favor REST-style `/api/*` responses for API clients while preserving legacy browser form auth endpoints as compatibility shims.
 - Reduced duplication across route loading fallbacks, back-home page CTAs, and Express pass-through handlers.
 - Centralized repeated rate-limit message/user literals and removed redundant store throttle literal in favor of utility defaults.
 - Compacted boundary guidance docs by keeping details in architecture docs and linking from client/contributing docs.
