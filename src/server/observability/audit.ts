@@ -1,15 +1,19 @@
 import type { Request, Response } from 'express';
-import { getRequestId, logInfo } from '../utilities/logger';
+import { getRequestId, log } from './logger';
 
 type AuditFields = Record<string, unknown>;
 
+/**
+ * Emits a structured audit line (`audit.event`) for security-relevant HTTP actions.
+ * Extend with domain events at controllers or services as needed.
+ */
 export const writeAuditEvent = (
   event: string,
   req: Request,
   res: Response,
   fields: AuditFields = {}
 ) => {
-  logInfo('audit.event', {
+  log.info('audit.event', {
     ...fields,
     event,
     ip: req.ip ?? 'unknown-ip',

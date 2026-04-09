@@ -6,12 +6,12 @@ import { fileURLToPath } from 'url';
 import path from 'path';
 import { csrfProtection } from './middleware/csrf';
 import { globalErrorHandler } from './middleware/error-handler';
-import { attachRequestId } from './middleware/request-id';
-import { requestLogger } from './middleware/request-logger';
+import { attachRequestId } from './observability/middleware/request-id';
+import { requestLogger } from './observability/middleware/request-logger';
 import authRoutes from './routes/auth';
 import apiRoutes from './routes/api';
 import pageRoutes from './routes/pages';
-import { logInfo } from './utilities/logger';
+import { log } from './observability/logger';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -46,7 +46,7 @@ const startServer = () => {
   }).format(port);
 
   ViteExpress.listen(app, port, () => {
-    logInfo('server.started', {
+    log.info('server.started', {
       environment: process.env.NODE_ENV ?? 'development',
       port: displayPort,
     });

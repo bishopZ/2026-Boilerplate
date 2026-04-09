@@ -1,7 +1,7 @@
 import type { Request, Response, NextFunction } from 'express';
 import { ROUTES, API_PREFIX } from '../config/constants';
 import { type ApiErrorResponse, API_ERRORS } from '../config/api-error';
-import { getRequestId, logError } from '../utilities/logger';
+import { getRequestId, log } from '../observability/logger';
 
 /**
  * Global error handler middleware.
@@ -23,7 +23,7 @@ export const globalErrorHandler = (
   const { status, message } = err;
   const requestId = getRequestId(req, res);
 
-  logError('http.request.error', {
+  log.error('http.request.error', {
     code: err.code,
     message,
     method: req.method,

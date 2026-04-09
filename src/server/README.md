@@ -15,7 +15,7 @@ Follows an MVC-style layout:
 - **routes/** — Route definitions. Auth routes (REST session endpoints + legacy login/logout compatibility), API routes (e.g. `/api/key`), page routes (redirect middleware + pass-through to Vite or serve sitemap).
 - **controllers/** — Request handlers. Call services and send responses.
 - **services/** — Business logic (auth verification, JWT, etc.).
-- **middleware/** — Auth (`ensureAuthenticated`), CSRF, request-id/logging, global error handler.
+- **middleware/** — Auth (`ensureAuthenticated`), CSRF, global error handler, and other cross-cutting handlers.
 - **observability/** — Structured logging (`log`), request IDs, and audit event helpers.
 - **config/** — Constants, API paths, session config.
 

@@ -97,9 +97,11 @@ src/
 - Error logs include request context via global error middleware.
 - Auth flows emit audit hooks (login/session/logout/rate-limit events).
 
+Implementation is grouped in **`src/server/observability/`** (logger, request-ID and request-completion middleware, audit helpers). Cross-cutting middleware such as the global error handler stays in `src/server/middleware/` and imports the pack.
+
 ### Client/Server Code Separation
 
-The client uses `src/client/utilities/` for browser-specific helpers. Server helpers live in `src/server/services/` and `src/server/config/`. Keep client-only and server-only modules separated to avoid accidental cross-runtime imports.
+The client uses `src/client/utilities/` for browser-specific helpers. Server business logic lives in `src/server/services/` and `src/server/config/`; shared structured logging and request correlation live in `src/server/observability/`. Keep client-only and server-only modules separated to avoid accidental cross-runtime imports.
 
 ## Technology Choices
 

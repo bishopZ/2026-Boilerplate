@@ -1,6 +1,6 @@
 import rateLimit from 'express-rate-limit';
 import { ROUTES } from '../config/constants';
-import { getRequestId, logWarn } from '../utilities/logger';
+import { getRequestId, log } from '../observability/logger';
 
 const DEFAULT_LOGIN_WINDOW_MS = 15 * 60 * 1000;
 const DEFAULT_LOGIN_MAX_ATTEMPTS = 5;
@@ -47,7 +47,7 @@ export const loginRateLimiter = rateLimit({
     const message = typeof options.message === 'string'
       ? options.message
       : TOO_MANY_ATTEMPTS_MSG;
-    logWarn('auth.rate_limit.triggered', {
+    log.warn('auth.rate_limit.triggered', {
       method: req.method,
       path: req.path,
       requestId: getRequestId(req, res),

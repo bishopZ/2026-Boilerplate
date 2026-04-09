@@ -1,13 +1,13 @@
 # Observability
 
-This boilerplate includes structured server logging from day one.
+This boilerplate includes structured server logging from day one. Implementation lives under **`src/server/observability/`** (the observability pack): config (`REQUEST_ID_HEADER`), **`log`** (structured JSON lines), **`getRequestId`**, request middleware, and **`writeAuditEvent`** for auth scaffolding.
 
 ## What is included
 
-- Request ID attachment middleware (`x-request-id`)
-- Request completion logs with duration/status
-- Global error logs with request context
-- Auth-focused audit event hooks (login/logout/session/rate-limit events)
+- Request ID attachment middleware (`x-request-id`) — `observability/middleware/request-id.ts`
+- Request completion logs with duration/status — `observability/middleware/request-logger.ts`
+- Global error logs with request context — `middleware/error-handler.ts` uses `log` from the pack
+- Auth-focused audit event hooks (login/logout/session/rate-limit events) — `observability/audit.ts` and `controllers/auth.ts`
 
 ## Request ID behavior
 

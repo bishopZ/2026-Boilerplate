@@ -2,7 +2,7 @@ import type { RequestHandler, CookieOptions } from 'express';
 import passport from 'passport';
 import { ROUTES } from '../config/constants';
 import { signToken } from '../services/jwt';
-import { writeAuditEvent } from '../services/audit-log';
+import { writeAuditEvent } from '../observability/audit';
 
 interface AuthUser {
   name: string;
