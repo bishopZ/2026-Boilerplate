@@ -87,6 +87,18 @@ For script implementation details (like i18n validation), see [scripts/README.md
 
 E2E tests require the dev server running and a supported browser. See [cypress/README.md](cypress/README.md).
 
+## GitHub Actions CI
+
+Pull requests and pushes to `main` run **CI** (`.github/workflows/ci.yml`): ESLint, TypeScript `tsc --noEmit`, and Cypress E2E against a dev server started in the job. The workflow uses committed [`.github/ci.env`](.github/ci.env) (non-production placeholders) so no repository secrets are required for the default pipeline.
+
+### Configuration on github.com
+
+1. **Enable Actions** (usually on by default): Repository **Settings → Actions → General** → under “Actions permissions”, allow **Actions** (e.g. “Allow all actions and reusable workflows” or your org’s stricter policy). Forks from outside contributors may need **Settings → Actions → General → Fork pull request workflows** set to how you want fork PRs to run.
+2. **Optional — required checks**: **Settings → Rules** (branch rules) or **Settings → Branches** (classic protection) for `main` → add a rule → enable **Require status checks to pass** → select **`CI OK`** (and/or the individual jobs **Lint**, **Typecheck**, **E2E (Cypress)** if you prefer granular gates).
+3. **Optional — merge queue**: If you use a merge queue, the workflow already listens for `merge_group`; ensure the queue is enabled in the branch rule and that **`CI OK`** is among the required checks.
+
+No `CODECOV_TOKEN` or other secrets are needed unless you extend the workflow.
+
 ## Contributing
 
 We welcome contributions. See [docs/CONTRIBUTING.md](docs/CONTRIBUTING.md).
