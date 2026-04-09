@@ -1,0 +1,94 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  merge_group:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci
+      - run: npm run lint
+
+  typecheck:
+    name: Typecheck
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci
+      - run: npm run type-check
+
+  e2e:
+    name: E2E (Cypress)
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci
+      - name: Prepare env for server
+        run: cp .github/ci.env .env
+      - name: Start dev server
+        run: |
+          npm run dev > dev-server.log 2>&1 &
+          echo "DEV_PID=$!" >> "$GITHUB_ENV"
+      - name: Wait for server
+        run: |
+          for _ in $(seq 1 60); do
+            if curl -sf http://127.0.0.1:3000/ >/dev/null; then
+              exit 0
+            fi
+            sleep 2
+          done
+          echo "Server did not become ready in time. Last dev-server.log:"
+          tail -n 80 dev-server.log || true
+          exit 1
+      - name: Cypress
+        run: npm run test:e2e
+      - name: Stop dev server
+        if: always()
+        run: |
+          if [[ -n "${DEV_PID:-}" ]]; then
+            kill "$DEV_PID" 2>/dev/null || true
+          fi
+          pkill -f "nodemon.*src/server" 2>/dev/null || true
+          pkill -f "tsx --env-file .env src/server/main" 2>/dev/null || true
+
+  ci-ok:
+    name: CI OK
+    runs-on: ubuntu-latest
+    if: always()
+    needs: [lint, typecheck, e2e]
+    steps:
+      - name: Require lint, typecheck, and E2E to succeed
+        env:
+          LINT_RESULT: ${{ needs.lint.result }}
+          TYPECHECK_RESULT: ${{ needs.typecheck.result }}
+          E2E_RESULT: ${{ needs.e2e.result }}
+        run: |
+          if [[ "$LINT_RESULT" != "success" || "$TYPECHECK_RESULT" != "success" || "$E2E_RESULT" != "success" ]]; then
+            echo "lint=$LINT_RESULT typecheck=$TYPECHECK_RESULT e2e=$E2E_RESULT"
+            exit 1
+          fi

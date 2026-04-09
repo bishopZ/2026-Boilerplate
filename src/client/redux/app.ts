@@ -7,5 +7,11 @@ const appSlice = createSlice({
   reducers: appActions,
 });
 
-export const { setLastEditId, setSearchPhrase, resetAppState } = appSlice.actions;
+export const {
+  setFeatureFlagOverride,
+  clearFeatureFlagOverride,
+  setLastEditId,
+  setSearchPhrase,
+  resetAppState,
+} = appSlice.actions;
 export default appSlice.reducer;

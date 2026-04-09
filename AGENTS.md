@@ -17,6 +17,7 @@
 - `skills/add-redirect/SKILL.md` — Add or update URL redirects with status-code guidance and E2E coverage.
 - `skills/migrate-api-to-tanstack-query/SKILL.md` — Migrate REST client usage to TanStack Query with caching and staged rollout.
 - `skills/migrate-api-to-graphql-client/SKILL.md` — Migrate REST client usage to a GraphQL client path with incremental parity checks.
+- `skills/migrate-ci-github-to-gitlab/SKILL.md` — Replace GitHub Actions CI with GitLab CI/CD while preserving lint, typecheck, and Cypress E2E.
 
 ## Development Setup
 
@@ -52,6 +53,8 @@
 - The `docs/` folder contains project-wide guides and expectations:
   - `docs/ARCHITECTURE.md`
   - `docs/AUTHENTICATION.md`
+  - `docs/FEATURE_FLAGS.md`
+  - `docs/AUTH_PROFILES.md`
   - `docs/API.md`
   - `docs/CONTRIBUTING.md`
   - `docs/I18N.md`

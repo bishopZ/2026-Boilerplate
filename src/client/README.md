@@ -34,7 +34,7 @@ See `docs/ARCHITECTURE.md` for the canonical boundary strategy.
 
 ## Hooks
 
-**hooks/** — Custom React hooks (e.g. `useAnnounce` for aria-live announcements). See [hooks/README.md](./hooks/README.md) for the decision guide on useState vs custom hook vs Redux.
+**hooks/** — Custom React hooks (e.g. `useAnnounce`, `useFeatureFlag`). See [hooks/README.md](./hooks/README.md) for the decision guide on useState vs custom hook vs Redux.
 
 ## Locales
 
@@ -42,4 +42,4 @@ See `docs/ARCHITECTURE.md` for the canonical boundary strategy.
 
 ## Utilities
 
-**utilities/** — Client-only helpers: encryption, constants, i18n provider, error reporting, formatting, CSRF, type helpers.
+**utilities/** — Client-only helpers: encryption, constants, i18n provider, feature-flag parsing/defaults, error reporting, formatting, CSRF, type helpers.

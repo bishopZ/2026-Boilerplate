@@ -16,14 +16,16 @@ Follows an MVC-style layout:
 - **controllers/** — Request handlers. Call services and send responses.
 - **services/** — Business logic (auth verification, JWT, etc.).
 - **middleware/** — Auth (`ensureAuthenticated`), CSRF, request-id/logging, global error handler.
+- **observability/** — Structured logging (`log`), request IDs, and audit event helpers.
 - **config/** — Constants, API paths, session config.
 
 ## Key Flows
 
 - **Auth:** `POST /api/session` creates a cookie-backed session and `DELETE /api/session` ends it; legacy browser form paths remain available.
+- **Auth profile:** Set `AUTH_PROFILE` (`local` | `supabase` | `postgres`) to select starter auth backing mode.
 - **API key:** Authenticated GET `/api/key` returns encryption key for client-side localStorage.
 - **Pages:** Most routes pass through to Vite; protected routes use `ensureAuthenticated` before passing.
 - **Redirects:** Legacy URLs are handled by config-driven rules in `src/server/config/redirects.ts` before page rendering. See [docs/REDIRECTS.md](../../docs/REDIRECTS.md).
-- **Observability:** Structured request/error/audit logs with request IDs are enabled by default.
+- **Observability:** Structured request/error/audit logs with request IDs are enabled by default (see `src/server/observability/`).
 
-See [docs/ARCHITECTURE.md](../../docs/ARCHITECTURE.md) for the full system diagram, [docs/AUTHENTICATION.md](../../docs/AUTHENTICATION.md) for auth details, [docs/API.md](../../docs/API.md) for API contract conventions, and [docs/OBSERVABILITY.md](../../docs/OBSERVABILITY.md) for logging/audit patterns.
+See [docs/ARCHITECTURE.md](../../docs/ARCHITECTURE.md) for the full system diagram, [docs/AUTHENTICATION.md](../../docs/AUTHENTICATION.md) for auth details, [docs/AUTH_PROFILES.md](../../docs/AUTH_PROFILES.md) for profile mode setup, [docs/API.md](../../docs/API.md) for API contract conventions, and [docs/OBSERVABILITY.md](../../docs/OBSERVABILITY.md) for logging/audit patterns.
