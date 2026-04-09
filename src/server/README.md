@@ -15,7 +15,8 @@ Follows an MVC-style layout:
 - **routes/** — Route definitions. Auth routes (REST session endpoints + legacy login/logout compatibility), API routes (e.g. `/api/key`), page routes (redirect middleware + pass-through to Vite or serve sitemap).
 - **controllers/** — Request handlers. Call services and send responses.
 - **services/** — Business logic (auth verification, JWT, etc.).
-- **middleware/** — Auth (`ensureAuthenticated`), CSRF, global error handler.
+- **middleware/** — Auth (`ensureAuthenticated`), CSRF, global error handler, and other cross-cutting handlers.
+- **observability/** — Structured logging (`log`), request IDs, and audit event helpers.
 - **config/** — Constants, API paths, session config.
 
 ## Key Flows
@@ -25,5 +26,6 @@ Follows an MVC-style layout:
 - **API key:** Authenticated GET `/api/key` returns encryption key for client-side localStorage.
 - **Pages:** Most routes pass through to Vite; protected routes use `ensureAuthenticated` before passing.
 - **Redirects:** Legacy URLs are handled by config-driven rules in `src/server/config/redirects.ts` before page rendering. See [docs/REDIRECTS.md](../../docs/REDIRECTS.md).
+- **Observability:** Structured request/error/audit logs with request IDs are enabled by default (see `src/server/observability/`).
 
-See [docs/ARCHITECTURE.md](../../docs/ARCHITECTURE.md) for the full system diagram, [docs/AUTHENTICATION.md](../../docs/AUTHENTICATION.md) for auth details, [docs/AUTH_PROFILES.md](../../docs/AUTH_PROFILES.md) for profile mode setup, and [docs/API.md](../../docs/API.md) for API contract conventions.
+See [docs/ARCHITECTURE.md](../../docs/ARCHITECTURE.md) for the full system diagram, [docs/AUTHENTICATION.md](../../docs/AUTHENTICATION.md) for auth details, [docs/AUTH_PROFILES.md](../../docs/AUTH_PROFILES.md) for profile mode setup, [docs/API.md](../../docs/API.md) for API contract conventions, and [docs/OBSERVABILITY.md](../../docs/OBSERVABILITY.md) for logging/audit patterns.

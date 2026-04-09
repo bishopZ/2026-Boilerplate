@@ -14,6 +14,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Added feature-flag starter support with env defaults (`VITE_FEATURE_FLAGS`) and runtime hook-based overrides (`useFeatureFlag`).
 - Added `docs/FEATURE_FLAGS.md` to document feature-flag setup and usage.
 - Added auth backing starter profiles (`AUTH_PROFILE=local|supabase|postgres`) with setup guidance in `docs/AUTH_PROFILES.md`.
+- Added structured server observability pack (`src/server/observability/`): request IDs (`x-request-id`), request lifecycle logging middleware, structured `log` API, and auth audit hooks.
+- Added `docs/OBSERVABILITY.md` to document default logging/audit patterns.
 - Added shared `LoadingFallback` and `BackHomeCta` UI components to reduce repeated loading/CTA markup.
 - Added `skills/migrate-design-system-to-shadcn/SKILL.md` to guide full Chakra-to-shadcn migration with explicit removal criteria.
 - Added `skills/add-form-manager/SKILL.md` to standardize React Hook Form + Zod adoption, starting with login-form migration guidance.
@@ -31,6 +33,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Added a shared client `Link` component that unifies Chakra UI link styling with React Router navigation and standardized external-link handling.
 
 ### Changed
+- Restructured server observability into `src/server/observability/` with a single `log` object (`info` / `warn` / `error`); request-ID and request-completion middleware and audit scaffolding live alongside the logger.
 - Updated auth verification to route through profile-aware starter mode logic (`local` works by default; `supabase`/`postgres` require provider wiring).
 - Reduced duplication across route loading fallbacks, back-home page CTAs, and Express pass-through handlers.
 - Centralized repeated rate-limit message/user literals and removed redundant store throttle literal in favor of utility defaults.

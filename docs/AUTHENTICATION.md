@@ -125,6 +125,6 @@ For production user management, move away from hardcoded credentials.
 
 - Store secrets in env/secret manager (never in repo).
 - Rotate `SESSION_SECRET` per environment.
-- Add brute-force protection and audit logging.
+- Keep brute-force protection and extend audit logging hooks for new auth events.
 - Expand tests for login/logout/protected-route behavior.
 - Add authorization roles/claims if admin capabilities expand.

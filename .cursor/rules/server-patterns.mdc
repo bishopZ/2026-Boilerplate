@@ -8,6 +8,7 @@ globs: src/server/**/*.ts
 - Follow the MVC pattern: routes define endpoints, controllers handle logic, services contain business logic.
 - Use arrow functions. Never use the `class` keyword.
 - Middleware goes in `src/server/middleware/`.
+- Structured logging, request IDs, and audit helpers go in `src/server/observability/` (import `log`, `getRequestId`, `writeAuditEvent` from there).
 - Configuration goes in `src/server/config/`.
 - Use environment variables for secrets and configuration. Access them via `process.env`.
 - Authentication uses Passport.js with LocalStrategy.
