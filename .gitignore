@@ -78,6 +78,10 @@ cypress/downloads
 # pnpm
 .pnpm-store
 
+# Python (e.g. skills/ui-ux-pro-max/scripts)
+__pycache__/
+*.py[cod]
+
 # yarn v3
 .pnp.*
 .yarn/*
