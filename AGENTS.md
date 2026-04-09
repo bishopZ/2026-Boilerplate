@@ -82,3 +82,10 @@ When adding or changing a feature, check all affected surfaces before opening a 
 ## Cursor Cloud specific instructions
 
 - Do not create screen recordings by default. Ask the user first and wait for explicit approval before using screen recording tools.
+- Node.js 24+ is required. The VM uses nvm; run `source ~/.nvm/nvm.sh && nvm use 24.14.1` before any npm command if not already active.
+- The `.env` file uses Node's `--env-file` flag (via `nodemon`), which does **not** strip quotes from values. Do not wrap `.env` values in quotes — they become part of the literal value.
+- The `SESSION_SECRET` validator rejects any value containing the substring `secret-here` (the `.envTemplate` default). Generate a fresh random string without that substring.
+- `npm run build` (`tsc -b && vite build`) has a pre-existing type error in `src/client/utilities/encryption.ts` related to `Uint8Array`/`BufferSource` under TypeScript 5.9. `npm run type-check` (`tsc --noEmit`) passes cleanly; use that for validation instead of `npm run build`.
+- The `accessibility/skip-link.cy.ts` Cypress test fails in headless Chrome in this VM (focus behavior difference). This is pre-existing and not caused by environment setup.
+- Before running `npm run test:e2e`, ensure the dev server is already running (`npm run dev`). Unset any `SESSION_SECRET` or `LOCAL_STORAGE_KEY` shell variables before starting the dev server to avoid env pollution — the server reads from `.env` via `--env-file`.
+- The login API endpoint is `/login/password` (form-based) or `POST /api/session` (REST-style). Both require a CSRF token from the `csrf-token` cookie.
