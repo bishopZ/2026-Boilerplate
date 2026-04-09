@@ -26,6 +26,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Added a shared client `Link` component that unifies Chakra UI link styling with React Router navigation and standardized external-link handling.
 
 ### Changed
+- Consolidated all agent skills under the repository root `skills/` directory (removed `.agents/skills` and `.cursor/skills`); the canonical index is the **Skills** section in `AGENTS.md`.
 - Reduced duplication across route loading fallbacks, back-home page CTAs, and Express pass-through handlers.
 - Centralized repeated rate-limit message/user literals and removed redundant store throttle literal in favor of utility defaults.
 - Compacted boundary guidance docs by keeping details in architecture docs and linking from client/contributing docs.

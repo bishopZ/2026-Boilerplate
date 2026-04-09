@@ -54,14 +54,9 @@ For script implementation details (like i18n validation), see [scripts/README.md
 
 ### AI/Agent Guidance
 
-- [AGENTS.md](AGENTS.md) — Project operating instructions and coding expectations
+- [AGENTS.md](AGENTS.md) — Project operating instructions, coding expectations, and the full [skills catalog](AGENTS.md#skills) (`skills/<skill-name>/SKILL.md` at repo root)
 - [.cursor/rules/](.cursor/rules/) — Enforced rule files for React, Redux, and server patterns
-- Skills:
-  - [skills/rebrand/SKILL.md](skills/rebrand/SKILL.md)
-  - [skills/hidden-admin-auth/SKILL.md](skills/hidden-admin-auth/SKILL.md)
-  - [skills/playwright-migration/SKILL.md](skills/playwright-migration/SKILL.md)
-  - [skills/policy-guide/SKILL.md](skills/policy-guide/SKILL.md)
-  - [skills/add-redirect/SKILL.md](skills/add-redirect/SKILL.md)
+- Skills — see **Skills** in [AGENTS.md](AGENTS.md#skills). Examples: [rebrand](skills/rebrand/SKILL.md), [add-redirect](skills/add-redirect/SKILL.md)
 
 ### Architecture and Implementation Docs
 

@@ -6,17 +6,39 @@
 
 ## Skills
 
-- Skills live in `skills/<skill-name>/SKILL.md`.
+- Skills live at `skills/<skill-name>/SKILL.md` (repository root). If your tool defaults to a different skills folder (for example under `.cursor/`), configure it to use this `skills/` directory so guidance stays portable across editors and agents.
 - If a request matches a skill, read and follow that skill before implementing changes.
-- `skills/rebrand/SKILL.md` — Rebrand the boilerplate into a new project using a new site title and description.
-- `skills/hidden-admin-auth/SKILL.md` — Configure the private section as a hidden admin utility and rotate hardcoded default credentials safely.
-- `skills/migrate-design-system-to-shadcn/SKILL.md` — Migrate UI from Chakra to shadcn/ui and fully remove Chakra dependencies.
-- `skills/add-form-manager/SKILL.md` — Introduce React Hook Form + Zod with typed, reusable form validation patterns.
-- `skills/playwright-migration/SKILL.md` — Migrate the E2E stack from Cypress to Playwright in a controlled, test-first rollout.
-- `skills/policy-guide/SKILL.md` — Maintain the combined policy-writing guide page and keep routes/tests/docs aligned.
-- `skills/add-redirect/SKILL.md` — Add or update URL redirects with status-code guidance and E2E coverage.
-- `skills/migrate-api-to-tanstack-query/SKILL.md` — Migrate REST client usage to TanStack Query with caching and staged rollout.
-- `skills/migrate-api-to-graphql-client/SKILL.md` — Migrate REST client usage to a GraphQL client path with incremental parity checks.
+
+### Project SOP skills
+
+Boilerplate-specific workflows and migrations:
+
+- `skills/add-form-manager/SKILL.md` — Introduce React Hook Form + Zod for form state, validation, and typed submission flows.
+- `skills/add-redirect/SKILL.md` — Add or update URL redirects in the server redirect registry, with status-code rationale and E2E coverage.
+- `skills/hidden-admin-auth/SKILL.md` — Configure the private route as a hidden admin utility; move credentials to env vars per `.envTemplate` (do not pass credentials into the skill).
+- `skills/migrate-api-to-graphql-client/SKILL.md` — Migrate the REST client path to a GraphQL client architecture with typed operations and incremental rollout.
+- `skills/migrate-api-to-tanstack-query/SKILL.md` — Migrate REST API usage to TanStack Query with server-state caching, invalidation, and progressive rollout.
+- `skills/migrate-design-system-to-shadcn/SKILL.md` — Migrate the client UI layer from Chakra UI to shadcn/ui and fully remove Chakra dependencies.
+- `skills/playwright-migration/SKILL.md` — Migrate this repository from Cypress E2E testing to Playwright with minimal disruption and clear validation evidence.
+- `skills/policy-guide/SKILL.md` — Update the combined policy-writing guide page and keep linked routes, metadata, tests, and docs in sync.
+- `skills/rebrand/SKILL.md` — After cloning, convert boilerplate branding to a new project identity (title, description, metadata, docs, headers).
+
+### Bundled reference skills
+
+General engineering and design guidance shipped with the repo:
+
+- `skills/accessibility/SKILL.md` — Audit and improve accessibility (WCAG 2.2, keyboard navigation, screen readers).
+- `skills/frontend-design/SKILL.md` — Build distinctive, production-grade frontend interfaces and avoid generic AI-default styling.
+- `skills/nothing-design-skill/SKILL.md` — Apply the Nothing-inspired design system when the user explicitly requests it; do not use for generic UI tasks.
+- `skills/nodejs-backend-patterns/SKILL.md` — Production-ready Node.js backends (Express/Fastify, middleware, auth, databases, API design).
+- `skills/nodejs-best-practices/SKILL.md` — Node.js principles: framework choice, async patterns, security, architecture (conceptual guidance).
+- `skills/nodejs-express-server/SKILL.md` — Production-ready Express servers: middleware, auth, routing, database integration.
+- `skills/seo/SKILL.md` — Search visibility: meta tags, structured data, sitemaps, and related SEO work.
+- `skills/typescript-advanced-types/SKILL.md` — Advanced TypeScript types: generics, conditional/mapped types, template literals, utilities.
+- `skills/ui-ux-pro-max/SKILL.md` — Broad UI/UX reference data and workflows (styles, stacks, typography); uses Python under `skills/ui-ux-pro-max/scripts/`.
+- `skills/vercel-composition-patterns/SKILL.md` — React composition patterns (compound components, context, fewer boolean props); includes React 19 notes.
+- `skills/vercel-react-best-practices/SKILL.md` — React and Next.js performance patterns from Vercel Engineering (data fetching, bundle size, rendering).
+- `skills/vite/SKILL.md` — Vite configuration, plugins, SSR, and Rolldown-related migration notes.
 
 ## Development Setup
 
