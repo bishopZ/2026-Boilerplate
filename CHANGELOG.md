@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Added Vitest 4 unit test suite (`npm run test:unit`) with 69 tests across 8 files covering server config (`api-error`, `redirects`, `auth-profile`), server services (`hashPassword`, JWT sign/verify), server middleware (`globalErrorHandler`), and client utilities (`parseFeatureFlags`/`isFeatureEnabled`, `formatDate`/`formatNumber`/`formatCurrency`).
+- Added `vitest.config.ts` with per-directory environment mapping: `node` for `src/server/**` tests, `happy-dom` for `src/client/**` tests.
+- `npm run test` now runs `lint → type-check → test:unit → test:e2e`.
+
 ### Changed
 
 - Removed `SESSION_SECRET` startup validation: the server no longer rejects short or template-like values. The `.envTemplate` now ships with working local-dev defaults (`local-dev-session-secret`, `local-dev-storage-key`) so `cp .envTemplate .env && npm run dev` works without any additional setup. Use strong random values in production.
