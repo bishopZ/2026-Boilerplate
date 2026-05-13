@@ -76,9 +76,10 @@ When adding or changing a feature, check all affected surfaces before opening a 
 ## Testing
 
 - Login credentials: username `test`, password `test`
-- E2E tests are in `cypress/e2e/` and require the dev server to be running
+- Unit tests use Vitest: `npm run test:unit` (no dev server needed). Test files live next to their source as `*.test.ts`. Use `node` environment for `src/server/**` and `happy-dom` for `src/client/**` (configured in `vitest.config.ts`).
+- E2E tests are in `cypress/e2e/` and require the dev server to be running.
 - The Cypress suite is intentionally compact and contract-focused for easier migration to other test frameworks.
-- Before committing: `npm run test`
+- Before committing: `npm run test` (runs lint → type-check → unit → E2E)
 
 ## Cursor Cloud specific instructions
 

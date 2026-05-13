@@ -71,10 +71,19 @@ Runs ESLint and automatically fixes issues where possible.
 ## Testing
 
 ### `npm run test`
-Runs the full validation suite: lint, type-check, and E2E tests.
-- Equivalent to: `npm run lint && npm run type-check && npm run test:e2e`
+Runs the full validation suite: lint, type-check, unit tests, and E2E tests.
+- Equivalent to: `npm run lint && npm run type-check && npm run test:unit && npm run test:e2e`
 
 **When to use:** Before committing, in CI/CD, when preparing for deployment
+
+### `npm run test:unit`
+Runs Vitest unit tests in watch-less run mode.
+- No dev server required
+- Test files live next to their source as `*.test.ts`
+- Server tests run in a `node` environment; client tests run in `happy-dom`
+- Configuration in `vitest.config.ts`
+
+**When to use:** After changing a service, utility, or middleware to verify logic in isolation; fast feedback loop during development
 
 ### `npm run test:e2e`
 Runs Cypress end-to-end tests in headless mode.
@@ -149,6 +158,10 @@ npm start
 - npm 11.10.1 or higher
 - `.env` file with required environment variables
 
+### Unit Tests
+- No dev server required
+- Node.js 24+ (same as dev)
+
 ### E2E Tests
 - Development server running (`npm run dev`)
 - Chrome, Firefox, or Edge browser installed
@@ -173,6 +186,11 @@ Scripts use environment variables from `.env`:
 - Run `npm run type-check` to find TypeScript errors
 - Run `npm run lint` to find linting issues
 - Check console for specific error messages
+
+### `npm run test:unit` fails
+- Check the failing test file and assertion — most unit tests are pure and do not need a running server
+- If a server-side module fails to import, confirm `SESSION_SECRET` is set in `vitest.config.ts` `test.env`
+- Run `npm run type-check` if you see TypeScript-related import errors
 
 ### `npm run test:e2e` fails
 - Ensure dev server is running (`npm run dev`)
