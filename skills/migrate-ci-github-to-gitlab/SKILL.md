@@ -54,8 +54,8 @@ Use this skill when a task asks to move continuous integration off GitHub-specif
 
 ### 2) `ci/ci.env` (when migrating off `.github/ci.env`)
 
-- Move (not duplicate) the existing file if present; keep the same variable names and **long** `SESSION_SECRET` requirement (JWT service rejects short secrets).
-- If the file did not exist, create it with the same contract as `.envTemplate` but with **safe CI-only placeholders** (length ≥ 16 for `SESSION_SECRET`, not the literal `[REDACTED]` from the template).
+- Move (not duplicate) the existing file if present; keep the same variable names.
+- If the file did not exist, create it with the same contract as `.envTemplate` (any non-empty value for `SESSION_SECRET` and `LOCAL_STORAGE_KEY` is accepted; the template's defaults work as CI placeholders).
 
 ## Files to remove or stop maintaining
 
