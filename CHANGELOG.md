@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Removed `SESSION_SECRET` startup validation: the server no longer rejects short or template-like values. The `.envTemplate` now ships with working local-dev defaults (`local-dev-session-secret`, `local-dev-storage-key`) so `cp .envTemplate .env && npm run dev` works without any additional setup. Use strong random values in production.
+
 ### Added
 
 - Added Helmet 8 security headers middleware (`src/server/middleware/security-headers.ts`) covering CSP, HSTS (production), Referrer-Policy, Permissions-Policy, COOP, COEP (production), CORP, X-Content-Type-Options, and X-Frame-Options per OWASP Secure Headers Project 2026 guidance.

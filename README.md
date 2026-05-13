@@ -32,7 +32,7 @@ Use this workflow when you want to turn this repository into your own product in
 
 ### Development Setup
 
-1. Copy the env template: `cp .envTemplate .env` — then set `LOCAL_STORAGE_KEY` and `SESSION_SECRET`. Generate a session secret with: `openssl rand -base64 32`
+1. Copy the env template: `cp .envTemplate .env` — default values work for local development; set strong random values for `SESSION_SECRET` and `LOCAL_STORAGE_KEY` before deploying to production
 2. Run `npm install`
 3. Run `npm run dev`
 4. Login with username `test` and password `test`

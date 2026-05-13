@@ -1,16 +1,14 @@
 # Environment Variables Template
-# Copy this file to .env and replace the placeholder values with your actual values
+# Copy this file to .env to get started: cp .envTemplate .env
+# Default values work for local development. Change SESSION_SECRET and LOCAL_STORAGE_KEY before deploying to production.
 
 # Local Storage Encryption Key
 # Used to encrypt data stored in the browser's localStorage
-# Replace with a strong, random string
-LOCAL_STORAGE_KEY="your-secret-key-here"
+LOCAL_STORAGE_KEY=local-dev-storage-key
 
 # JWT / Session Secret
 # Used to sign JWT authentication tokens
-# CRITICAL: Replace with a strong, random string (e.g. output of `openssl rand -base64 32`)
-# The server will refuse to start if this is left as the default value
-SESSION_SECRET="your-session-secret-here"
+SESSION_SECRET=local-dev-session-secret
 
 # Node Environment
 # Options: development, production
@@ -40,4 +38,3 @@ NODE_ENV=development
 # SUPABASE_URL=
 # SUPABASE_ANON_KEY=
 # DATABASE_URL=
-

@@ -45,8 +45,7 @@ Optional env overrides in `.env`:
 - Signing + verification: `src/server/services/jwt.ts`
 - Algorithm: `HS256`
 - Expiration: `24h`
-- Secret source: `SESSION_SECRET`
-- Startup safety: server throws if `SESSION_SECRET` is weak or still template-like
+- Secret source: `SESSION_SECRET` (defaults to `local-dev-session-secret` from `.envTemplate`; use a strong random value in production)
 
 ## Local auth profile (default)
 
