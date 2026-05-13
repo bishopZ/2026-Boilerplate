@@ -34,6 +34,7 @@
     "express": "5.2.1",
     "express-rate-limit": "^8.3.1",
     "framer-motion": "12.34.3",
+    "helmet": "^8.1.0",
     "jsonwebtoken": "9.0.3",
     "next-themes": "0.4.6",
     "passport": "0.7.0",
@@ -72,7 +73,7 @@
     "nodemon": "3.1.14",
     "openapi-typescript": "^7.13.0",
     "typescript-eslint": "8.56.1",
-    "vite": "7.3.1",
+    "vite": "^7.3.3",
     "vite-tsconfig-paths": "6.1.1"
   },
   "engines": {

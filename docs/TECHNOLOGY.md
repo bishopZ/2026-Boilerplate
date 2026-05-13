@@ -22,9 +22,13 @@ After years of Reddit posts proclaiming the death of Redux, we remain strong adv
 
 To ensure data persistence across browser refreshes and sessions, we use the native Web Crypto API for local storage encryption. This avoids dependency risk from discontinued wrappers while keeping strong built-in browser cryptography.
 
+## Helmet
+
+Helmet sets security-focused HTTP response headers on every request: Content-Security-Policy, Strict-Transport-Security, Referrer-Policy, Permissions-Policy, Cross-Origin-Opener-Policy, Cross-Origin-Resource-Policy, X-Content-Type-Options, and more. This follows the [OWASP Secure Headers Project](https://owasp.org/www-project-secure-headers/) recommendations. See `docs/SECURITY_HEADERS.md` for the full header inventory and customization guide.
+
 ## Passport.js
 
-By integrating Passport.js as an example login process, we can demonstrate authentication without compromising security or scalability. Future improvements will focus on implementing additional features like CSRF protection and login attempts limits, which may require a database solution.
+By integrating Passport.js as an example login process, we can demonstrate authentication without compromising security or scalability. The boilerplate already includes CSRF protection (double-submit cookie) and IP-based login rate limiting — see `docs/AUTHENTICATION.md` for details.
 
 ## React Router
 
