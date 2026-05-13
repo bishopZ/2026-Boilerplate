@@ -46,7 +46,7 @@ test.describe('WebMCP increment counter', () => {
     // Execute the tool via the browser context
     const result = await page.evaluate((toolName) => {
       const tool = window.__webMcpTools?.get(toolName);
-      return tool?.execute({} as Record<string, never>, {});
+      return tool?.execute({}, {});
     }, INCREMENT_TOOL);
 
     expect(result?.content[0]?.text).toContain('Counter incremented to');

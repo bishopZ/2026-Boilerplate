@@ -4,6 +4,8 @@ import { FormattedMessage } from 'react-intl';
 import { ROUTES } from '@/client/utilities/constants';
 import { Link } from '../components/link';
 
+const CURRENT_YEAR = new Date().getFullYear();
+
 export const Footer = () => {
   const { theme } = useTheme();
   const isDark = theme === 'dark';
@@ -14,7 +16,7 @@ export const Footer = () => {
     <Box as="footer" bg={isDark ? 'gray.800' : 'gray.100'} py={4} px={8}>
       <Flex justify="center" align="center" gap={4} direction={{ base: 'column', sm: 'row' }}>
         <Text fontSize="sm" color={textColor}>
-          <FormattedMessage id="footer.copyright" values={{ year: new Date().getFullYear() }} />
+          <FormattedMessage id="footer.copyright" values={{ year: CURRENT_YEAR }} />
         </Text>
         <Link
           to={ROUTES.POLICIES}
