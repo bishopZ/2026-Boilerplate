@@ -27,7 +27,7 @@ const makeErr = (overrides: Partial<ApiErrorResponse & Error> = {}): ApiErrorRes
   message: 'Something went wrong',
   name: 'Error',
   ...overrides,
-} as ApiErrorResponse & Error);
+});
 
 beforeEach(() => {
   vi.spyOn(console, 'error').mockImplementation(() => undefined);
