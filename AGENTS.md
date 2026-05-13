@@ -83,7 +83,7 @@ When adding or changing a feature, check all affected surfaces before opening a 
 ## Cursor Cloud specific instructions
 
 - Do not create screen recordings by default. Ask the user first and wait for explicit approval before using screen recording tools.
-- Node.js 24+ is required. The VM uses nvm; run `source ~/.nvm/nvm.sh && nvm use 24.14.1` before any npm command if not already active.
+- Node.js 24+ is required. The VM uses nvm; run `source ~/.nvm/nvm.sh && nvm use 24` before any npm command if not already active.
 - The `.env` file uses Node's `--env-file` flag (via `nodemon`), which does **not** strip quotes from values. Do not wrap `.env` values in quotes — they become part of the literal value.
 - The `SESSION_SECRET` validator rejects any value containing the substring `secret-here` (the `.envTemplate` default). Generate a fresh random string without that substring.
 - `npm run build` (`tsc -b && vite build`) has a pre-existing type error in `src/client/utilities/encryption.ts` related to `Uint8Array`/`BufferSource` under TypeScript 5.9. `npm run type-check` (`tsc --noEmit`) passes cleanly; use that for validation instead of `npm run build`.
