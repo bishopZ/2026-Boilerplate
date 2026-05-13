@@ -25,5 +25,6 @@ Follows an MVC-style layout:
 - **API key:** Authenticated GET `/api/key` returns encryption key for client-side localStorage.
 - **Pages:** Most routes pass through to Vite; protected routes use `ensureAuthenticated` before passing.
 - **Redirects:** Legacy URLs are handled by config-driven rules in `src/server/config/redirects.ts` before page rendering. See [docs/REDIRECTS.md](../../docs/REDIRECTS.md).
+- **Contract:** API contracts are defined in `docs/openapi.yaml` and generated into `src/generated/api/` via `npm run gen:api-types` (see `skills/api-first/SKILL.md`).
 
 See [docs/ARCHITECTURE.md](../../docs/ARCHITECTURE.md) for the full system diagram, [docs/AUTHENTICATION.md](../../docs/AUTHENTICATION.md) for auth details, [docs/AUTH_PROFILES.md](../../docs/AUTH_PROFILES.md) for profile mode setup, and [docs/API.md](../../docs/API.md) for API contract conventions.

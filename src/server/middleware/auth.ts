@@ -1,5 +1,6 @@
 import type { RequestHandler, Request } from 'express';
-import { ROUTES } from '../config/constants';
+import { API_PREFIX, ROUTES } from '../config/constants';
+import { API_ERRORS } from '../config/api-error';
 import { verifyToken, type JwtPayload } from '../services/jwt';
 
 export interface AuthenticatedRequest extends Request {
@@ -16,6 +17,12 @@ export const ensureAuthenticated: RequestHandler = (req, res, next) => {
       next();
       return undefined;
     }
+  }
+
+  if (req.path.startsWith(API_PREFIX)) {
+    const error = API_ERRORS.unauthorized();
+    res.status(error.status).json(error);
+    return undefined;
   }
 
   res.redirect(ROUTES.LOGIN);

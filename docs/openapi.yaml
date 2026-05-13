@@ -1,0 +1,160 @@
+openapi: 3.1.0
+info:
+  title: 2026 Boilerplate API
+  version: 1.2.0
+  description: |
+    Contract-first API definition for the 2026 boilerplate.
+    `/api/*` endpoints are the preferred integration path for API clients.
+servers:
+  - url: http://localhost:3000
+tags:
+  - name: session
+    description: Session lifecycle endpoints
+  - name: app
+    description: Application API endpoints
+  - name: legacy
+    description: Legacy browser form endpoints kept for compatibility
+paths:
+  /api/session:
+    post:
+      tags: [session]
+      summary: Create authenticated session
+      description: Authenticates credentials and sets the `token` cookie.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SessionCredentials'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/SessionCredentials'
+      responses:
+        '201':
+          description: Session created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateSessionResponse'
+        '401':
+          description: Invalid credentials
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '429':
+          description: Too many attempts
+          content:
+            text/plain:
+              schema:
+                type: string
+    delete:
+      tags: [session]
+      summary: Delete authenticated session
+      description: Clears the `token` cookie.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CsrfOnly'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/CsrfOnly'
+      responses:
+        '204':
+          description: Session deleted
+  /api/key:
+    get:
+      tags: [app]
+      summary: Get local-storage encryption key
+      responses:
+        '200':
+          description: Encryption key payload
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EncryptionKeyResponse'
+        '401':
+          description: Authentication required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /login/password:
+    post:
+      tags: [legacy]
+      summary: Legacy form login
+      description: Browser form endpoint preserved for compatibility.
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/SessionCredentials'
+      responses:
+        '302':
+          description: Redirects to `/product` or `/login`
+        '429':
+          description: Too many attempts
+          content:
+            text/plain:
+              schema:
+                type: string
+  /logout:
+    get:
+      tags: [legacy]
+      summary: Legacy logout route
+      description: Browser redirect endpoint preserved for compatibility.
+      responses:
+        '302':
+          description: Redirects to `/`
+components:
+  schemas:
+    CsrfOnly:
+      type: object
+      required: [_csrf]
+      properties:
+        _csrf:
+          type: string
+    SessionCredentials:
+      type: object
+      required: [_csrf, username, password]
+      properties:
+        _csrf:
+          type: string
+        username:
+          type: string
+        password:
+          type: string
+    SessionUser:
+      type: object
+      required: [email, name]
+      properties:
+        email:
+          type: string
+          format: email
+        name:
+          type: string
+    CreateSessionResponse:
+      type: object
+      required: [user]
+      properties:
+        user:
+          $ref: '#/components/schemas/SessionUser'
+    EncryptionKeyResponse:
+      type: object
+      required: [key]
+      properties:
+        key:
+          type: [string, "null"]
+    ErrorResponse:
+      type: object
+      required: [status, code, message]
+      properties:
+        status:
+          type: integer
+        code:
+          type: string
+        message:
+          type: string

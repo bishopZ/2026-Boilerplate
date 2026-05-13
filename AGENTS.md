@@ -18,6 +18,7 @@
 - `skills/migrate-api-to-tanstack-query/SKILL.md` — Migrate REST client usage to TanStack Query with caching and staged rollout.
 - `skills/migrate-api-to-graphql-client/SKILL.md` — Migrate REST client usage to a GraphQL client path with incremental parity checks.
 - `skills/migrate-ci-github-to-gitlab/SKILL.md` — Replace GitHub Actions CI with GitLab CI/CD while preserving lint, typecheck, and Cypress E2E.
+- `skills/api-first/SKILL.md` — OpenAPI contract in `docs/openapi.yaml`, regenerate types into `src/generated/api/`, keep imports aligned.
 
 ## Development Setup
 

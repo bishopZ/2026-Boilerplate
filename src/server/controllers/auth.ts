@@ -2,6 +2,7 @@ import type { RequestHandler, CookieOptions } from 'express';
 import passport from 'passport';
 import { ROUTES } from '../config/constants';
 import { signToken } from '../services/jwt';
+import type { CreateSessionResponse, ErrorResponse } from '@/generated/api/api-types';
 
 interface AuthUser {
   name: string;
@@ -72,19 +73,21 @@ export const postSession: RequestHandler = (req, res, next) => {
     next,
     (user) => {
       createSession(res, user);
-      res.status(201).json({
+      const payload: CreateSessionResponse = {
         user: {
           email: user.email,
           name: user.name,
         },
-      });
+      };
+      res.status(201).json(payload);
     },
     () => {
-      res.status(401).json({
+      const payload: ErrorResponse = {
         code: 'INVALID_CREDENTIALS',
         message: 'Incorrect username or password.',
         status: 401,
-      });
+      };
+      res.status(401).json(payload);
     }
   );
 };

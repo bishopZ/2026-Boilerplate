@@ -3,6 +3,7 @@ import { decrypt, encrypt } from '@/client/utilities/encryption';
 import { LOCAL_STORAGE_ID, API_PATHS } from '@/client/utilities/constants';
 import { DEFAULT_LOCALE, type SupportedLocale } from '@/client/utilities/i18n';
 import { reportError } from '@/client/utilities/error-reporting';
+import type { EncryptionKeyResponse } from '@/generated/api/api-types';
 
 const SCHEMA_VERSION = '1.0.0';
 
@@ -48,7 +49,7 @@ export const initPreferences = createAsyncThunk(
         // Only try to parse JSON if the response is actually JSON
         if (contentType?.includes('application/json')) {
           try {
-            const { key: responseKey } = await response.json() as { key: string; };
+            const { key: responseKey } = await response.json() as EncryptionKeyResponse;
             if (responseKey) {
               key = responseKey;
             }
