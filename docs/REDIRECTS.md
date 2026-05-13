@@ -22,7 +22,7 @@ Use redirects when an old URL should continue working after a page move or route
    - `301`: permanent move (SEO-friendly for stable changes)
    - `302`: temporary move
    - `307`/`308`: preserve HTTP method for non-GET cases
-3. Add or update E2E coverage in `cypress/e2e/routing/redirects.cy.ts`.
+3. Add or update E2E coverage in `playwright/e2e/routing/redirects.spec.ts`.
 4. Update `CHANGELOG.md` (`Unreleased`).
 
 ## Agent workflow

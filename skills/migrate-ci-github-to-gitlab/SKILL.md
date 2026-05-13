@@ -1,6 +1,6 @@
 ---
 name: migrate-ci-github-to-gitlab
-description: Replace GitHub Actions CI with GitLab CI/CD while preserving the same lint, typecheck, and Cypress E2E behavior and updating docs for gitlab.com settings.
+description: Replace GitHub Actions CI with GitLab CI/CD while preserving the same lint, typecheck, and Playwright E2E behavior and updating docs for gitlab.com settings.
 ---
 
 # Migrate CI from GitHub Actions to GitLab
@@ -10,7 +10,7 @@ Use this skill when a task asks to move continuous integration off GitHub-specif
 ## Goal
 
 - Remove GitHub Actions workflow definitions (and other GitHub-only CI glue that is no longer needed).
-- Add a **GitLab CI** pipeline that matches the existing quality bar: **`npm run lint`**, **`npm run type-check`**, **`npm run test:e2e`** (Cypress against `http://localhost:3000` with a dev server started in the job).
+- Add a **GitLab CI** pipeline that matches the existing quality bar: **`npm run lint`**, **`npm run type-check`**, **`npm run test:e2e`** (Playwright with `webServer` auto-start; install browser binaries with `npx playwright install --with-deps chromium`).
 - Keep **no mandatory CI secrets** for the default path (same idea as committed non-production env for the app under test).
 - Update **README**, **CONTRIBUTING**, **AGENTS.md** (skills list), and **CHANGELOG** so contributors and agents are not pointed at GitHub-only instructions.
 
@@ -25,7 +25,7 @@ Use this skill when a task asks to move continuous integration off GitHub-specif
 | --------- | -------------------- | ----- |
 | Lint      | `npm run lint`       | Node **24.x**, `npm ci` |
 | Typecheck | `npm run type-check` | `tsc --noEmit` |
-| E2E       | `npm run test:e2e`   | Copy committed CI env → `.env`, start **`npm run dev`** in background, wait until **`http://127.0.0.1:3000`** responds, run Cypress, stop server in `after_script` |
+| E2E       | `npm run test:e2e`   | Install Playwright browsers (`npx playwright install --with-deps chromium`), copy committed CI env → `.env`, run Playwright (`webServer` handles server lifecycle automatically) |
 
 **Env file:** If the repository uses **`.github/ci.env`**, relocate it to a **vendor-neutral** path as part of migration (recommended: **`ci/ci.env`**) and reference that path from `.gitlab-ci.yml`. Update any remaining docs that linked to `.github/ci.env`.
 
@@ -92,7 +92,7 @@ Keep **`.github/`** only if other workflows remain (e.g. issue templates); other
 ## Validation checklist
 
 - Open a **merge request** (or push to a test branch) and confirm the pipeline runs **lint**, **typecheck**, and **e2e** as intended.
-- Confirm **Cypress** reaches the app (no “server not running” / connection refused).
+- Confirm **Playwright** reaches the app (`webServer` starts it; no "connection refused" errors).
 - Run locally: `npm run lint`, `npm run type-check`, `npm run test` (with dev server as today’s docs describe).
 - Search for stale references:
   - `rg "github\\.com.*Actions|GitHub Actions|\\.github/workflows|GITHUB_ENV" README.md AGENTS.md docs CHANGELOG.md .gitlab-ci.yml`

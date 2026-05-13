@@ -24,7 +24,7 @@ If any input is missing, pause and ask before editing files.
 - Keep `from` and `to` as absolute paths beginning with `/`.
 - Do not duplicate an existing `from` route; update the existing rule instead.
 
-### 2) `cypress/e2e/routing/redirects.cy.ts`
+### 2) `playwright/e2e/routing/redirects.spec.ts`
 
 - Add or update E2E assertions for the redirect behavior.
 - Validate destination path and destination page content.
@@ -48,7 +48,7 @@ If any input is missing, pause and ask before editing files.
 
 - Run `npm run lint`
 - Run `npm run type-check`
-- Run `npm run test:e2e -- --spec cypress/e2e/routing/redirects.cy.ts`
+- Run `npm run test:e2e -- --spec playwright/e2e/routing/redirects.spec.ts`
 - Manually verify query-string preservation for at least one redirect (example: `/old?a=1` -> `/new?a=1`)
 
 ## Done Criteria

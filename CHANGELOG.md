@@ -11,7 +11,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Added Vitest 4 unit test suite (`npm run test:unit`) with 69 tests across 8 files covering server config (`api-error`, `redirects`, `auth-profile`), server services (`hashPassword`, JWT sign/verify), server middleware (`globalErrorHandler`), and client utilities (`parseFeatureFlags`/`isFeatureEnabled`, `formatDate`/`formatNumber`/`formatCurrency`).
 - Added `vitest.config.ts` with per-directory environment mapping: `node` for `src/server/**` tests, `happy-dom` for `src/client/**` tests.
+- Added Playwright E2E test suite (`playwright/e2e/`) with full coverage parity: auth, rate-limiting, WebMCP, accessibility, i18n, layout, routing, security headers, and SEO metadata. Shared `login()` helper in `playwright/e2e/helpers/auth.ts`.
+- Added `playwright.config.ts` with `webServer` auto-start, Chromium project, and trace/screenshot on failure.
+- Added `playwright/README.md`.
+- Updated `.github/workflows/ci.yml` E2E job to Playwright; `webServer` handles server lifecycle automatically in CI.
 - `npm run test` now runs `lint → type-check → test:unit → test:e2e`.
+
+### Removed
+
+- Removed Cypress and all related config (`cypress.config.ts`, `cypress/` directory, `skills/playwright-migration/SKILL.md`).
 
 ### Changed
 
@@ -21,8 +29,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Added Helmet 8 security headers middleware (`src/server/middleware/security-headers.ts`) covering CSP, HSTS (production), Referrer-Policy, Permissions-Policy, COOP, COEP (production), CORP, X-Content-Type-Options, and X-Frame-Options per OWASP Secure Headers Project 2026 guidance.
 - Added `docs/SECURITY_HEADERS.md` documenting every active header, the rationale for each decision, and a hardening guide.
-- Added `cypress/e2e/security/security-headers.cy.ts` to verify required headers are present on HTML, API, and static asset responses.
-- Added GitHub Actions CI workflow (lint, typecheck, Cypress E2E with dev server) plus `.github/ci.env` for non-secret CI env defaults.
+- Added `playwright/e2e/security/security-headers.spec.ts` to verify required headers are present on HTML, API, and static asset responses.
+- Added GitHub Actions CI workflow (lint, typecheck, Playwright E2E) plus `.github/ci.env` for non-secret CI env defaults.
 - Added `skills/migrate-ci-github-to-gitlab/SKILL.md` to guide migrating CI from GitHub Actions to GitLab CI/CD.
 - Added feature-flag starter support with env defaults (`VITE_FEATURE_FLAGS`) and runtime hook-based overrides (`useFeatureFlag`).
 - Added `docs/FEATURE_FLAGS.md` to document feature-flag setup and usage.

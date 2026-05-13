@@ -9,7 +9,7 @@
   "home.feature.auth.title": "جاهز للعالمية",
   "home.feature.auth.description": "دعم i18n وأنماط الوصول والمكونات القابلة لإعادة الاستخدام مدمج افتراضياً لبناء منتجات شاملة.",
   "home.feature.production.title": "إطلاق بثقة",
-  "home.feature.production.description": "سكريبتات موحدة وتغطية Cypress وأنماط Redux قوية ومطبوعة تجعل عملية الإصدار أكثر قابلية للتنبؤ.",
+  "home.feature.production.description": "سكريبتات موحدة وتغطية Playwright وأنماط Redux قوية ومطبوعة تجعل عملية الإصدار أكثر قابلية للتنبؤ.",
   "nav.home": "الرئيسية",
   "nav.about": "حول",
   "nav.login": "تسجيل الدخول",

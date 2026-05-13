@@ -137,7 +137,7 @@ Previous versions of this boilerplate used `<meta http-equiv="...">` tags in `in
 
 ## Testing
 
-A Cypress E2E test at `cypress/e2e/security/security-headers.cy.ts` verifies that required headers are present on HTML, API, and static asset responses.
+A Playwright E2E test at `playwright/e2e/security/security-headers.spec.ts` verifies that required headers are present on HTML, API, and static asset responses.
 
 ---
 

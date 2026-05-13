@@ -48,7 +48,7 @@ const About = () => {
             </List.Item>
             <List.Item>
               <List.Indicator as={LuCheck} color="green.500" />
-              Tested release workflow with lint, type-check, and Cypress E2E coverage
+              Tested release workflow with lint, type-check, and Playwright E2E coverage
             </List.Item>
             <List.Item>
               <List.Indicator as={LuCheck} color="green.500" />

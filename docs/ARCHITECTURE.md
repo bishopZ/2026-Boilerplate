@@ -111,5 +111,5 @@ The client uses `src/client/utilities/` for browser-specific helpers. Server hel
 | Backend | Express 5 | Flexible, mature, large ecosystem |
 | Auth | Passport.js | Strategy-based, extensible |
 | Encryption | Native Web Crypto API | AES-GCM encryption for localStorage |
-| Testing | Cypress | E2E testing with interactive runner |
+| Testing | Playwright + Vitest | E2E testing (Playwright) and unit tests (Vitest) |
 | Linting | ESLint | Custom config with TypeScript + React rules |

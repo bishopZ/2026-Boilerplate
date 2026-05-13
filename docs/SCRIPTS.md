@@ -86,20 +86,19 @@ Runs Vitest unit tests in watch-less run mode.
 **When to use:** After changing a service, utility, or middleware to verify logic in isolation; fast feedback loop during development
 
 ### `npm run test:e2e`
-Runs Cypress end-to-end tests in headless mode.
-- Runs all tests in `cypress/e2e/`
-- Generates screenshots on failure
+Runs Playwright end-to-end tests in headless mode.
+- Runs all tests in `playwright/e2e/`
+- Starts the dev server automatically if none is running on port 3000
+- Saves traces and screenshots on failure
 - Exits when complete
-- Requires dev server running (`npm run dev`)
 
-**When to use:** In CI/CD pipelines, before deploying. See [cypress/README.md](../cypress/README.md) for details.
+**When to use:** In CI/CD pipelines, before deploying. See [playwright/README.md](../playwright/README.md) for details.
 
 ### `npm run test:e2e:open`
-Opens the Cypress interactive test runner.
+Opens the Playwright interactive UI runner.
 - Visual test runner with browser preview
-- Hot reloading of tests
-- Time travel debugging
-- Great for writing and debugging tests
+- Step-through and time-travel debugging
+- Live reload on test file changes
 
 **When to use:** When writing or debugging E2E tests
 
@@ -163,8 +162,8 @@ npm start
 - Node.js 24+ (same as dev)
 
 ### E2E Tests
-- Development server running (`npm run dev`)
-- Chrome, Firefox, or Edge browser installed
+- Playwright browser binaries: `npx playwright install chromium` (once)
+- Dev server starts automatically via `playwright.config.ts` `webServer`
 - Tests expect server on http://localhost:3000
 
 ## Environment Variables
@@ -193,9 +192,9 @@ Scripts use environment variables from `.env`:
 - Run `npm run type-check` if you see TypeScript-related import errors
 
 ### `npm run test:e2e` fails
-- Ensure dev server is running (`npm run dev`)
-- Check that tests expect correct base URL
-- Verify Cypress is installed correctly
+- Run `npx playwright install chromium` if browser binaries are missing
+- Check `playwright-report/` for the HTML report and trace files on failure
+- Verify the app compiles correctly with `npm run dev` before running tests
 
 ### Type check passes but lint fails
 - ESLint checks more than just types

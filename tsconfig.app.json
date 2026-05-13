@@ -1,5 +1,5 @@
 {
-  "include": ["src"],
+  "include": ["src", "playwright"],
   "compilerOptions": {
     "target": "ESNext",
     "module": "ESNext",

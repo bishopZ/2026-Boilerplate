@@ -20,6 +20,9 @@ export default defineConfig({
       SESSION_SECRET: 'vitest-test-secret-do-not-use-in-production',
     },
 
+    // Only scan src/ for unit tests — exclude Playwright spec files in playwright/.
+    include: ['src/**/*.test.ts'],
+
     // Run server tests in a real Node environment;
     // run client tests in a simulated browser environment.
     environmentMatchGlobs: [

@@ -32,7 +32,7 @@ Maintain one shared page that explains how to author real Terms of Service and P
 ### 4) Sitemap and SEO tests
 
 - `src/server/controllers/sitemap.ts` — Ensure sitemap references `/policies`.
-- `cypress/e2e/seo/page-meta.cy.ts` — Keep metadata assertions in sync.
+- `playwright/e2e/seo/page-meta.spec.ts` — Keep metadata assertions in sync.
 
 ### 5) Changelog
 
@@ -42,7 +42,7 @@ Maintain one shared page that explains how to author real Terms of Service and P
 
 - Run `npm run lint`
 - Run `npm run type-check`
-- Run `npm run test:e2e -- --spec cypress/e2e/seo/page-meta.cy.ts`
+- Run `npm run test:e2e -- --spec playwright/e2e/seo/page-meta.spec.ts`
 - Verify footer link and legacy routes resolve to `/policies`
 
 ## Done Criteria

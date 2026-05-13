@@ -52,7 +52,7 @@ Move client-side server-state logic from ad hoc calls to TanStack Query while pr
 
 - Run `npm run lint`
 - Run `npm run type-check`
-- Run targeted E2E tests for migrated flows (for example `cypress/e2e/auth/login.cy.ts`)
+- Run targeted E2E tests for migrated flows (for example `playwright/e2e/auth/login.spec.ts`)
 - Verify no direct feature code still calls `fetch` for the migrated paths
 
 ## Done Criteria
