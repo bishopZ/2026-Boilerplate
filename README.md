@@ -16,7 +16,7 @@ If you want deep implementation details (architecture, auth internals, reducer p
 - **i18n:** react-intl, locales (en, ar, fr, zh), RTL for Arabic, language switcher, English fallback—[use it or ignore it](docs/I18N.md); when you need translation, it's ready
 - **UX and polish:** Page transitions (`<PageTransition>`), animated buttons (Framer Motion), scroll-to-top on route change, light/dark mode
 - **Resilience:** Error boundaries, centralized client error handler, server error-handler middleware, Suspense boundaries
-- **Developer experience:** Cypress E2E, ESLint (custom config), type-check script, `npm run test` for full pre-commit/CI (lint + type-check + E2E)
+- **Developer experience:** Vitest unit tests (`npm run test:unit`), Cypress E2E, ESLint (custom config), type-check script, `npm run test` for full pre-commit/CI (lint + type-check + unit + E2E)
 
 ## Getting Started
 
@@ -42,6 +42,7 @@ Use this workflow when you want to turn this repository into your own product in
 | Goal | Command |
 |---|---|
 | Start coding | `npm run dev` |
+| Run unit tests | `npm run test:unit` |
 | Validate before commit | `npm run test` |
 | Build for production | `npm run build` |
 | Preview production build | `npm run preview` |
@@ -85,7 +86,7 @@ For script implementation details (like i18n validation), see [scripts/README.md
 - Node.js >= 24.13.1, npm >= 11.10.1
 - `.env` file (copy from `.envTemplate`)
 
-E2E tests require the dev server running and a supported browser. See [cypress/README.md](cypress/README.md).
+Unit tests run with `npm run test:unit` and require no dev server. E2E tests require the dev server running and a supported browser. See [cypress/README.md](cypress/README.md).
 
 ## GitHub Actions CI
 
