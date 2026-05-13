@@ -3,9 +3,6 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
-    <meta http-equiv="X-Content-Type-Options" content="nosniff" />
-    <meta http-equiv="X-Frame-Options" content="DENY" />
 
     <!-- Page metadata is managed by React PageMeta -->
     <title>2026 Boilerplate</title>
@@ -28,31 +25,7 @@
     </script>
 
     <!-- Fallback for Firefox and Safari -->
-    <script>
-      if (!HTMLScriptElement.supports || !HTMLScriptElement.supports('speculationrules')) {
-        const preloadedUrls = {};
-
-        const pointerenterHandler = function() {
-          if (!preloadedUrls[this.href]) {
-            preloadedUrls[this.href] = true;
-
-            const prefetcher = document.createElement('link');
-
-            prefetcher.as = prefetcher.relList.supports('prefetch') ? 'document' : 'fetch';
-            prefetcher.rel = prefetcher.relList.supports('prefetch') ? 'prefetch' : 'preload';
-            prefetcher.href = this.href;
-
-            document.head.appendChild(prefetcher);
-          }
-        };
-
-        document.addEventListener('DOMContentLoaded', () => {
-          document.querySelectorAll('a[href^="/"]').forEach(item => {
-            item.addEventListener('pointerenter', pointerenterHandler);
-          });
-        });
-      }
-    </script>
+    <script src="/js/speculation-rules-fallback.js"></script>
   </head>
   <body>
     <noscript>

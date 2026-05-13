@@ -4,6 +4,7 @@ import ViteExpress from 'vite-express';
 import cookieParser from 'cookie-parser';
 import { fileURLToPath } from 'url';
 import path from 'path';
+import { applySecurityHeaders } from './middleware/security-headers';
 import { csrfProtection } from './middleware/csrf';
 import { globalErrorHandler } from './middleware/error-handler';
 import authRoutes from './routes/auth';
@@ -14,6 +15,10 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const setupMiddleware = (app: express.Application) => {
+  // Security headers must come first so every response — including errors,
+  // redirects, and static assets — carries the full security header set.
+  applySecurityHeaders(app);
+
   app.set('trust proxy', 1);
   app.use(express.static(`${__dirname}/public`));
   app.use(express.urlencoded({ extended: true }));

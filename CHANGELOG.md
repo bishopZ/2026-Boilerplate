@@ -9,6 +9,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Added Helmet 8 security headers middleware (`src/server/middleware/security-headers.ts`) covering CSP, HSTS (production), Referrer-Policy, Permissions-Policy, COOP, COEP (production), CORP, X-Content-Type-Options, and X-Frame-Options per OWASP Secure Headers Project 2026 guidance.
+- Added `docs/SECURITY_HEADERS.md` documenting every active header, the rationale for each decision, and a hardening guide.
+- Added `cypress/e2e/security/security-headers.cy.ts` to verify required headers are present on HTML, API, and static asset responses.
 - Added GitHub Actions CI workflow (lint, typecheck, Cypress E2E with dev server) plus `.github/ci.env` for non-secret CI env defaults.
 - Added `skills/migrate-ci-github-to-gitlab/SKILL.md` to guide migrating CI from GitHub Actions to GitLab CI/CD.
 - Added feature-flag starter support with env defaults (`VITE_FEATURE_FLAGS`) and runtime hook-based overrides (`useFeatureFlag`).
@@ -47,10 +50,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Refined testing guidance across `AGENTS.md`, `docs/CONTRIBUTING.md`, and `cypress/README.md` to keep E2E contract coverage lean and migration-friendly while still requiring feature-level automated tests at the right layer.
 - Simplified `cypress/e2e/seo/page-meta.cy.ts` to assert core metadata contracts without over-coupling to every page-specific metadata field.
 - Replaced client-side CryptoJS encryption/decryption with native Web Crypto API (AES-GCM + PBKDF2) in persistence flow.
+### Changed
+- Moved `index.html` inline speculation-rules fallback script to `public/js/speculation-rules-fallback.js` so it loads from `'self'` without requiring `'unsafe-inline'` in `script-src`.
+- Removed `<meta http-equiv>` security headers from `index.html` (`X-Content-Type-Options`, `X-Frame-Options`, minimal CSP); all policies are now delivered as HTTP response headers covering every response type.
+- Updated `docs/TECHNOLOGY.md` to reflect that CSRF protection and login rate limiting are already implemented (was listed as future work).
+
 ### Removed
 - Removed `crypto-js` and `@types/crypto-js` dependencies.
+
 ### Fixed
+
 ### Security
+- Added Helmet 8 with a full security header suite following OWASP and 2026 industry guidance. Strict CSP eliminates `'unsafe-inline'` for scripts; `X-XSS-Protection` is explicitly disabled (deprecated); HSTS with `preload` is production-only; Permissions-Policy opts out of camera, microphone, geolocation, payment, and ad-tracking APIs.
 - Added IP-based rate limiting for `POST /login/password` with configurable env overrides (`LOGIN_RATE_LIMIT_MAX_ATTEMPTS`, `LOGIN_RATE_LIMIT_WINDOW_MS`).
 
 
