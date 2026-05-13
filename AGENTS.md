@@ -12,12 +12,11 @@
 - `skills/hidden-admin-auth/SKILL.md` — Configure the private section as a hidden admin utility and rotate hardcoded default credentials safely.
 - `skills/migrate-design-system-to-shadcn/SKILL.md` — Migrate UI from Chakra to shadcn/ui and fully remove Chakra dependencies.
 - `skills/add-form-manager/SKILL.md` — Introduce React Hook Form + Zod with typed, reusable form validation patterns.
-- `skills/playwright-migration/SKILL.md` — Migrate the E2E stack from Cypress to Playwright in a controlled, test-first rollout.
 - `skills/policy-guide/SKILL.md` — Maintain the combined policy-writing guide page and keep routes/tests/docs aligned.
 - `skills/add-redirect/SKILL.md` — Add or update URL redirects with status-code guidance and E2E coverage.
 - `skills/migrate-api-to-tanstack-query/SKILL.md` — Migrate REST client usage to TanStack Query with caching and staged rollout.
 - `skills/migrate-api-to-graphql-client/SKILL.md` — Migrate REST client usage to a GraphQL client path with incremental parity checks.
-- `skills/migrate-ci-github-to-gitlab/SKILL.md` — Replace GitHub Actions CI with GitLab CI/CD while preserving lint, typecheck, and Cypress E2E.
+- `skills/migrate-ci-github-to-gitlab/SKILL.md` — Replace GitHub Actions CI with GitLab CI/CD while preserving lint, typecheck, and Playwright E2E.
 - `skills/api-first/SKILL.md` — OpenAPI contract in `docs/openapi.yaml`, regenerate types into `src/generated/api/`, keep imports aligned.
 
 ## Development Setup
@@ -33,8 +32,9 @@
 - `npm run lint` / `npm run lint:fix` — ESLint
 - `npm run type-check` — TypeScript type verification
 - `npm run build` — production build
-- `npm run test` — Full suite: lint + type-check + E2E
-- `npm run test:e2e` — Cypress E2E tests (dev server must be running)
+- `npm run test` — Full suite: lint + type-check + unit + E2E
+- `npm run test:unit` — Vitest unit tests (no dev server needed)
+- `npm run test:e2e` — Playwright E2E tests (dev server starts automatically via webServer config)
 
 ## Code Guidelines
 
@@ -77,8 +77,8 @@ When adding or changing a feature, check all affected surfaces before opening a 
 
 - Login credentials: username `test`, password `test`
 - Unit tests use Vitest: `npm run test:unit` (no dev server needed). Test files live next to their source as `*.test.ts`. Use `node` environment for `src/server/**` and `happy-dom` for `src/client/**` (configured in `vitest.config.ts`).
-- E2E tests are in `cypress/e2e/` and require the dev server to be running.
-- The Cypress suite is intentionally compact and contract-focused for easier migration to other test frameworks.
+- E2E tests use Playwright (`playwright/e2e/`). The dev server starts automatically via `webServer` in `playwright.config.ts`; run `npx playwright install chromium` once to install browser binaries.
+- The Playwright suite is intentionally compact and contract-focused.
 - Before committing: `npm run test` (runs lint → type-check → unit → E2E)
 
 ## Cursor Cloud specific instructions
@@ -88,6 +88,6 @@ When adding or changing a feature, check all affected surfaces before opening a 
 - The `.env` file uses Node's `--env-file` flag (via `nodemon`), which does **not** strip quotes from values. Do not wrap `.env` values in quotes — they become part of the literal value.
 - `cp .envTemplate .env` is sufficient to start the server; the template ships with working local-dev defaults for `SESSION_SECRET` and `LOCAL_STORAGE_KEY`.
 - `npm run build` (`tsc -b && vite build`) has a pre-existing type error in `src/client/utilities/encryption.ts` related to `Uint8Array`/`BufferSource` under TypeScript 5.9. `npm run type-check` (`tsc --noEmit`) passes cleanly; use that for validation instead of `npm run build`.
-- The `accessibility/skip-link.cy.ts` Cypress test fails in headless Chrome in this VM (focus behavior difference). This is pre-existing and not caused by environment setup.
-- Before running `npm run test:e2e`, ensure the dev server is already running (`npm run dev`). Unset any `SESSION_SECRET` or `LOCAL_STORAGE_KEY` shell variables before starting the dev server to avoid env pollution — the server reads from `.env` via `--env-file`.
+- The `accessibility/skip-link.spec.ts` Playwright test exercises focus behavior which works correctly in the Chromium headless shell used by Playwright.
+- `npm run test:e2e` uses Playwright's `webServer` to start the dev server automatically. Unset any `SESSION_SECRET` or `LOCAL_STORAGE_KEY` shell variables before running tests to avoid env pollution — the server reads from `.env` via `--env-file`.
 - The login API endpoint is `/login/password` (form-based) or `POST /api/session` (REST-style). Both require a CSRF token from the `csrf-token` cookie.

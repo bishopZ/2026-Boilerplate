@@ -86,3 +86,7 @@ cypress/downloads
 !.yarn/releases
 !.yarn/sdks
 !.yarn/versions
+
+# Playwright
+playwright-report/
+test-results/

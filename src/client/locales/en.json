@@ -9,7 +9,7 @@
   "home.feature.auth.title": "Global by Default",
   "home.feature.auth.description": "Built-in i18n, accessibility patterns, and reusable UI components support inclusive product development.",
   "home.feature.production.title": "Ship with Confidence",
-  "home.feature.production.description": "Standardized scripts, Cypress coverage, and typed Redux patterns make release workflows predictable.",
+  "home.feature.production.description": "Standardized scripts, Playwright coverage, and typed Redux patterns make release workflows predictable.",
   "nav.home": "Home",
   "nav.about": "About",
   "nav.login": "Login",

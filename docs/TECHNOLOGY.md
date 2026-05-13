@@ -38,9 +38,9 @@ React Router enables seamless client-side navigation in single-page applications
 
 Chakra UI provides a comprehensive design system with accessible, composable components that follow WAI-ARIA standards out of the box. Unlike heavier frameworks, Chakra offers excellent TypeScript support, a thoughtful API design, and powerful theming capabilities that make it easy to create consistent, professional interfaces without sacrificing flexibility. The component library strikes an ideal balance between providing enough structure to be productive while remaining customizable for unique design requirements.
 
-## Cypress
+## Playwright
 
-Cypress provides reliable end-to-end testing with an excellent developer experience through its interactive test runner and automatic waiting. By including a basic Cypress setup with example tests, the boilerplate ensures developers can immediately verify critical user flows work as expected. E2E tests give confidence that authentication, navigation, and key features function correctly across the entire stack.
+Playwright provides reliable cross-browser end-to-end testing with first-class TypeScript support, parallel test execution, and powerful debugging tools (traces, screenshots, step-through UI). The `webServer` integration automatically starts and stops the dev server for E2E runs, removing the need to manage server lifecycle manually. AI agents are familiar with Playwright's API, making it the natural choice for an AI-first boilerplate. E2E tests give confidence that authentication, navigation, and key features function correctly across the entire stack.
 
 ## ESLint
 

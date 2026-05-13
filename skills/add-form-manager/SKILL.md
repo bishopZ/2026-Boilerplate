@@ -56,7 +56,7 @@ Adopt React Hook Form + Zod so form validation is declarative, typed, reusable, 
 - Run `npm run lint`
 - Run `npm run type-check`
 - Run auth-focused E2E tests after login form migration:
-  - `npm run test:e2e -- --spec cypress/e2e/auth/login.cy.ts`
+  - `npm run test:e2e -- --spec playwright/e2e/auth/login.spec.ts`
 - Verify keyboard navigation and error messaging remain accessible
 
 ## Done Criteria

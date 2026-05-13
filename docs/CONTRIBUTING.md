@@ -18,8 +18,7 @@ Before submitting your pull request, make sure to:
 - Add at least one automated test for each feature change at the right level:
   - unit/integration for local logic
   - E2E for cross-page, user-critical journeys
-- Keep the baseline Cypress suite small and representative so it stays easy to migrate to other frameworks.
-- Prefer updating existing E2E contract specs (`auth`, `accessibility`, `i18n`, `seo`) before adding many new E2E files.
+- Keep the Playwright suite small and representative — prefer updating existing contract specs (`auth`, `accessibility`, `i18n`, `seo`) before adding many new spec files.
 
 ## React 19 boundary guidance (loading + failures)
 

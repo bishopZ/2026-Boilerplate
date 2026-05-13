@@ -65,9 +65,9 @@ At completion, no Chakra runtime or Chakra-specific code should remain:
 - Run `npm run lint`
 - Run `npm run type-check`
 - Run focused E2E tests for primary UI flows:
-  - `cypress/e2e/auth/login.cy.ts`
-  - `cypress/e2e/accessibility/skip-link.cy.ts`
-  - `cypress/e2e/layout/footer-position.cy.ts`
+  - `playwright/e2e/auth/login.spec.ts`
+  - `playwright/e2e/accessibility/skip-link.spec.ts`
+  - `playwright/e2e/layout/footer-position.spec.ts`
 - Verify Chakra is fully removed:
   - `rg \"@chakra-ui|Chakra|chakra\" src package.json docs AGENTS.md`
 

@@ -9,7 +9,7 @@
   "home.feature.auth.title": "Global par défaut",
   "home.feature.auth.description": "L'i18n intégrée, les patterns d'accessibilité et les composants réutilisables favorisent un développement inclusif.",
   "home.feature.production.title": "Livrer en confiance",
-  "home.feature.production.description": "Des scripts standardisés, une couverture Cypress et des patterns Redux typés rendent les livraisons prévisibles.",
+  "home.feature.production.description": "Des scripts standardisés, une couverture Playwright et des patterns Redux typés rendent les livraisons prévisibles.",
   "nav.home": "Accueil",
   "nav.about": "À propos",
   "nav.login": "Connexion",

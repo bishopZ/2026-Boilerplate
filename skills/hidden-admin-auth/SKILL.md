@@ -15,8 +15,8 @@ Use this skill when you want to keep `/product` as a private admin utility. It s
 |------|---------|-----------|
 | `.env` | Operator updates manually (gitignored) | Skill does not modify |
 | `.envTemplate` | Template values: `ADMIN_USERNAME=test` + salt/hash for `test` | Any real credentials |
-| Code (auth.ts, cypress.config, etc.) | Read from `process.env`; no hardcoded creds | Any credentials |
-| Docs (AGENTS.md, README, AUTHENTICATION.md, cypress/README) | Generic text: "configure via .env", "template default: test/test" | Actual credentials or password hints |
+| Code (auth.ts, playwright.config, etc.) | Read from `process.env`; no hardcoded creds | Any credentials |
+| Docs (AGENTS.md, README, AUTHENTICATION.md, playwright/README) | Generic text: "configure via .env", "template default: test/test" | Actual credentials or password hints |
 | CHANGELOG | Generic: "credentials moved to env vars" | Any credentials or password hints |
 
 ## Goal
@@ -40,26 +40,26 @@ Add the Hidden Admin Auth block **only if it does not exist**. Use these templat
 
 - `ADMIN_USERNAME=test`
 - `ADMIN_PASSWORD_SALT` and `ADMIN_PASSWORD_HASH`: generate for password `test` using the hash command.
-- Optional: `CYPRESS_TEST_USERNAME` and `CYPRESS_TEST_PASSWORD` (for E2E when credentials differ from template; defaults to `test`/`test`).
+- Optional: `TEST_USERNAME` and `TEST_PASSWORD` (for E2E when credentials differ from template; defaults to `test`/`test`).
 
 Include the regeneration command as a comment so the operator can generate new values and paste them into `.env`. **Never put real credentials in `.envTemplate`.**
 
-### 3) `cypress.config.ts`
+### 3) `playwright.config.ts`
 
 Add `env` block:
 
 ```ts
 env: {
-  TEST_USERNAME: process.env.CYPRESS_TEST_USERNAME ?? 'test',
-  TEST_PASSWORD: process.env.CYPRESS_TEST_PASSWORD ?? 'test',
+  TEST_USERNAME: process.env.TEST_USERNAME ?? 'test',
+  TEST_PASSWORD: process.env.TEST_PASSWORD ?? 'test',
 },
 ```
 
 Defaults must be `test`/`test`.
 
-### 4) `cypress/e2e/auth/login.cy.ts`
+### 4) `playwright/e2e/auth/login.spec.ts`
 
-Use `Cypress.env('TEST_USERNAME')` and `Cypress.env('TEST_PASSWORD')` instead of hardcoded strings.
+Use `process.env.TEST_USERNAME` and `process.env.TEST_PASSWORD` (or the `getCredentials()` helper in `playwright/e2e/helpers/auth.ts`) instead of hardcoded strings.
 
 ### 5) Documentation (generic only)
 
@@ -68,7 +68,7 @@ Update these to describe env-based auth **without exposing credentials**:
 - **AGENTS.md** → `Login credentials: configured via .env (ADMIN_* vars). Template default: test/test.`
 - **README.md** → `Login with credentials from .env (template default: test/test).`
 - **docs/AUTHENTICATION.md** → Describe that credentials come from `.env`; template authenticates as `test`/`test`. Include the regeneration command. Do not mention specific credentials.
-- **cypress/README.md** → `Credentials are env-driven. Default: test/test. Override via CYPRESS_TEST_USERNAME and CYPRESS_TEST_PASSWORD.`
+- **playwright/README.md** → `Credentials are env-driven. Default: test/test. Override via TEST_USERNAME and TEST_PASSWORD.`
 
 ### 6) Public header (hide login link)
 
