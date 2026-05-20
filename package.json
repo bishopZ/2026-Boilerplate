@@ -63,7 +63,7 @@
     "@types/passport-local": "1.0.38",
     "@types/react": "19.2.14",
     "@types/react-dom": "19.2.3",
-    "@vitejs/plugin-react": "5.1.4",
+    "@vitejs/plugin-react": "^6.0.2",
     "eslint": "^10.3.0",
     "eslint-plugin-react-dom": "^5.7.7",
     "eslint-plugin-react-hooks": "^7.1.1",
@@ -74,7 +74,7 @@
     "nodemon": "3.1.14",
     "openapi-typescript": "^7.13.0",
     "typescript-eslint": "^8.59.3",
-    "vite": "^7.3.3",
+    "vite": "^8.0.0",
     "vite-tsconfig-paths": "6.1.1",
     "vitest": "^4.1.6"
   },
