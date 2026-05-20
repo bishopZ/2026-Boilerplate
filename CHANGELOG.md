@@ -7,19 +7,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-### Changed
+### Added
 
-- Migrated from Vite 7 to Vite 8: updated `vite` `^7.3.3`→`^8.0.0` and `@vitejs/plugin-react` `5.1.4`→`^6.0.2`. Vite 8 switches the build pipeline to [Rolldown](https://rolldown.rs/) and [Oxc](https://oxc.rs/) (replacing esbuild/Rollup). No `vite.config.ts` changes required — the project's config does not use any deprecated options.
-- Updated ESLint ecosystem to ESLint 10: `eslint` 9→10.3.0, `@eslint/js` 9→10.0.1, `eslint-plugin-react-dom` 2→5.7.7, `eslint-plugin-react-x` 2→5.7.7, `eslint-plugin-react-hooks` 7.0.1→7.1.1, `eslint-plugin-react-refresh` 0.5.1→0.5.2, `typescript-eslint` 8.56.1→8.59.3, `@stylistic/eslint-plugin` 5.9.0→5.10.0, `globals` 17.3.0→17.6.0.
-- Updated runtime dependencies: `@chakra-ui/react` 3.33.0→3.35.0, `framer-motion` 12.34.3→12.38.0, `react`/`react-dom` 19.2.4→19.2.6, `react-icons` 5.5.0→5.6.0, `react-router` 7.13.1→7.15.0.
-- Updated `@types/node` 24.7.2→25.7.0 (compatible with TypeScript 5.9).
-- Moved `new Date().getFullYear()` in `Footer` to a module-level constant to satisfy the new `react-x/purity` rule.
-- Upgraded TypeScript 5.9.3→6.0.3. TypeScript 6 is a transition release bridging 5.x and the forthcoming Go-based 7.0; it introduces new compiler defaults (`strict`, `target`, `moduleResolution`) and deprecates legacy options. The existing `tsconfig.app.json` and `tsconfig.node.json` already used explicit values for all changed defaults, so no tsconfig edits were required.
-- Upgraded `react-intl` 8.1.3→10.1.8. Version 10 requires React 19 and TypeScript 5+ (both already satisfied). The project uses only stable APIs (`IntlProvider`, `FormattedMessage`, `useIntl`) — none of the deprecated `FormattedHTMLMessage`/`intl.formatHTMLMessage` APIs — so no source changes were required.
+### Changed
 
 ### Removed
 
-- Removed unused `ejs` dependency (template system was removed in v1.2.0 but the package lingered).
+### Fixed
+
+### Security
+
+
+## [1.3.0] - 2026-05-20
 
 ### Added
 
@@ -30,17 +29,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Added `playwright/README.md`.
 - Updated `.github/workflows/ci.yml` E2E job to Playwright; `webServer` handles server lifecycle automatically in CI.
 - `npm run test` now runs `lint → type-check → test:unit → test:e2e`.
-
-### Removed
-
-- Removed Cypress and all related config (`cypress.config.ts`, `cypress/` directory, `skills/playwright-migration/SKILL.md`).
-
-### Changed
-
-- Removed `SESSION_SECRET` startup validation: the server no longer rejects short or template-like values. The `.envTemplate` now ships with working local-dev defaults (`local-dev-session-secret`, `local-dev-storage-key`) so `cp .envTemplate .env && npm run dev` works without any additional setup. Use strong random values in production.
-
-### Added
-
 - Added Helmet 8 security headers middleware (`src/server/middleware/security-headers.ts`) covering CSP, HSTS (production), Referrer-Policy, Permissions-Policy, COOP, COEP (production), CORP, X-Content-Type-Options, and X-Frame-Options per OWASP Secure Headers Project 2026 guidance.
 - Added `docs/SECURITY_HEADERS.md` documenting every active header, the rationale for each decision, and a hardening guide.
 - Added `playwright/e2e/security/security-headers.spec.ts` to verify required headers are present on HTML, API, and static asset responses.
@@ -68,6 +56,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Added a shared client `Link` component that unifies Chakra UI link styling with React Router navigation and standardized external-link handling.
 
 ### Changed
+
+- Migrated from Vite 7 to Vite 8: updated `vite` `^7.3.3`→`^8.0.0` and `@vitejs/plugin-react` `5.1.4`→`^6.0.2`. Vite 8 switches the build pipeline to [Rolldown](https://rolldown.rs/) and [Oxc](https://oxc.rs/) (replacing esbuild/Rollup). No `vite.config.ts` changes required — the project's config does not use any deprecated options.
+- Updated ESLint ecosystem to ESLint 10: `eslint` 9→10.3.0, `@eslint/js` 9→10.0.1, `eslint-plugin-react-dom` 2→5.7.7, `eslint-plugin-react-x` 2→5.7.7, `eslint-plugin-react-hooks` 7.0.1→7.1.1, `eslint-plugin-react-refresh` 0.5.1→0.5.2, `typescript-eslint` 8.56.1→8.59.3, `@stylistic/eslint-plugin` 5.9.0→5.10.0, `globals` 17.3.0→17.6.0.
+- Updated runtime dependencies: `@chakra-ui/react` 3.33.0→3.35.0, `framer-motion` 12.34.3→12.38.0, `react`/`react-dom` 19.2.4→19.2.6, `react-icons` 5.5.0→5.6.0, `react-router` 7.13.1→7.15.0.
+- Updated `@types/node` 24.7.2→25.7.0 (compatible with TypeScript 5.9).
+- Moved `new Date().getFullYear()` in `Footer` to a module-level constant to satisfy the new `react-x/purity` rule.
+- Upgraded TypeScript 5.9.3→6.0.3. TypeScript 6 is a transition release bridging 5.x and the forthcoming Go-based 7.0; it introduces new compiler defaults (`strict`, `target`, `moduleResolution`) and deprecates legacy options. The existing `tsconfig.app.json` and `tsconfig.node.json` already used explicit values for all changed defaults, so no tsconfig edits were required.
+- Upgraded `react-intl` 8.1.3→10.1.8. Version 10 requires React 19 and TypeScript 5+ (both already satisfied). The project uses only stable APIs (`IntlProvider`, `FormattedMessage`, `useIntl`) — none of the deprecated `FormattedHTMLMessage`/`intl.formatHTMLMessage` APIs — so no source changes were required.
+- Removed `SESSION_SECRET` startup validation: the server no longer rejects short or template-like values. The `.envTemplate` now ships with working local-dev defaults (`local-dev-session-secret`, `local-dev-storage-key`) so `cp .envTemplate .env && npm run dev` works without any additional setup. Use strong random values in production.
 - Moved OpenAPI-generated TypeScript and shared API aliases from `src/shared/` to `src/generated/api/`; imports use `@/generated/api/api-types`.
 - Updated auth verification to route through profile-aware starter mode logic (`local` works by default; `supabase`/`postgres` require provider wiring).
 - Updated API auth behavior to favor REST-style `/api/*` responses for API clients while preserving legacy browser form auth endpoints as compatibility shims.
@@ -82,17 +79,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Refined testing guidance across `AGENTS.md`, `docs/CONTRIBUTING.md`, and `cypress/README.md` to keep E2E contract coverage lean and migration-friendly while still requiring feature-level automated tests at the right layer.
 - Simplified `cypress/e2e/seo/page-meta.cy.ts` to assert core metadata contracts without over-coupling to every page-specific metadata field.
 - Replaced client-side CryptoJS encryption/decryption with native Web Crypto API (AES-GCM + PBKDF2) in persistence flow.
-### Changed
 - Moved `index.html` inline speculation-rules fallback script to `public/js/speculation-rules-fallback.js` so it loads from `'self'` without requiring `'unsafe-inline'` in `script-src`.
 - Removed `<meta http-equiv>` security headers from `index.html` (`X-Content-Type-Options`, `X-Frame-Options`, minimal CSP); all policies are now delivered as HTTP response headers covering every response type.
 - Updated `docs/TECHNOLOGY.md` to reflect that CSRF protection and login rate limiting are already implemented (was listed as future work).
 
 ### Removed
+
+- Removed unused `ejs` dependency (template system was removed in v1.2.0 but the package lingered).
+- Removed Cypress and all related config (`cypress.config.ts`, `cypress/` directory, `skills/playwright-migration/SKILL.md`).
 - Removed `crypto-js` and `@types/crypto-js` dependencies.
 
-### Fixed
-
 ### Security
+
 - Added Helmet 8 with a full security header suite following OWASP and 2026 industry guidance. Strict CSP eliminates `'unsafe-inline'` for scripts; `X-XSS-Protection` is explicitly disabled (deprecated); HSTS with `preload` is production-only; Permissions-Policy opts out of camera, microphone, geolocation, payment, and ad-tracking APIs.
 - Added IP-based rate limiting for `POST /login/password` with configurable env overrides (`LOGIN_RATE_LIMIT_MAX_ATTEMPTS`, `LOGIN_RATE_LIMIT_WINDOW_MS`).
 
