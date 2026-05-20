@@ -1,4 +1,4 @@
-# 2026 Boilerplate for TypeScript/React
+# 2026 Boilerplate for TypeScript/React v1.3
 
 Use this boilerplate to build production-ready web apps. Full-stack TypeScript, React 19, and Express with authentication, encrypted persistence, SEO, i18n, accessibility, and a modern developer experience—all configured and ready to extend.
 
