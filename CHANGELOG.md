@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Migrated from Vite 7 to Vite 8: updated `vite` `^7.3.3`→`^8.0.0` and `@vitejs/plugin-react` `5.1.4`→`^6.0.2`. Vite 8 switches the build pipeline to [Rolldown](https://rolldown.rs/) and [Oxc](https://oxc.rs/) (replacing esbuild/Rollup). No `vite.config.ts` changes required — the project's config does not use any deprecated options.
 - Updated ESLint ecosystem to ESLint 10: `eslint` 9→10.3.0, `@eslint/js` 9→10.0.1, `eslint-plugin-react-dom` 2→5.7.7, `eslint-plugin-react-x` 2→5.7.7, `eslint-plugin-react-hooks` 7.0.1→7.1.1, `eslint-plugin-react-refresh` 0.5.1→0.5.2, `typescript-eslint` 8.56.1→8.59.3, `@stylistic/eslint-plugin` 5.9.0→5.10.0, `globals` 17.3.0→17.6.0.
 - Updated runtime dependencies: `@chakra-ui/react` 3.33.0→3.35.0, `framer-motion` 12.34.3→12.38.0, `react`/`react-dom` 19.2.4→19.2.6, `react-icons` 5.5.0→5.6.0, `react-router` 7.13.1→7.15.0.
 - Updated `@types/node` 24.7.2→25.7.0 (compatible with TypeScript 5.9).
@@ -19,7 +20,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Removed unused `ejs` dependency (template system was removed in v1.2.0 but the package lingered).
 
 ### Deferred (intentional holds)
-- `vite` 8, `@vitejs/plugin-react` 6: Vite 8 is a major release requiring `@vitejs/plugin-react` 6 and full config review.
 - `typescript` 6: Requires validating the pre-existing `encryption.ts` type error and downstream tooling.
 - `react-intl` 10: Major breaking changes to the message API.
 
