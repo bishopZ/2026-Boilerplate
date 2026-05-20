@@ -14,14 +14,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Updated runtime dependencies: `@chakra-ui/react` 3.33.0→3.35.0, `framer-motion` 12.34.3→12.38.0, `react`/`react-dom` 19.2.4→19.2.6, `react-icons` 5.5.0→5.6.0, `react-router` 7.13.1→7.15.0.
 - Updated `@types/node` 24.7.2→25.7.0 (compatible with TypeScript 5.9).
 - Moved `new Date().getFullYear()` in `Footer` to a module-level constant to satisfy the new `react-x/purity` rule.
+- Upgraded TypeScript 5.9.3→6.0.3. TypeScript 6 is a transition release bridging 5.x and the forthcoming Go-based 7.0; it introduces new compiler defaults (`strict`, `target`, `moduleResolution`) and deprecates legacy options. The existing `tsconfig.app.json` and `tsconfig.node.json` already used explicit values for all changed defaults, so no tsconfig edits were required.
+- Upgraded `react-intl` 8.1.3→10.1.8. Version 10 requires React 19 and TypeScript 5+ (both already satisfied). The project uses only stable APIs (`IntlProvider`, `FormattedMessage`, `useIntl`) — none of the deprecated `FormattedHTMLMessage`/`intl.formatHTMLMessage` APIs — so no source changes were required.
 
 ### Removed
 
 - Removed unused `ejs` dependency (template system was removed in v1.2.0 but the package lingered).
-
-### Deferred (intentional holds)
-- `typescript` 6: Requires validating the pre-existing `encryption.ts` type error and downstream tooling.
-- `react-intl` 10: Major breaking changes to the message API.
 
 ### Added
 
