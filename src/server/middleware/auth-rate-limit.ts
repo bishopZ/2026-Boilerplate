@@ -1,4 +1,4 @@
-import rateLimit from 'express-rate-limit';
+import rateLimit, { ipKeyGenerator } from 'express-rate-limit';
 import { ROUTES } from '../config/constants';
 
 const DEFAULT_LOGIN_WINDOW_MS = 15 * 60 * 1000;
@@ -37,7 +37,10 @@ export const loginRateLimiter = rateLimit({
   standardHeaders: 'draft-8',
   legacyHeaders: false,
   // Include attempted username in the key to reduce lockout blast-radius.
-  keyGenerator: (req) => `${req.ip ?? 'unknown-ip'}:${getUsernameRateLimitKey((req.body as { username?: unknown; }).username)}`,
+  keyGenerator: (req) => {
+    const ipKey = req.ip ? ipKeyGenerator(req.ip) : 'unknown-ip';
+    return `${ipKey}:${getUsernameRateLimitKey((req.body as { username?: unknown; }).username)}`;
+  },
   skipSuccessfulRequests: true,
   requestWasSuccessful: (_req, res) => {
     return res.statusCode === 302 && res.getHeader('location') === ROUTES.PRODUCT;
