@@ -11,6 +11,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Pinned TypeScript to 5.9.3 so `npm install` resolves cleanly with `openapi-typescript@7`, which still declares `peerDependencies.typescript` as `^5.x`. Revisit TypeScript 6 after openapi-typescript publishes peer support for it ([openapi-ts/openapi-typescript#2723](https://github.com/openapi-ts/openapi-typescript/issues/2723)).
+
 ### Removed
 
 ### Fixed
